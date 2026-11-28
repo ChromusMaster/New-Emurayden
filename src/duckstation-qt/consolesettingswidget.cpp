@@ -77,10 +77,15 @@ ConsoleSettingsWidget::ConsoleSettingsWidget(SettingsWindow* dialog, QWidget* pa
                                                &Settings::ParseCPUExecutionMode, &Settings::GetCPUExecutionModeName,
                                                &Settings::GetCPUExecutionModeDisplayName,
                                                Settings::DEFAULT_CPU_EXECUTION_MODE, CPUExecutionMode::Count);
+  connect(m_ui.cpuExecutionMode, &QComboBox::currentIndexChanged, this, &ConsoleSettingsWidget::onExecutionModeChanged);
+  onExecutionModeChanged();
+
   SettingWidgetBinder::BindWidgetToBoolSetting(sif, m_ui.enableCPUClockSpeedControl, Settings::CPU_SECTION_NAME,
                                                "OverclockEnable", false);
   SettingWidgetBinder::BindWidgetToBoolSetting(sif, m_ui.recompilerICache, Settings::CPU_SECTION_NAME,
                                                "RecompilerICache", false);
+  SettingWidgetBinder::BindWidgetToBoolSetting(sif, m_ui.idleTimeoutScale, Settings::CPU_SECTION_NAME,
+                                               "IdleTimeoutScale", true);
   SettingWidgetBinder::BindWidgetToBoolSetting(sif, m_ui.cdromLoadImageToRAM, Settings::CDROM_SECTION_NAME,
                                                "LoadImageToRAM", false);
   SettingWidgetBinder::BindWidgetToBoolSetting(sif, m_ui.cdromAutoDiscChange, Settings::CDROM_SECTION_NAME,
@@ -148,6 +153,10 @@ ConsoleSettingsWidget::ConsoleSettingsWidget(SettingsWindow* dialog, QWidget* pa
                              tr("Simulates stalls in the recompilers when the emulated CPU would have to fetch "
                                 "instructions into its cache. Makes games run closer to their console framerate, at a "
                                 "small cost to performance. Interpreter mode always simulates the instruction cache."));
+  dialog->registerWidgetHelp(
+    m_ui.idleTimeoutScale, tr("Scale Idle Timeout"), tr("Checked"),
+    tr("Games give up waiting for vertical blank after a fixed number of loop iterations, which pass faster when "
+       "overclocking. Scales this timeout to keep games synchronized to vertical blank."));
 
   dialog->registerWidgetHelp(
     m_ui.cdromReadSpeedup, tr("CD-ROM Read Speedup"), tr("None (Double Speed)"),
@@ -205,17 +214,14 @@ void ConsoleSettingsWidget::onFastBootChanged()
   m_ui.fastForwardBoot->setEnabled(fast_boot_enabled);
 }
 
-void ConsoleSettingsWidget::updateRecompilerICacheEnabled()
+void ConsoleSettingsWidget::onExecutionModeChanged()
 {
   const CPUExecutionMode mode =
-    Settings::ParseCPUExecutionMode(
-      m_dialog
-        ->getEffectiveStringValue(Settings::CPU_SECTION_NAME, "ExecutionMode",
-                                  Settings::GetCPUExecutionModeName(Settings::DEFAULT_CPU_EXECUTION_MODE))
-        .c_str())
+    Settings::ParseCPUExecutionMode(m_dialog->getEffectiveStringValue(Settings::CPU_SECTION_NAME, "ExecutionMode"))
       .value_or(Settings::DEFAULT_CPU_EXECUTION_MODE);
   m_ui.recompilerICache->setEnabled(mode != CPUExecutionMode::Interpreter &&
                                     !m_dialog->hasGameTrait(GameDatabase::Trait::ForceRecompilerICache));
+  m_ui.idleTimeoutScale->setEnabled(mode != CPUExecutionMode::Interpreter);
 }
 
 void ConsoleSettingsWidget::onEnableCPUClockSpeedControlChecked(int state)

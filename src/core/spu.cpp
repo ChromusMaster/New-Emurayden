@@ -384,6 +384,8 @@ static void ManualTransferWrite(u16 value);
 static void UpdateTransferEvent();
 static void UpdateDMARequest();
 
+static const char* GetReverbModeName(const ReverbRegisters& reverb_registers);
+
 namespace {
 struct SPUState
 {
@@ -420,6 +422,9 @@ struct SPUState
   u32 key_off_register = 0;
   u32 endx_register = 0;
   u32 pitch_modulation_enable_register = 0;
+
+  // Superset of the voices that are on. Bits are set by key on and cleared lazily when mixing.
+  u32 active_voice_mask = 0;
 
   u32 noise_mode_register = 0;
   u32 noise_count = 0;
@@ -595,6 +600,7 @@ void SPU::Reset()
   s_state.key_off_register = 0;
   s_state.endx_register = 0;
   s_state.pitch_modulation_enable_register = 0;
+  s_state.active_voice_mask = 0;
 
   s_state.noise_mode_register = 0;
   s_state.noise_count = 0;
@@ -704,6 +710,8 @@ bool SPU::DoCompatibleState(StateWrapper& sw)
   sw.Do(&s_state.key_off_register);
   sw.Do(&s_state.endx_register);
   sw.Do(&s_state.pitch_modulation_enable_register);
+  if (!COMPATIBILITY || sw.GetVersion() >= 106)
+    sw.Do(&s_state.active_voice_mask);
   sw.Do(&s_state.noise_mode_register);
   sw.Do(&s_state.noise_count);
   sw.Do(&s_state.noise_level);
@@ -769,6 +777,18 @@ bool SPU::DoCompatibleState(StateWrapper& sw)
 
   if (sw.IsReading())
   {
+    if (COMPATIBILITY && sw.GetVersion() < 106)
+    {
+      s_state.active_voice_mask = 0;
+      for (u32 i = 0; i < NUM_VOICES; i++)
+        s_state.active_voice_mask |= BoolToUInt32(s_state.voices[i].IsOn()) << i;
+    }
+    else
+    {
+      // prevent indexing beyond the array of voices if the state file is corrupted
+      s_state.active_voice_mask &= (1u << NUM_VOICES) - 1;
+    }
+
     UpdateEventInterval();
     UpdateTransferEvent();
   }
@@ -778,7 +798,7 @@ bool SPU::DoCompatibleState(StateWrapper& sw)
 
 bool SPU::DoState(StateWrapper& sw)
 {
-  if (sw.GetVersion() < 92) [[unlikely]]
+  if (sw.GetVersion() < 106) [[unlikely]]
     return DoCompatibleState<true>(sw);
   else
     return DoCompatibleState<false>(sw);
@@ -2201,8 +2221,11 @@ ALWAYS_INLINE_RELEASE std::tuple<s32, s32, s32> SPU::SampleVoice(Voice& voice, u
                                                                  bool pitch_modulation_enabled, bool irq9_enabled,
                                                                  s32 previous_voice_last_volume)
 {
+#ifdef SPU_DUMP_ALL_VOICES
+  // Otherwise handled by the caller.
   if (!voice.IsOn() && !irq9_enabled)
     return {};
+#endif
 
   if (!voice.has_samples)
   {
@@ -2664,20 +2687,43 @@ void SPU::Execute(void* param, TickCount ticks)
       s32 reverb_in_left = 0;
       s32 reverb_in_right = 0;
 
-      u32 noise_mode = s_state.noise_mode_register;
-      u32 pitch_modulation_enable = s_state.pitch_modulation_enable_register & ~1u;
-      u32 reverb_on_register = s_state.reverb_on_register;
+      const u32 noise_mode = s_state.noise_mode_register;
+      const u32 pitch_modulation_enable = s_state.pitch_modulation_enable_register & ~1u;
+      const u32 reverb_on_register = s_state.reverb_on_register;
       s32 previous_voice_last_volume = 0;
       s32 capture_voice1_volume = 0;
       s32 capture_voice3_volume = 0;
       const bool irq9_enabled = s_state.SPUCNT.irq9_enable;
 
-      u32 voice_index = 0;
-      for (Voice& voice : s_state.voices)
+      // Off voices contribute nothing unless they can still trigger an IRQ, or are being dumped.
+#ifdef SPU_DUMP_ALL_VOICES
+      u32 remaining_voices = (1u << NUM_VOICES) - 1;
+#else
+      u32 remaining_voices = irq9_enabled ? ((1u << NUM_VOICES) - 1) : s_state.active_voice_mask;
+#endif
+      u32 previous_voice_index = NUM_VOICES;
+      while (remaining_voices != 0)
       {
+        const u32 voice_index = CountTrailingZeros(remaining_voices);
+        remaining_voices &= remaining_voices - 1;
+        Voice& voice = s_state.voices[voice_index];
+
+#ifndef SPU_DUMP_ALL_VOICES
+        if (!voice.IsOn() && !irq9_enabled)
+        {
+          s_state.active_voice_mask &= ~(1u << voice_index);
+          continue;
+        }
+#endif
+
+        // Pitch modulation uses the adjacent voice, which is silent if it was skipped.
+        if (voice_index != (previous_voice_index + 1))
+          previous_voice_last_volume = 0;
+
         const auto [left, right, volume] =
-          SampleVoice(voice, voice_index, ConvertToBoolUnchecked(noise_mode & 1u),
-                      ConvertToBoolUnchecked(pitch_modulation_enable & 1u), irq9_enabled, previous_voice_last_volume);
+          SampleVoice(voice, voice_index, ConvertToBoolUnchecked((noise_mode >> voice_index) & 1u),
+                      ConvertToBoolUnchecked((pitch_modulation_enable >> voice_index) & 1u), irq9_enabled,
+                      previous_voice_last_volume);
         left_sum += left;
         right_sum += right;
 
@@ -2689,7 +2735,7 @@ void SPU::Execute(void* param, TickCount ticks)
         }
 #endif
 
-        if (reverb_on_register & 1u)
+        if ((reverb_on_register >> voice_index) & 1u)
         {
           reverb_in_left += left;
           reverb_in_right += right;
@@ -2697,10 +2743,7 @@ void SPU::Execute(void* param, TickCount ticks)
         capture_voice1_volume = (voice_index == 1) ? volume : capture_voice1_volume;
         capture_voice3_volume = (voice_index == 3) ? volume : capture_voice3_volume;
         previous_voice_last_volume = volume;
-        noise_mode >>= 1;
-        pitch_modulation_enable >>= 1;
-        reverb_on_register >>= 1;
-        voice_index++;
+        previous_voice_index = voice_index;
       }
 
       if (!s_state.SPUCNT.mute_n)
@@ -2791,7 +2834,10 @@ void SPU::Execute(void* param, TickCount ticks)
           key_off_register >>= 1;
 
           if (key_on_register & 1u)
+          {
             s_state.voices[voice].KeyOn();
+            s_state.active_voice_mask |= (1u << voice);
+          }
           key_on_register >>= 1;
         }
       }
@@ -2907,27 +2953,20 @@ void SPU::UpdateEventInterval()
   s_state.tick_event.Schedule(new_downcount);
 }
 
-static constexpr const char* GetReverbModeName(const SPU::ReverbRegisters& reverb_registers)
+const char* SPU::GetReverbModeName(const ReverbRegisters& reverb_registers)
 {
-  const u32 signature =
-    (static_cast<u32>(reverb_registers.FB_SRC_A) << 16) | (static_cast<u16>(reverb_registers.IIR_COEF));
+  using TableEntry = std::pair<u32, const char*>;
+  static constexpr const TableEntry reverb_modes[] = {
+    {0x00000000u, "Off"},           {0x00010000u, "Delay"},        {0x00018100u, "Chaos Echo"},
+    {0x00178500u, "Half Echo"},     {0x00339C00u, "Studio Small"}, {0x007DBA80u, "Room"},
+    {0x00B1B4C0u, "Studio Medium"}, {0x00E3A680u, "Studio Large"}, {0x01A5C000u, "Hall"},
+    {0x033DB000u, "Space Echo"},
+  };
+  static_assert(std::ranges::is_sorted(reverb_modes, std::ranges::less(), &TableEntry::first));
 
-  switch (signature)
-  {
-      // clang-format off
-    case 0x0000'0000: return "Off";
-    case 0x007D'BA80: return "Room";
-    case 0x0033'9C00: return "Studio Small";
-    case 0x00B1'B4C0: return "Studio Medium";
-    case 0x00E3'A680: return "Studio Large";
-    case 0x01A5'C000: return "Hall";
-    case 0x033D'B000: return "Space Echo";
-    case 0x0001'8100: return "Chaos Echo";
-    case 0x0001'0000: return "Delay";
-    case 0x0017'8500: return "Half Echo";
-    default: return "Unknown";
-      // clang-format on
-  }
+  const u32 bits = (static_cast<u32>(reverb_registers.FB_SRC_A) << 16) | (static_cast<u16>(reverb_registers.IIR_COEF));
+  const auto iter = std::ranges::lower_bound(reverb_modes, bits, std::ranges::less(), &TableEntry::first);
+  return (iter != std::end(reverb_modes) && iter->first == bits) ? iter->second : "Unknown";
 }
 
 void SPU::DrawDebugStateWindow(float scale)

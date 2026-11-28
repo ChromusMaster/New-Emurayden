@@ -84,8 +84,8 @@ private:
   u32 m_value = 0;
   MemoryAccessSize m_size = MemoryAccessSize::HalfWord;
   Operator m_operator = Operator::Any;
-  PhysicalMemoryAddress m_start_address = 0;
-  PhysicalMemoryAddress m_end_address = 0x200000;
+  PhysicalMemoryAddress m_start_address = 0x80000000;
+  PhysicalMemoryAddress m_end_address = 0x80200000;
   ResultVector m_results;
   bool m_signed = false;
 };
@@ -116,14 +116,12 @@ public:
   bool HasEntriesChanged() const { return m_entries_changed; }
 
   bool AddEntry(std::string description, u32 address, MemoryAccessSize size, bool is_signed, bool freeze);
-  bool GetEntryFreeze(u32 index) const;
-
+  void SetEntryFrozen(u32 index, bool freeze);
+  void ToggleEntryFrozen(u32 index);
   void RemoveEntry(u32 index);
   bool RemoveEntryByDescription(const char* description);
   bool RemoveEntryByAddress(u32 address);
-
   void SetEntryDescription(u32 index, std::string description);
-  void SetEntryFreeze(u32 index, bool freeze);
   void SetEntryValue(u32 index, u32 value);
 
   void UpdateValues();

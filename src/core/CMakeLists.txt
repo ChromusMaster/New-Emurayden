@@ -27,6 +27,8 @@ add_library(core
   cheats.cpp
   cheats.h
   cheats_private.h
+  config_mode_controller.cpp
+  config_mode_controller.h
   controller.cpp
   controller.h
   controller_helpers.h
@@ -113,12 +115,8 @@ add_library(core
   memory_scanner.cpp
   memory_scanner.h
   mips_encoder.h
-  multitap.cpp
-  multitap.h
   negcon.cpp
   negcon.h
-  negcon_base.cpp
-  negcon_base.h
   negcon_rumble.cpp
   negcon_rumble.h
   pad.cpp
@@ -223,16 +221,6 @@ if(CPU_ARCH_RISCV64)
   )
   target_link_libraries(core PRIVATE biscuit::biscuit riscv-disas)
   message(STATUS "Building RISC-V-64 recompiler.")
-endif()
-if(CPU_ARCH_LOONGARCH64)
-  target_compile_definitions(core PUBLIC "ENABLE_RECOMPILER=1" "ENABLE_MMAP_FASTMEM=1")
-  target_sources(core PRIVATE
-    ${RECOMPILER_SRCS}
-    cpu_recompiler_loongarch64.cpp
-    cpu_recompiler_loongarch64.h
-  )
-  target_link_libraries(core PRIVATE lagoon)
-  message(STATUS "Building LoongArch64 recompiler.")
 endif()
 
 function(add_core_resources target)

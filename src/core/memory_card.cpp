@@ -56,6 +56,16 @@ MemoryCard::~MemoryCard()
   s_save_pending[m_index].wait(true, std::memory_order_acquire);
 }
 
+void MemoryCard::SetIndex(u32 index)
+{
+  if (m_index == index)
+    return;
+
+  // Wait for pending saves, they use the index.
+  Flush();
+  m_index = index;
+}
+
 TickCount MemoryCard::GetSaveDelayInTicks()
 {
   return System::GetTicksPerSecond() * SAVE_DELAY_IN_SECONDS;
@@ -79,10 +89,45 @@ void MemoryCard::Flush()
   s_save_pending[m_index].wait(true, std::memory_order_acquire);
 }
 
-bool MemoryCard::DoState(StateWrapper& sw)
+bool MemoryCard::DoState(StateWrapper& sw, bool ignore_state_on_data_mismatch)
 {
   if (sw.IsReading())
-    SaveIfChanged(true);
+  {
+    if (ignore_state_on_data_mismatch)
+    {
+      // Card data follows the header fields, and is followed by m_changed.
+      static constexpr u32 DATA_OFFSET = STATE_SIZE - MemoryCardImage::DATA_SIZE - 1;
+      if ((sw.GetDataSize() - sw.GetPosition()) < STATE_SIZE)
+        return false;
+
+      if (std::memcmp(sw.GetData() + sw.GetPosition() + DATA_OFFSET, m_data.data(), m_data.size()) != 0)
+      {
+        Host::AddIconOSDMessage(
+          OSDMessageType::Error, fmt::format("CardLoadWarning{}", m_index), ICON_EMOJI_WARNING,
+          fmt::format(TRANSLATE_FS("Pad", "Memory card {} from save state does not match current card data."),
+                      m_index + 1u),
+          TRANSLATE_STR("Pad", "Simulating replugging. The game may not be able to handle this."));
+
+        WARNING_LOG("Memory card {} data mismatch. Using current data via instant-replugging.", m_index + 1u);
+        System::SetTaint(System::Taint::MemoryCardMismatch);
+        sw.SkipBytes(STATE_SIZE);
+        Reset();
+        return !sw.HasError();
+      }
+
+      // Don't save here, the card may be partway through a sector write. Drop the pending save too, its time is
+      // from this session. The card is saved on the next write or at shutdown instead.
+      DEV_LOG("Card {} data matches, copying state", m_index + 1u);
+      m_save_event.Deactivate();
+    }
+    else
+    {
+      SaveIfChanged(true);
+    }
+  }
+
+  // Unsaved changes to matching card data must not be dropped. Always false after SaveIfChanged() above.
+  const bool live_changed = m_changed;
 
   sw.Do(&m_state, State::GetID4);
   sw.Do(&m_FLAG.bits);
@@ -95,24 +140,11 @@ bool MemoryCard::DoState(StateWrapper& sw)
 
   if (sw.IsReading())
   {
-    m_address &= ADDRESS_MASK;
     m_sector_offset &= OFFSET_MASK;
+    m_changed |= live_changed;
   }
 
   return !sw.HasError();
-}
-
-void MemoryCard::CopyState(const MemoryCard* src)
-{
-  DebugAssert(m_data == src->m_data);
-
-  m_state = src->m_state;
-  m_FLAG.bits = src->m_FLAG.bits;
-  m_address = src->m_address;
-  m_sector_offset = src->m_sector_offset;
-  m_checksum = src->m_checksum;
-  m_last_byte = src->m_last_byte;
-  m_changed = src->m_changed;
 }
 
 void MemoryCard::ResetTransferState()
@@ -148,7 +180,7 @@ bool MemoryCard::Transfer(const u8 data_in, u8* data_out)
   {                                                                                                                    \
     *data_out = 0x00;                                                                                                  \
     ack = true;                                                                                                        \
-    m_address = ((m_address & u16(0x00FF)) | (ZeroExtend16(data_in) << 8)) & ADDRESS_MASK;                             \
+    m_address = (m_address & u16(0x00FF)) | (ZeroExtend16(data_in) << 8);                                              \
     m_state = next_state;                                                                                              \
   }                                                                                                                    \
   break;
@@ -158,7 +190,7 @@ bool MemoryCard::Transfer(const u8 data_in, u8* data_out)
   {                                                                                                                    \
     *data_out = m_last_byte;                                                                                           \
     ack = true;                                                                                                        \
-    m_address = ((m_address & u16(0xFF00)) | ZeroExtend16(data_in)) & ADDRESS_MASK;                                    \
+    m_address = (m_address & u16(0xFF00)) | ZeroExtend16(data_in);                                                     \
     m_sector_offset = 0;                                                                                               \
     m_state = next_state;                                                                                              \
   }                                                                                                                    \
@@ -170,14 +202,28 @@ bool MemoryCard::Transfer(const u8 data_in, u8* data_out)
     FIXED_REPLY_STATE(State::ReadCardID2, 0x5D, true, State::ReadAddressMSB);
     ADDRESS_STATE_MSB(State::ReadAddressMSB, State::ReadAddressLSB);
     ADDRESS_STATE_LSB(State::ReadAddressLSB, State::ReadACK1);
+    // NOTE: original cards take an extra ~31000 cycles to ACK this byte, which isn't emulated.
     FIXED_REPLY_STATE(State::ReadACK1, 0x5C, true, State::ReadACK2);
     FIXED_REPLY_STATE(State::ReadACK2, 0x5D, true, State::ReadConfirmAddressMSB);
-    FIXED_REPLY_STATE(State::ReadConfirmAddressMSB, Truncate8(m_address >> 8), true, State::ReadConfirmAddressLSB);
-    FIXED_REPLY_STATE(State::ReadConfirmAddressLSB, Truncate8(m_address), true, State::ReadData);
+
+    // Official cards confirm invalid sectors as FFFFh, and end the transfer there.
+    FIXED_REPLY_STATE(State::ReadConfirmAddressMSB, (m_address > ADDRESS_MASK) ? 0xFF : Truncate8(m_address >> 8), true,
+                      State::ReadConfirmAddressLSB);
+
+    case State::ReadConfirmAddressLSB:
+    {
+      const bool valid = (m_address <= ADDRESS_MASK);
+      *data_out = valid ? Truncate8(m_address) : 0xFF;
+      ack = valid;
+      m_state = valid ? State::ReadData : State::Idle;
+    }
+    break;
 
     case State::ReadData:
     {
-      const u8 bits = m_data[ZeroExtend32(m_address) * MemoryCardImage::FRAME_SIZE + m_sector_offset];
+      const u8 bits = (m_address <= ADDRESS_MASK) ?
+                        m_data[ZeroExtend32(m_address) * MemoryCardImage::FRAME_SIZE + m_sector_offset] :
+                        0xFF;
       if (m_sector_offset == 0)
       {
         DEV_LOG("Reading memory card sector {}", m_address);
@@ -225,9 +271,12 @@ bool MemoryCard::Transfer(const u8 data_in, u8* data_out)
         m_checksum ^= data_in;
       }
 
-      const u32 offset = ZeroExtend32(m_address) * MemoryCardImage::FRAME_SIZE + m_sector_offset;
-      m_changed |= (m_data[offset] != data_in);
-      m_data[offset] = data_in;
+      if (m_address <= ADDRESS_MASK)
+      {
+        const u32 offset = ZeroExtend32(m_address) * MemoryCardImage::FRAME_SIZE + m_sector_offset;
+        m_changed |= (m_data[offset] != data_in);
+        m_data[offset] = data_in;
+      }
 
       *data_out = m_last_byte;
       ack = true;
@@ -243,10 +292,21 @@ bool MemoryCard::Transfer(const u8 data_in, u8* data_out)
     }
     break;
 
-      FIXED_REPLY_STATE(State::WriteChecksum, m_last_byte, true, State::WriteACK1);
+    case State::WriteChecksum:
+    {
+      // The checksum is replaced by the end byte: 47h=Good, 4Eh=BadChecksum, FFh=BadSector.
+      // psx-spx doesn't say whether a bad checksum still writes the data, or whether a bad sector
+      // clears the FLAG bit. Here, both do.
+      m_checksum = (m_address > ADDRESS_MASK) ? 0xFF : ((data_in == m_checksum) ? 0x47 : 0x4E);
+      *data_out = m_last_byte;
+      ack = true;
+      m_state = State::WriteACK1;
+    }
+    break;
+
       FIXED_REPLY_STATE(State::WriteACK1, 0x5C, true, State::WriteACK2);
       FIXED_REPLY_STATE(State::WriteACK2, 0x5D, true, State::WriteEnd);
-      FIXED_REPLY_STATE(State::WriteEnd, 0x47, false, State::Idle);
+      FIXED_REPLY_STATE(State::WriteEnd, m_checksum, false, State::Idle);
 
       // TODO: This really needs a proper buffer system...
       FIXED_REPLY_STATE(State::GetIDCardID1, 0x5A, true, State::GetIDCardID2);

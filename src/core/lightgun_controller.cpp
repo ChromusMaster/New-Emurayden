@@ -16,8 +16,8 @@
 
 static constexpr const char* DEFAULT_CROSSHAIR_PATH = "images" FS_OSPATH_SEPARATOR_STR "crosshair.png";
 
-LightgunController::LightgunController(u32 index, const std::array<u8, 4>& button_indices)
-  : Controller(index), m_button_indices(button_indices)
+LightgunController::LightgunController(u32 index, ControllerType type, const std::array<u8, 4>& button_indices)
+  : Controller(index, type), m_button_indices(button_indices)
 {
 }
 
@@ -80,7 +80,7 @@ void LightgunController::SetBindState(u32 index, float value)
 
 u32 LightgunController::GetButtonStateBits() const
 {
-  return m_button_state;
+  return m_button_state ^ 0xFFFF;
 }
 
 LightgunController::Position LightgunController::GetPosition() const

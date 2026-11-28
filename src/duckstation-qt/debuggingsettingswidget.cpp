@@ -225,6 +225,8 @@ void DebuggingSettingsWidget::addTweakOptions()
                        Settings::CPU_SECTION_NAME, "FastmemMode", Settings::ParseCPUFastmemMode,
                        Settings::GetCPUFastmemModeName, Settings::GetCPUFastmemModeDisplayName,
                        static_cast<u32>(CPUFastmemMode::Count), Settings::DEFAULT_CPU_FASTMEM_MODE);
+  addBooleanTweakOption(m_dialog, m_ui.tweakOptionTable, tr("Enable Recompiler Idle Loop Fast Forward"),
+                        Settings::CPU_SECTION_NAME, "IdleFastForward", true);
 
   addChoiceTweakOption(m_dialog, m_ui.tweakOptionTable, tr("CD-ROM Mechacon Version"), Settings::CDROM_SECTION_NAME,
                        "MechaconVersion", Settings::ParseCDROMMechVersionName, Settings::GetCDROMMechVersionName,
@@ -283,6 +285,7 @@ void DebuggingSettingsWidget::onResetToDefaultClicked()
                            static_cast<int>(Settings::DEFAULT_GPU_MAX_RUN_AHEAD_CYCLES)); // GPU max runahead
     setBooleanTweakOption(m_ui.tweakOptionTable, i++, false); // Recompiler memory exceptions
     setBooleanTweakOption(m_ui.tweakOptionTable, i++, true);  // Recompiler block linking
+    setBooleanTweakOption(m_ui.tweakOptionTable, i++, true);  // Recompiler idle loop fast forward
     setChoiceTweakOption(m_ui.tweakOptionTable, i++,
                          Settings::DEFAULT_CPU_FASTMEM_MODE); // Recompiler fastmem mode
     setChoiceTweakOption(m_ui.tweakOptionTable, i++,
@@ -324,6 +327,7 @@ void DebuggingSettingsWidget::onResetToDefaultClicked()
   sif->DeleteValue(Settings::CPU_SECTION_NAME, "RecompilerMemoryExceptions");
   sif->DeleteValue(Settings::CPU_SECTION_NAME, "RecompilerBlockLinking");
   sif->DeleteValue(Settings::CPU_SECTION_NAME, "FastmemMode");
+  sif->DeleteValue(Settings::CPU_SECTION_NAME, "IdleFastForward");
   sif->DeleteValue(Settings::CDROM_SECTION_NAME, "MechaconVersion");
   sif->DeleteValue(Settings::CDROM_SECTION_NAME, "MaxReadSpeedupCycles");
   sif->DeleteValue(Settings::CDROM_SECTION_NAME, "MaxSeekSpeedupCycles");

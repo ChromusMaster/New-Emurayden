@@ -293,6 +293,8 @@ struct Settings : public GPUSettings
   bool cpu_recompiler_memory_exceptions : 1 = false;
   bool cpu_recompiler_block_linking : 1 = true;
   bool cpu_recompiler_icache : 1 = false;
+  bool cpu_idle_fast_forward : 1 = true;
+  bool cpu_idle_timeout_scale : 1 = true;
 
   bool gpu_dump_cpu_to_vram_copies : 1 = false;
   bool gpu_dump_vram_to_cpu_copies : 1 = false;
@@ -338,6 +340,7 @@ struct Settings : public GPUSettings
   bool sync_to_host_refresh_rate : 1 = false;
   bool inhibit_screensaver : 1 = true;
   bool pause_on_focus_loss : 1 = false;
+  bool reduce_idle_frame_rate : 1 = true;
   bool pause_on_controller_disconnection : 1 = false;
   bool disable_background_input : 1 = false;
   bool save_state_on_exit : 1 = true;
@@ -355,7 +358,7 @@ struct Settings : public GPUSettings
   bool achievements_hardcore_mode : 1 = false;
   bool achievements_encore_mode : 1 = false;
   bool achievements_spectator_mode : 1 = false;
-  bool achievements_track_unofficial : 1 = false;
+  bool achievements_track_unpromoted : 1 = false;
   bool achievements_use_raintegration : 1 = false;
   bool achievements_notifications : 1 = true;
   bool achievements_leaderboard_notifications : 1 = true;

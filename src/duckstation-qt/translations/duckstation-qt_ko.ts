@@ -146,6 +146,10 @@ Do you want to enable hardcore mode?</source>
         <translation>도전 과제 활성화</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <translation>미승격 업적 추적</translation>
+    </message>
+    <message>
         <source>Enable Sound Effects</source>
         <translation>음향 효과 활성화</translation>
     </message>
@@ -160,10 +164,6 @@ Do you want to enable hardcore mode?</source>
     <message>
         <source>Enable Spectator Mode</source>
         <translation>관중 모드 활성화</translation>
-    </message>
-    <message>
-        <source>Test Unofficial Achievements</source>
-        <translation>비공식 도전 과제 테스트</translation>
     </message>
     <message>
         <source>Prefetch Badges</source>
@@ -229,10 +229,6 @@ Do you want to enable hardcore mode?</source>
         <translation>앙코르 모드 활성화</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <translation>비공식 도전 과제 추적</translation>
-    </message>
-    <message>
         <source>Notifications</source>
         <translation>알림</translation>
     </message>
@@ -259,6 +255,14 @@ Do you want to enable hardcore mode?</source>
     <message>
         <source>When enabled and logged in, DuckStation will scan for achievements on startup.</source>
         <translation>이 기능을 활성화하고 로그인하면 DuckStation이 시작 시, 도전 과제를 검색합니다.</translation>
+    </message>
+    <message>
+        <source>Test Unpromoted Achievements</source>
+        <translation>미승격 업적 테스트</translation>
+    </message>
+    <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <translation>활성화하면 DuckStation이 미승격 업적을 추적합니다. 해제 기록은 로컬에 저장되며 RetroAchievements로 전송되지 않습니다.</translation>
     </message>
     <message>
         <source>Displays popup messages on events such as achievement unlocks and game completion.</source>
@@ -291,10 +295,6 @@ Do you want to enable hardcore mode?</source>
     <message>
         <source> seconds</source>
         <translation> 초</translation>
-    </message>
-    <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <translation>활성화하면 DuckStation이 비공식 도전 과제를 추적합니다. 잠금 해제 정보는 로컬에 저장되며 RetroAchievements로 전송되지 않습니다.</translation>
     </message>
     <message>
         <source>Checked</source>
@@ -551,6 +551,10 @@ We will keep trying to submit this request.</source>
 이 요청을 제출하기 위해 계속 시도하겠습니다.</translation>
     </message>
     <message>
+        <source>Unpromoted</source>
+        <translation>미승격</translation>
+    </message>
+    <message>
         <source>Score: {} ({} casual)
 Unread messages: {}</source>
         <extracomment>Summary for login notification.</extracomment>
@@ -691,10 +695,6 @@ Error: {}</source>
         <translation>지원되지 않음</translation>
     </message>
     <message>
-        <source>Unofficial</source>
-        <translation>비공식</translation>
-    </message>
-    <message>
         <source>Recently Unlocked</source>
         <translation>최근 잠금 해제</translation>
     </message>
@@ -725,10 +725,6 @@ Error: {}</source>
     <message>
         <source>Pin Achievement</source>
         <translation>도전 과제 고정</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Unlocks</source>
-        <translation>비공식 잠금 해제 초기화</translation>
     </message>
     <message>
         <source>View Details</source>
@@ -923,10 +919,6 @@ Error: {}</source>
         <source>{0} - {1}</source>
         <translation>{0} - {1}</translation>
     </message>
-    <message>
-        <source>You have unlocked {0} of {1} unofficial achievements, earning {2} of {3} possible points.</source>
-        <translation>비공식 도전 과제 {1}개 중 {0}개를 잠금 해제하여 획득 가능한 {3}점 중 {2}점을 획득했습니다.</translation>
-    </message>
     <message numerus="yes">
         <source>%n achievements are not supported by DuckStation and cannot be unlocked.</source>
         <comment>Unsupported achievement count</comment>
@@ -945,6 +937,14 @@ Error: {}</source>
     <message>
         <source>Win Condition</source>
         <translation>승리 조건</translation>
+    </message>
+    <message>
+        <source>You have unlocked {0} of {1} unpromoted achievements, earning {2} of {3} possible points.</source>
+        <translation>미승격 업적 {1}개 중 {0}개를 달성하여 가능한 {3}점 중 {2}점을 획득했습니다.</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Unlocks</source>
+        <translation>미승격 업적 달성 기록 초기화</translation>
     </message>
     <message>
         <source>{:.1f}% of players have this achievement</source>
@@ -1050,32 +1050,32 @@ Error: {}</source>
         <translation>RAIntegration 활성화</translation>
     </message>
     <message>
-        <source>Cache Directory</source>
-        <translation>캐시 디렉터리</translation>
+        <source>CD-ROM Emulation</source>
+        <translation>CD-ROM 에뮬레이션</translation>
     </message>
     <message>
-        <source>Used for storing compiled shaders and game list data.</source>
-        <translation>컴파일된 셰이더와 게임 목록 데이터를 저장하는 데 사용됩니다.</translation>
+        <source>Readahead Sectors:</source>
+        <translation>미리 읽기 섹터:</translation>
     </message>
     <message>
-        <source>Browse...</source>
-        <translation>찾아보기...</translation>
+        <source> sectors</source>
+        <translation> 섹터</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>열기...</translation>
+        <source>Physical Disc Drive Speed:</source>
+        <translation>실제 디스크 드라이브 속도:</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>초기화</translation>
+        <source>Don&apos;t Change</source>
+        <translation>변경 안 함</translation>
     </message>
     <message>
-        <source>Covers Directory</source>
-        <translation>커버 디렉터리</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Used for storing covers in the game grid/Big Picture UIs.</source>
-        <translation>게임 그리드/Big Picture UI에 커버를 저장하는 데 사용됩니다.</translation>
+        <source>Ignore Physical Disc Drive Subcode</source>
+        <translation>실제 디스크 드라이브 서브코드 무시</translation>
     </message>
     <message>
         <source>Web Cache</source>
@@ -1112,14 +1112,6 @@ Error: {}</source>
     <message>
         <source>Log Level</source>
         <translation>로그 레벨</translation>
-    </message>
-    <message>
-        <source>Select Cache Directory</source>
-        <translation>캐시 디렉터리 선택</translation>
-    </message>
-    <message>
-        <source>Select Covers Directory</source>
-        <translation>커버 디렉터리 선택</translation>
     </message>
     <message>
         <source>Information</source>
@@ -1174,16 +1166,34 @@ Error: {}</source>
         <translation>화면 오른쪽 상단에 현재 프레임 번호를 표시합니다.</translation>
     </message>
     <message>
-        <source>Default</source>
-        <translation>기본값</translation>
+        <source>Readahead Sectors</source>
+        <translation>미리 읽기 섹터</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n sectors</source>
+        <translation>
+            <numerusform>%n 섹터</numerusform>
+        </translation>
     </message>
     <message>
-        <source>Specifies the directory where compiled shaders and game list data will be stored.</source>
-        <translation>컴파일된 셰이더와 게임 목록 데이터가 저장될 디렉터리를 지정합니다.</translation>
+        <source>Reduces hitches in emulation by reading/decompressing CD data asynchronously on a worker thread.</source>
+        <translation>작업자 스레드에서 CD 데이터를 비동기적으로 읽거나 압축 해제하여 에뮬레이션 중 끊김을 줄입니다.</translation>
     </message>
     <message>
-        <source>Specifies the directory where game cover images that are used in the game grid and Big Picture UI will be stored.</source>
-        <translation>게임 그리드와 Big Picture UI에서 사용하는 게임 커버 이미지가 저장될 디렉터리를 지정합니다.</translation>
+        <source>Physical Disc Drive Speed</source>
+        <translation>실제 디스크 드라이브 속도</translation>
+    </message>
+    <message>
+        <source>8x</source>
+        <translation>8x</translation>
+    </message>
+    <message>
+        <source>Sets the speed of the host drive when using physical discs. Higher speeds can reduce stutter, but make the drive louder. Set to &quot;Don&apos;t Change&quot; to leave the drive at its own speed. Not all drives support this.</source>
+        <translation>실제 디스크를 사용할 때 호스트 드라이브의 속도를 설정합니다. 속도가 높으면 끊김이 줄어들 수 있지만 드라이브 소음이 커집니다. 드라이브 자체 속도를 유지하려면 ‘변경 안 함’을 선택하세요. 일부 드라이브는 이 기능을 지원하지 않습니다.</translation>
+    </message>
+    <message>
+        <source>Ignores the subchannel provided by the drive when using physical discs, instead always generating subchannel data. Won&apos;t work with libcrypt games, but can improve read reliability on some drives.</source>
+        <translation>실제 디스크 사용 시 드라이브가 제공하는 서브채널 데이터를 무시하고 항상 서브채널 데이터를 생성합니다. LibCrypt 게임에서는 작동하지 않지만 일부 드라이브의 읽기 안정성을 개선할 수 있습니다.</translation>
     </message>
     <message>
         <source>Forces all server calls to fail, useful for testing offline mode.</source>
@@ -2198,6 +2208,16 @@ Current Binding: %s</source>
         <translation>안전 확인 실패</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <comment>settings_track_unpromoted_achievements</comment>
+        <translation>미승격 업적 추적</translation>
+    </message>
+    <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <comment>settings_summary_track_unpromoted_achievements</comment>
+        <translation>활성화하면 DuckStation이 미승격 업적을 추적합니다. 해제 기록은 로컬에 저장되며 RetroAchievements로 전송되지 않습니다.</translation>
+    </message>
+    <message>
         <source>Not Logged In.</source>
         <comment>settings_achievements_not_logged_in</comment>
         <translation>로그인하지 않았습니다.</translation>
@@ -2302,14 +2322,6 @@ Current Binding: %s</source>
             <numerusform>이 하위 집합의 모든 도전 과제를 잠금 해제하고 %1$d점을 획득했습니다!</numerusform>
         </translation>
     </message>
-    <message numerus="yes">
-        <source>You have unlocked %1$d of %2$d unofficial achievements, earning %3$d of %4$d possible points.</source>
-        <comment>achievement_unofficial_summary_format_string</comment>
-        <extracomment>Android plural quantities: one=&quot;You have unlocked %1$d of %2$d unofficial achievement, earning %3$d of %4$d possible points.&quot;; other=&quot;You have unlocked %1$d of %2$d unofficial achievements, earning %3$d of %4$d possible points.&quot;</extracomment>
-        <translation>
-            <numerusform>비공식 도전 과제 %2$d개 중 %1$d개를 잠금 해제하여 가능한 총 %4$d점 중 %3$d점을 획득했습니다.</numerusform>
-        </translation>
-    </message>
     <message>
         <source>Game was beaten on %1$s, and completed on %2$s.</source>
         <comment>achievement_game_beaten_completed_format_string</comment>
@@ -2371,11 +2383,6 @@ Current Binding: %s</source>
         <translation>승리 조건</translation>
     </message>
     <message>
-        <source>Unofficial</source>
-        <comment>achievement_unofficial</comment>
-        <translation>비공식</translation>
-    </message>
-    <message>
         <source>Open on RetroAchievements</source>
         <comment>achievement_open_on_retroachievements</comment>
         <translation>RetroAchievements에서 열기</translation>
@@ -2394,21 +2401,6 @@ Current Binding: %s</source>
         <source>Reset Unlock</source>
         <comment>achievement_reset_unlock</comment>
         <translation>잠금 해제 초기화</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement</source>
-        <comment>achievement_reset_unofficial_title</comment>
-        <translation>비공식 도전 과제 초기화</translation>
-    </message>
-    <message>
-        <source>The unlock state for &apos;%1$s&apos; will be removed. This cannot be undone.</source>
-        <comment>achievement_reset_unofficial_message</comment>
-        <translation>&apos;%1$s&apos;의 잠금 해제 상태가 삭제됩니다. 이 작업은 되돌릴 수 없습니다.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlock reset.</source>
-        <comment>achievement_unofficial_unlock_reset</comment>
-        <translation>비공식 도전 과제 잠금 해제가 초기화되었습니다.</translation>
     </message>
     <message>
         <source>Pinned to OSD</source>
@@ -2797,55 +2789,9 @@ Current Binding: %s</source>
         <translation>설정된 트리거 없음</translation>
     </message>
     <message>
-        <source>No buttons set</source>
-        <comment>edit_macro_buttons_no_bindings</comment>
-        <translation>설정된 버튼 없음</translation>
-    </message>
-    <message>
-        <source>Macro will not repeat.</source>
-        <comment>edit_macro_button_no_repeat</comment>
-        <translation>매크로는 반복하지 않습니다.</translation>
-    </message>
-    <message numerus="yes">
-        <source>Macro will toggle every %d frames.</source>
-        <comment>edit_macro_button_repeat</comment>
-        <extracomment>Android plural quantities: one=&quot;Macro will toggle every %d frame.&quot;; other=&quot;Macro will toggle every %d frames.&quot;</extracomment>
-        <translation>
-            <numerusform>매크로가 %d프레임마다 전환됩니다.</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>Choose Bindings</source>
-        <comment>edit_macro_button_choose_bindings</comment>
-        <translation>할당 선택</translation>
-    </message>
-    <message>
-        <source>%1$s triggers %2$s</source>
-        <comment>edit_macro_button_summary_no_repeat</comment>
-        <translation>%1$s이(가) %2$s을(를) 작동시킵니다</translation>
-    </message>
-    <message numerus="yes">
-        <source>%1$s triggers %2$s every %3$d frames.</source>
-        <comment>edit_macro_button_summary_repeat</comment>
-        <extracomment>Android plural quantities: one=&quot;%1$s triggers %2$s every %3$d frame.&quot;; other=&quot;%1$s triggers %2$s every %3$d frames.&quot;</extracomment>
-        <translation>
-            <numerusform>%1$s이(가) %3$d프레임마다 %2$s을(를) 작동시킵니다.</numerusform>
-        </translation>
-    </message>
-    <message>
         <source>Trigger</source>
         <comment>edit_macro_button_trigger</comment>
         <translation>트리거</translation>
-    </message>
-    <message>
-        <source>Buttons</source>
-        <comment>edit_macro_button_buttons</comment>
-        <translation>버튼</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <comment>edit_macro_button_frequency</comment>
-        <translation>빈도</translation>
     </message>
     <message>
         <source>Macro %d</source>
@@ -3308,6 +3254,11 @@ Current Binding: %s</source>
         <translation>모두 비활성화</translation>
     </message>
     <message>
+        <source>Unavailable while RetroAchievements hardcore mode is active.</source>
+        <comment>patch_codes_hardcore_restricted</comment>
+        <translation>RetroAchievements 하드코어 모드가 활성화되어 있으면 사용할 수 없습니다.</translation>
+    </message>
+    <message>
         <source>Add</source>
         <comment>cheat_codes_add</comment>
         <translation>추가</translation>
@@ -3386,6 +3337,51 @@ Current Binding: %s</source>
         <source>Global Setting</source>
         <comment>preference_reset_global_value</comment>
         <translation>전체 설정</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM.</source>
+        <comment>settings_summary_ram_size</comment>
+        <translation>에뮬레이션된 콘솔에 설치된 RAM 용량을 변경합니다. 정식 게임은 추가 RAM을 사용하지 않습니다.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <comment>settings_vram_size</comment>
+        <translation>설치된 VRAM</translation>
+    </message>
+    <message>
+        <source>Changes the amount of VRAM installed in the emulated console. Retail games do not use extra VRAM.</source>
+        <comment>settings_summary_vram_size</comment>
+        <translation>에뮬레이션된 콘솔에 설치된 VRAM 용량을 변경합니다. 정식 게임은 추가 VRAM을 사용하지 않습니다.</translation>
+    </message>
+    <message>
+        <source>Fast Forward While Loading</source>
+        <comment>settings_fast_forward_loading</comment>
+        <translation>로딩 중 빨리 감기</translation>
+    </message>
+    <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <comment>settings_summary_fast_forward_loading</comment>
+        <translation>게임이 디스크를 읽느라 화면 갱신을 멈추면 빨리 감습니다. 애니메이션 로딩 화면에는 적용되지 않습니다.</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <comment>settings_idle_timeout_scale</comment>
+        <translation>유휴 대기 시간 조정</translation>
+    </message>
+    <message>
+        <source>Stops games from timing out while waiting for vertical blank when overclocking.</source>
+        <comment>settings_summary_idle_timeout_scale</comment>
+        <translation>오버클럭 중 수직 귀선을 기다리다가 게임이 시간 초과되는 것을 방지합니다.</translation>
+    </message>
+    <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <comment>settings_idle_fast_forward</comment>
+        <translation>재컴파일러 유휴 루프 빨리 감기 활성화</translation>
+    </message>
+    <message>
+        <source>Skips over the busy loop that games use to wait for vertical blank.</source>
+        <comment>settings_summary_idle_fast_forward</comment>
+        <translation>게임이 수직 귀선을 기다리는 데 사용하는 바쁜 대기 루프를 건너뜁니다.</translation>
     </message>
     <message>
         <source>Uses PGXP for all instructions, not just memory operations. Automatic uses the game database setting.</source>
@@ -3496,6 +3492,11 @@ Current Binding: %s</source>
         <source>Pinky Pals</source>
         <comment>settings_theme_entries[10]</comment>
         <translation>핑키 팔스</translation>
+    </message>
+    <message>
+        <source>Midnight Amber</source>
+        <comment>settings_theme_entries[11]</comment>
+        <translation>Midnight Amber</translation>
     </message>
     <message>
         <source>None (Double Speed)</source>
@@ -4423,16 +4424,6 @@ Current Binding: %s</source>
         <translation>게임을 시작할 때 잠긴 도전 과제 배지를 모두 다운로드하여 잠금 해제 이미지를 표시할 때의 지연을 줄입니다.</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <comment>settings_unofficial_test_mode</comment>
-        <translation>비공식 도전 과제 추적</translation>
-    </message>
-    <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <comment>settings_summary_unofficial_test_mode</comment>
-        <translation>활성화하면 DuckStation이 비공식 도전 과제를 추적합니다. 잠금 해제 정보는 로컬에 저장되며 RetroAchievements로 전송되지 않습니다.</translation>
-    </message>
-    <message>
         <source>Test RetroAchievements Offline Mode</source>
         <comment>settings_test_offline_mode</comment>
         <translation>RetroAchievements 오프라인 모드 테스트</translation>
@@ -4458,12 +4449,40 @@ Current Binding: %s</source>
         <translation>로그인한 날짜: %s</translation>
     </message>
     <message numerus="yes">
+        <source>You have unlocked %1$d of %2$d unpromoted achievements, earning %3$d of %4$d possible points.</source>
+        <comment>achievement_unpromoted_summary_format_string</comment>
+        <extracomment>Android plural quantities: one=&quot;You have unlocked %1$d of %2$d unpromoted achievement, earning %3$d of %4$d possible points.&quot;; other=&quot;You have unlocked %1$d of %2$d unpromoted achievements, earning %3$d of %4$d possible points.&quot;</extracomment>
+        <translation>
+            <numerusform>미승격 업적 %2$d개 중 %1$d개를 해제하여 가능한 점수 %4$d점 중 %3$d점을 획득했습니다.</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
         <source>%1$d achievements are not supported by DuckStation and cannot be unlocked.</source>
         <comment>achievement_unsupported_count_format_string</comment>
         <extracomment>Android plural quantities: one=&quot;%1$d achievement is not supported by DuckStation and cannot be unlocked.&quot;; other=&quot;%1$d achievements are not supported by DuckStation and cannot be unlocked.&quot;</extracomment>
         <translation>
             <numerusform>DuckStation에서 지원하지 않는 도전 과제가 %1$d개 있어 잠금 해제할 수 없습니다.</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Unpromoted</source>
+        <comment>achievement_unpromoted</comment>
+        <translation>미승격</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement</source>
+        <comment>achievement_reset_unpromoted_title</comment>
+        <translation>미승격 업적 초기화</translation>
+    </message>
+    <message>
+        <source>The unlock state for &apos;%1$s&apos; will be removed. This cannot be undone.</source>
+        <comment>achievement_reset_unpromoted_message</comment>
+        <translation>‘%1$s’의 해제 상태를 제거합니다. 이 작업은 취소할 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlock reset.</source>
+        <comment>achievement_unpromoted_unlock_reset</comment>
+        <translation>미승격 업적 해제 상태를 초기화했습니다.</translation>
     </message>
     <message>
         <source>DuckStation uses RetroAchievements (retroachievements.org) as an achievement database and for tracking progress. A RetroAchievements account is not required to use DuckStation.</source>
@@ -4714,6 +4733,182 @@ Current Binding: %s</source>
         <source>%1$s×</source>
         <comment>settings_value_scale</comment>
         <translation>%1$s×</translation>
+    </message>
+    <message>
+        <source>%1$s triggers %2$s</source>
+        <comment>edit_macro_button_summary</comment>
+        <translation>%1$s 입력으로 %2$s 실행</translation>
+    </message>
+    <message>
+        <source>%1$s triggers %2$s, looping</source>
+        <comment>edit_macro_button_summary_loop</comment>
+        <translation>%1$s 입력으로 %2$s 반복 실행</translation>
+    </message>
+    <message>
+        <source>Loop While Active</source>
+        <comment>edit_macro_loop</comment>
+        <translation>활성 상태에서 반복</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once per press.</source>
+        <comment>edit_macro_loop_summary</comment>
+        <translation>누를 때마다 시퀀스를 한 번만 실행하는 대신 매크로가 활성 상태인 동안 반복합니다.</translation>
+    </message>
+    <message>
+        <source>Press To Toggle</source>
+        <comment>edit_macro_toggle</comment>
+        <translation>눌러서 켜기/끄기</translation>
+    </message>
+    <message>
+        <source>The trigger turns the looping sequence on and off, instead of having to be held.</source>
+        <comment>edit_macro_toggle_summary</comment>
+        <translation>트리거를 길게 누르지 않아도 누를 때마다 시퀀스 반복을 켜거나 끌 수 있습니다.</translation>
+    </message>
+    <message>
+        <source>Trigger Deadzone</source>
+        <comment>edit_macro_deadzone</comment>
+        <translation>트리거 데드존</translation>
+    </message>
+    <message>
+        <source>How far an analog trigger must be pressed before the macro activates.</source>
+        <comment>edit_macro_deadzone_summary</comment>
+        <translation>매크로를 활성화하려면 아날로그 트리거를 얼마나 눌러야 하는지 정합니다.</translation>
+    </message>
+    <message>
+        <source>Sequence</source>
+        <comment>edit_macro_sequence</comment>
+        <translation>시퀀스</translation>
+    </message>
+    <message>
+        <source>The sequence is empty. Add inputs and waits, use Quick Setup, or record it from a controller.</source>
+        <comment>edit_macro_sequence_empty</comment>
+        <translation>시퀀스가 비어 있습니다. 입력과 대기를 추가하거나 빠른 설정을 사용하거나 컨트롤러로 녹화하세요.</translation>
+    </message>
+    <message>
+        <source>Add Input</source>
+        <comment>edit_macro_add_input</comment>
+        <translation>입력 추가</translation>
+    </message>
+    <message>
+        <source>Adds a button or axis press to the end of the sequence.</source>
+        <comment>edit_macro_add_input_summary</comment>
+        <translation>버튼 또는 축 입력을 시퀀스 끝에 추가합니다.</translation>
+    </message>
+    <message>
+        <source>Add Wait</source>
+        <comment>edit_macro_add_wait</comment>
+        <translation>대기 추가</translation>
+    </message>
+    <message>
+        <source>Adds a delay to the end of the sequence.</source>
+        <comment>edit_macro_add_wait_summary</comment>
+        <translation>대기 시간을 시퀀스 끝에 추가합니다.</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <comment>edit_macro_quick_setup</comment>
+        <translation>빠른 설정</translation>
+    </message>
+    <message>
+        <source>Replaces the sequence with one input that is held, or toggled on and off as a turbo button.</source>
+        <comment>edit_macro_quick_setup_summary</comment>
+        <translation>시퀀스를 하나의 입력으로 바꾸고, 그 입력을 계속 유지하거나 터보 버튼처럼 켜고 끄기를 반복합니다.</translation>
+    </message>
+    <message>
+        <source>Turbo Interval for %1$s</source>
+        <comment>edit_macro_quick_setup_interval_title</comment>
+        <translation>%1$s 터보 간격</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <comment>edit_macro_hold</comment>
+        <translation>계속 누르기</translation>
+    </message>
+    <message numerus="yes">
+        <source>Toggle every %d frames</source>
+        <comment>edit_macro_toggle_every_frames</comment>
+        <extracomment>Android plural quantities: one=&quot;Toggle every %d frame&quot;; other=&quot;Toggle every %d frames&quot;</extracomment>
+        <translation>
+            <numerusform>%d 프레임마다 전환</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Clear Sequence</source>
+        <comment>edit_macro_clear_sequence</comment>
+        <translation>시퀀스 비우기</translation>
+    </message>
+    <message>
+        <source>Removes every action from the sequence.</source>
+        <comment>edit_macro_clear_sequence_summary</comment>
+        <translation>시퀀스의 모든 동작을 제거합니다.</translation>
+    </message>
+    <message>
+        <source>Remove every action from this macro&apos;s sequence?</source>
+        <comment>edit_macro_clear_sequence_confirm</comment>
+        <translation>이 매크로 시퀀스의 모든 동작을 제거할까요?</translation>
+    </message>
+    <message>
+        <source>Select Input</source>
+        <comment>edit_macro_select_input</comment>
+        <translation>입력 선택</translation>
+    </message>
+    <message>
+        <source>Wait</source>
+        <comment>edit_macro_wait</comment>
+        <translation>대기</translation>
+    </message>
+    <message numerus="yes">
+        <source>%d frames</source>
+        <comment>edit_macro_wait_frames</comment>
+        <extracomment>Android plural quantities: one=&quot;%d frame&quot;; other=&quot;%d frames&quot;</extracomment>
+        <translation>
+            <numerusform>%d 프레임</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Wait Duration</source>
+        <comment>edit_macro_wait_title</comment>
+        <translation>대기 시간</translation>
+    </message>
+    <message>
+        <source>%1$s Value</source>
+        <comment>edit_macro_value_title</comment>
+        <translation>%1$s 값</translation>
+    </message>
+    <message>
+        <source>Action options</source>
+        <comment>edit_macro_action_options</comment>
+        <translation>동작 옵션</translation>
+    </message>
+    <message>
+        <source>Change Input</source>
+        <comment>edit_macro_change_input</comment>
+        <translation>입력 변경</translation>
+    </message>
+    <message>
+        <source>Insert Input After</source>
+        <comment>edit_macro_insert_input_after</comment>
+        <translation>뒤에 입력 삽입</translation>
+    </message>
+    <message>
+        <source>Insert Wait After</source>
+        <comment>edit_macro_insert_wait_after</comment>
+        <translation>뒤에 대기 삽입</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <comment>edit_macro_record</comment>
+        <translation>녹화</translation>
+    </message>
+    <message>
+        <source>Stop Recording</source>
+        <comment>edit_macro_stop_recording</comment>
+        <translation>녹화 중지</translation>
+    </message>
+    <message>
+        <source>Recording. Press the inputs of the sequence on a controller or keyboard, then tap Stop. Touchscreen input is not recorded.</source>
+        <comment>edit_macro_recording_message</comment>
+        <translation>녹화 중입니다. 컨트롤러나 키보드로 시퀀스를 입력한 후 ‘녹화 중지’를 탭하세요. 터치스크린 입력은 녹화되지 않습니다.</translation>
     </message>
     <message>
         <source>Enable Game Vibration</source>
@@ -5160,6 +5355,16 @@ You can change this later with the &quot;Start in Big Picture Mode&quot; option 
         <translation>호스트의 렌더러 API에서 지원하는 경우 디버깅을 활성화합니다. 개발자 전용입니다.</translation>
     </message>
     <message>
+        <source>Use GPU-Based Validation</source>
+        <comment>settings_use_gpu_based_validation</comment>
+        <translation>GPU 기반 검증 사용</translation>
+    </message>
+    <message>
+        <source>Enable GPU-based validation when supported by the host&apos;s renderer API. Only for developer use.</source>
+        <comment>settings_summary_use_gpu_based_validation</comment>
+        <translation>호스트 렌더러 API가 지원하는 경우 GPU 기반 검증을 활성화합니다. 개발자 전용입니다.</translation>
+    </message>
+    <message>
         <source>Prefer OpenGL ES Context</source>
         <comment>settings_prefer_gles_context</comment>
         <translation>OpenGL ES 컨텍스트 선호</translation>
@@ -5374,8 +5579,8 @@ You can change this later with the &quot;Start in Big Picture Mode&quot; option 
     </message>
     <message>
         <source>Move Up</source>
-        <comment>postfx_setting_move_up</comment>
-        <translation>위로</translation>
+        <comment>list_item_move_up</comment>
+        <translation>위로 이동</translation>
     </message>
     <message>
         <source>Moves this shader up in the application order.</source>
@@ -5394,13 +5599,13 @@ You can change this later with the &quot;Start in Big Picture Mode&quot; option 
     </message>
     <message>
         <source>Remove</source>
-        <comment>postfx_setting_remove_shader</comment>
+        <comment>list_item_remove</comment>
         <translation>제거</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <comment>postfx_setting_move_down</comment>
-        <translation>아래로</translation>
+        <comment>list_item_move_down</comment>
+        <translation>아래로 이동</translation>
     </message>
     <message>
         <source>Moves this shader down in the application order.</source>
@@ -5580,11 +5785,6 @@ Are you sure you want to continue?</source>
         <source>Author: %1$s</source>
         <comment>patch_codes_author</comment>
         <translation>작성자: %1$s</translation>
-    </message>
-    <message>
-        <source>Unavailable while RetroAchievements hardcode mode is active.</source>
-        <comment>patch_codes_hardcore_restricted</comment>
-        <translation>RetroAchievements 하드코어 모드가 활성화된 동안에는 사용할 수 없습니다.</translation>
     </message>
     <message>
         <source>Search codes</source>
@@ -5965,6 +6165,26 @@ Are you sure you want to continue?</source>
         <source>Steering</source>
         <comment>touchscreen_controller_steering</comment>
         <translation>조향</translation>
+    </message>
+    <message>
+        <source>Macro 5</source>
+        <comment>touchscreen_controller_macro_5</comment>
+        <translation>매크로 5</translation>
+    </message>
+    <message>
+        <source>Macro 6</source>
+        <comment>touchscreen_controller_macro_6</comment>
+        <translation>매크로 6</translation>
+    </message>
+    <message>
+        <source>Macro 7</source>
+        <comment>touchscreen_controller_macro_7</comment>
+        <translation>매크로 7</translation>
+    </message>
+    <message>
+        <source>Macro 8</source>
+        <comment>touchscreen_controller_macro_8</comment>
+        <translation>매크로 8</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -6576,34 +6796,9 @@ ${serial}: 게임 일련번호.</translation>
         <translation>에뮬레이트된 하드웨어가 실행될 정상 클럭 속도의 배율을 선택합니다.</translation>
     </message>
     <message>
-        <source>Enable 8MB RAM</source>
-        <comment>settings_enable_8mb_ram</comment>
-        <translation>8MB 램 활성화</translation>
-    </message>
-    <message>
-        <source>Enables an additional 6MB of RAM to obtain a total of 2+6 = 8MB, usually present on dev consoles.</source>
-        <comment>settings_summary_enable_8mb_ram</comment>
-        <translation>6MB의 램을 추가로 확보하여 총 2+6=8MB를 확보할 수 있으며, 이는 일반적으로 개발 콘솔에 존재합니다.</translation>
-    </message>
-    <message>
         <source>Installed RAM</source>
         <comment>settings_ram_size</comment>
         <translation>설치된 RAM</translation>
-    </message>
-    <message>
-        <source>Expanded RAM may break games, so use it only with compatible mods.</source>
-        <comment>settings_summary_ram_size</comment>
-        <translation>RAM을 확장하면 게임이 작동하지 않을 수 있으므로 호환되는 모드에서만 사용하세요.</translation>
-    </message>
-    <message>
-        <source>Force Full RAM Mapping</source>
-        <comment>settings_force_full_ram_mapping</comment>
-        <translation>전체 RAM 매핑 강제</translation>
-    </message>
-    <message>
-        <source>Maps all installed RAM regardless of the BIOS or game configuration.</source>
-        <comment>settings_summary_force_full_ram_mapping</comment>
-        <translation>BIOS나 게임 설정에 관계없이 설치된 RAM 전체를 매핑합니다.</translation>
     </message>
     <message>
         <source>Preload Images to RAM</source>
@@ -8594,14 +8789,6 @@ You can manually update DuckStation by re-downloading the latest release. Do you
         <translation>찾아보기...</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>열기...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>초기화</translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation>옵션</translation>
     </message>
@@ -8624,6 +8811,10 @@ You can manually update DuckStation by re-downloading the latest release. Do you
     <message>
         <source>Refresh List</source>
         <translation>목록 새로 고침</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>추가 옵션</translation>
     </message>
     <message>
         <source>Device Type:</source>
@@ -8883,12 +9074,8 @@ Your dump may be corrupted, or the physical disc is scratched.</source>
         <translation>찾아보기...</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>열기...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>초기화</translation>
+        <source>More Options</source>
+        <translation>추가 옵션</translation>
     </message>
     <message>
         <source>Media Capture</source>
@@ -9274,6 +9461,14 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
         <translation>프레임 속도 :</translation>
     </message>
     <message>
+        <source>Installed VRAM:</source>
+        <translation>설치된 VRAM:</translation>
+    </message>
+    <message>
+        <source>Fast Forward While Loading</source>
+        <translation>로딩 중 빨리 감기</translation>
+    </message>
+    <message>
         <source>CPU Emulation</source>
         <translation>CPU 에뮬레이션</translation>
     </message>
@@ -9288,6 +9483,10 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
     <message>
         <source>Enable Recompiler ICache</source>
         <translation>리컴파일러 명령어 캐시 활성화</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <translation>유휴 대기 시간 조정</translation>
     </message>
     <message>
         <source>CD-ROM Emulation</source>
@@ -9322,22 +9521,6 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
         <translation>6배(12배속)</translation>
     </message>
     <message>
-        <source>Physical Drive Speed:</source>
-        <translation>물리 드라이브 속도:</translation>
-    </message>
-    <message>
-        <source>Don&apos;t Change</source>
-        <translation>변경 안 함</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source>Ignore Physical Drive Subcode</source>
-        <translation>물리 드라이브 서브코드 무시</translation>
-    </message>
-    <message>
         <source>Apply Image Patches</source>
         <translation>이미지 패치 적용</translation>
     </message>
@@ -9352,10 +9535,6 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
     <message>
         <source>Installed RAM:</source>
         <translation>설치된 RAM:</translation>
-    </message>
-    <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>전체 RAM 매핑 강제 적용</translation>
     </message>
     <message>
         <source>100% (33.87MHz)</source>
@@ -9430,16 +9609,12 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
         <translation>메모리 카드 액세스 시 불러오기와 저장을 빠르게 진행합니다. 메모리 카드를 자주 사용하는 게임에서 대기 시간을 줄일 수 있습니다.</translation>
     </message>
     <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <translation>게임이 디스크를 읽느라 화면 갱신을 멈추면 빨리 감습니다. 애니메이션 로딩 화면에는 적용되지 않습니다.</translation>
+    </message>
+    <message>
         <source>Installed RAM</source>
         <translation>설치된 RAM</translation>
-    </message>
-    <message>
-        <source>Changes the amount of RAM installed in the emulated console. Games have to use a larger heap size for expanded RAM to be usable. Titles which rely on memory mirrors may break, so it should only be used with compatible mods.</source>
-        <translation>에뮬레이션하는 콘솔에 설치된 RAM 용량을 변경합니다. 확장 RAM을 활용하려면 게임이 더 큰 힙 크기를 사용해야 합니다. 메모리 미러링에 의존하는 게임은 제대로 작동하지 않을 수 있으므로 호환되는 모드에만 사용해야 합니다.</translation>
-    </message>
-    <message>
-        <source>Maps all installed RAM, regardless of the size configured by the BIOS or game. Retail BIOSes only map 8MB, so this is needed for 16MB to be usable without a patched BIOS. Only has an effect when expanded RAM is installed.</source>
-        <translation>BIOS나 게임에서 설정한 용량에 관계없이 설치된 RAM 전체를 매핑합니다. 일반 판매용 BIOS는 8MB만 매핑하므로 BIOS를 패치하지 않고 16MB를 사용하려면 이 설정이 필요합니다. 확장 RAM이 설치된 경우에만 적용됩니다.</translation>
     </message>
     <message>
         <source>Execution Mode</source>
@@ -9470,6 +9645,14 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
         <translation>에뮬레이트된 CPU가 캐시로 명령을 가져와야 할 때 리컴파일러에서 멈추는 현상을 시뮬레이션합니다. 성능 저하를 최소화하면서 게임을 콘솔 프레임 속도에 가깝게 실행할 수 있습니다. 인터프리터 모드는 항상 명령어 캐시를 시뮬레이션합니다.</translation>
     </message>
     <message>
+        <source>Checked</source>
+        <translation>선택됨</translation>
+    </message>
+    <message>
+        <source>Games give up waiting for vertical blank after a fixed number of loop iterations, which pass faster when overclocking. Scales this timeout to keep games synchronized to vertical blank.</source>
+        <translation>게임은 일정 횟수만큼 루프를 반복한 뒤 수직 귀선을 기다리는 것을 포기하며, 오버클럭하면 반복이 더 빨리 끝납니다. 이 시간 제한을 조정해 게임이 수직 귀선과 동기화되도록 합니다.</translation>
+    </message>
+    <message>
         <source>CD-ROM Read Speedup</source>
         <translation>CD-ROM 읽기 속도 향상</translation>
     </message>
@@ -9488,22 +9671,6 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
     <message>
         <source>Automatically switches to the next disc in the game when the game stops the CD-ROM motor. No switch will occur if the last disc in the game is already selected. &lt;strong&gt;Does not work for all games.&lt;/strong&gt;</source>
         <translation>게임이 CD-ROM 모터를 멈추면 자동으로 게임의 다음 디스크로 전환합니다. 게임의 마지막 디스크가 이미 선택된 경우 전환이 발생하지 않습니다. &lt;strong&gt;모든 게임에서 작동하는 것은 아닙니다.&lt;/strong&gt;</translation>
-    </message>
-    <message>
-        <source>Physical Drive Speed</source>
-        <translation>물리 드라이브 속도</translation>
-    </message>
-    <message>
-        <source>8x</source>
-        <translation>8x</translation>
-    </message>
-    <message>
-        <source>Sets the speed of the host drive when using physical discs. Higher speeds can reduce stutter, but make the drive louder. Set to &quot;Don&apos;t Change&quot; to leave the drive at its own speed. Not all drives support this.</source>
-        <translation>실제 디스크를 사용할 때 호스트 드라이브의 속도를 설정합니다. 속도가 높으면 끊김이 줄어들 수 있지만 드라이브 소음이 커집니다. 드라이브의 원래 속도를 유지하려면 ‘변경 안 함’을 선택하세요. 일부 드라이브는 이 설정을 지원하지 않습니다.</translation>
-    </message>
-    <message>
-        <source>Ignores the subchannel provided by the drive when using physical discs, instead always generating subchannel data. Won&apos;t work with libcrypt games, but can improve read reliability on some drives.</source>
-        <translation>물리 디스크를 사용할 때 드라이브에서 제공하는 하위 채널을 무시하고 대신 항상 하위 채널 데이터를 생성합니다. libcrypt 게임에서는 작동하지 않지만 일부 드라이브에서 읽기 안정성을 향상시킬 수 있습니다.</translation>
     </message>
     <message>
         <source>Enabling CPU overclocking will break games, cause bugs, reduce performance and can significantly increase system requirements.
@@ -9532,6 +9699,18 @@ This warning will only be shown once.</source>
     <message>
         <source>Frame Rate</source>
         <translation>프레임 속도</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM. Forced maps all installed RAM regardless of game configuration, needed for 16MB with retail BIOSes.</source>
+        <translation>에뮬레이션된 콘솔에 설치된 RAM 용량을 변경합니다. 정식 게임은 추가 RAM을 사용하지 않습니다. 강제 모드는 게임 설정과 관계없이 설치된 RAM 전체를 매핑하며, 정식 BIOS에서 16MB를 사용하려면 필요합니다.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <translation>설치된 VRAM</translation>
+    </message>
+    <message>
+        <source>Changes the amount of VRAM installed in the emulated console. Retail games do not use extra VRAM. Forced makes the second VRAM bank accessible regardless of the game enabling it or not.</source>
+        <translation>에뮬레이션된 콘솔에 설치된 VRAM 용량을 변경합니다. 정식 게임은 추가 VRAM을 사용하지 않습니다. 강제 모드는 게임에서 활성화했는지와 관계없이 두 번째 VRAM 뱅크에 접근할 수 있게 합니다.</translation>
     </message>
     <message>
         <source>%1% (%2MHz)</source>
@@ -9823,6 +10002,89 @@ This warning will only be shown once.</source>
     </message>
 </context>
 <context>
+    <name>ControllerBindingWidget_DDGo</name>
+    <message>
+        <source>Power Lever</source>
+        <translation>동력 조절 레버</translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation>동력</translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation>꺼짐</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation>4</translation>
+    </message>
+    <message>
+        <source>5</source>
+        <translation>5</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>선택</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>시작</translation>
+    </message>
+    <message>
+        <source>Brake Lever</source>
+        <translation>브레이크 레버</translation>
+    </message>
+    <message>
+        <source>Brake</source>
+        <translation>브레이크</translation>
+    </message>
+    <message>
+        <source>Released</source>
+        <translation>해제</translation>
+    </message>
+    <message>
+        <source>6</source>
+        <translation>6</translation>
+    </message>
+    <message>
+        <source>7</source>
+        <translation>7</translation>
+    </message>
+    <message>
+        <source>8</source>
+        <translation>8</translation>
+    </message>
+    <message>
+        <source>Emergency</source>
+        <translation>비상 제동</translation>
+    </message>
+    <message>
+        <source>A</source>
+        <translation>A</translation>
+    </message>
+    <message>
+        <source>B</source>
+        <translation>B</translation>
+    </message>
+    <message>
+        <source>C</source>
+        <translation>C</translation>
+    </message>
+</context>
+<context>
     <name>ControllerBindingWidget_DigitalController</name>
     <message>
         <source>L1</source>
@@ -9947,6 +10209,93 @@ This warning will only be shown once.</source>
     <message>
         <source>Fire</source>
         <translation>발사</translation>
+    </message>
+</context>
+<context>
+    <name>ControllerBindingWidget_JogCon</name>
+    <message>
+        <source>D-Pad</source>
+        <translation>방향 패드</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation>아래</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation>왼쪽</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation>위</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation>오른쪽</translation>
+    </message>
+    <message>
+        <source>Vibration Motor</source>
+        <translation>진동 모터</translation>
+    </message>
+    <message>
+        <source>L2</source>
+        <translation>L2</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>선택</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>시작</translation>
+    </message>
+    <message>
+        <source>R2</source>
+        <translation>R2</translation>
+    </message>
+    <message>
+        <source>L1</source>
+        <translation>L1</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>모드</translation>
+    </message>
+    <message>
+        <source>Mode LED</source>
+        <translation>모드 LED</translation>
+    </message>
+    <message>
+        <source>R1</source>
+        <translation>R1</translation>
+    </message>
+    <message>
+        <source>Face Buttons</source>
+        <translation>전면 버튼</translation>
+    </message>
+    <message>
+        <source>Cross</source>
+        <translation>Ｘ</translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation>□</translation>
+    </message>
+    <message>
+        <source>Triangle</source>
+        <translation>△</translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation>○</translation>
+    </message>
+    <message>
+        <source>Force Feedback Device</source>
+        <translation>포스 피드백 장치</translation>
+    </message>
+    <message>
+        <source>Steering</source>
+        <translation>조향</translation>
     </message>
 </context>
 <context>
@@ -10160,6 +10509,45 @@ This warning will only be shown once.</source>
     <message>
         <source>Small Motor</source>
         <translation>소형 모터</translation>
+    </message>
+</context>
+<context>
+    <name>ControllerBindingWidget_Popn</name>
+    <message>
+        <source>Left Buttons</source>
+        <translation>왼쪽 버튼</translation>
+    </message>
+    <message>
+        <source>Yellow</source>
+        <translation>노란색</translation>
+    </message>
+    <message>
+        <source>Blue/Sel</source>
+        <translation>파란색/선택</translation>
+    </message>
+    <message>
+        <source>White</source>
+        <translation>흰색</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>초록색</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>선택</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>시작</translation>
+    </message>
+    <message>
+        <source>Right Buttons</source>
+        <translation>오른쪽 버튼</translation>
+    </message>
+    <message>
+        <source>Middle Red/Okay</source>
+        <translation>가운데 빨간색/확인</translation>
     </message>
 </context>
 <context>
@@ -10378,48 +10766,84 @@ The &quot;alternate&quot; color is used when analog mode is active.</source>
 <context>
     <name>ControllerMacroEditWidget</name>
     <message>
-        <source>Binds/Buttons</source>
-        <translation>할당/버튼</translation>
+        <source>The trigger activates the macro, and can be a single button or combination of buttons. Shift-click for multiple triggers.</source>
+        <translation>트리거는 매크로를 활성화하는 단일 버튼이나 버튼 조합입니다. 여러 트리거를 지정하려면 Shift 키를 누른 채 클릭하세요.</translation>
     </message>
     <message>
-        <source>Select the buttons which you want to trigger with this macro. All buttons are activated concurrently.</source>
-        <translation>이 매크로로 트리거할 버튼을 선택합니다. 모든 버튼이 동시에 활성화됩니다.</translation>
-    </message>
-    <message>
-        <source>Pressure</source>
-        <translation>압력</translation>
-    </message>
-    <message>
-        <source>For buttons which are pressure sensitive, this slider controls how much force will be simulated when the macro is active.</source>
-        <translation>압력 감지 버튼의 경우, 이 슬라이더는 매크로가 활성화될 때 얼마나 많은 힘이 시뮬레이션될지 제어합니다.</translation>
+        <source>Activation Deadzone:</source>
+        <translation>활성화 데드존:</translation>
     </message>
     <message>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
+        <source>Sequence</source>
+        <translation>시퀀스</translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation>동작</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>값</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>녹화</translation>
+    </message>
+    <message>
+        <source>Replaces the sequence with one which holds a button, or toggles it on and off every N frames (turbo).</source>
+        <translation>시퀀스를 버튼을 계속 누르거나 N 프레임마다 켜고 끄는(터보) 시퀀스로 바꿉니다.</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <translation>빠른 설정</translation>
+    </message>
+    <message>
+        <source>Add Input</source>
+        <translation>입력 추가</translation>
+    </message>
+    <message>
+        <source>Add Wait</source>
+        <translation>대기 추가</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>제거</translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <translation>위로 이동</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation>아래로 이동</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>비우기</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once for each press. The current repeat is always finished.</source>
+        <translation>누를 때마다 시퀀스를 한 번만 실행하는 대신 매크로가 활성 상태인 동안 반복합니다. 이미 시작한 반복은 항상 끝까지 실행합니다.</translation>
+    </message>
+    <message>
+        <source>Loop While Active</source>
+        <translation>활성 상태에서 반복</translation>
+    </message>
+    <message>
+        <source>Activates and deactivates the macro when the button is tapped instead of held.</source>
+        <translation>버튼을 길게 누르는 대신 짧게 누를 때마다 매크로를 켜거나 끕니다.</translation>
+    </message>
+    <message>
         <source>Trigger</source>
         <translation>트리거</translation>
     </message>
     <message>
-        <source>Select the trigger to activate this macro. This can be a single button, or combination of buttons (chord). Shift-click for multiple triggers.</source>
-        <translation>이 매크로를 활성화할 트리거를 선택합니다. 단일 버튼 또는 버튼의 조합(코드)일 수 있습니다. 여러 트리거를 사용하려면 Shift 키를 누른 채 클릭합니다.</translation>
-    </message>
-    <message>
         <source>Press To Toggle</source>
         <translation>눌러서 전환</translation>
-    </message>
-    <message>
-        <source>Deadzone:</source>
-        <translation>데드존 :</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <translation>빈도</translation>
-    </message>
-    <message>
-        <source>Macro will toggle every N frames.</source>
-        <translation>매크로는 N 프레임마다 전환됩니다.</translation>
     </message>
     <message>
         <source>Controller %1 Macro %2</source>
@@ -10429,26 +10853,50 @@ The &quot;alternate&quot; color is used when analog mode is active.</source>
         <source>Not Configured</source>
         <translation>구성되지 않음</translation>
     </message>
+    <message numerus="yes">
+        <source>%n button(s)</source>
+        <translation>
+            <numerusform>버튼 %n개</numerusform>
+        </translation>
+    </message>
     <message>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
     <message>
-        <source>Set Frequency</source>
-        <translation>빈도 설정</translation>
+        <source>Frames to toggle %1 on and off for, or 0 to hold it:</source>
+        <translation>%1을(를) 켜고 끄는 간격(프레임, 0은 계속 누르기):</translation>
     </message>
     <message>
-        <source>Frequency: </source>
-        <translation>빈도: </translation>
+        <source>Stop</source>
+        <translation>중지</translation>
     </message>
     <message>
-        <source>Macro will not repeat.</source>
-        <translation>매크로는 반복하지 않습니다.</translation>
+        <source>Wait</source>
+        <translation>대기</translation>
     </message>
     <message numerus="yes">
-        <source>Macro will toggle buttons every %n frame(s).</source>
+        <source>%n frame(s)</source>
         <translation>
-            <numerusform>매크로는 %n프레임마다 버튼을 전환합니다.</numerusform>
+            <numerusform>%n 프레임</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source> frames</source>
+        <translation> 프레임</translation>
+    </message>
+    <message>
+        <source>%</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <source>Sequence (%1, %2)</source>
+        <translation>시퀀스 (%1, %2)</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n action(s)</source>
+        <translation>
+            <numerusform>동작 %n개</numerusform>
         </translation>
     </message>
 </context>
@@ -11525,16 +11973,12 @@ This file can be several gigabytes, so be aware of SSD wear.</source>
         <translation>리컴파일러 고속 메모리 액세스 활성화</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <translation>재컴파일러 유휴 루프 빨리 감기 활성화</translation>
+    </message>
+    <message>
         <source>CD-ROM Mechacon Version</source>
         <translation>CD-ROM Mechacon 버전</translation>
-    </message>
-    <message>
-        <source>CD-ROM Readahead Sectors</source>
-        <translation>CD-ROM 미리 읽기 섹터</translation>
-    </message>
-    <message>
-        <source> sectors</source>
-        <translation> 섹터</translation>
     </message>
     <message>
         <source>CD-ROM Max Read Speedup Cycles</source>
@@ -11988,6 +12432,105 @@ Clicking Reset will restore the serial back to the value scanned from in the dis
     </message>
 </context>
 <context>
+    <name>FoldersSettingsWidget</name>
+    <message>
+        <source>Cache Directory</source>
+        <translation>캐시 디렉터리</translation>
+    </message>
+    <message>
+        <source>Used for storing compiled shaders, game list data, and downloaded achievement images.</source>
+        <translation>컴파일된 셰이더, 게임 목록 데이터, 다운로드한 업적 이미지를 저장합니다.</translation>
+    </message>
+    <message>
+        <source>Cheats Directory</source>
+        <translation>치트 디렉터리</translation>
+    </message>
+    <message>
+        <source>Stores cheat files (.cht) that you have created or imported. These are used in addition to the built-in cheat database.</source>
+        <translation>직접 만들거나 가져온 치트 파일(.cht)을 저장합니다. 이 파일은 기본 제공 치트 데이터베이스와 함께 사용됩니다.</translation>
+    </message>
+    <message>
+        <source>Covers Directory</source>
+        <translation>커버 디렉터리</translation>
+    </message>
+    <message>
+        <source>Used for storing covers in the game grid/Big Picture UIs.</source>
+        <translation>게임 격자 및 Big Picture UI에 표시할 커버를 저장합니다.</translation>
+    </message>
+    <message>
+        <source>Game Icons Directory</source>
+        <translation>게임 아이콘 디렉터리</translation>
+    </message>
+    <message>
+        <source>Stores game list icons extracted from memory card saves. A PNG named after a game&apos;s serial can be placed here to use a custom icon.</source>
+        <translation>메모리 카드 저장 데이터에서 추출한 게임 목록 아이콘을 저장합니다. 게임 시리얼과 같은 이름의 PNG를 여기에 넣으면 사용자 지정 아이콘으로 사용할 수 있습니다.</translation>
+    </message>
+    <message>
+        <source>Game Settings Directory</source>
+        <translation>게임 설정 디렉터리</translation>
+    </message>
+    <message>
+        <source>Stores per-game settings files, named by game serial.</source>
+        <translation>게임 시리얼을 파일 이름으로 사용하는 게임별 설정 파일을 저장합니다.</translation>
+    </message>
+    <message>
+        <source>Input Profiles Directory</source>
+        <translation>입력 프로필 디렉터리</translation>
+    </message>
+    <message>
+        <source>Stores controller input profiles.</source>
+        <translation>컨트롤러 입력 프로필을 저장합니다.</translation>
+    </message>
+    <message>
+        <source>Patches Directory</source>
+        <translation>패치 디렉터리</translation>
+    </message>
+    <message>
+        <source>Stores patch files (.cht) that you have created or imported. These are used in addition to the built-in patch database.</source>
+        <translation>직접 만들거나 가져온 패치 파일(.cht)을 저장합니다. 이 파일은 기본 제공 패치 데이터베이스와 함께 사용됩니다.</translation>
+    </message>
+    <message>
+        <source>Shaders Directory</source>
+        <translation>셰이더 디렉터리</translation>
+    </message>
+    <message>
+        <source>Searched for post-processing shaders: GLSL shaders in this directory, ReShade shaders in reshade/Shaders, and slang presets in slang.</source>
+        <translation>후처리 셰이더를 검색합니다. 이 디렉터리의 GLSL 셰이더, reshade/Shaders 디렉터리의 ReShade 셰이더, slang 디렉터리의 Slang 프리셋을 찾습니다.</translation>
+    </message>
+    <message>
+        <source>Subchannels Directory</source>
+        <translation>서브채널 디렉터리</translation>
+    </message>
+    <message>
+        <source>Searched for SBI/LSD subchannel files, which are required by LibCrypt-protected games, when they are not found next to the disc image.</source>
+        <translation>디스크 이미지와 같은 위치에서 찾지 못한 경우 LibCrypt 보호 게임에 필요한 SBI/LSD 서브채널 파일을 검색합니다.</translation>
+    </message>
+    <message>
+        <source>User Resources Directory</source>
+        <translation>사용자 리소스 디렉터리</translation>
+    </message>
+    <message>
+        <source>Files placed here override the bundled resources. Also used for custom themes and Big Picture backgrounds.</source>
+        <translation>여기에 둔 파일은 기본 포함 리소스를 덮어씁니다. 사용자 지정 테마와 Big Picture 배경에도 사용됩니다.</translation>
+    </message>
+    <message>
+        <source>Browse...</source>
+        <translation>찾아보기...</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>추가 옵션</translation>
+    </message>
+    <message>
+        <source>Select %1</source>
+        <translation>%1 선택</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>기본값</translation>
+    </message>
+</context>
+<context>
     <name>FullscreenUI</name>
     <message>
         <source>-</source>
@@ -12218,10 +12761,6 @@ Clicking Reset will restore the serial back to the value scanned from in the dis
         <translation>총 시간 : {}</translation>
     </message>
     <message>
-        <source>All unofficial achievement progress for the current game will be removed. This cannot be undone.</source>
-        <translation>현재 게임의 모든 비공식 도전 과제 진행 상황이 제거됩니다. 이 작업은 되돌릴 수 없습니다.</translation>
-    </message>
-    <message>
         <source>Allow Booting Without SBI File</source>
         <translation>SBI 파일 없이 부팅 허용</translation>
     </message>
@@ -12398,10 +12937,6 @@ You cannot undo this action.</source>
         <translation>버퍼 크기</translation>
     </message>
     <message>
-        <source>Buttons</source>
-        <translation>버튼</translation>
-    </message>
-    <message>
         <source>CD-ROM Emulation</source>
         <translation>CD-ROM 에뮬레이션</translation>
     </message>
@@ -12422,6 +12957,10 @@ You cannot undo this action.</source>
         <translation>캡처</translation>
     </message>
     <message>
+        <source>Carousel</source>
+        <translation>캐러셀</translation>
+    </message>
+    <message>
         <source>Challenge Indicators</source>
         <oldsource>Show Status Indicators</oldsource>
         <translation>도전 지표</translation>
@@ -12429,10 +12968,6 @@ You cannot undo this action.</source>
     <message>
         <source>Change Disc</source>
         <translation>디스크 교체</translation>
-    </message>
-    <message>
-        <source>Changes the amount of RAM installed in the emulated console.</source>
-        <translation>에뮬레이션하는 콘솔에 설치된 RAM 용량을 변경합니다.</translation>
     </message>
     <message>
         <source>Changes the aspect ratio used to display the console&apos;s output to the screen.</source>
@@ -12672,10 +13207,6 @@ You cannot undo this action.</source>
         <translation>일반적으로 소비자 TV 세트에서 보이지 않는 영역을 얼마나 잘라내거나 숨길지 결정합니다.</translation>
     </message>
     <message>
-        <source>Determines how much pressure is simulated when macro is active.</source>
-        <translation>매크로가 활성화될 때 얼마나 많은 압력을 시뮬레이션할지 결정합니다.</translation>
-    </message>
-    <message>
         <source>Determines how the emulated CPU executes instructions.</source>
         <translation>에뮬레이트된 CPU가 명령을 실행하는 방식을 결정합니다.</translation>
     </message>
@@ -12706,10 +13237,6 @@ You cannot undo this action.</source>
     <message>
         <source>Determines the format that screenshots will be saved/compressed with.</source>
         <translation>스크린샷을 저장/압축할 형식을 결정합니다.</translation>
-    </message>
-    <message>
-        <source>Determines the frequency at which the macro will toggle the buttons on and off (aka auto fire).</source>
-        <translation>매크로가 버튼을 누르고 떼는 빈도를 결정합니다(연사라고도 함).</translation>
     </message>
     <message>
         <source>Determines the image shown next to each game in the list view.</source>
@@ -12848,6 +13375,10 @@ You cannot undo this action.</source>
         <translation>리컴파일러 명령어 캐시 활성화</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <translation>재컴파일러 유휴 루프 빨리 감기 활성화</translation>
+    </message>
+    <message>
         <source>Enable Recompiler Memory Exceptions</source>
         <translation>리컴파일러 메모리 예외 활성화</translation>
     </message>
@@ -12983,12 +13514,20 @@ Error was:</source>
         <translation>메모리 카드 액세스 빨리 감기</translation>
     </message>
     <message>
+        <source>Fast Forward While Loading</source>
+        <translation>로딩 중 빨리 감기</translation>
+    </message>
+    <message>
         <source>Fast forwards through memory card access, both loading and saving. Can reduce waiting times in games that frequently access memory cards.</source>
         <translation>메모리 카드에 접근하여 로딩과 저장을 빠르게 진행합니다. 메모리 카드를 자주 사용하는 게임에서 대기 시간을 줄일 수 있습니다.</translation>
     </message>
     <message>
         <source>Fast forwards through the early loading process when fast booting, saving time. Results may vary between games.</source>
         <translation>빠른 부팅 시 초기 로딩 과정을 빨리 진행하여 시간을 절약합니다. 게임마다 결과가 다를 수 있습니다.</translation>
+    </message>
+    <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <translation>게임이 디스크를 읽느라 화면 갱신을 멈추면 빨리 감습니다. 애니메이션 로딩 화면에는 적용되지 않습니다.</translation>
     </message>
     <message>
         <source>Filter Framebuffer Uploads</source>
@@ -13001,10 +13540,6 @@ Error was:</source>
     <message>
         <source>Forces texture upload tracking to be enabled regardless of whether it is needed.</source>
         <translation>필요 여부에 관계없이 텍스처 업로드 추적을 강제로 활성화합니다.</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <translation>빈도</translation>
     </message>
     <message>
         <source>Game Display</source>
@@ -13059,6 +13594,10 @@ Error was:</source>
     <message>
         <source>Includes the elapsed time since the application start in window and console logs.</source>
         <translation>창과 콘솔 로그에 앱이 시작된 이후 경과된 시간이 포함됩니다.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <translation>설치된 VRAM</translation>
     </message>
     <message>
         <source>Internal Resolution</source>
@@ -13170,6 +13709,10 @@ Please check your username and password, and try again.</source>
         <translation>프레임 중간 스캔아웃</translation>
     </message>
     <message>
+        <source>Midnight Amber</source>
+        <translation>Midnight Amber</translation>
+    </message>
+    <message>
         <source>Minimum Framebuffer Upload Height</source>
         <translation>프레임버퍼 업로드 최소 높이</translation>
     </message>
@@ -13239,10 +13782,6 @@ Please check your username and password, and try again.</source>
         <translation>전환하려면 누르기</translation>
     </message>
     <message>
-        <source>Pressure</source>
-        <translation>압력</translation>
-    </message>
-    <message>
         <source>Removes all bindings for this controller port.</source>
         <translation>이 컨트롤러 포트의 모든 바인딩을 제거합니다.</translation>
     </message>
@@ -13261,14 +13800,6 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Reset Unlock</source>
         <translation>잠금 해제 초기화</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement</source>
-        <translation>비공식 도전 과제 초기화</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement Unlocks</source>
-        <translation>비공식 도전 과제 잠금 해제 초기화</translation>
     </message>
     <message>
         <source>Resets the SPU when the game starts, removing leftover BIOS reverb echoes in games that do not initialize it. Has no effect when fast booting.</source>
@@ -13321,6 +13852,10 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Saves supported controllers by serial or device identity so bindings survive port and connection-order changes when possible.</source>
         <translation>지원되는 컨트롤러를 일련 번호 또는 장치 식별 정보로 저장하여, 가능한 경우 포트나 연결 순서가 바뀌어도 입력 할당이 유지되도록 합니다.</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <translation>유휴 대기 시간 조정</translation>
     </message>
     <message>
         <source>Screen Margins</source>
@@ -13427,6 +13962,10 @@ Please check your username and password, and try again.</source>
         <translation>화면 오른쪽 상단에 현재 프레임 번호를 표시합니다.</translation>
     </message>
     <message>
+        <source>Skips over the busy loop that games use to wait for vertical blank.</source>
+        <translation>게임이 수직 귀선을 기다리는 데 사용하는 바쁜 대기 루프를 건너뜁니다.</translation>
+    </message>
+    <message>
         <source>Smooths out blockyness between colour transitions in 24-bit content, usually FMVs.</source>
         <translation>일반적으로 FMV인 24비트 콘텐츠에서 색상 전환 시 블록 현상을 부드럽게 합니다.</translation>
     </message>
@@ -13463,6 +14002,10 @@ Please check your username and password, and try again.</source>
         <translation>시작: {}</translation>
     </message>
     <message>
+        <source>Stops games from timing out while waiting for vertical blank when overclocking.</source>
+        <translation>오버클럭 중 수직 귀선을 기다리다가 게임이 시간 초과되는 것을 방지합니다.</translation>
+    </message>
+    <message>
         <source>Stores the current settings to a controller preset.</source>
         <translation>현재 설정을 컨트롤러 사전 설정에 저장합니다.</translation>
     </message>
@@ -13491,10 +14034,6 @@ Please check your username and password, and try again.</source>
         <translation>버튼을 누르고 있는 대신, 누르면 매크로가 전환됩니다.</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <translation>비공식 도전 과제 추적</translation>
-    </message>
-    <message>
         <source>Trigger</source>
         <translation>트리거</translation>
     </message>
@@ -13505,14 +14044,6 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Unknown File Size</source>
         <translation>알 수 없는 파일 크기</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlock reset.</source>
-        <translation>비공식 도전 과제 잠금 해제가 초기화되었습니다.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlocks reset.</source>
-        <translation>비공식 도전 과제 잠금 해제가 초기화되었습니다.</translation>
     </message>
     <message>
         <source>Use Old MDEC Routines</source>
@@ -13561,10 +14092,6 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Web Cache Size: {0} ({1} in {2} objects)</source>
         <translation>웹 캐시 크기: {0} (객체 {2}개에 {1})</translation>
-    </message>
-    <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <translation>활성화하면 DuckStation이 비공식 도전 과제를 추적합니다. 잠금 해제 정보는 로컬에 저장되며 RetroAchievements로 전송되지 않습니다.</translation>
     </message>
     <message>
         <source>Wireframe Rendering</source>
@@ -13619,6 +14146,10 @@ Please check your username and password, and try again.</source>
         <translation>도전 과제 : </translation>
     </message>
     <message>
+        <source>All unpromoted achievement progress for the current game will be removed. This cannot be undone.</source>
+        <translation>현재 게임의 모든 미승격 업적 진행 상황이 삭제됩니다. 이 작업은 되돌릴 수 없습니다.</translation>
+    </message>
+    <message>
         <source>Allows booting to continue even without a required SBI file. These games will not run correctly.</source>
         <translation>필수 SBI 파일 없이도 부팅을 계속할 수 있습니다. 이러한 게임은 제대로 실행되지 않습니다.</translation>
     </message>
@@ -13653,10 +14184,6 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Change Selection</source>
         <translation>선택 사항 변경</translation>
-    </message>
-    <message>
-        <source>Change View</source>
-        <translation>표시 변경</translation>
     </message>
     <message>
         <source>Changes settings for the application.</source>
@@ -13799,10 +14326,6 @@ Please check your username and password, and try again.</source>
         <translation>빨리 감기 음량</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>전체 RAM 매핑 강제 적용</translation>
-    </message>
-    <message>
         <source>Forces a full rescan of all games previously identified.</source>
         <translation>이전에 식별된 모든 게임을 강제로 다시 검색합니다.</translation>
     </message>
@@ -13837,14 +14360,6 @@ Please check your username and password, and try again.</source>
     <message>
         <source>GPU Renderer</source>
         <translation>GPU 렌더러</translation>
-    </message>
-    <message>
-        <source>Game Grid</source>
-        <translation>게임 그리드</translation>
-    </message>
-    <message>
-        <source>Game List</source>
-        <translation>게임 목록</translation>
     </message>
     <message>
         <source>Game List Settings</source>
@@ -13911,6 +14426,10 @@ Please check your username and password, and try again.</source>
         <translation>전역 슬롯 {0}##global_slot_{0}</translation>
     </message>
     <message>
+        <source>Grid</source>
+        <translation>격자</translation>
+    </message>
+    <message>
         <source>Hardcore Mode</source>
         <translation>하드코어 모드</translation>
     </message>
@@ -13921,6 +14440,10 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Hides the mouse pointer/cursor when the emulator is in fullscreen mode.</source>
         <translation>에뮬레이터가 전체 화면 모드일 때, 마우스 포인터/커서를 숨깁니다.</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation>계속 누르기</translation>
     </message>
     <message>
         <source>How often a rewind state will be created. Higher frequencies have greater system requirements.</source>
@@ -13977,6 +14500,14 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Leaderboards</source>
         <translation>순위표</translation>
+    </message>
+    <message>
+        <source>Library</source>
+        <translation>라이브러리</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <translation>목록</translation>
     </message>
     <message>
         <source>List Settings</source>
@@ -14043,12 +14574,16 @@ Please check your username and password, and try again.</source>
         <translation>지원되는 경우, 디버그 콘솔에 메시지를 기록합니다.</translation>
     </message>
     <message>
-        <source>Makes games run closer to their console framerate, at a small cost to performance.</source>
-        <translation>약간의 성능 저하를 감수하고 게임을 콘솔 프레임 속도에 더 가깝게 실행합니다.</translation>
+        <source>Loop While Active</source>
+        <translation>활성 상태에서 반복</translation>
     </message>
     <message>
-        <source>Maps all installed RAM, regardless of the size configured by the BIOS or game. Needed for 16MB with retail BIOSes.</source>
-        <translation>BIOS나 게임에서 설정한 용량에 관계없이 설치된 RAM 전체를 매핑합니다. 일반 판매용 BIOS에서 16MB를 사용하려면 필요합니다.</translation>
+        <source>Macro {} Sequence</source>
+        <translation>매크로 {} 시퀀스</translation>
+    </message>
+    <message>
+        <source>Makes games run closer to their console framerate, at a small cost to performance.</source>
+        <translation>약간의 성능 저하를 감수하고 게임을 콘솔 프레임 속도에 더 가깝게 실행합니다.</translation>
     </message>
     <message>
         <source>Maximum Read Speedup Cycles</source>
@@ -14057,6 +14592,10 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Maximum Seek Speedup Cycles</source>
         <translation>최대 탐색 속도 향상 주기</translation>
+    </message>
+    <message>
+        <source>Maximum amount of video memory used to cache cover art and other images in the Big Picture UI.</source>
+        <translation>빅피처 모드에서 커버 이미지와 기타 이미지를 캐시하는 데 사용할 최대 비디오 메모리 용량입니다.</translation>
     </message>
     <message>
         <source>Memory Card Busy</source>
@@ -14127,6 +14666,14 @@ Please check your username and password, and try again.</source>
         <translation>선택한 게임 없음</translation>
     </message>
     <message>
+        <source>No games found.</source>
+        <translation>게임을 찾을 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>No inputs.</source>
+        <translation>입력 없음.</translation>
+    </message>
+    <message>
         <source>No resume save state found.</source>
         <translation>상태 저장을 찾을 수 없어 재개할 수 없습니다.</translation>
     </message>
@@ -14149,6 +14696,10 @@ Please check your username and password, and try again.</source>
     <message>
         <source>None (Normal Speed)</source>
         <translation>없음(정상 속도)</translation>
+    </message>
+    <message>
+        <source>Not Configured</source>
+        <translation>설정되지 않음</translation>
     </message>
     <message>
         <source>Not Logged In</source>
@@ -14328,12 +14879,24 @@ Please check your username and password, and try again.</source>
         <translation>퍼플 레인</translation>
     </message>
     <message>
+        <source>Quick Setup</source>
+        <translation>빠른 설정</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>녹화</translation>
+    </message>
+    <message>
         <source>Release Date: </source>
         <translation>공개일 : </translation>
     </message>
     <message>
         <source>Removes the scale of each object&apos;s transform from depth values. Fixes missing geometry in some games, but breaks others. Automatic uses the game database setting.</source>
         <translation>각 객체의 변환 배율이 심도 값에 미치는 영향을 제거합니다. 일부 게임에서 지오메트리가 누락되는 문제를 해결하지만, 다른 게임에서는 문제를 일으킵니다. 자동으로 설정하면 게임 데이터베이스의 설정을 사용합니다.</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once for each press. The current repeat is always finished.</source>
+        <translation>누를 때마다 시퀀스를 한 번만 실행하는 대신 매크로가 활성 상태인 동안 반복합니다. 이미 시작한 반복은 항상 끝까지 실행합니다.</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -14350,6 +14913,14 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Reset To Default</source>
         <translation>기본값으로 초기화</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement</source>
+        <translation>미승격 업적 초기화</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement Unlocks</source>
+        <translation>미승격 업적 달성 기록 초기화</translation>
     </message>
     <message>
         <source>Resets all settings to the defaults.</source>
@@ -14381,6 +14952,10 @@ Please check your username and password, and try again.</source>
         <translation>인터레이스 렌더링에서 줄 건너뛰기를 내부 해상도에 맞게 조정하여 눈에 띄지 않게 만듭니다. 일반적으로 활성화하는 것이 안전합니다.</translation>
     </message>
     <message>
+        <source>Select Button</source>
+        <translation>버튼 선택</translation>
+    </message>
+    <message>
         <source>Select Disc for {}</source>
         <translation>{}의 디스크 선택</translation>
     </message>
@@ -14391,6 +14966,10 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Selects the color style to be used for Big Picture UI.</source>
         <translation>빅피처 UI에 사용할 색상 스타일을 선택합니다.</translation>
+    </message>
+    <message>
+        <source>Sequence</source>
+        <translation>시퀀스</translation>
     </message>
     <message>
         <source>Sets the minimum delay for the &apos;Maximum&apos; read speedup level.</source>
@@ -14435,12 +15014,28 @@ Please check your username and password, and try again.</source>
         <translation>내려받기 시작</translation>
     </message>
     <message>
+        <source>Stop</source>
+        <translation>중지</translation>
+    </message>
+    <message>
         <source>Support for controllers that use the XInput protocol. XInput should only be used if you are using a XInput wrapper library.</source>
         <translation>XInput 프로토콜을 사용하는 컨트롤러를 지원합니다. XInput은 XInput 래퍼 라이브러리를 사용하는 경우에만 사용해야 합니다.</translation>
     </message>
     <message>
         <source>Switch to Next Disc on Stop</source>
         <translation>중지 시, 다음 디스크로 전환</translation>
+    </message>
+    <message>
+        <source>Texture Cache Size</source>
+        <translation>텍스처 캐시 크기</translation>
+    </message>
+    <message>
+        <source>The button to hold or toggle.</source>
+        <translation>계속 누르거나 켜고 끌 버튼입니다.</translation>
+    </message>
+    <message>
+        <source>The inputs this macro plays, recorded or set up from a single button.</source>
+        <translation>이 매크로가 재생할 입력입니다. 입력을 녹화하거나 버튼 하나로 설정할 수 있습니다.</translation>
     </message>
     <message>
         <source>Theme</source>
@@ -14461,6 +15056,14 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Tries to detect FMVs and disable read speedup during games that don&apos;t use XA streaming audio.</source>
         <translation>XA 스트리밍 오디오를 사용하지 않는 게임에서 FMV를 감지하고 읽기 속도 향상을 비활성화하려고 합니다.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlock reset.</source>
+        <translation>미승격 업적 해제 상태를 초기화했습니다.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlocks reset.</source>
+        <translation>미승격 업적 해제 상태를 초기화했습니다.</translation>
     </message>
     <message>
         <source>Update Progress</source>
@@ -14494,6 +15097,10 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Value Range</source>
         <translation>값 범위</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation>보기</translation>
     </message>
     <message>
         <source>When Big Picture mode is started, the game list will be displayed instead of the main menu.</source>
@@ -14857,10 +15464,6 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>전체 설정</translation>
     </message>
     <message>
-        <source>Grid View</source>
-        <translation>격자 보기</translation>
-    </message>
-    <message>
         <source>Hardcore mode will not be enabled until the game is restarted. Do you want to restart the game now?</source>
         <translation>게임을 다시 시작할 때까지 하드코어 모드가 활성화되지 않습니다. 지금 게임을 다시 시작하시겠습니까?</translation>
     </message>
@@ -15113,10 +15716,6 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>되감기 상태를 위한 메모리를 할당하지 못했습니다.</translation>
     </message>
     <message>
-        <source>Shows the game list as a grid instead of a vertical list.</source>
-        <translation>게임 목록을 세로 목록 대신 격자로 표시합니다.</translation>
-    </message>
-    <message>
         <source>State {0} of {1} (frame {2})</source>
         <translation>상태 {0}/{1} (프레임 {2})</translation>
     </message>
@@ -15127,6 +15726,14 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>restart</source>
         <translation>다시 시작</translation>
+    </message>
+    <message>
+        <source>{0} inputs, {1} frames</source>
+        <translation>입력 {0}개, {1} 프레임</translation>
+    </message>
+    <message>
+        <source>{} frames</source>
+        <translation>{} 프레임</translation>
     </message>
     <message>
         <source>{} of {}</source>
@@ -15145,8 +15752,24 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>플레이 시간 초기화</translation>
     </message>
     <message>
+        <source>Apply</source>
+        <translation>적용</translation>
+    </message>
+    <message>
         <source>Brings later polygons closer to the camera, in millionths of depth. Reduces flickering of decals.</source>
         <translation>나중에 그려지는 폴리곤을 심도의 백만분의 일 단위로 카메라 쪽에 더 가깝게 배치합니다. 데칼의 깜박임을 줄입니다.</translation>
+    </message>
+    <message>
+        <source>Button</source>
+        <translation>버튼</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM.</source>
+        <translation>에뮬레이션된 콘솔에 설치된 RAM 용량을 변경합니다. 정식 게임은 추가 RAM을 사용하지 않습니다.</translation>
+    </message>
+    <message>
+        <source>Changes the amount of video RAM installed in the emulated console. Retail games do not use extra VRAM.</source>
+        <translation>에뮬레이션된 콘솔에 설치된 비디오 RAM(VRAM) 용량을 변경합니다. 정식 게임은 추가 VRAM을 사용하지 않습니다.</translation>
     </message>
     <message>
         <source>Clear Binding</source>
@@ -15159,6 +15782,10 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>Depth Bias</source>
         <translation>심도 바이어스</translation>
+    </message>
+    <message>
+        <source>Determines how the game list is displayed.</source>
+        <translation>게임 목록을 표시하는 방식을 정합니다.</translation>
     </message>
     <message>
         <source>Menu Volume</source>
@@ -15327,10 +15954,6 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>Select Disc Image</source>
         <translation>디스크 이미지 선택</translation>
-    </message>
-    <message>
-        <source>Select Macro {} Binds</source>
-        <translation>매크로 {} 할당 선택</translation>
     </message>
     <message>
         <source>Selects between Xbox/PlayStation button icons in the footer and input binding.</source>
@@ -15725,6 +16348,10 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>트랙</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <translation>미승격 업적 추적</translation>
+    </message>
+    <message>
         <source>Track hash copied to clipboard.</source>
         <translation>트랙 해시를 클립보드에 복사했습니다.</translation>
     </message>
@@ -15857,6 +16484,10 @@ Do you want to {0} anyway?</source>
         <translation>활성화하면 DuckStation은 모든 도전 과제가 잠긴 것으로 간주하고 잠금 해제 알림을 서버로 보내지 않습니다.</translation>
     </message>
     <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <translation>활성화하면 DuckStation이 미승격 업적을 추적합니다. 해제 기록은 로컬에 저장되며 RetroAchievements로 전송되지 않습니다.</translation>
+    </message>
+    <message>
         <source>When enabled, each session will behave as if no achievements have been unlocked.</source>
         <translation>활성화하면 각 세션은 잠금 해제된 도전 과제가 없는 것처럼 작동합니다.</translation>
     </message>
@@ -15921,10 +16552,6 @@ Do you want to {1} anyway?</source>
 그래도 {1}하시겠습니까?</translation>
     </message>
     <message>
-        <source>{} Frames</source>
-        <translation>{}프레임</translation>
-    </message>
-    <message>
         <source>{} deleted.</source>
         <translation>{}이(가) 삭제되었습니다.</translation>
     </message>
@@ -15956,6 +16583,12 @@ Do you want to {1} anyway?</source>
         <comment>Loading time</comment>
         <translation>
             <numerusform>%n분 남음</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n button(s)</source>
+        <translation>
+            <numerusform>버튼 %n개</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -16217,12 +16850,12 @@ Do you want to {1} anyway?</source>
         <translation>RAM 용량:</translation>
     </message>
     <message>
-        <source>Disable Widescreen Rendering</source>
-        <translation>와이드스크린 렌더링 비활성화</translation>
+        <source>VRAM Size:</source>
+        <translation>VRAM 크기:</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>전체 RAM 매핑 강제 적용</translation>
+        <source>Disable Widescreen Rendering</source>
+        <translation>와이드스크린 렌더링 비활성화</translation>
     </message>
     <message>
         <source>Disallow in Hardcore Mode</source>
@@ -16500,6 +17133,11 @@ Are you sure you want to continue?</source>
         <translation>빨리 감기 메모리 카드 접근 비활성화</translation>
     </message>
     <message>
+        <source>Disable Fast Forward While Loading</source>
+        <comment>GameDatabase::Trait</comment>
+        <translation>로딩 중 빨리 감기 비활성화</translation>
+    </message>
+    <message>
         <source>Disable CD-ROM Read Speedup</source>
         <comment>GameDatabase::Trait</comment>
         <translation>CD-ROM 읽기 속도 향상 비활성화</translation>
@@ -16647,6 +17285,10 @@ Are you sure you want to continue?</source>
     <message>
         <source>Fast forward memory card access disabled.</source>
         <translation>빨리 감기 메모리 카드 접근을 비활성화했습니다.</translation>
+    </message>
+    <message>
+        <source>Fast forward while loading disabled.</source>
+        <translation>로딩 중 빨리 감기를 비활성화했습니다.</translation>
     </message>
     <message>
         <source>PGXP geometry correction disabled.</source>
@@ -17123,14 +17765,6 @@ Are you sure you want to continue?</source>
         <translation>제외 경로(검색 안 함)</translation>
     </message>
     <message>
-        <source>File...</source>
-        <translation>파일...</translation>
-    </message>
-    <message>
-        <source>Folder...</source>
-        <translation>폴더...</translation>
-    </message>
-    <message>
         <source>Scan For New Games</source>
         <translation>새로운 게임 찾기</translation>
     </message>
@@ -17139,8 +17773,40 @@ Are you sure you want to continue?</source>
         <translation>모든 게임 다시 검색</translation>
     </message>
     <message>
+        <source>Search Directories</source>
+        <translation>검색 디렉터리</translation>
+    </message>
+    <message>
+        <source>Directories which will be scanned for games. Enable Scan Recursively to also search subdirectories, which takes longer but finds games stored in nested folders. Folders can also be dragged here from your file manager.</source>
+        <translation>게임을 검색할 디렉터리입니다. 하위 디렉터리도 검색하려면 재귀 검색을 활성화하세요. 시간이 더 걸리지만 중첩 폴더에 저장된 게임도 찾습니다. 파일 관리자에서 폴더를 여기로 끌어 놓을 수도 있습니다.</translation>
+    </message>
+    <message>
+        <source>Excluded Paths</source>
+        <translation>제외 경로</translation>
+    </message>
+    <message>
+        <source>Files and directories which will be skipped when scanning for games, for example images you do not want to appear in the game list. Files and folders can also be dragged here from your file manager.</source>
+        <translation>게임 검색 시 건너뛸 파일 및 디렉터리입니다. 예를 들어 게임 목록에 표시하지 않을 이미지가 해당됩니다. 파일 관리자에서 파일과 폴더를 여기로 끌어 놓을 수도 있습니다.</translation>
+    </message>
+    <message>
+        <source>Scans the search directories for files which are not already in the game list. Previously-scanned games are loaded from the cache, so this is usually quick.</source>
+        <translation>검색 디렉터리에서 아직 게임 목록에 없는 파일을 찾습니다. 이전에 검색한 게임은 캐시에서 불러오므로 보통 빠르게 완료됩니다.</translation>
+    </message>
+    <message>
+        <source>Discards the game list cache and scans every file in the search directories again. Use this if game details such as titles or serials are incorrect. May take a while for large collections.</source>
+        <translation>게임 목록 캐시를 삭제하고 검색 디렉터리의 모든 파일을 다시 검색합니다. 게임 제목이나 시리얼 같은 정보가 잘못된 경우 사용하세요. 게임이 많으면 시간이 오래 걸릴 수 있습니다.</translation>
+    </message>
+    <message>
         <source>Open Directory...</source>
         <translation>디렉터리 열기...</translation>
+    </message>
+    <message>
+        <source>No search directories. Add a folder, or drag one here, to choose where your games are stored.</source>
+        <translation>검색 디렉터리가 없습니다. 폴더를 추가하거나 여기로 끌어 놓아 게임이 저장된 위치를 선택하세요.</translation>
+    </message>
+    <message>
+        <source>No excluded paths. Files or folders added here will be skipped when scanning.</source>
+        <translation>제외 경로가 없습니다. 여기에 추가한 파일이나 폴더는 검색 시 건너뜁니다.</translation>
     </message>
     <message>
         <source>Select Search Directory</source>
@@ -17695,20 +18361,12 @@ Scanning recursively takes more time, but will identify files in subdirectories.
         <translation>텍스처 디렉터리</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>열기...</translation>
-    </message>
-    <message>
         <source>Directory to load replacement textures from, and save dumps to.</source>
         <translation>대체 텍스처를 로드하고 덤프를 저장할 디렉터리입니다.</translation>
     </message>
     <message>
         <source>Browse...</source>
         <translation>찾아보기...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>초기화</translation>
     </message>
     <message>
         <source>Threaded Rendering</source>
@@ -17894,6 +18552,10 @@ Scanning recursively takes more time, but will identify files in subdirectories.
     <message>
         <source>Normalize Depth Scale:</source>
         <translation>심도 배율 정규화:</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>추가 옵션</translation>
     </message>
     <message>
         <source>Debugging</source>
@@ -18239,10 +18901,6 @@ Scanning recursively takes more time, but will identify files in subdirectories.
     <message>
         <source>Geometry Tolerance</source>
         <translation>기하 공차</translation>
-    </message>
-    <message>
-        <source>-1.00px (Disabled)</source>
-        <translation>-1.00px(비활성화)</translation>
     </message>
     <message>
         <source>Discards precise geometry when it is found to be offset past the specified threshold. This can help with games that have vertices significantly moved by PGXP, but is still a hack/workaround.</source>
@@ -20391,6 +21049,10 @@ Shift 키를 누른 채 클릭하면 여러 할당을 설정할 수 있습니다
         <translation>애플리케이션의 고급 옵션을 설정합니다.</translation>
     </message>
     <message>
+        <source>&amp;Folders</source>
+        <translation>&amp;폴더</translation>
+    </message>
+    <message>
         <source>Configures internal options for the application.</source>
         <translation>애플리케이션의 내부 옵션을 설정합니다.</translation>
     </message>
@@ -21300,6 +21962,10 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>핑키 팔스</translation>
     </message>
     <message>
+        <source>Midnight Amber</source>
+        <translation>Midnight Amber</translation>
+    </message>
+    <message>
         <source>Checking for updates...</source>
         <translation>업데이트 확인 중...</translation>
     </message>
@@ -21864,10 +22530,6 @@ Error: {1}</source>
         <translation>메모리 카드:</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>열기...</translation>
-    </message>
-    <message>
         <source>Memory Cards Location</source>
         <translation>메모리 카드 위치</translation>
     </message>
@@ -21930,6 +22592,10 @@ Error: {1}</source>
     <message>
         <source>Select Memory Card Directory</source>
         <translation>메모리 카드 디렉터리 선택</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>추가 옵션</translation>
     </message>
     <message>
         <source>Backs up any previous save state when creating a new save state, with a .bak extension.</source>
@@ -23254,10 +23920,6 @@ Error: {1}</source>
         <translation>오버레이 목록 새로 고침</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Additional preset borders can be added to the &lt;span style=&quot; font-weight:700;&quot;&gt;resources\overlays&lt;/span&gt; folder within the data directory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;추가 프리셋 외곽선은 데이터 디렉터리 내의 &lt;span style=&quot; font-weight:700;&quot;&gt;resources\overlays&lt;/span&gt; 폴더에 넣을 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>Custom Configuration</source>
         <translation>사용자 정의 설정</translation>
     </message>
@@ -23268,6 +23930,14 @@ Error: {1}</source>
     <message>
         <source>Browse...</source>
         <translation>찾아보기...</translation>
+    </message>
+    <message>
+        <source>Overlays Directory:</source>
+        <translation>오버레이 디렉터리:</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>추가 옵션</translation>
     </message>
     <message>
         <source>Display Start:</source>
@@ -23312,6 +23982,22 @@ Error: {1}</source>
     <message>
         <source>Image Path</source>
         <translation>이미지 경로</translation>
+    </message>
+    <message>
+        <source>Select Overlays Directory</source>
+        <translation>오버레이 디렉터리 선택</translation>
+    </message>
+    <message>
+        <source>Overlays Directory</source>
+        <translation>오버레이 디렉터리</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>기본값</translation>
+    </message>
+    <message>
+        <source>Stores additional border overlay presets. Use Refresh Overlay List to find presets after changing this directory.</source>
+        <translation>추가 테두리 오버레이 프리셋을 저장합니다. 이 디렉터리를 변경한 뒤 오버레이 목록 새로 고침을 사용해 프리셋을 찾으세요.</translation>
     </message>
     <message>
         <source>Unspecified</source>
@@ -23962,6 +24648,18 @@ Would you like to update the shortcut to point to the current location?</source>
         <translation>{} ({})</translation>
     </message>
     <message>
+        <source>Empty</source>
+        <translation>비어 있음</translation>
+    </message>
+    <message>
+        <source>Save States</source>
+        <translation>상태 저장</translation>
+    </message>
+    <message>
+        <source>{} of {} slots in use</source>
+        <translation>{} / {}개 슬롯 사용 중</translation>
+    </message>
+    <message>
         <source>Saved {}</source>
         <translation>{} 저장</translation>
     </message>
@@ -23988,10 +24686,6 @@ Would you like to update the shortcut to point to the current location?</source>
     <message>
         <source>Game Slot {}</source>
         <translation>게임 슬롯 {}</translation>
-    </message>
-    <message>
-        <source>No save present in this slot.</source>
-        <translation>이 슬롯에는 저장된 것이 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -24035,16 +24729,16 @@ Would you like to update the shortcut to point to the current location?</source>
 <context>
     <name>SettingWidgetBinder</name>
     <message>
-        <source>Use Global Setting [Enabled]</source>
-        <translation>전체 설정 사용 [활성화]</translation>
-    </message>
-    <message>
-        <source>Use Global Setting [Disabled]</source>
-        <translation>전체 설정 사용 [비활성화]</translation>
-    </message>
-    <message>
         <source>Global: </source>
         <translation>전역: </translation>
+    </message>
+    <message>
+        <source>Open Folder</source>
+        <translation>폴더 열기</translation>
+    </message>
+    <message>
+        <source>Reset to Default</source>
+        <translation>기본값으로 초기화</translation>
     </message>
     <message>
         <source>Confirm Folder</source>
@@ -24176,24 +24870,54 @@ Do you want to create this directory?</source>
         <translation>PS1 아님</translation>
     </message>
     <message>
-        <source>2 MB (Retail Console)</source>
+        <source>2MB (Standard)</source>
         <comment>CPURAMSize</comment>
-        <translation>2 MB (일반 판매용 콘솔)</translation>
+        <translation>2MB (표준)</translation>
     </message>
     <message>
-        <source>4 MB (Arcade Boards)</source>
+        <source>4MB</source>
         <comment>CPURAMSize</comment>
-        <translation>4 MB (아케이드 기판)</translation>
+        <translation>4MB</translation>
     </message>
     <message>
-        <source>8 MB (Dev Console)</source>
+        <source>4MB (Forced)</source>
         <comment>CPURAMSize</comment>
-        <translation>8 MB (개발용 콘솔)</translation>
+        <translation>4MB (강제)</translation>
     </message>
     <message>
-        <source>16 MB (Mods/Arcade Boards)</source>
+        <source>8MB</source>
         <comment>CPURAMSize</comment>
-        <translation>16 MB (모드/아케이드 기판)</translation>
+        <translation>8MB</translation>
+    </message>
+    <message>
+        <source>8MB (Forced)</source>
+        <comment>CPURAMSize</comment>
+        <translation>8MB (강제)</translation>
+    </message>
+    <message>
+        <source>16MB</source>
+        <comment>CPURAMSize</comment>
+        <translation>16MB</translation>
+    </message>
+    <message>
+        <source>16MB (Forced)</source>
+        <comment>CPURAMSize</comment>
+        <translation>16MB (강제)</translation>
+    </message>
+    <message>
+        <source>1MB (Standard)</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>1MB (표준)</translation>
+    </message>
+    <message>
+        <source>2MB</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>2MB</translation>
+    </message>
+    <message>
+        <source>2MB (Forced)</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>2MB (강제)</translation>
     </message>
     <message>
         <source>Interpreter (Slowest)</source>
@@ -25014,10 +25738,6 @@ Do you want to create this directory?</source>
         <translation>게임 목록</translation>
     </message>
     <message>
-        <source>&lt;strong&gt;Game List Settings&lt;/strong&gt;&lt;hr&gt;The list above shows the directories which will be searched by DuckStation to populate the game list. Search directories can be added, removed, and switched to recursive/non-recursive.</source>
-        <translation>&lt;strong&gt;게임 목록 설정&lt;/strong&gt;&lt;hr&gt;위 목록은 게임 목록을 채우기 위해 DuckStation에서 검색할 디렉터리를 보여줍니다. 검색 디렉터리를 추가, 삭제 및 하위 디렉터리 검색 여부를 전환할 수 있습니다.</translation>
-    </message>
-    <message>
         <source>BIOS</source>
         <translation>바이오스</translation>
     </message>
@@ -25036,6 +25756,10 @@ Do you want to create this directory?</source>
     <message>
         <source>&lt;strong&gt;Console Settings&lt;/strong&gt;&lt;hr&gt;These options determine the configuration of the simulated console.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
         <translation>&lt;strong&gt;콘솔 설정&lt;/strong&gt;&lt;hr&gt;이 옵션은 시뮬레이션된 콘솔의 구성을 결정합니다.&lt;br&gt;&lt;br&gt;추가 정보를 보려면 옵션 위에 마우스를 올리고, 이 패널을 스크롤하려면 Shift 키를 누른 채 마우스 휠을 돌리세요.</translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Game List Settings&lt;/strong&gt;&lt;hr&gt;These options control which directories are scanned to populate the game list.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information.</source>
+        <translation>&lt;strong&gt;게임 목록 설정&lt;/strong&gt;&lt;hr&gt;이 옵션은 게임 목록을 채우기 위해 검색할 디렉터리를 지정합니다.&lt;br&gt;&lt;br&gt;옵션 위에 마우스를 올리면 자세한 정보를 볼 수 있습니다.</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Emulation Settings&lt;/strong&gt;&lt;hr&gt;These options determine the speed and runahead behavior of the system.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
@@ -25089,6 +25813,14 @@ Do you want to create this directory?</source>
     <message>
         <source>&lt;strong&gt;Capture Settings&lt;/strong&gt;&lt;hr&gt;These options determine how screenshots and videos are captured by the application.</source>
         <translation>&lt;strong&gt;캡처 설정&lt;/strong&gt;&lt;hr&gt;애플리케이션에서 스크린샷과 동영상을 캡처하는 방식을 결정하는 옵션입니다.</translation>
+    </message>
+    <message>
+        <source>Folders</source>
+        <translation>폴더</translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Folder Settings&lt;/strong&gt;&lt;hr&gt;These options control where DuckStation reads and stores its files.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
+        <translation>&lt;strong&gt;폴더 설정&lt;/strong&gt;&lt;hr&gt;이 옵션은 DuckStation이 파일을 읽고 저장하는 위치를 지정합니다.&lt;br&gt;&lt;br&gt;옵션 위에 마우스를 올리면 자세한 정보를 볼 수 있습니다. Shift+휠로 이 패널을 스크롤하세요.</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Advanced Settings&lt;/strong&gt;&lt;hr&gt;These options control logging and internal behavior of the emulator. Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
@@ -25242,10 +25974,6 @@ Do you want to continue?</source>
         <translation>찾아보기...</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>초기화</translation>
-    </message>
-    <message>
         <source>NTSC-J (Japan):</source>
         <translation>NTSC-J(일본):</translation>
     </message>
@@ -25256,10 +25984,6 @@ Do you want to continue?</source>
     <message>
         <source>PAL (Europe, Australia):</source>
         <translation>PAL(유럽/호주) :</translation>
-    </message>
-    <message>
-        <source>Open in Explorer...</source>
-        <translation>탐색기에서 열기...</translation>
     </message>
     <message>
         <source>Refresh List</source>
@@ -25296,6 +26020,10 @@ Do you want to continue?</source>
     <message>
         <source>Install BIOS...</source>
         <translation>바이오스 설치...</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>추가 옵션</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DuckStation will automatically scan and identify games from the selected directories below, and populate the game list. These games should be dumped from discs you own. Utilities such as ImgBurn can be used to create images of game discs in .bin/.cue format.&lt;/p&gt;&lt;p&gt;Supported formats for dumps include: %1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -25573,6 +26301,10 @@ Any changes have been saved, and the wizard will run again next time you start D
         <translation>
             <numerusform>%n개의 BIOS 이미지를 찾았습니다. 필요한 경우 BIOS 이미지를 추가로 설치할 수 있습니다.</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>No search directories. Add a folder, or drag one here, to choose where your games are stored.</source>
+        <translation>검색 디렉터리가 없습니다. 폴더를 추가하거나 여기로 끌어 놓아 게임이 저장된 위치를 선택하세요.</translation>
     </message>
     <message>
         <source>Open Directory...</source>
@@ -25892,6 +26624,10 @@ Using current CD image, this may result in instability.</source>
         <translation>카드가 {}(으)로 변경되었습니다.</translation>
     </message>
     <message>
+        <source>Physical Disc</source>
+        <translation>실제 디스크</translation>
+    </message>
+    <message>
         <source>No valid game is running.</source>
         <translation>유효한 게임이 실행되고 있지 않습니다.</translation>
     </message>
@@ -25904,6 +26640,10 @@ You must save to a memory card and reset the game to clear any effects.</source>
     <message>
         <source>RAM size set to default.</source>
         <translation>RAM 용량이 기본값으로 설정되었습니다.</translation>
+    </message>
+    <message>
+        <source>2MB VRAM disabled.</source>
+        <translation>2MB VRAM을 비활성화했습니다.</translation>
     </message>
     <message>
         <source>Texture filtering disabled.</source>
@@ -25996,10 +26736,6 @@ You must save to a memory card and reset the game to clear any effects.</source>
     <message>
         <source>PGXP Geometry Tolerance is not set to default. This may cause rendering errors.</source>
         <translation>PGXP 지오메트리 허용 오차가 기본값으로 설정되어 있지 않습니다. 렌더링 오류가 발생할 수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Expanded RAM is enabled, this may be incompatible with some games.</source>
-        <translation>확장 RAM이 활성화되어 있습니다. 일부 게임과 호환되지 않을 수 있습니다.</translation>
     </message>
     <message>
         <source>CD-ROM SubQ Skew is enabled. This will break games.</source>
@@ -26121,8 +26857,25 @@ Using shared card instead.</source>
         <translation>게임 패치</translation>
     </message>
     <message>
+        <source>Expanded VRAM</source>
+        <comment>Taint</comment>
+        <translation>확장 VRAM</translation>
+    </message>
+    <message>
+        <source>Unknown BIOS</source>
+        <translation>알 수 없는 BIOS</translation>
+    </message>
+    <message>
         <source>System is not in correct state.</source>
         <translation>시스템이 올바른 상태가 아닙니다.</translation>
+    </message>
+    <message>
+        <source>RAM size is set to {}, this may be incompatible with some games.</source>
+        <translation>RAM 크기가 {}(으)로 설정되어 일부 게임과 호환되지 않을 수 있습니다.</translation>
+    </message>
+    <message>
+        <source>VRAM size is set to {}, this may be incompatible with some games.</source>
+        <translation>VRAM 크기가 {}(으)로 설정되어 일부 게임과 호환되지 않을 수 있습니다.</translation>
     </message>
     <message>
         <source>Loaded undo save state created {}.</source>

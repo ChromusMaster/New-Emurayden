@@ -35,12 +35,10 @@ public:
   static const Controller::ControllerInfo INFO_POPN;
   static const Controller::ControllerInfo INFO_DDGO;
 
-  DigitalController(u32 index, u16 button_mask);
+  DigitalController(u32 index, ControllerType type, u16 button_mask);
   ~DigitalController() override;
 
   static std::unique_ptr<DigitalController> Create(u32 index, ControllerType type);
-
-  ControllerType GetType() const override;
 
   void Reset() override;
   bool DoState(StateWrapper& sw, bool apply_input_state) override;
@@ -49,25 +47,15 @@ public:
   void SetBindState(u32 index, float value) override;
   u32 GetButtonStateBits() const override;
 
-  void ResetTransferState() override;
-  bool Transfer(const u8 data_in, u8* data_out) override;
-
   void LoadSettings(const SettingsInterface& si, const char* section, bool initial) override;
 
 private:
-  enum class TransferState : u8
-  {
-    Idle,
-    Ready,
-    IDMSB,
-    ButtonsLSB,
-    ButtonsMSB
-  };
+  u8 GetIDByte() const override;
+  bool BeginCommand(u8 command) override;
 
   // buttons are active low
   u16 m_button_state = UINT16_C(0xFFFF);
   u16 m_button_mask = UINT16_C(0xFFFF);
 
-  TransferState m_transfer_state = TransferState::Idle;
   bool m_disable_socd = false;
 };

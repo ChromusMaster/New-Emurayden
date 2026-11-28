@@ -22,38 +22,38 @@ LOG_CHANNEL(Controller);
 
 static constexpr std::array<u8, static_cast<size_t>(GunCon::Binding::ButtonCount)> s_button_indices = {{13, 3, 14, 0}};
 
-GunCon::GunCon(u32 index) : LightgunController(index, s_button_indices)
+GunCon::GunCon(u32 index) : LightgunController(index, ControllerType::GunCon, s_button_indices)
 {
 }
 
 GunCon::~GunCon() = default;
 
-ControllerType GunCon::GetType() const
-{
-  return ControllerType::GunCon;
-}
-
 void GunCon::Reset()
 {
-  m_transfer_state = TransferState::Idle;
+  ResetTransferState();
 }
 
 bool GunCon::DoState(StateWrapper& sw, bool apply_input_state)
 {
-  if (!LightgunController::DoState(sw, apply_input_state))
-    return false;
-
-  u16 position_x = m_position_x;
-  u16 position_y = m_position_y;
-  sw.Do(&position_x);
-  sw.Do(&position_y);
-  if (apply_input_state)
+  if ((sw.GetVersion() >= 105 && !Controller::DoState(sw, apply_input_state)) ||
+      !LightgunController::DoState(sw, apply_input_state))
   {
-    m_position_x = position_x;
-    m_position_y = position_y;
+    return false;
   }
 
-  sw.Do(&m_transfer_state, TransferState::YMSB);
+  if (sw.IsWriting() || apply_input_state)
+  {
+    sw.Do(&m_position_x);
+    sw.Do(&m_position_y);
+  }
+  else
+  {
+    sw.SkipBytes(sizeof(m_position_x) + sizeof(m_position_y));
+  }
+
+  if (sw.GetVersion() < 105)
+    SkipLegacyTransferState(sw);
+
   return true;
 }
 
@@ -66,95 +66,24 @@ void GunCon::SetShootOffscreen(bool pressed)
   }
 }
 
-void GunCon::ResetTransferState()
+u8 GunCon::GetIDByte() const
 {
-  m_transfer_state = TransferState::Idle;
+  return 0x63;
 }
 
-bool GunCon::Transfer(const u8 data_in, u8* data_out)
+bool GunCon::BeginCommand(u8 command)
 {
-  static constexpr u16 ID = 0x5A63;
+  if (command != 0x42)
+    return false;
 
-  switch (m_transfer_state)
-  {
-    case TransferState::Idle:
-    {
-      *data_out = 0xFF;
-
-      if (data_in == 0x01)
-      {
-        m_transfer_state = TransferState::Ready;
-        return true;
-      }
-      return false;
-    }
-
-    case TransferState::Ready:
-    {
-      if (data_in == 0x42)
-      {
-        *data_out = Truncate8(ID);
-        m_transfer_state = TransferState::IDMSB;
-        return true;
-      }
-
-      *data_out = 0xFF;
-      return false;
-    }
-
-    case TransferState::IDMSB:
-    {
-      *data_out = Truncate8(ID >> 8);
-      m_transfer_state = TransferState::ButtonsLSB;
-      return true;
-    }
-
-    case TransferState::ButtonsLSB:
-    {
-      *data_out = Truncate8(m_button_state);
-      m_transfer_state = TransferState::ButtonsMSB;
-      return true;
-    }
-
-    case TransferState::ButtonsMSB:
-    {
-      *data_out = Truncate8(m_button_state >> 8);
-      m_transfer_state = TransferState::XLSB;
-      return true;
-    }
-
-    case TransferState::XLSB:
-    {
-      UpdatePosition();
-      *data_out = Truncate8(m_position_x);
-      m_transfer_state = TransferState::XMSB;
-      return true;
-    }
-
-    case TransferState::XMSB:
-    {
-      *data_out = Truncate8(m_position_x >> 8);
-      m_transfer_state = TransferState::YLSB;
-      return true;
-    }
-
-    case TransferState::YLSB:
-    {
-      *data_out = Truncate8(m_position_y);
-      m_transfer_state = TransferState::YMSB;
-      return true;
-    }
-
-    case TransferState::YMSB:
-    {
-      *data_out = Truncate8(m_position_y >> 8);
-      m_transfer_state = TransferState::Idle;
-      return false;
-    }
-
-    default:
-      UnreachableCode();
-  }
+  UpdatePosition();
+  m_tx_buffer[2] = Truncate8(m_button_state);
+  m_tx_buffer[3] = Truncate8(m_button_state >> 8);
+  m_tx_buffer[4] = Truncate8(m_position_x);
+  m_tx_buffer[5] = Truncate8(m_position_x >> 8);
+  m_tx_buffer[6] = Truncate8(m_position_y);
+  m_tx_buffer[7] = Truncate8(m_position_y >> 8);
+  return true;
 }
 
 void GunCon::UpdatePosition()
@@ -190,17 +119,17 @@ std::unique_ptr<GunCon> GunCon::Create(u32 index)
 }
 
 static const Controller::ControllerBindingInfo s_binding_info[] = {
-#define BUTTON(name, display_name, icon_name, binding, genb)                                                           \
-  {name, display_name, icon_name, static_cast<u32>(binding), InputBindingInfo::Type::Button, genb}
+#define BUTTON(name, display_name, icon_name, image_element, binding, genb)                                            \
+  {name, display_name, icon_name, image_element, static_cast<u32>(binding), InputBindingInfo::Type::Button, genb}
 #define HALFAXIS(name, display_name, icon_name, binding, genb)                                                         \
-  {name, display_name, icon_name, static_cast<u32>(binding), InputBindingInfo::Type::HalfAxis, genb}
+  {name, display_name, icon_name, nullptr, static_cast<u32>(binding), InputBindingInfo::Type::HalfAxis, genb}
 
   // clang-format off
-  {"Pointer", TRANSLATE_NOOP("GunCon", "Pointer/Aiming"), ICON_PF_MOUSE, static_cast<u32>(GunCon::Binding::ButtonCount), InputBindingInfo::Type::Pointer, GenericInputBinding::Unknown},
-  BUTTON("Trigger", TRANSLATE_NOOP("GunCon", "Trigger"), ICON_PF_CROSS, GunCon::Binding::Trigger, GenericInputBinding::R2),
-  BUTTON("ShootOffscreen", TRANSLATE_NOOP("GunCon", "Shoot Offscreen"), nullptr, GunCon::Binding::ShootOffscreen, GenericInputBinding::L2),
-  BUTTON("A", TRANSLATE_NOOP("GunCon", "A"), ICON_PF_BUTTON_A, GunCon::Binding::A, GenericInputBinding::Cross),
-  BUTTON("B", TRANSLATE_NOOP("GunCon", "B"), ICON_PF_BUTTON_B, GunCon::Binding::B, GenericInputBinding::Circle),
+  {"Pointer", TRANSLATE_NOOP("GunCon", "Pointer/Aiming"), ICON_PF_MOUSE, nullptr, static_cast<u32>(GunCon::Binding::ButtonCount), InputBindingInfo::Type::Pointer, GenericInputBinding::Unknown},
+  BUTTON("Trigger", TRANSLATE_NOOP("GunCon", "Trigger"), ICON_PF_CROSS, "Trigger", GunCon::Binding::Trigger, GenericInputBinding::R2),
+  BUTTON("ShootOffscreen", TRANSLATE_NOOP("GunCon", "Shoot Offscreen"), nullptr, "Trigger", GunCon::Binding::ShootOffscreen, GenericInputBinding::L2),
+  BUTTON("A", TRANSLATE_NOOP("GunCon", "A"), ICON_PF_BUTTON_A, nullptr, GunCon::Binding::A, GenericInputBinding::Cross),
+  BUTTON("B", TRANSLATE_NOOP("GunCon", "B"), ICON_PF_BUTTON_B, "B", GunCon::Binding::B, GenericInputBinding::Circle),
 
   HALFAXIS("RelativeLeft", TRANSLATE_NOOP("GunCon", "Relative Left"), ICON_PF_ANALOG_LEFT, GunCon::Binding::RelativeLeft, GenericInputBinding::Unknown),
   HALFAXIS("RelativeRight", TRANSLATE_NOOP("GunCon", "Relative Right"), ICON_PF_ANALOG_RIGHT, GunCon::Binding::RelativeRight, GenericInputBinding::Unknown),
@@ -228,10 +157,10 @@ static const SettingInfo s_settings[] = {
    TRANSLATE_NOOP("GunCon", "Scales X coordinates relative to the center of the screen."), "1.0", "0.01", "2.0", "0.01",
    "%.0f%%", nullptr, 100.0f},
   {SettingInfo::Type::Integer, "GunConLineOffset", TRANSLATE_NOOP("GunCon", "Line Offset"),
-   TRANSLATE_NOOP("GunCon", "Offset applied to lightgun vertical position."), "0", "-128", "127", "1", "%u", nullptr,
+   TRANSLATE_NOOP("GunCon", "Offset applied to lightgun vertical position."), "0", "-128", "127", "1", "%d", nullptr,
    0.0f},
   {SettingInfo::Type::Integer, "GunConTickOffset", TRANSLATE_NOOP("GunCon", "Tick Offset"),
-   TRANSLATE_NOOP("GunCon", "Offset applied to lightgun horizontal position."), "-140", "-1000", "1000", "1", "%u",
+   TRANSLATE_NOOP("GunCon", "Offset applied to lightgun horizontal position."), "-140", "-1000", "1000", "1", "%d",
    nullptr, 0.0f},
 };
 

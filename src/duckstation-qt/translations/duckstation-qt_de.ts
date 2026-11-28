@@ -162,10 +162,6 @@ Möchten Sie den Hardcore-Modus aktivieren?</translation>
         <translation>Zuschauermodus aktivieren</translation>
     </message>
     <message>
-        <source>Test Unofficial Achievements</source>
-        <translation>Inoffizielle Achievements testen</translation>
-    </message>
-    <message>
         <source>Notification Location:</source>
         <translation>Benachrichtigungsposition:</translation>
     </message>
@@ -202,10 +198,6 @@ Möchten Sie den Hardcore-Modus aktivieren?</translation>
         <translation>Encore-Modus aktivieren</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <translation>Inoffizielle Achievements verfolgen</translation>
-    </message>
-    <message>
         <source>Prefetch Badges</source>
         <translation>Achievement-Abzeichen vorab laden</translation>
     </message>
@@ -220,6 +212,10 @@ Möchten Sie den Hardcore-Modus aktivieren?</translation>
     <message>
         <source>Show Achievement Notifications</source>
         <translation>Achievement-Benachrichtigungen anzeigen</translation>
+    </message>
+    <message>
+        <source>Track Unpromoted Achievements</source>
+        <translation>Nicht freigegebene Achievements verfolgen</translation>
     </message>
     <message>
         <source>Reset Achievement Notification Duration</source>
@@ -266,8 +262,12 @@ Möchten Sie den Hardcore-Modus aktivieren?</translation>
         <translation>„Challenge“-Modus für Achievements, einschließlich Bestenlistenverfolgung. Deaktiviert Speicherstände, Cheats und Verlangsamungsfunktionen.</translation>
     </message>
     <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <translation>Wenn diese Option aktiviert ist, verfolgt DuckStation inoffizielle Achievements. Freischaltungen werden lokal gespeichert und nicht an RetroAchievements gesendet.</translation>
+        <source>Test Unpromoted Achievements</source>
+        <translation>Nicht freigegebene Achievements testen</translation>
+    </message>
+    <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <translation>Wenn aktiviert, verfolgt DuckStation nicht freigegebene Achievements. Freischaltungen werden lokal gespeichert und nicht an RetroAchievements gesendet.</translation>
     </message>
     <message>
         <source>Checked</source>
@@ -633,6 +633,10 @@ Wir werden weiterhin versuchen, diese Anfrage zu übermitteln.</translation>
         <translation>Achievements-Daten werden heruntergeladen...</translation>
     </message>
     <message>
+        <source>Unpromoted</source>
+        <translation>Nicht freigegeben</translation>
+    </message>
+    <message>
         <source>RetroAchievements Login Failed</source>
         <translation>RetroAchievements-Anmeldung fehlgeschlagen</translation>
     </message>
@@ -809,10 +813,6 @@ Diese Sitzung startet im Offline-Modus.</translation>
         <source>This subset has no achievements.</source>
         <translation>Diese Untergruppe hat keine Achievements.</translation>
     </message>
-    <message>
-        <source>You have unlocked {0} of {1} unofficial achievements, earning {2} of {3} possible points.</source>
-        <translation>Sie haben {0} von {1} inoffiziellen Achievements freigeschaltet und {2} von {3} möglichen Punkten erhalten.</translation>
-    </message>
     <message numerus="yes">
         <source>%n achievements are not supported by DuckStation and cannot be unlocked.</source>
         <comment>Unsupported achievement count</comment>
@@ -836,10 +836,6 @@ Diese Sitzung startet im Offline-Modus.</translation>
     <message>
         <source>Unsupported</source>
         <translation>Nicht unterstützt</translation>
-    </message>
-    <message>
-        <source>Unofficial</source>
-        <translation>Inoffiziell</translation>
     </message>
     <message>
         <source>Recently Unlocked</source>
@@ -870,10 +866,6 @@ Diese Sitzung startet im Offline-Modus.</translation>
         <translation>Achievement anheften</translation>
     </message>
     <message>
-        <source>Reset Unofficial Unlocks</source>
-        <translation>Inoffizielle Freischaltungen zurücksetzen</translation>
-    </message>
-    <message>
         <source>View Details</source>
         <translation>Details anzeigen</translation>
     </message>
@@ -892,6 +884,14 @@ Diese Sitzung startet im Offline-Modus.</translation>
     <message>
         <source>Win Condition</source>
         <translation>Siegbedingung</translation>
+    </message>
+    <message>
+        <source>You have unlocked {0} of {1} unpromoted achievements, earning {2} of {3} possible points.</source>
+        <translation>Sie haben {0} von {1} nicht freigegebenen Achievements freigeschaltet und {2} von {3} möglichen Punkten erzielt.</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Unlocks</source>
+        <translation>Freischaltungen nicht freigegebener Achievements zurücksetzen</translation>
     </message>
     <message>
         <source>{:.1f}% of players have this achievement</source>
@@ -1073,32 +1073,32 @@ Diese Sitzung startet im Offline-Modus.</translation>
         <translation>RAIntegration aktivieren</translation>
     </message>
     <message>
-        <source>Cache Directory</source>
-        <translation>Cache-Verzeichnis</translation>
+        <source>CD-ROM Emulation</source>
+        <translation>CD-ROM-Emulation</translation>
     </message>
     <message>
-        <source>Used for storing compiled shaders and game list data.</source>
-        <translation>Wird zum Speichern kompilierter Shader und der Daten der Spieleliste verwendet.</translation>
+        <source>Readahead Sectors:</source>
+        <translation>Vorausgelesene Sektoren:</translation>
     </message>
     <message>
-        <source>Browse...</source>
-        <translation>Durchsuchen…</translation>
+        <source> sectors</source>
+        <translation> Sektoren</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Öffnen…</translation>
+        <source>Physical Disc Drive Speed:</source>
+        <translation>Geschwindigkeit des physischen Laufwerks:</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>Zurücksetzen</translation>
+        <source>Don&apos;t Change</source>
+        <translation>Nicht ändern</translation>
     </message>
     <message>
-        <source>Covers Directory</source>
-        <translation>Cover-Verzeichnis</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Used for storing covers in the game grid/Big Picture UIs.</source>
-        <translation>Wird zum Speichern von Covers für die Rasteransicht und die Big-Picture-Oberfläche verwendet.</translation>
+        <source>Ignore Physical Disc Drive Subcode</source>
+        <translation>Subchannel des physischen Laufwerks ignorieren</translation>
     </message>
     <message>
         <source>Web Cache</source>
@@ -1119,14 +1119,6 @@ Diese Sitzung startet im Offline-Modus.</translation>
     <message>
         <source>Log Level</source>
         <translation>Protokollstufe</translation>
-    </message>
-    <message>
-        <source>Select Cache Directory</source>
-        <translation>Cache-Verzeichnis auswählen</translation>
-    </message>
-    <message>
-        <source>Select Covers Directory</source>
-        <translation>Cover-Verzeichnis auswählen</translation>
     </message>
     <message>
         <source>Information</source>
@@ -1181,16 +1173,35 @@ Diese Sitzung startet im Offline-Modus.</translation>
         <translation>Zeigt die Nummer des aktuellen Frames in der oberen rechten Ecke des Bildschirms an.</translation>
     </message>
     <message>
-        <source>Default</source>
-        <translation>Standard</translation>
+        <source>Readahead Sectors</source>
+        <translation>Vorausgelesene Sektoren</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n sectors</source>
+        <translation>
+            <numerusform>%n Sektor</numerusform>
+            <numerusform>%n Sektoren</numerusform>
+        </translation>
     </message>
     <message>
-        <source>Specifies the directory where compiled shaders and game list data will be stored.</source>
-        <translation>Legt das Verzeichnis fest, in dem kompilierte Shader und Daten der Spieleliste gespeichert werden.</translation>
+        <source>Reduces hitches in emulation by reading/decompressing CD data asynchronously on a worker thread.</source>
+        <translation>Reduziert Ruckler in der Emulation durch asynchrones Lesen/Dekomprimieren von CD-Daten auf einem Worker-Thread.</translation>
     </message>
     <message>
-        <source>Specifies the directory where game cover images that are used in the game grid and Big Picture UI will be stored.</source>
-        <translation>Legt das Verzeichnis fest, in dem Coverbilder für die Rasteransicht und die Big-Picture-Oberfläche gespeichert werden.</translation>
+        <source>Physical Disc Drive Speed</source>
+        <translation>Geschwindigkeit des physischen Laufwerks</translation>
+    </message>
+    <message>
+        <source>8x</source>
+        <translation>8x</translation>
+    </message>
+    <message>
+        <source>Sets the speed of the host drive when using physical discs. Higher speeds can reduce stutter, but make the drive louder. Set to &quot;Don&apos;t Change&quot; to leave the drive at its own speed. Not all drives support this.</source>
+        <translation>Legt die Geschwindigkeit des Laufwerks auf dem Host bei der Verwendung physischer Discs fest. Höhere Geschwindigkeiten können Ruckler verringern, machen das Laufwerk aber lauter. Wählen Sie „Nicht ändern“, um die Geschwindigkeit des Laufwerks unverändert zu lassen. Nicht alle Laufwerke unterstützen dies.</translation>
+    </message>
+    <message>
+        <source>Ignores the subchannel provided by the drive when using physical discs, instead always generating subchannel data. Won&apos;t work with libcrypt games, but can improve read reliability on some drives.</source>
+        <translation>Ignoriert den vom Laufwerk bereitgestellten Subchannel bei Verwendung physischer Discs und generiert stattdessen stets Subchannel-Daten. Funktioniert nicht mit Libcrypt-Spielen, kann aber die Lesestabilität auf einigen Laufwerken verbessern.</translation>
     </message>
     <message>
         <source>Forces all server calls to fail, useful for testing offline mode.</source>
@@ -2205,6 +2216,16 @@ Aktuelle Belegung: %s</translation>
         <translation>Sicherheitsprüfung fehlgeschlagen</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <comment>settings_track_unpromoted_achievements</comment>
+        <translation>Nicht freigegebene Achievements verfolgen</translation>
+    </message>
+    <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <comment>settings_summary_track_unpromoted_achievements</comment>
+        <translation>Wenn aktiviert, verfolgt DuckStation nicht freigegebene Achievements. Freischaltungen werden lokal gespeichert und nicht an RetroAchievements gesendet.</translation>
+    </message>
+    <message>
         <source>Not Logged In.</source>
         <comment>settings_achievements_not_logged_in</comment>
         <translation>Nicht angemeldet.</translation>
@@ -2314,15 +2335,6 @@ Aktuelle Belegung: %s</translation>
             <numerusform>Sie haben alle Achievements in dieser Untergruppe freigeschaltet und %1$d Punkte erhalten!</numerusform>
         </translation>
     </message>
-    <message numerus="yes">
-        <source>You have unlocked %1$d of %2$d unofficial achievements, earning %3$d of %4$d possible points.</source>
-        <comment>achievement_unofficial_summary_format_string</comment>
-        <extracomment>Android plural quantities: one=&quot;You have unlocked %1$d of %2$d unofficial achievement, earning %3$d of %4$d possible points.&quot;; other=&quot;You have unlocked %1$d of %2$d unofficial achievements, earning %3$d of %4$d possible points.&quot;</extracomment>
-        <translation>
-            <numerusform>Sie haben %1$d von %2$d inoffiziellem Achievement freigeschaltet und %3$d von %4$d möglichen Punkten erhalten.</numerusform>
-            <numerusform>Sie haben %1$d von %2$d inoffiziellen Achievements freigeschaltet und %3$d von %4$d möglichen Punkten erhalten.</numerusform>
-        </translation>
-    </message>
     <message>
         <source>Game was beaten on %1$s, and completed on %2$s.</source>
         <comment>achievement_game_beaten_completed_format_string</comment>
@@ -2384,11 +2396,6 @@ Aktuelle Belegung: %s</translation>
         <translation>Siegbedingung</translation>
     </message>
     <message>
-        <source>Unofficial</source>
-        <comment>achievement_unofficial</comment>
-        <translation>Inoffiziell</translation>
-    </message>
-    <message>
         <source>Open on RetroAchievements</source>
         <comment>achievement_open_on_retroachievements</comment>
         <translation>Bei RetroAchievements öffnen</translation>
@@ -2407,21 +2414,6 @@ Aktuelle Belegung: %s</translation>
         <source>Reset Unlock</source>
         <comment>achievement_reset_unlock</comment>
         <translation>Freischaltung zurücksetzen</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement</source>
-        <comment>achievement_reset_unofficial_title</comment>
-        <translation>Inoffizielles Achievement zurücksetzen</translation>
-    </message>
-    <message>
-        <source>The unlock state for &apos;%1$s&apos; will be removed. This cannot be undone.</source>
-        <comment>achievement_reset_unofficial_message</comment>
-        <translation>Der Freischaltungsstatus für „%1$s“ wird entfernt. Dies kann nicht rückgängig gemacht werden.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlock reset.</source>
-        <comment>achievement_unofficial_unlock_reset</comment>
-        <translation>Inoffizielle Achievement-Freischaltung zurückgesetzt.</translation>
     </message>
     <message>
         <source>Pinned to OSD</source>
@@ -2812,57 +2804,9 @@ Aktuelle Belegung: %s</translation>
         <translation>Kein Auslöser festgelegt</translation>
     </message>
     <message>
-        <source>No buttons set</source>
-        <comment>edit_macro_buttons_no_bindings</comment>
-        <translation>Keine Tasten festgelegt</translation>
-    </message>
-    <message>
-        <source>Macro will not repeat.</source>
-        <comment>edit_macro_button_no_repeat</comment>
-        <translation>Makro wird nicht wiederholt.</translation>
-    </message>
-    <message numerus="yes">
-        <source>Macro will toggle every %d frames.</source>
-        <comment>edit_macro_button_repeat</comment>
-        <extracomment>Android plural quantities: one=&quot;Macro will toggle every %d frame.&quot;; other=&quot;Macro will toggle every %d frames.&quot;</extracomment>
-        <translation>
-            <numerusform>Das Makro wechselt nach jeweils %d Frame seinen Zustand.</numerusform>
-            <numerusform>Das Makro wechselt nach jeweils %d Frames seinen Zustand.</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>Choose Bindings</source>
-        <comment>edit_macro_button_choose_bindings</comment>
-        <translation>Belegungen auswählen</translation>
-    </message>
-    <message>
-        <source>%1$s triggers %2$s</source>
-        <comment>edit_macro_button_summary_no_repeat</comment>
-        <translation>%1$s löst %2$s aus</translation>
-    </message>
-    <message numerus="yes">
-        <source>%1$s triggers %2$s every %3$d frames.</source>
-        <comment>edit_macro_button_summary_repeat</comment>
-        <extracomment>Android plural quantities: one=&quot;%1$s triggers %2$s every %3$d frame.&quot;; other=&quot;%1$s triggers %2$s every %3$d frames.&quot;</extracomment>
-        <translation>
-            <numerusform>%1$s löst %2$s nach jeweils %3$d Frame aus.</numerusform>
-            <numerusform>%1$s löst %2$s nach jeweils %3$d Frames aus.</numerusform>
-        </translation>
-    </message>
-    <message>
         <source>Trigger</source>
         <comment>edit_macro_button_trigger</comment>
         <translation>Auslöser</translation>
-    </message>
-    <message>
-        <source>Buttons</source>
-        <comment>edit_macro_button_buttons</comment>
-        <translation>Tasten</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <comment>edit_macro_button_frequency</comment>
-        <translation>Frequenz</translation>
     </message>
     <message>
         <source>Macro %d</source>
@@ -3327,6 +3271,11 @@ Aktuelle Belegung: %s</translation>
         <translation>Alle deaktivieren</translation>
     </message>
     <message>
+        <source>Unavailable while RetroAchievements hardcore mode is active.</source>
+        <comment>patch_codes_hardcore_restricted</comment>
+        <translation>Nicht verfügbar, solange der Hardcore-Modus von RetroAchievements aktiv ist.</translation>
+    </message>
+    <message>
         <source>Add</source>
         <comment>cheat_codes_add</comment>
         <translation>Hinzufügen</translation>
@@ -3405,6 +3354,51 @@ Aktuelle Belegung: %s</translation>
         <source>Global Setting</source>
         <comment>preference_reset_global_value</comment>
         <translation>Globale Einstellung</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM.</source>
+        <comment>settings_summary_ram_size</comment>
+        <translation>Ändert die in der emulierten Konsole installierte RAM-Menge. Kommerzielle Spiele verwenden kein zusätzliches RAM.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <comment>settings_vram_size</comment>
+        <translation>Installierter VRAM</translation>
+    </message>
+    <message>
+        <source>Changes the amount of VRAM installed in the emulated console. Retail games do not use extra VRAM.</source>
+        <comment>settings_summary_vram_size</comment>
+        <translation>Ändert die in der emulierten Konsole installierte VRAM-Menge. Kommerzielle Spiele verwenden kein zusätzliches VRAM.</translation>
+    </message>
+    <message>
+        <source>Fast Forward While Loading</source>
+        <comment>settings_fast_forward_loading</comment>
+        <translation>Beim Laden vorspulen</translation>
+    </message>
+    <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <comment>settings_summary_fast_forward_loading</comment>
+        <translation>Spult vor, wenn das Spiel während des Lesens von der Disc den Bildschirm nicht mehr aktualisiert. Gilt nicht für animierte Ladebildschirme.</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <comment>settings_idle_timeout_scale</comment>
+        <translation>Wartezeit der Warteschleife skalieren</translation>
+    </message>
+    <message>
+        <source>Stops games from timing out while waiting for vertical blank when overclocking.</source>
+        <comment>settings_summary_idle_timeout_scale</comment>
+        <translation>Verhindert beim Übertakten, dass Spiele beim Warten auf die vertikale Austastlücke die Zeitüberschreitung erreichen.</translation>
+    </message>
+    <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <comment>settings_idle_fast_forward</comment>
+        <translation>Vorspulen von Warteschleifen im Recompiler aktivieren</translation>
+    </message>
+    <message>
+        <source>Skips over the busy loop that games use to wait for vertical blank.</source>
+        <comment>settings_summary_idle_fast_forward</comment>
+        <translation>Überspringt die aktive Warteschleife, mit der Spiele auf die vertikale Austastlücke warten.</translation>
     </message>
     <message>
         <source>Uses PGXP for all instructions, not just memory operations. Automatic uses the game database setting.</source>
@@ -3515,6 +3509,11 @@ Aktuelle Belegung: %s</translation>
         <source>Pinky Pals</source>
         <comment>settings_theme_entries[10]</comment>
         <translation>Pinky Pals</translation>
+    </message>
+    <message>
+        <source>Midnight Amber</source>
+        <comment>settings_theme_entries[11]</comment>
+        <translation>Mitternachtsbernstein</translation>
     </message>
     <message>
         <source>None (Double Speed)</source>
@@ -4442,16 +4441,6 @@ Aktuelle Belegung: %s</translation>
         <translation>Lädt beim Spielstart alle Abzeichen gesperrter Achievements herunter und verringert so Verzögerungen bei der Anzeige von Freischaltungsbildern.</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <comment>settings_unofficial_test_mode</comment>
-        <translation>Inoffizielle Achievements verfolgen</translation>
-    </message>
-    <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <comment>settings_summary_unofficial_test_mode</comment>
-        <translation>Wenn diese Option aktiviert ist, verfolgt DuckStation inoffizielle Achievements. Freischaltungen werden lokal gespeichert und nicht an RetroAchievements gesendet.</translation>
-    </message>
-    <message>
         <source>Test RetroAchievements Offline Mode</source>
         <comment>settings_test_offline_mode</comment>
         <translation>RetroAchievements-Offline-Modus testen</translation>
@@ -4477,6 +4466,15 @@ Aktuelle Belegung: %s</translation>
         <translation>Angemeldet seit %s</translation>
     </message>
     <message numerus="yes">
+        <source>You have unlocked %1$d of %2$d unpromoted achievements, earning %3$d of %4$d possible points.</source>
+        <comment>achievement_unpromoted_summary_format_string</comment>
+        <extracomment>Android plural quantities: one=&quot;You have unlocked %1$d of %2$d unpromoted achievement, earning %3$d of %4$d possible points.&quot;; other=&quot;You have unlocked %1$d of %2$d unpromoted achievements, earning %3$d of %4$d possible points.&quot;</extracomment>
+        <translation>
+            <numerusform>Sie haben %1$d von %2$d nicht freigegebenen Achievements freigeschaltet und %3$d von %4$d möglichen Punkten erhalten.</numerusform>
+            <numerusform>Sie haben %1$d von %2$d nicht freigegebenen Achievements freigeschaltet und %3$d von %4$d möglichen Punkten erhalten.</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
         <source>%1$d achievements are not supported by DuckStation and cannot be unlocked.</source>
         <comment>achievement_unsupported_count_format_string</comment>
         <extracomment>Android plural quantities: one=&quot;%1$d achievement is not supported by DuckStation and cannot be unlocked.&quot;; other=&quot;%1$d achievements are not supported by DuckStation and cannot be unlocked.&quot;</extracomment>
@@ -4484,6 +4482,26 @@ Aktuelle Belegung: %s</translation>
             <numerusform>%1$d Achievement wird von DuckStation nicht unterstützt und kann nicht freigeschaltet werden.</numerusform>
             <numerusform>%1$d Achievements werden von DuckStation nicht unterstützt und können nicht freigeschaltet werden.</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Unpromoted</source>
+        <comment>achievement_unpromoted</comment>
+        <translation>Nicht freigegeben</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement</source>
+        <comment>achievement_reset_unpromoted_title</comment>
+        <translation>Nicht freigegebenen Achievement zurücksetzen</translation>
+    </message>
+    <message>
+        <source>The unlock state for &apos;%1$s&apos; will be removed. This cannot be undone.</source>
+        <comment>achievement_reset_unpromoted_message</comment>
+        <translation>Der Freischaltungsstatus für „%1$s“ wird entfernt. Dies kann nicht rückgängig gemacht werden.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlock reset.</source>
+        <comment>achievement_unpromoted_unlock_reset</comment>
+        <translation>Freischaltung des nicht freigegebenen Achievements zurückgesetzt.</translation>
     </message>
     <message>
         <source>DuckStation uses RetroAchievements (retroachievements.org) as an achievement database and for tracking progress. A RetroAchievements account is not required to use DuckStation.</source>
@@ -4734,6 +4752,184 @@ Aktuelle Belegung: %s</translation>
         <source>%1$s×</source>
         <comment>settings_value_scale</comment>
         <translation>%1$s×</translation>
+    </message>
+    <message>
+        <source>%1$s triggers %2$s</source>
+        <comment>edit_macro_button_summary</comment>
+        <translation>%1$s löst %2$s aus</translation>
+    </message>
+    <message>
+        <source>%1$s triggers %2$s, looping</source>
+        <comment>edit_macro_button_summary_loop</comment>
+        <translation>%1$s löst %2$s in einer Schleife aus</translation>
+    </message>
+    <message>
+        <source>Loop While Active</source>
+        <comment>edit_macro_loop</comment>
+        <translation>Wiederholen, solange aktiv</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once per press.</source>
+        <comment>edit_macro_loop_summary</comment>
+        <translation>Wiederholt die Sequenz, solange das Makro aktiv ist, statt sie pro Betätigung einmal abzuspielen.</translation>
+    </message>
+    <message>
+        <source>Press To Toggle</source>
+        <comment>edit_macro_toggle</comment>
+        <translation>Zum Umschalten drücken</translation>
+    </message>
+    <message>
+        <source>The trigger turns the looping sequence on and off, instead of having to be held.</source>
+        <comment>edit_macro_toggle_summary</comment>
+        <translation>Der Auslöser schaltet die Sequenzschleife ein und aus und muss dazu nicht gehalten werden.</translation>
+    </message>
+    <message>
+        <source>Trigger Deadzone</source>
+        <comment>edit_macro_deadzone</comment>
+        <translation>Totzone des Auslösers</translation>
+    </message>
+    <message>
+        <source>How far an analog trigger must be pressed before the macro activates.</source>
+        <comment>edit_macro_deadzone_summary</comment>
+        <translation>Legt fest, wie weit ein analoger Auslöser gedrückt werden muss, damit das Makro startet.</translation>
+    </message>
+    <message>
+        <source>Sequence</source>
+        <comment>edit_macro_sequence</comment>
+        <translation>Sequenz</translation>
+    </message>
+    <message>
+        <source>The sequence is empty. Add inputs and waits, use Quick Setup, or record it from a controller.</source>
+        <comment>edit_macro_sequence_empty</comment>
+        <translation>Die Sequenz ist leer. Füge Eingaben und Pausen hinzu, verwende die Schnelleinrichtung oder zeichne die Sequenz mit einem Controller auf.</translation>
+    </message>
+    <message>
+        <source>Add Input</source>
+        <comment>edit_macro_add_input</comment>
+        <translation>Eingabe hinzufügen</translation>
+    </message>
+    <message>
+        <source>Adds a button or axis press to the end of the sequence.</source>
+        <comment>edit_macro_add_input_summary</comment>
+        <translation>Fügt eine Tasten- oder Achseneingabe am Ende der Sequenz hinzu.</translation>
+    </message>
+    <message>
+        <source>Add Wait</source>
+        <comment>edit_macro_add_wait</comment>
+        <translation>Pause hinzufügen</translation>
+    </message>
+    <message>
+        <source>Adds a delay to the end of the sequence.</source>
+        <comment>edit_macro_add_wait_summary</comment>
+        <translation>Fügt eine Pause am Ende der Sequenz hinzu.</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <comment>edit_macro_quick_setup</comment>
+        <translation>Schnelleinrichtung</translation>
+    </message>
+    <message>
+        <source>Replaces the sequence with one input that is held, or toggled on and off as a turbo button.</source>
+        <comment>edit_macro_quick_setup_summary</comment>
+        <translation>Ersetzt die Sequenz durch eine einzelne Eingabe, die gehalten oder wie eine Turbotaste ein- und ausgeschaltet wird.</translation>
+    </message>
+    <message>
+        <source>Turbo Interval for %1$s</source>
+        <comment>edit_macro_quick_setup_interval_title</comment>
+        <translation>Turbointervall für %1$s</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <comment>edit_macro_hold</comment>
+        <translation>Halten</translation>
+    </message>
+    <message numerus="yes">
+        <source>Toggle every %d frames</source>
+        <comment>edit_macro_toggle_every_frames</comment>
+        <extracomment>Android plural quantities: one=&quot;Toggle every %d frame&quot;; other=&quot;Toggle every %d frames&quot;</extracomment>
+        <translation>
+            <numerusform>Nach jeweils %d Frame umschalten</numerusform>
+            <numerusform>Alle %d Frames umschalten</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Clear Sequence</source>
+        <comment>edit_macro_clear_sequence</comment>
+        <translation>Sequenz leeren</translation>
+    </message>
+    <message>
+        <source>Removes every action from the sequence.</source>
+        <comment>edit_macro_clear_sequence_summary</comment>
+        <translation>Entfernt alle Aktionen aus der Sequenz.</translation>
+    </message>
+    <message>
+        <source>Remove every action from this macro&apos;s sequence?</source>
+        <comment>edit_macro_clear_sequence_confirm</comment>
+        <translation>Alle Aktionen aus der Sequenz dieses Makros entfernen?</translation>
+    </message>
+    <message>
+        <source>Select Input</source>
+        <comment>edit_macro_select_input</comment>
+        <translation>Eingabe auswählen</translation>
+    </message>
+    <message>
+        <source>Wait</source>
+        <comment>edit_macro_wait</comment>
+        <translation>Warten</translation>
+    </message>
+    <message numerus="yes">
+        <source>%d frames</source>
+        <comment>edit_macro_wait_frames</comment>
+        <extracomment>Android plural quantities: one=&quot;%d frame&quot;; other=&quot;%d frames&quot;</extracomment>
+        <translation>
+            <numerusform>%d Frame</numerusform>
+            <numerusform>%d Frames</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Wait Duration</source>
+        <comment>edit_macro_wait_title</comment>
+        <translation>Wartezeit</translation>
+    </message>
+    <message>
+        <source>%1$s Value</source>
+        <comment>edit_macro_value_title</comment>
+        <translation>Wert für %1$s</translation>
+    </message>
+    <message>
+        <source>Action options</source>
+        <comment>edit_macro_action_options</comment>
+        <translation>Aktionsoptionen</translation>
+    </message>
+    <message>
+        <source>Change Input</source>
+        <comment>edit_macro_change_input</comment>
+        <translation>Eingabe ändern</translation>
+    </message>
+    <message>
+        <source>Insert Input After</source>
+        <comment>edit_macro_insert_input_after</comment>
+        <translation>Eingabe danach einfügen</translation>
+    </message>
+    <message>
+        <source>Insert Wait After</source>
+        <comment>edit_macro_insert_wait_after</comment>
+        <translation>Pause danach einfügen</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <comment>edit_macro_record</comment>
+        <translation>Aufzeichnen</translation>
+    </message>
+    <message>
+        <source>Stop Recording</source>
+        <comment>edit_macro_stop_recording</comment>
+        <translation>Aufzeichnung stoppen</translation>
+    </message>
+    <message>
+        <source>Recording. Press the inputs of the sequence on a controller or keyboard, then tap Stop. Touchscreen input is not recorded.</source>
+        <comment>edit_macro_recording_message</comment>
+        <translation>Aufzeichnung läuft. Gib die Sequenz mit einem Controller oder der Tastatur ein und tippe dann auf „Aufzeichnung stoppen“. Touchscreen-Eingaben werden nicht aufgezeichnet.</translation>
     </message>
     <message>
         <source>Enable Game Vibration</source>
@@ -5180,6 +5376,16 @@ Sie können dies später mit der Option „Im Big-Picture-Modus starten“ in de
         <translation>Aktiviert Debugging, wenn es von der Renderer-API des Hosts unterstützt wird. Nur für Entwickler vorgesehen.</translation>
     </message>
     <message>
+        <source>Use GPU-Based Validation</source>
+        <comment>settings_use_gpu_based_validation</comment>
+        <translation>GPU-basierte Validierung verwenden</translation>
+    </message>
+    <message>
+        <source>Enable GPU-based validation when supported by the host&apos;s renderer API. Only for developer use.</source>
+        <comment>settings_summary_use_gpu_based_validation</comment>
+        <translation>Aktiviert GPU-basierte Validierung, wenn sie von der Renderer-API des Hosts unterstützt wird. Nur für die Entwicklung gedacht.</translation>
+    </message>
+    <message>
         <source>Prefer OpenGL ES Context</source>
         <comment>settings_prefer_gles_context</comment>
         <translation>OpenGL-ES-Kontext bevorzugen</translation>
@@ -5395,7 +5601,7 @@ Sie können dies später mit der Option „Im Big-Picture-Modus starten“ in de
     </message>
     <message>
         <source>Move Up</source>
-        <comment>postfx_setting_move_up</comment>
+        <comment>list_item_move_up</comment>
         <translation>Nach oben verschieben</translation>
     </message>
     <message>
@@ -5415,12 +5621,12 @@ Sie können dies später mit der Option „Im Big-Picture-Modus starten“ in de
     </message>
     <message>
         <source>Remove</source>
-        <comment>postfx_setting_remove_shader</comment>
+        <comment>list_item_remove</comment>
         <translation>Entfernen</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <comment>postfx_setting_move_down</comment>
+        <comment>list_item_move_down</comment>
         <translation>Nach unten verschieben</translation>
     </message>
     <message>
@@ -5602,11 +5808,6 @@ Möchten Sie wirklich fortfahren?</translation>
         <source>Author: %1$s</source>
         <comment>patch_codes_author</comment>
         <translation>Autor: %1$s</translation>
-    </message>
-    <message>
-        <source>Unavailable while RetroAchievements hardcode mode is active.</source>
-        <comment>patch_codes_hardcore_restricted</comment>
-        <translation>Nicht verfügbar, solange der RetroAchievements-Hardcore-Modus aktiv ist.</translation>
     </message>
     <message>
         <source>Search codes</source>
@@ -5987,6 +6188,26 @@ Möchten Sie wirklich fortfahren?</translation>
         <source>Steering</source>
         <comment>touchscreen_controller_steering</comment>
         <translation>Lenkung</translation>
+    </message>
+    <message>
+        <source>Macro 5</source>
+        <comment>touchscreen_controller_macro_5</comment>
+        <translation>Makro 5</translation>
+    </message>
+    <message>
+        <source>Macro 6</source>
+        <comment>touchscreen_controller_macro_6</comment>
+        <translation>Makro 6</translation>
+    </message>
+    <message>
+        <source>Macro 7</source>
+        <comment>touchscreen_controller_macro_7</comment>
+        <translation>Makro 7</translation>
+    </message>
+    <message>
+        <source>Macro 8</source>
+        <comment>touchscreen_controller_macro_8</comment>
+        <translation>Makro 8</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -6600,34 +6821,9 @@ ${serial}: Seriennummer des Spiels.</translation>
         <translation>Legt fest, mit welchem Prozentsatz der normalen Taktfrequenz die emulierte Hardware läuft.</translation>
     </message>
     <message>
-        <source>Enable 8MB RAM</source>
-        <comment>settings_enable_8mb_ram</comment>
-        <translation>8 MB RAM aktivieren</translation>
-    </message>
-    <message>
-        <source>Enables an additional 6MB of RAM to obtain a total of 2+6 = 8MB, usually present on dev consoles.</source>
-        <comment>settings_summary_enable_8mb_ram</comment>
-        <translation>Aktiviert zusätzliche 6 MB RAM, sodass insgesamt 2+6 = 8 MB verfügbar sind, wie sie normalerweise auf Entwicklerkonsolen vorhanden sind.</translation>
-    </message>
-    <message>
         <source>Installed RAM</source>
         <comment>settings_ram_size</comment>
         <translation>Installierter RAM</translation>
-    </message>
-    <message>
-        <source>Expanded RAM may break games, so use it only with compatible mods.</source>
-        <comment>settings_summary_ram_size</comment>
-        <translation>Erweiterter RAM kann Spiele beeinträchtigen. Verwenden Sie ihn daher nur mit kompatiblen Mods.</translation>
-    </message>
-    <message>
-        <source>Force Full RAM Mapping</source>
-        <comment>settings_force_full_ram_mapping</comment>
-        <translation>Vollständige RAM-Einbindung erzwingen</translation>
-    </message>
-    <message>
-        <source>Maps all installed RAM regardless of the BIOS or game configuration.</source>
-        <comment>settings_summary_force_full_ram_mapping</comment>
-        <translation>Bindet unabhängig von der BIOS- oder Spielkonfiguration den gesamten installierten RAM ein.</translation>
     </message>
     <message>
         <source>Preload Images to RAM</source>
@@ -8618,16 +8814,12 @@ Sie können DuckStation manuell aktualisieren, indem Sie die neueste Version ern
         <translation>Liste aktualisieren</translation>
     </message>
     <message>
+        <source>More Options</source>
+        <translation>Weitere Optionen</translation>
+    </message>
+    <message>
         <source>Browse...</source>
         <translation>Durchsuchen…</translation>
-    </message>
-    <message>
-        <source>Open...</source>
-        <translation>Öffnen…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <source>Parallel Port</source>
@@ -8904,12 +9096,8 @@ Ihr Dump könnte beschädigt sein, oder die physische Disc ist zerkratzt.</trans
         <translation>Durchsuchen…</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Öffnen…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Zurücksetzen</translation>
+        <source>More Options</source>
+        <translation>Weitere Optionen</translation>
     </message>
     <message>
         <source>Media Capture</source>
@@ -9299,6 +9487,14 @@ Wenn Sie diesen Cheat verwenden, wird er nicht wie erwartet funktionieren. Möch
         <translation>Bootvorgang vorspulen</translation>
     </message>
     <message>
+        <source>Installed VRAM:</source>
+        <translation>Installierter VRAM:</translation>
+    </message>
+    <message>
+        <source>Fast Forward While Loading</source>
+        <translation>Beim Laden vorspulen</translation>
+    </message>
+    <message>
         <source>Enable Clock Speed Control (Overclocking/Underclocking)</source>
         <translation>Taktfrequenz-Steuerung aktivieren (Übertaktung/Untertaktung)</translation>
     </message>
@@ -9309,6 +9505,10 @@ Wenn Sie diesen Cheat verwenden, wird er nicht wie erwartet funktionieren. Möch
     <message>
         <source>Enable Recompiler ICache</source>
         <translation>Recompiler-ICache aktivieren</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <translation>Wartezeit der Warteschleife skalieren</translation>
     </message>
     <message>
         <source>CD-ROM Emulation</source>
@@ -9359,10 +9559,6 @@ Wenn Sie diesen Cheat verwenden, wird er nicht wie erwartet funktionieren. Möch
         <translation>Installierter RAM:</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Vollständige RAM-Einbindung erzwingen</translation>
-    </message>
-    <message>
         <source>None (Normal Speed)</source>
         <translation>Standard (1x Geschwindigkeit)</translation>
     </message>
@@ -9385,22 +9581,6 @@ Wenn Sie diesen Cheat verwenden, wird er nicht wie erwartet funktionieren. Möch
     <message>
         <source>6x</source>
         <translation>6x</translation>
-    </message>
-    <message>
-        <source>Physical Drive Speed:</source>
-        <translation>Geschwindigkeit des physischen Laufwerks:</translation>
-    </message>
-    <message>
-        <source>Don&apos;t Change</source>
-        <translation>Nicht ändern</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source>Ignore Physical Drive Subcode</source>
-        <translation>Subcode des physischen Laufwerks ignorieren</translation>
     </message>
     <message>
         <source>Apply Image Patches</source>
@@ -9455,6 +9635,22 @@ Wenn Sie diesen Cheat verwenden, wird er nicht wie erwartet funktionieren. Möch
         <translation>Spult Speicherkartenzugriffe beim Laden und Speichern vor. Kann die Wartezeiten in Spielen verringern, die häufig auf Memory Cards zugreifen.</translation>
     </message>
     <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <translation>Spult vor, wenn das Spiel während des Lesens von der Disc den Bildschirm nicht mehr aktualisiert. Gilt nicht für animierte Ladebildschirme.</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM. Forced maps all installed RAM regardless of game configuration, needed for 16MB with retail BIOSes.</source>
+        <translation>Ändert die in der emulierten Konsole installierte RAM-Menge. Kommerzielle Spiele verwenden kein zusätzliches RAM. Erzwungen stellt das gesamte installierte RAM unabhängig von der Spielkonfiguration bereit; dies wird für 16 MB mit kommerziellen BIOS-Versionen benötigt.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <translation>Installierter VRAM</translation>
+    </message>
+    <message>
+        <source>Changes the amount of VRAM installed in the emulated console. Retail games do not use extra VRAM. Forced makes the second VRAM bank accessible regardless of the game enabling it or not.</source>
+        <translation>Ändert die in der emulierten Konsole installierte VRAM-Menge. Kommerzielle Spiele verwenden kein zusätzliches VRAM. Erzwungen macht die zweite VRAM-Bank zugänglich, unabhängig davon, ob das Spiel sie aktiviert.</translation>
+    </message>
+    <message>
         <source>Execution Mode</source>
         <translation>Ausführmodus</translation>
     </message>
@@ -9483,6 +9679,14 @@ Wenn Sie diesen Cheat verwenden, wird er nicht wie erwartet funktionieren. Möch
         <translation>Simuliert Stalls in den Recompilern, wenn die emulierte CPU Befehle in ihren Cache laden müsste. Dadurch laufen Spiele näher an ihrer Konsolen-Bildrate, bei geringfügig geringerer Leistung. Der Interpretermodus simuliert den Instruction Cache immer.</translation>
     </message>
     <message>
+        <source>Checked</source>
+        <translation>Aktiviert</translation>
+    </message>
+    <message>
+        <source>Games give up waiting for vertical blank after a fixed number of loop iterations, which pass faster when overclocking. Scales this timeout to keep games synchronized to vertical blank.</source>
+        <translation>Spiele geben das Warten auf die vertikale Austastlücke nach einer festen Anzahl von Schleifendurchläufen auf, die beim Übertakten schneller vergehen. Skaliert diese Wartezeit, um Spiele mit der vertikalen Austastlücke synchron zu halten.</translation>
+    </message>
+    <message>
         <source>CD-ROM Read Speedup</source>
         <translation>CD-ROM-Lesegeschwindigkeit</translation>
     </message>
@@ -9499,14 +9703,6 @@ Wenn Sie diesen Cheat verwenden, wird er nicht wie erwartet funktionieren. Möch
         <translation>Installierter RAM</translation>
     </message>
     <message>
-        <source>Changes the amount of RAM installed in the emulated console. Games have to use a larger heap size for expanded RAM to be usable. Titles which rely on memory mirrors may break, so it should only be used with compatible mods.</source>
-        <translation>Ändert die in der emulierten Konsole installierte RAM-Größe. Spiele müssen einen größeren Heap verwenden, damit der zusätzliche RAM nutzbar ist. Spiele, die auf gespiegelte Speicherbereiche angewiesen sind, funktionieren möglicherweise nicht mehr. Daher sollte diese Option nur mit kompatiblen Mods verwendet werden.</translation>
-    </message>
-    <message>
-        <source>Maps all installed RAM, regardless of the size configured by the BIOS or game. Retail BIOSes only map 8MB, so this is needed for 16MB to be usable without a patched BIOS. Only has an effect when expanded RAM is installed.</source>
-        <translation>Bindet den gesamten installierten RAM in den Adressraum ein, unabhängig von der durch das BIOS oder Spiel festgelegten Größe. BIOS-Versionen handelsüblicher Konsolen binden nur 8 MB ein. Diese Option ist daher erforderlich, um 16 MB ohne gepatchtes BIOS nutzen zu können. Wirkt sich nur aus, wenn zusätzlicher RAM installiert ist.</translation>
-    </message>
-    <message>
         <source>Reduces the simulated time for the CD-ROM sled to move to different areas of the disc. Can improve loading times, but crash games which do not expect the CD-ROM to operate faster.</source>
         <translation>Verringert die simulierte Zeit, die der CD-ROM-Schlitten benötigt, um sich zu verschiedenen Bereichen der CD zu bewegen. Dies kann die Ladezeiten verkürzen, aber Spiele zum Absturz bringen, die nicht erwarten, dass die CD-ROM schneller reagiert.</translation>
     </message>
@@ -9517,22 +9713,6 @@ Wenn Sie diesen Cheat verwenden, wird er nicht wie erwartet funktionieren. Möch
     <message>
         <source>Automatically switches to the next disc in the game when the game stops the CD-ROM motor. No switch will occur if the last disc in the game is already selected. &lt;strong&gt;Does not work for all games.&lt;/strong&gt;</source>
         <translation>Wechselt automatisch zur nächsten Disc im Spiel, wenn das Spiel den CD-ROM-Motor anhält. Es erfolgt kein Wechsel, wenn die letzte Disc im Spiel bereits ausgewählt ist. &lt;strong&gt;Funktioniert nicht bei allen Spielen.&lt;/strong&gt;</translation>
-    </message>
-    <message>
-        <source>Physical Drive Speed</source>
-        <translation>Geschwindigkeit des physischen Laufwerks</translation>
-    </message>
-    <message>
-        <source>8x</source>
-        <translation>8x</translation>
-    </message>
-    <message>
-        <source>Sets the speed of the host drive when using physical discs. Higher speeds can reduce stutter, but make the drive louder. Set to &quot;Don&apos;t Change&quot; to leave the drive at its own speed. Not all drives support this.</source>
-        <translation>Legt die Geschwindigkeit des Laufwerks auf dem Host bei der Verwendung physischer Discs fest. Höhere Geschwindigkeiten können Ruckler verringern, machen das Laufwerk aber lauter. Wähle „Nicht ändern“, um die Geschwindigkeit des Laufwerks unverändert zu lassen. Nicht alle Laufwerke unterstützen dies.</translation>
-    </message>
-    <message>
-        <source>Ignores the subchannel provided by the drive when using physical discs, instead always generating subchannel data. Won&apos;t work with libcrypt games, but can improve read reliability on some drives.</source>
-        <translation>Ignoriert den vom Laufwerk bereitgestellten Subchannel bei Verwendung physischer Discs und generiert stattdessen stets Subchannel-Daten. Funktioniert nicht mit Libcrypt-Spielen, kann aber die Lesestabilität auf einigen Laufwerken verbessern.</translation>
     </message>
     <message>
         <source>Enabling CPU overclocking will break games, cause bugs, reduce performance and can significantly increase system requirements.
@@ -9848,6 +10028,89 @@ Diese Warnung wird nur einmal angezeigt.</translation>
     </message>
 </context>
 <context>
+    <name>ControllerBindingWidget_DDGo</name>
+    <message>
+        <source>Power Lever</source>
+        <translation>Fahrhebel</translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation>Zugkraft</translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation>Aus</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation>4</translation>
+    </message>
+    <message>
+        <source>5</source>
+        <translation>5</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Select</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <source>Brake Lever</source>
+        <translation>Bremshebel</translation>
+    </message>
+    <message>
+        <source>Brake</source>
+        <translation>Bremse</translation>
+    </message>
+    <message>
+        <source>Released</source>
+        <translation>Gelöst</translation>
+    </message>
+    <message>
+        <source>6</source>
+        <translation>6</translation>
+    </message>
+    <message>
+        <source>7</source>
+        <translation>7</translation>
+    </message>
+    <message>
+        <source>8</source>
+        <translation>8</translation>
+    </message>
+    <message>
+        <source>Emergency</source>
+        <translation>Notbremsung</translation>
+    </message>
+    <message>
+        <source>A</source>
+        <translation>A</translation>
+    </message>
+    <message>
+        <source>B</source>
+        <translation>B</translation>
+    </message>
+    <message>
+        <source>C</source>
+        <translation>C</translation>
+    </message>
+</context>
+<context>
     <name>ControllerBindingWidget_DigitalController</name>
     <message>
         <source>L1</source>
@@ -9972,6 +10235,93 @@ Diese Warnung wird nur einmal angezeigt.</translation>
     <message>
         <source>Fire</source>
         <translation>Feuern</translation>
+    </message>
+</context>
+<context>
+    <name>ControllerBindingWidget_JogCon</name>
+    <message>
+        <source>D-Pad</source>
+        <translation>Steuerkreuz</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation>Unten</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation>Links</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation>Oben</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation>Rechts</translation>
+    </message>
+    <message>
+        <source>Vibration Motor</source>
+        <translation>Vibrationsmotor</translation>
+    </message>
+    <message>
+        <source>L2</source>
+        <translation>L2</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Select</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <source>R2</source>
+        <translation>R2</translation>
+    </message>
+    <message>
+        <source>L1</source>
+        <translation>L1</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>Modus</translation>
+    </message>
+    <message>
+        <source>Mode LED</source>
+        <translation>Modus-LED</translation>
+    </message>
+    <message>
+        <source>R1</source>
+        <translation>R1</translation>
+    </message>
+    <message>
+        <source>Face Buttons</source>
+        <translation>Fronttasten</translation>
+    </message>
+    <message>
+        <source>Cross</source>
+        <translation>Kreuz</translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation>Quadrat</translation>
+    </message>
+    <message>
+        <source>Triangle</source>
+        <translation>Dreieck</translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation>Kreis</translation>
+    </message>
+    <message>
+        <source>Force Feedback Device</source>
+        <translation>Force-Feedback-Gerät</translation>
+    </message>
+    <message>
+        <source>Steering</source>
+        <translation>Lenkung</translation>
     </message>
 </context>
 <context>
@@ -10185,6 +10535,45 @@ Diese Warnung wird nur einmal angezeigt.</translation>
     <message>
         <source>Small Motor</source>
         <translation>Kleiner Motor</translation>
+    </message>
+</context>
+<context>
+    <name>ControllerBindingWidget_Popn</name>
+    <message>
+        <source>Left Buttons</source>
+        <translation>Linke Tasten</translation>
+    </message>
+    <message>
+        <source>Yellow</source>
+        <translation>Gelb</translation>
+    </message>
+    <message>
+        <source>Blue/Sel</source>
+        <translation>Blau/Select</translation>
+    </message>
+    <message>
+        <source>White</source>
+        <translation>Weiß</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Grün</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Select</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <source>Right Buttons</source>
+        <translation>Rechte Tasten</translation>
+    </message>
+    <message>
+        <source>Middle Red/Okay</source>
+        <translation>Rote Mitteltaste/OK</translation>
     </message>
 </context>
 <context>
@@ -10402,48 +10791,84 @@ Die &quot;alternative&quot; Farbe wird verwendet, wenn der Analogmodus aktiv ist
 <context>
     <name>ControllerMacroEditWidget</name>
     <message>
-        <source>Binds/Buttons</source>
-        <translation>Zuordnungen/Tasten</translation>
+        <source>The trigger activates the macro, and can be a single button or combination of buttons. Shift-click for multiple triggers.</source>
+        <translation>Der Auslöser aktiviert das Makro und kann eine einzelne Taste oder eine Tastenkombination sein. Klicke mit gedrückter Umschalttaste, um mehrere Auslöser festzulegen.</translation>
     </message>
     <message>
-        <source>Select the buttons which you want to trigger with this macro. All buttons are activated concurrently.</source>
-        <translation>Wählen Sie die Tasten aus, die mit diesem Makro ausgelöst werden sollen. Alle Tasten werden gleichzeitig aktiviert.</translation>
-    </message>
-    <message>
-        <source>Pressure</source>
-        <translation>Druck</translation>
-    </message>
-    <message>
-        <source>For buttons which are pressure sensitive, this slider controls how much force will be simulated when the macro is active.</source>
-        <translation>Bei druckempfindlichen Tasten steuert dieser Regler, wie viel Kraft simuliert wird, wenn das Makro aktiv ist.</translation>
+        <source>Activation Deadzone:</source>
+        <translation>Aktivierungstotzone:</translation>
     </message>
     <message>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
+        <source>Sequence</source>
+        <translation>Sequenz</translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation>Aktion</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>Wert</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>Aufzeichnen</translation>
+    </message>
+    <message>
+        <source>Replaces the sequence with one which holds a button, or toggles it on and off every N frames (turbo).</source>
+        <translation>Ersetzt die Sequenz durch eine Sequenz, die eine Taste hält oder alle N Frames ein- und ausschaltet (Turbo).</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <translation>Schnelleinrichtung</translation>
+    </message>
+    <message>
+        <source>Add Input</source>
+        <translation>Eingabe hinzufügen</translation>
+    </message>
+    <message>
+        <source>Add Wait</source>
+        <translation>Pause hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Entfernen</translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <translation>Nach oben verschieben</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation>Nach unten verschieben</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Leeren</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once for each press. The current repeat is always finished.</source>
+        <translation>Wiederholt die Sequenz, solange das Makro aktiv ist, statt sie pro Betätigung einmal abzuspielen. Die laufende Wiederholung wird immer zu Ende abgespielt.</translation>
+    </message>
+    <message>
+        <source>Loop While Active</source>
+        <translation>Wiederholen, solange aktiv</translation>
+    </message>
+    <message>
+        <source>Activates and deactivates the macro when the button is tapped instead of held.</source>
+        <translation>Aktiviert und deaktiviert das Makro durch Antippen statt durch Halten der Taste.</translation>
+    </message>
+    <message>
         <source>Trigger</source>
         <translation>Auslöser</translation>
     </message>
     <message>
-        <source>Select the trigger to activate this macro. This can be a single button, or combination of buttons (chord). Shift-click for multiple triggers.</source>
-        <translation>Wählen Sie den Auslöser zum Aktivieren dieses Makros aus. Dies kann eine einzelne Taste oder eine Tastenkombination (Chord) sein. Mit Umschalt-Klick können Sie mehrere Auslöser wählen.</translation>
-    </message>
-    <message>
         <source>Press To Toggle</source>
         <translation>Zum Umschalten drücken</translation>
-    </message>
-    <message>
-        <source>Deadzone:</source>
-        <translation>Totzone:</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <translation>Frequenz</translation>
-    </message>
-    <message>
-        <source>Macro will toggle every N frames.</source>
-        <translation>Das Makro wird alle N Bilder umgeschaltet.</translation>
     </message>
     <message>
         <source>Controller %1 Macro %2</source>
@@ -10453,27 +10878,53 @@ Die &quot;alternative&quot; Farbe wird verwendet, wenn der Analogmodus aktiv ist
         <source>Not Configured</source>
         <translation>Nicht konfiguriert</translation>
     </message>
+    <message numerus="yes">
+        <source>%n button(s)</source>
+        <translation>
+            <numerusform>%n Taste</numerusform>
+            <numerusform>%n Tasten</numerusform>
+        </translation>
+    </message>
     <message>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
     <message>
-        <source>Set Frequency</source>
-        <translation>Frequenz festlegen</translation>
+        <source>Frames to toggle %1 on and off for, or 0 to hold it:</source>
+        <translation>Frame-Intervall zum Ein- und Ausschalten von %1 (0 zum Halten):</translation>
     </message>
     <message>
-        <source>Frequency: </source>
-        <translation>Frequenz: </translation>
+        <source>Stop</source>
+        <translation>Stoppen</translation>
     </message>
     <message>
-        <source>Macro will not repeat.</source>
-        <translation>Makro wird nicht wiederholt.</translation>
+        <source>Wait</source>
+        <translation>Warten</translation>
     </message>
     <message numerus="yes">
-        <source>Macro will toggle buttons every %n frame(s).</source>
+        <source>%n frame(s)</source>
         <translation>
-            <numerusform>Das Makro schaltet die Tasten nach jeweils %n Bild um.</numerusform>
-            <numerusform>Das Makro schaltet die Tasten nach jeweils %n Bildern um.</numerusform>
+            <numerusform>%n Frame</numerusform>
+            <numerusform>%n Frames</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source> frames</source>
+        <translation> Frames</translation>
+    </message>
+    <message>
+        <source>%</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <source>Sequence (%1, %2)</source>
+        <translation>Sequenz (%1, %2)</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n action(s)</source>
+        <translation>
+            <numerusform>%n Aktion</numerusform>
+            <numerusform>%n Aktionen</numerusform>
         </translation>
     </message>
 </context>
@@ -11546,16 +11997,12 @@ Diese Datei kann mehrere Gigabyte groß sein, achte also auf die Abnutzung der S
         <translation>Recompiler-Schnellspeicherzugriff aktivieren</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <translation>Vorspulen von Warteschleifen im Recompiler aktivieren</translation>
+    </message>
+    <message>
         <source>CD-ROM Mechacon Version</source>
         <translation>CD-ROM-Mechacon-Version</translation>
-    </message>
-    <message>
-        <source>CD-ROM Readahead Sectors</source>
-        <translation>CD-ROM-Readahead-Sektoren</translation>
-    </message>
-    <message>
-        <source> sectors</source>
-        <translation> Sektoren</translation>
     </message>
     <message>
         <source>CD-ROM Max Read Speedup Cycles</source>
@@ -12010,6 +12457,105 @@ Wenn Sie auf Zurücksetzen klicken, wird die Seriennummer wieder auf den aus dem
     </message>
 </context>
 <context>
+    <name>FoldersSettingsWidget</name>
+    <message>
+        <source>Cache Directory</source>
+        <translation>Cache-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Used for storing compiled shaders, game list data, and downloaded achievement images.</source>
+        <translation>Speichert kompilierte Shader, Spiellistendaten und heruntergeladene Erfolgsbilder.</translation>
+    </message>
+    <message>
+        <source>Cheats Directory</source>
+        <translation>Cheat-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Stores cheat files (.cht) that you have created or imported. These are used in addition to the built-in cheat database.</source>
+        <translation>Speichert selbst erstellte oder importierte Cheat-Dateien (.cht). Diese werden zusätzlich zur eingebauten Cheat-Datenbank verwendet.</translation>
+    </message>
+    <message>
+        <source>Covers Directory</source>
+        <translation>Cover-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Used for storing covers in the game grid/Big Picture UIs.</source>
+        <translation>Wird zum Speichern von Covers für die Rasteransicht und die Big-Picture-Oberfläche verwendet.</translation>
+    </message>
+    <message>
+        <source>Game Icons Directory</source>
+        <translation>Spielsymbol-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Stores game list icons extracted from memory card saves. A PNG named after a game&apos;s serial can be placed here to use a custom icon.</source>
+        <translation>Speichert aus Memory-Card-Spielständen extrahierte Symbole für die Spielliste. Für ein eigenes Symbol kann hier eine PNG-Datei mit der Seriennummer des Spiels als Namen abgelegt werden.</translation>
+    </message>
+    <message>
+        <source>Game Settings Directory</source>
+        <translation>Spieleinstellungs-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Stores per-game settings files, named by game serial.</source>
+        <translation>Speichert spielbezogene Einstellungsdateien, benannt nach der Seriennummer des Spiels.</translation>
+    </message>
+    <message>
+        <source>Input Profiles Directory</source>
+        <translation>Eingabeprofil-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Stores controller input profiles.</source>
+        <translation>Speichert Controller-Eingabeprofile.</translation>
+    </message>
+    <message>
+        <source>Patches Directory</source>
+        <translation>Patch-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Stores patch files (.cht) that you have created or imported. These are used in addition to the built-in patch database.</source>
+        <translation>Speichert selbst erstellte oder importierte Patch-Dateien (.cht). Diese werden zusätzlich zur eingebauten Patch-Datenbank verwendet.</translation>
+    </message>
+    <message>
+        <source>Shaders Directory</source>
+        <translation>Shader-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Searched for post-processing shaders: GLSL shaders in this directory, ReShade shaders in reshade/Shaders, and slang presets in slang.</source>
+        <translation>Hier wird nach Nachbearbeitungs-Shadern gesucht: GLSL-Shader in diesem Verzeichnis, ReShade-Shader in reshade/Shaders und Slang-Voreinstellungen in slang.</translation>
+    </message>
+    <message>
+        <source>Subchannels Directory</source>
+        <translation>Subchannel-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Searched for SBI/LSD subchannel files, which are required by LibCrypt-protected games, when they are not found next to the disc image.</source>
+        <translation>Hier wird nach SBI/LSD-Subchannel-Dateien gesucht, die für LibCrypt-geschützte Spiele benötigt werden, wenn sie nicht neben dem Disc-Abbild liegen.</translation>
+    </message>
+    <message>
+        <source>User Resources Directory</source>
+        <translation>Benutzerressourcen-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Files placed here override the bundled resources. Also used for custom themes and Big Picture backgrounds.</source>
+        <translation>Hier abgelegte Dateien überschreiben die mitgelieferten Ressourcen. Das Verzeichnis wird auch für eigene Designs und Big-Picture-Hintergründe verwendet.</translation>
+    </message>
+    <message>
+        <source>Browse...</source>
+        <translation>Durchsuchen…</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Weitere Optionen</translation>
+    </message>
+    <message>
+        <source>Select %1</source>
+        <translation>%1 auswählen</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standard</translation>
+    </message>
+</context>
+<context>
     <name>FullscreenUI</name>
     <message>
         <source>-</source>
@@ -12192,16 +12738,16 @@ Wenn Sie auf Zurücksetzen klicken, wird die Seriennummer wieder auf den aus dem
         <translation>Gesamt: {}</translation>
     </message>
     <message>
-        <source>All unofficial achievement progress for the current game will be removed. This cannot be undone.</source>
-        <translation>Der gesamte inoffizielle Achievement-Fortschritt für das aktuelle Spiel wird entfernt. Dies kann nicht rückgängig gemacht werden.</translation>
-    </message>
-    <message>
         <source>Allow Booting Without SBI File</source>
         <translation>Bootvorgang ohne SBI-Datei zulassen</translation>
     </message>
     <message>
         <source>Applies changes to the displayed framebuffer partway through a frame. Needed for split-screen effects in some games, but causes tearing in others.</source>
         <translation>Übernimmt Änderungen am angezeigten Framebuffer während eines Frames. Wird für Splitscreen-Effekte in einigen Spielen benötigt, verursacht in anderen jedoch Tearing.</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>Anwenden</translation>
     </message>
     <message>
         <source>Apply Image Patches</source>
@@ -12320,6 +12866,10 @@ Wenn Sie auf Zurücksetzen klicken, wird die Seriennummer wieder auf den aus dem
         <translation>Puffergröße</translation>
     </message>
     <message>
+        <source>Button</source>
+        <translation>Taste</translation>
+    </message>
+    <message>
         <source>CD-ROM Emulation</source>
         <translation>CD-ROM-Emulation</translation>
     </message>
@@ -12336,8 +12886,20 @@ Wenn Sie auf Zurücksetzen klicken, wird die Seriennummer wieder auf den aus dem
         <translation>Abbrechen</translation>
     </message>
     <message>
+        <source>Carousel</source>
+        <translation>Karussell</translation>
+    </message>
+    <message>
         <source>Change Disc</source>
         <translation>CD wechseln</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM.</source>
+        <translation>Ändert die in der emulierten Konsole installierte RAM-Menge. Kommerzielle Spiele verwenden kein zusätzliches RAM.</translation>
+    </message>
+    <message>
+        <source>Changes the amount of video RAM installed in the emulated console. Retail games do not use extra VRAM.</source>
+        <translation>Ändert die in der emulierten Konsole installierte Videospeichermenge. Kommerzielle Spiele verwenden kein zusätzliches VRAM.</translation>
     </message>
     <message>
         <source>Changes the aspect ratio used to display the console&apos;s output to the screen.</source>
@@ -12524,6 +13086,10 @@ Wenn Sie auf Zurücksetzen klicken, wird die Seriennummer wieder auf den aus dem
         <translation>Bestimmt, wie die Ausgabe der emulierten Konsole auf die Auflösung Ihres Monitors hoch- oder herunterskaliert wird.</translation>
     </message>
     <message>
+        <source>Determines how the game list is displayed.</source>
+        <translation>Legt fest, wie die Spieleliste angezeigt wird.</translation>
+    </message>
+    <message>
         <source>Determines quality of audio when not running at 100% speed.</source>
         <translation>Bestimmt die Audioqualität bei einer Geschwindigkeit ungleich 100 %.</translation>
     </message>
@@ -12644,6 +13210,10 @@ Wenn Sie auf Zurücksetzen klicken, wird die Seriennummer wieder auf den aus dem
         <translation>Recompiler-ICache aktivieren</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <translation>Vorspulen von Warteschleifen im Recompiler aktivieren</translation>
+    </message>
+    <message>
         <source>Enable Recompiler Memory Exceptions</source>
         <translation>Recompiler-Speicherausnahmen aktivieren</translation>
     </message>
@@ -12739,8 +13309,8 @@ Fehler war:
         <translation>Schnellvorlauflautstärke</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Vollständige RAM-Einbindung erzwingen</translation>
+        <source>Fast Forward While Loading</source>
+        <translation>Beim Laden vorspulen</translation>
     </message>
     <message>
         <source>Forces a full rescan of all games previously identified.</source>
@@ -12765,14 +13335,6 @@ Fehler war:
     <message>
         <source>GPU Renderer</source>
         <translation>GPU-Renderer</translation>
-    </message>
-    <message>
-        <source>Game Grid</source>
-        <translation>Spielraster</translation>
-    </message>
-    <message>
-        <source>Game List</source>
-        <translation>Spieleliste</translation>
     </message>
     <message>
         <source>Game List Settings</source>
@@ -12835,6 +13397,10 @@ Fehler war:
         <translation>Globaler Slot {0}##global_slot_{0}</translation>
     </message>
     <message>
+        <source>Grid</source>
+        <translation>Raster</translation>
+    </message>
+    <message>
         <source>Hardcore Mode</source>
         <translation>Hardcore-Modus</translation>
     </message>
@@ -12845,6 +13411,10 @@ Fehler war:
     <message>
         <source>Hides the mouse pointer/cursor when the emulator is in fullscreen mode.</source>
         <translation>Wenn sich der Emulator im Vollbildmodus befindet, wird der Mauszeiger ausgeblendet.</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation>Halten</translation>
     </message>
     <message>
         <source>How often a rewind state will be created. Higher frequencies have greater system requirements.</source>
@@ -12901,6 +13471,14 @@ Fehler war:
     <message>
         <source>Leaderboards</source>
         <translation>Bestenlisten</translation>
+    </message>
+    <message>
+        <source>Library</source>
+        <translation>Bibliothek</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <translation>Liste</translation>
     </message>
     <message>
         <source>List Icons</source>
@@ -12971,12 +13549,20 @@ Fehler war:
         <translation>Protokolliert Meldungen in die Debugkonsole, wenn es möglich ist.</translation>
     </message>
     <message>
+        <source>Loop While Active</source>
+        <translation>Wiederholen, solange aktiv</translation>
+    </message>
+    <message>
+        <source>Macro {} Sequence</source>
+        <translation>Sequenz für Makro {}</translation>
+    </message>
+    <message>
         <source>Makes games run closer to their console framerate, at a small cost to performance.</source>
         <translation>Lässt Spiele näher an ihrer Konsolen-Bildrate laufen, bei geringfügig höherer Leistungsbelastung.</translation>
     </message>
     <message>
-        <source>Maps all installed RAM, regardless of the size configured by the BIOS or game. Needed for 16MB with retail BIOSes.</source>
-        <translation>Bindet den gesamten installierten RAM in den Adressraum ein, unabhängig von der durch das BIOS oder Spiel festgelegten Größe. Für 16 MB mit BIOS-Versionen handelsüblicher Konsolen erforderlich.</translation>
+        <source>Maximum amount of video memory used to cache cover art and other images in the Big Picture UI.</source>
+        <translation>Maximale Menge an Videospeicher, die zum Zwischenspeichern von Covern und anderen Bildern in der Big-Picture-Oberfläche verwendet wird.</translation>
     </message>
     <message>
         <source>Memory Card Directory</source>
@@ -13143,6 +13729,10 @@ Möchten Sie den Spielstand löschen und das Spiel trotzdem starten?</translatio
         <translation>Erweiterte Rendering-Optionen</translation>
     </message>
     <message>
+        <source>All unpromoted achievement progress for the current game will be removed. This cannot be undone.</source>
+        <translation>Der gesamte Fortschritt für nicht freigegebene Achievements im aktuellen Spiel wird entfernt. Dies kann nicht rückgängig gemacht werden.</translation>
+    </message>
+    <message>
         <source>Allows booting to continue even without a required SBI file. These games will not run correctly.</source>
         <translation>Ermöglicht das Fortsetzen des Starts auch ohne erforderliche SBI-Datei. Diese Spiele werden nicht korrekt funktionieren.</translation>
     </message>
@@ -13283,10 +13873,6 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
         <translation>Unten: </translation>
     </message>
     <message>
-        <source>Buttons</source>
-        <translation>Tasten</translation>
-    </message>
-    <message>
         <source>Capture</source>
         <translation>Aufnahme</translation>
     </message>
@@ -13327,16 +13913,8 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
         <translation>Titel ändern</translation>
     </message>
     <message>
-        <source>Change View</source>
-        <translation>Ansicht wechseln</translation>
-    </message>
-    <message>
         <source>Changes settings for the application.</source>
         <translation>Ändert die Einstellungen der Anwendung.</translation>
-    </message>
-    <message>
-        <source>Changes the amount of RAM installed in the emulated console.</source>
-        <translation>Ändert die in der emulierten Konsole installierte RAM-Größe.</translation>
     </message>
     <message>
         <source>Cheats</source>
@@ -13531,10 +14109,6 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
         <translation>Legt fest, wie viel Tastendruck ignoriert wird, bevor das Makro aktiviert wird.</translation>
     </message>
     <message>
-        <source>Determines how much pressure is simulated when macro is active.</source>
-        <translation>Legt fest, wie viel Druck simuliert wird, wenn das Makro aktiv ist.</translation>
-    </message>
-    <message>
         <source>Determines how much to crop the display area.</source>
         <translation>Legt fest, wie stark der Anzeigebereich beschnitten wird.</translation>
     </message>
@@ -13549,10 +14123,6 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <source>Determines the format that screenshots will be saved/compressed with.</source>
         <translation>Legt das Format fest, in dem Screenshots gespeichert/komprimiert werden.</translation>
-    </message>
-    <message>
-        <source>Determines the frequency at which the macro will toggle the buttons on and off (aka auto fire).</source>
-        <translation>Legt fest, wie oft das Makro die Tasten ein- und ausschaltet (auch als Autofeuer bekannt).</translation>
     </message>
     <message>
         <source>Determines the margin between the edge of the screen and on-screen messages.</source>
@@ -13851,6 +14421,10 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
         <translation>Spult den frühen Ladevorgang beim Schnellstart im Schnellvorlauf ab und spart so Zeit. Die Ergebnisse können je nach Spiel variieren.</translation>
     </message>
     <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <translation>Spult vor, wenn das Spiel während des Lesens von der Disc den Bildschirm nicht mehr aktualisiert. Gilt nicht für animierte Ladebildschirme.</translation>
+    </message>
+    <message>
         <source>Filter Framebuffer Uploads</source>
         <translation>Framebuffer-Uploads filtern</translation>
     </message>
@@ -13885,10 +14459,6 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <source>Frame Time Buffer</source>
         <translation>Framezeitpuffer</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <translation>Frequenz</translation>
     </message>
     <message>
         <source>Game Display</source>
@@ -13945,10 +14515,6 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <source>Grey Matter</source>
         <translation>Graue Materie</translation>
-    </message>
-    <message>
-        <source>Grid View</source>
-        <translation>Rasteransicht</translation>
     </message>
     <message>
         <source>Hardcore mode will not be enabled until the game is restarted. Do you want to restart the game now?</source>
@@ -14013,6 +14579,10 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     <message>
         <source>Install BIOS</source>
         <translation>BIOS installieren</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <translation>Installierter VRAM</translation>
     </message>
     <message>
         <source>Internal Resolution</source>
@@ -14159,6 +14729,10 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Nachrichtenposition</translation>
     </message>
     <message>
+        <source>Midnight Amber</source>
+        <translation>Mitternachtsbernstein</translation>
+    </message>
+    <message>
         <source>Minimum Framebuffer Upload Height</source>
         <translation>Mindesthöhe für Framebuffer-Uploads</translation>
     </message>
@@ -14215,6 +14789,14 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Es wurden keine Geräte mit Vibrationsmotoren erkannt.</translation>
     </message>
     <message>
+        <source>No games found.</source>
+        <translation>Keine Spiele gefunden.</translation>
+    </message>
+    <message>
+        <source>No inputs.</source>
+        <translation>Keine Eingaben.</translation>
+    </message>
+    <message>
         <source>No patches are available for this game.</source>
         <translation>Für dieses Spiel sind keine Patches verfügbar.</translation>
     </message>
@@ -14253,6 +14835,10 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
     <message>
         <source>Normalize Depth Scale</source>
         <translation>Tiefenskalierung normalisieren</translation>
+    </message>
+    <message>
+        <source>Not Configured</source>
+        <translation>Nicht konfiguriert</translation>
     </message>
     <message>
         <source>Not Logged In</source>
@@ -14371,8 +14957,20 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Verhindert, dass das Spiel hörbaren Ton erzeugt.</translation>
     </message>
     <message>
+        <source>Quick Setup</source>
+        <translation>Schnelleinrichtung</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>Aufzeichnen</translation>
+    </message>
+    <message>
         <source>Release Date: </source>
         <translation>Veröffentlichungsdatum: </translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once for each press. The current repeat is always finished.</source>
+        <translation>Wiederholt die Sequenz, solange das Makro aktiv ist, statt sie pro Betätigung einmal abzuspielen. Die laufende Wiederholung wird immer zu Ende abgespielt.</translation>
     </message>
     <message>
         <source>Replaces these settings with a previously saved controller preset.</source>
@@ -14401,14 +14999,6 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
     <message>
         <source>Reset Unlock</source>
         <translation>Freischaltung zurücksetzen</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement</source>
-        <translation>Inoffizielles Achievement zurücksetzen</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement Unlocks</source>
-        <translation>Inoffizielle Achievement-Freischaltungen zurücksetzen</translation>
     </message>
     <message>
         <source>Resets all settings to the defaults.</source>
@@ -14551,8 +15141,16 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>BIOS-Image auswählen</translation>
     </message>
     <message>
+        <source>Select Button</source>
+        <translation>Taste auswählen</translation>
+    </message>
+    <message>
         <source>Select Key</source>
         <translation>Taste auswählen</translation>
+    </message>
+    <message>
+        <source>Sequence</source>
+        <translation>Sequenz</translation>
     </message>
     <message>
         <source>Settings reset to default.</source>
@@ -14635,6 +15233,14 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Schritt {} von {}</translation>
     </message>
     <message>
+        <source>Stop</source>
+        <translation>Stoppen</translation>
+    </message>
+    <message>
+        <source>Stops games from timing out while waiting for vertical blank when overclocking.</source>
+        <translation>Verhindert beim Übertakten, dass Spiele beim Warten auf die vertikale Austastlücke die Zeitüberschreitung erreichen.</translation>
+    </message>
+    <message>
         <source>Stores the current settings to a controller preset.</source>
         <translation>Speichert die aktuellen Einstellungen in einer Controller-Vorgabe.</translation>
     </message>
@@ -14643,8 +15249,20 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Teilbilder</translation>
     </message>
     <message>
+        <source>Texture Cache Size</source>
+        <translation>Größe des Textur-Zwischenspeichers</translation>
+    </message>
+    <message>
         <source>The BIOS file &apos;{}&apos; is already installed. Do you want to overwrite it?</source>
         <translation>Die BIOS-Datei &apos;{}&apos; ist bereits installiert. Möchten Sie sie überschreiben?</translation>
+    </message>
+    <message>
+        <source>The button to hold or toggle.</source>
+        <translation>Die Taste, die gehalten oder ein- und ausgeschaltet wird.</translation>
+    </message>
+    <message>
+        <source>The inputs this macro plays, recorded or set up from a single button.</source>
+        <translation>Die Eingaben, die dieses Makro abspielt. Sie werden aufgezeichnet oder über eine einzelne Taste eingerichtet.</translation>
     </message>
     <message>
         <source>The unlock state for &apos;{}&apos; will be removed. This cannot be undone.</source>
@@ -14679,10 +15297,6 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Spur</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <translation>Inoffizielle Achievements verfolgen</translation>
-    </message>
-    <message>
         <source>Track hash copied to clipboard.</source>
         <translation>Track-Hash in die Zwischenablage kopiert.</translation>
     </message>
@@ -14693,14 +15307,6 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
     <message>
         <source>Trigger</source>
         <translation>Auslöser</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlock reset.</source>
-        <translation>Inoffizielle Achievement-Freischaltung zurückgesetzt.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlocks reset.</source>
-        <translation>Inoffizielle Achievement-Freischaltungen zurückgesetzt.</translation>
     </message>
     <message>
         <source>Use OSD Scale</source>
@@ -14759,12 +15365,12 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Wert: {}</translation>
     </message>
     <message>
-        <source>Web Cache Size: {0} ({1} in {2} objects)</source>
-        <translation>Web-Cachegröße: {0} ({1} in {2} Objekten)</translation>
+        <source>View</source>
+        <translation>Ansicht</translation>
     </message>
     <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <translation>Wenn diese Option aktiviert ist, verfolgt DuckStation inoffizielle Achievements. Freischaltungen werden lokal gespeichert und nicht an RetroAchievements gesendet.</translation>
+        <source>Web Cache Size: {0} ({1} in {2} objects)</source>
+        <translation>Web-Cachegröße: {0} ({1} in {2} Objekten)</translation>
     </message>
     <message>
         <source>When enabled, the legacy global save state slots will be available. These slots are independent of the current game.</source>
@@ -14797,6 +15403,14 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
     <message>
         <source>{0} (Missing)</source>
         <translation>{0} (Fehlt)</translation>
+    </message>
+    <message>
+        <source>{0} inputs, {1} frames</source>
+        <translation>Eingaben: {0}, Frames: {1}</translation>
+    </message>
+    <message>
+        <source>{} frames</source>
+        <translation>Frames: {}</translation>
     </message>
     <message>
         <source>{} of {}</source>
@@ -14941,10 +15555,6 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
     <message>
         <source>Press To Toggle</source>
         <translation>Zum Umschalten drücken</translation>
-    </message>
-    <message>
-        <source>Pressure</source>
-        <translation>Druck</translation>
     </message>
     <message>
         <source>Prevents inputs from being processed when another application is active.</source>
@@ -15103,6 +15713,14 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Einstellungen zurücksetzen</translation>
     </message>
     <message>
+        <source>Reset Unpromoted Achievement</source>
+        <translation>Nicht freigegebenen Achievement zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement Unlocks</source>
+        <translation>Freischaltungen nicht freigegebener Achievements zurücksetzen</translation>
+    </message>
+    <message>
         <source>Resets all configuration to defaults (including bindings).</source>
         <translation>Setzt alle Konfigurationen auf Standardwerte zurück, einschließlich Bindungen.</translation>
     </message>
@@ -15187,6 +15805,10 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Speichert den Zustand regelmäßig, damit Sie während des Spielens Fehler rückgängig machen können.</translation>
     </message>
     <message>
+        <source>Scale Idle Timeout</source>
+        <translation>Wartezeit der Warteschleife skalieren</translation>
+    </message>
+    <message>
         <source>Scaling</source>
         <translation>Skalierung</translation>
     </message>
@@ -15237,10 +15859,6 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
     <message>
         <source>Select Game</source>
         <translation>Spiel auswählen</translation>
-    </message>
-    <message>
-        <source>Select Macro {} Binds</source>
-        <translation>Makro-Bindungen {} auswählen</translation>
     </message>
     <message>
         <source>Select State</source>
@@ -15483,10 +16101,6 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Zeigt die aktuelle Renderauflösung des Systems in der oberen rechten Ecke des Bildschirms an.</translation>
     </message>
     <message>
-        <source>Shows the game list as a grid instead of a vertical list.</source>
-        <translation>Zeigt die Spieleliste als Raster anstelle einer vertikalen Liste an.</translation>
-    </message>
-    <message>
         <source>Shows the game you are currently playing as part of your profile in Discord.</source>
         <translation>Zeigt das Spiel, das Sie gerade spielen, als Teil Ihres Profils in Discord an.</translation>
     </message>
@@ -15517,6 +16131,10 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
     <message>
         <source>Skip Duplicate Frame Display</source>
         <translation>Doppelte Frame-Anzeige überspringen</translation>
+    </message>
+    <message>
+        <source>Skips over the busy loop that games use to wait for vertical blank.</source>
+        <translation>Überspringt die aktive Warteschleife, mit der Spiele auf die vertikale Austastlücke warten.</translation>
     </message>
     <message>
         <source>Skips the presentation/display of frames that are not unique. Can result in worse frame pacing.</source>
@@ -15727,6 +16345,10 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
         <translation>Alle %d Frames umschalten</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <translation>Nicht freigegebene Achievements verfolgen</translation>
+    </message>
+    <message>
         <source>Turbo Speed</source>
         <translation>Turbogeschwindigkeit</translation>
     </message>
@@ -15757,6 +16379,14 @@ Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort und versuchen Sie es
     <message>
         <source>Unpin from OSD</source>
         <translation>Von der Bildschirmanzeige lösen</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlock reset.</source>
+        <translation>Freischaltung eines nicht freigegebenen Achievements zurückgesetzt.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlocks reset.</source>
+        <translation>Freischaltungen nicht freigegebener Achievements zurückgesetzt.</translation>
     </message>
     <message>
         <source>Update Database</source>
@@ -15887,6 +16517,10 @@ Möchten Sie die Aktion „{0}“ trotzdem ausführen?</translation>
         <translation>Wenn diese Option aktiviert ist, geht DuckStation davon aus, dass alle Achievements gesperrt sind und sendet keine Freischaltungs-Benachrichtigungen an den Server.</translation>
     </message>
     <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <translation>Wenn aktiviert, verfolgt DuckStation nicht freigegebene Achievements. Freischaltungen werden lokal gespeichert und nicht an RetroAchievements gesendet.</translation>
+    </message>
+    <message>
         <source>When enabled, each session will behave as if no achievements have been unlocked.</source>
         <translation>Wenn aktiviert, verhält sich jede Sitzung so, als wären keine Achievements freigeschaltet worden.</translation>
     </message>
@@ -15939,10 +16573,6 @@ Do you want to {1} anyway?</source>
 Möchten Sie die Aktion „{1}“ trotzdem ausführen?</translation>
     </message>
     <message>
-        <source>{} Frames</source>
-        <translation>{} Bilder</translation>
-    </message>
-    <message>
         <source>{} deleted.</source>
         <translation>{} gelöscht.</translation>
     </message>
@@ -15968,6 +16598,13 @@ Möchten Sie die Aktion „{1}“ trotzdem ausführen?</translation>
         <translation>
             <numerusform>Noch %n Minute</numerusform>
             <numerusform>Noch %n Minuten</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n button(s)</source>
+        <translation>
+            <numerusform>%n Taste</numerusform>
+            <numerusform>%n Tasten</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -16231,12 +16868,12 @@ Möchten Sie die Aktion „{1}“ trotzdem ausführen?</translation>
         <translation>RAM-Größe:</translation>
     </message>
     <message>
-        <source>Disable Widescreen Rendering</source>
-        <translation>Breitbild-Rendering deaktivieren</translation>
+        <source>VRAM Size:</source>
+        <translation>VRAM-Größe:</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Vollständige RAM-Einbindung erzwingen</translation>
+        <source>Disable Widescreen Rendering</source>
+        <translation>Breitbild-Rendering deaktivieren</translation>
     </message>
     <message>
         <source>Disallow in Hardcore Mode</source>
@@ -16484,6 +17121,11 @@ Möchten Sie fortfahren?</translation>
         <translation>Schnellvorlauf bei Speicherkartenzugriffen deaktivieren</translation>
     </message>
     <message>
+        <source>Disable Fast Forward While Loading</source>
+        <comment>GameDatabase::Trait</comment>
+        <translation>Vorspulen beim Laden deaktivieren</translation>
+    </message>
+    <message>
         <source>Disable CD-ROM Read Speedup</source>
         <comment>GameDatabase::Trait</comment>
         <translation>CD-ROM-Lesebeschleunigung deaktivieren</translation>
@@ -16637,6 +17279,10 @@ Möchten Sie fortfahren?</translation>
     <message>
         <source>Fast forward memory card access disabled.</source>
         <translation>Schnellvorlauf bei Speicherkartenzugriffen deaktiviert.</translation>
+    </message>
+    <message>
+        <source>Fast forward while loading disabled.</source>
+        <translation>Vorspulen beim Laden deaktiviert.</translation>
     </message>
     <message>
         <source>CD-ROM read speedup disabled.</source>
@@ -17126,14 +17772,6 @@ Möchten Sie fortfahren?</translation>
         <translation>Ausgeschlossene Pfade (diese werden nicht durchsucht)</translation>
     </message>
     <message>
-        <source>File...</source>
-        <translation>Datei...</translation>
-    </message>
-    <message>
-        <source>Folder...</source>
-        <translation>Ordner...</translation>
-    </message>
-    <message>
         <source>Scan For New Games</source>
         <translation>Nach neuen Spielen suchen</translation>
     </message>
@@ -17142,8 +17780,40 @@ Möchten Sie fortfahren?</translation>
         <translation>Alle Spiele neu suchen</translation>
     </message>
     <message>
+        <source>Search Directories</source>
+        <translation>Suchverzeichnisse</translation>
+    </message>
+    <message>
+        <source>Directories which will be scanned for games. Enable Scan Recursively to also search subdirectories, which takes longer but finds games stored in nested folders. Folders can also be dragged here from your file manager.</source>
+        <translation>Verzeichnisse, die nach Spielen durchsucht werden. Aktivieren Sie die rekursive Suche, um auch Unterverzeichnisse zu durchsuchen. Dies dauert länger, findet aber auch Spiele in verschachtelten Ordnern. Ordner können auch aus dem Dateimanager hierher gezogen werden.</translation>
+    </message>
+    <message>
+        <source>Excluded Paths</source>
+        <translation>Ausgeschlossene Pfade</translation>
+    </message>
+    <message>
+        <source>Files and directories which will be skipped when scanning for games, for example images you do not want to appear in the game list. Files and folders can also be dragged here from your file manager.</source>
+        <translation>Dateien und Verzeichnisse, die bei der Spielsuche übersprungen werden, etwa Abbilder, die nicht in der Spielliste erscheinen sollen. Dateien und Ordner können auch aus dem Dateimanager hierher gezogen werden.</translation>
+    </message>
+    <message>
+        <source>Scans the search directories for files which are not already in the game list. Previously-scanned games are loaded from the cache, so this is usually quick.</source>
+        <translation>Durchsucht die Suchverzeichnisse nach Dateien, die noch nicht in der Spielliste stehen. Bereits gescannte Spiele werden aus dem Cache geladen, sodass dies normalerweise schnell geht.</translation>
+    </message>
+    <message>
+        <source>Discards the game list cache and scans every file in the search directories again. Use this if game details such as titles or serials are incorrect. May take a while for large collections.</source>
+        <translation>Verwirft den Spiellisten-Cache und durchsucht alle Dateien in den Suchverzeichnissen erneut. Verwenden Sie diese Option, wenn Spieldetails wie Titel oder Seriennummern falsch sind. Bei großen Sammlungen kann dies dauern.</translation>
+    </message>
+    <message>
         <source>Open Directory...</source>
         <translation>Verzeichnis öffnen...</translation>
+    </message>
+    <message>
+        <source>No search directories. Add a folder, or drag one here, to choose where your games are stored.</source>
+        <translation>Keine Suchverzeichnisse. Fügen Sie einen Ordner hinzu oder ziehen Sie ihn hierher, um den Speicherort Ihrer Spiele auszuwählen.</translation>
+    </message>
+    <message>
+        <source>No excluded paths. Files or folders added here will be skipped when scanning.</source>
+        <translation>Keine ausgeschlossenen Pfade. Hier hinzugefügte Dateien oder Ordner werden bei der Suche übersprungen.</translation>
     </message>
     <message>
         <source>Select Search Directory</source>
@@ -17839,16 +18509,12 @@ Rekursives Durchsuchen benötigt mehr Zeit, erkennt allerdings auch Dateien in U
         <translation>Verzeichnis, aus dem Ersatztexturen geladen und in dem Dumps gespeichert werden.</translation>
     </message>
     <message>
+        <source>More Options</source>
+        <translation>Weitere Optionen</translation>
+    </message>
+    <message>
         <source>Browse...</source>
         <translation>Durchsuchen…</translation>
-    </message>
-    <message>
-        <source>Open...</source>
-        <translation>Öffnen…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <source>Debugging</source>
@@ -18225,10 +18891,6 @@ Rekursives Durchsuchen benötigt mehr Zeit, erkennt allerdings auch Dateien in U
     <message>
         <source>Geometry Tolerance</source>
         <translation>Geometrietoleranz</translation>
-    </message>
-    <message>
-        <source>-1.00px (Disabled)</source>
-        <translation>-1,00 px (Deaktiviert)</translation>
     </message>
     <message>
         <source>Discards precise geometry when it is found to be offset past the specified threshold. This can help with games that have vertices significantly moved by PGXP, but is still a hack/workaround.</source>
@@ -20344,6 +21006,10 @@ Mit Umschalt+Klick mehrere Belegungen festlegen.</translation>
         <translation>Über &amp;DuckStation</translation>
     </message>
     <message>
+        <source>&amp;Folders</source>
+        <translation>&amp;Ordner</translation>
+    </message>
+    <message>
         <source>Ad&amp;vanced</source>
         <translation>Er&amp;weitert</translation>
     </message>
@@ -21364,6 +22030,10 @@ Diese Aktion kann nicht rückgängig gemacht werden.</translation>
         <translation>Purple Rain</translation>
     </message>
     <message>
+        <source>Midnight Amber</source>
+        <translation>Mitternachtsbernstein</translation>
+    </message>
+    <message>
         <source>Checking for updates...</source>
         <translation>Suche nach Aktualisierungen...</translation>
     </message>
@@ -21878,8 +22548,8 @@ Fehler: {1}</translation>
         <translation>Speicherkarten:</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Öffnen…</translation>
+        <source>More Options</source>
+        <translation>Weitere Optionen</translation>
     </message>
     <message>
         <source>Select Memory Card Directory</source>
@@ -23258,10 +23928,6 @@ Fehler: {1}</translation>
         <translation>Overlay-Liste aktualisieren</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Additional preset borders can be added to the &lt;span style=&quot; font-weight:700;&quot;&gt;resources\overlays&lt;/span&gt; folder within the data directory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Weitere Rahmenvorlagen können dem Ordner &lt;span style=&quot; font-weight:700;&quot;&gt;resources\overlays&lt;/span&gt; im Datenverzeichnis hinzugefügt werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>Custom Configuration</source>
         <translation>Benutzerdefinierte Konfiguration</translation>
     </message>
@@ -23272,6 +23938,14 @@ Fehler: {1}</translation>
     <message>
         <source>Browse...</source>
         <translation>Durchsuchen…</translation>
+    </message>
+    <message>
+        <source>Overlays Directory:</source>
+        <translation>Overlay-Verzeichnis:</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Weitere Optionen</translation>
     </message>
     <message>
         <source>Display Start:</source>
@@ -23304,6 +23978,22 @@ Fehler: {1}</translation>
     <message>
         <source>Export...</source>
         <translation>Exportieren...</translation>
+    </message>
+    <message>
+        <source>Select Overlays Directory</source>
+        <translation>Overlay-Verzeichnis auswählen</translation>
+    </message>
+    <message>
+        <source>Overlays Directory</source>
+        <translation>Overlay-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standard</translation>
+    </message>
+    <message>
+        <source>Stores additional border overlay presets. Use Refresh Overlay List to find presets after changing this directory.</source>
+        <translation>Speichert zusätzliche Rahmen-Overlay-Voreinstellungen. Verwenden Sie nach dem Ändern dieses Verzeichnisses „Overlay-Liste aktualisieren“, um Voreinstellungen zu finden.</translation>
     </message>
     <message>
         <source>Image Path</source>
@@ -23955,12 +24645,20 @@ Möchten Sie die Verknüpfung auf den aktuellen Speicherort aktualisieren?</tran
         <translation>{} ({})</translation>
     </message>
     <message>
-        <source>Saved {}</source>
-        <translation>Gespeichert {}</translation>
+        <source>Empty</source>
+        <translation>Leer</translation>
     </message>
     <message>
-        <source>No save present in this slot.</source>
-        <translation>In diesem Slot ist kein Speicherstand vorhanden.</translation>
+        <source>Save States</source>
+        <translation>Spielstände</translation>
+    </message>
+    <message>
+        <source>{} of {} slots in use</source>
+        <translation>{} von {} Plätzen belegt</translation>
+    </message>
+    <message>
+        <source>Saved {}</source>
+        <translation>Gespeichert {}</translation>
     </message>
     <message>
         <source>Unknown error.</source>
@@ -24028,16 +24726,16 @@ Möchten Sie die Verknüpfung auf den aktuellen Speicherort aktualisieren?</tran
 <context>
     <name>SettingWidgetBinder</name>
     <message>
-        <source>Use Global Setting [Enabled]</source>
-        <translation>Globale Einstellung verwenden [Aktiviert]</translation>
-    </message>
-    <message>
-        <source>Use Global Setting [Disabled]</source>
-        <translation>Globale Einstellung verwenden [Deaktiviert]</translation>
-    </message>
-    <message>
         <source>Global: </source>
         <translation>Global: </translation>
+    </message>
+    <message>
+        <source>Open Folder</source>
+        <translation>Ordner öffnen</translation>
+    </message>
+    <message>
+        <source>Reset to Default</source>
+        <translation>Auf Standard zurücksetzen</translation>
     </message>
     <message>
         <source>Confirm Folder</source>
@@ -24168,24 +24866,54 @@ Möchten Sie dieses Verzeichnis erstellen?</translation>
         <translation>Nicht-PS1</translation>
     </message>
     <message>
-        <source>2 MB (Retail Console)</source>
+        <source>2MB (Standard)</source>
         <comment>CPURAMSize</comment>
-        <translation>2 MB (handelsübliche Konsole)</translation>
+        <translation>2 MB (Standard)</translation>
     </message>
     <message>
-        <source>4 MB (Arcade Boards)</source>
+        <source>4MB</source>
         <comment>CPURAMSize</comment>
-        <translation>4 MB (Arcade-Platinen)</translation>
+        <translation>4 MB</translation>
     </message>
     <message>
-        <source>8 MB (Dev Console)</source>
+        <source>4MB (Forced)</source>
         <comment>CPURAMSize</comment>
-        <translation>8 MB (Entwicklerkonsole)</translation>
+        <translation>4 MB (erzwungen)</translation>
     </message>
     <message>
-        <source>16 MB (Mods/Arcade Boards)</source>
+        <source>8MB</source>
         <comment>CPURAMSize</comment>
-        <translation>16 MB (Mods/Arcade-Platinen)</translation>
+        <translation>8 MB</translation>
+    </message>
+    <message>
+        <source>8MB (Forced)</source>
+        <comment>CPURAMSize</comment>
+        <translation>8 MB (erzwungen)</translation>
+    </message>
+    <message>
+        <source>16MB</source>
+        <comment>CPURAMSize</comment>
+        <translation>16 MB</translation>
+    </message>
+    <message>
+        <source>16MB (Forced)</source>
+        <comment>CPURAMSize</comment>
+        <translation>16 MB (erzwungen)</translation>
+    </message>
+    <message>
+        <source>1MB (Standard)</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>1 MB (Standard)</translation>
+    </message>
+    <message>
+        <source>2MB</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>2 MB</translation>
+    </message>
+    <message>
+        <source>2MB (Forced)</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>2 MB (erzwungen)</translation>
     </message>
     <message>
         <source>Interpreter (Slowest)</source>
@@ -25005,10 +25733,6 @@ Möchten Sie dieses Verzeichnis erstellen?</translation>
         <translation>Spieleliste</translation>
     </message>
     <message>
-        <source>&lt;strong&gt;Game List Settings&lt;/strong&gt;&lt;hr&gt;The list above shows the directories which will be searched by DuckStation to populate the game list. Search directories can be added, removed, and switched to recursive/non-recursive.</source>
-        <translation>&lt;strong&gt;Spieleliste&lt;/strong&gt;&lt;hr&gt;Die obige Liste zeigt die Verzeichnisse, die von DuckStation durchsucht werden, um die Spieleliste zu befüllen. Suchverzeichnisse können hinzugefügt, entfernt und auf rekursiv bzw. nicht rekursiv umgestellt werden.</translation>
-    </message>
-    <message>
         <source>BIOS</source>
         <translation>BIOS</translation>
     </message>
@@ -25074,6 +25798,14 @@ Möchten Sie dieses Verzeichnis erstellen?</translation>
         <translation>&lt;strong&gt;Aufnahmeeinstellungen&lt;/strong&gt;&lt;hr&gt;Diese Optionen bestimmen, wie Screenshots und Videos von der Anwendung aufgenommen werden.</translation>
     </message>
     <message>
+        <source>Folders</source>
+        <translation>Ordner</translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Folder Settings&lt;/strong&gt;&lt;hr&gt;These options control where DuckStation reads and stores its files.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
+        <translation>&lt;strong&gt;Ordnereinstellungen&lt;/strong&gt;&lt;hr&gt;Diese Optionen legen fest, wo DuckStation Dateien liest und speichert.&lt;br&gt;&lt;br&gt;Bewegen Sie den Mauszeiger über eine Option, um weitere Informationen zu erhalten. Mit Umschalt+Mausrad lässt sich dieser Bereich scrollen.</translation>
+    </message>
+    <message>
         <source>&lt;strong&gt;Advanced Settings&lt;/strong&gt;&lt;hr&gt;These options control logging and internal behavior of the emulator. Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
         <translation>&lt;strong&gt;Erweiterte Einstellungen&lt;/strong&gt;&lt;hr&gt;Diese Optionen steuern das Protokollieren und das interne Verhalten des Emulators. Bewegen Sie die Maus über eine Option für zusätzliche Informationen, und drehen Sie bei gedrückter Umschalttaste das Mausrad, um dieses Feld zu scrollen.</translation>
     </message>
@@ -25136,6 +25868,10 @@ Möchten Sie fortfahren?</translation>
     <message>
         <source>Console</source>
         <translation>Konsole</translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Game List Settings&lt;/strong&gt;&lt;hr&gt;These options control which directories are scanned to populate the game list.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information.</source>
+        <translation>&lt;strong&gt;Spiellisteneinstellungen&lt;/strong&gt;&lt;hr&gt;Diese Optionen legen fest, welche Verzeichnisse zum Erstellen der Spielliste durchsucht werden.&lt;br&gt;&lt;br&gt;Bewegen Sie den Mauszeiger über eine Option, um weitere Informationen zu erhalten.</translation>
     </message>
     <message>
         <source>Emulation</source>
@@ -25209,10 +25945,6 @@ Möchten Sie fortfahren?</translation>
         <translation>Durchsuchen…</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>Zurücksetzen</translation>
-    </message>
-    <message>
         <source>NTSC-J (Japan):</source>
         <translation>NTSC-J (Japan):</translation>
     </message>
@@ -25223,10 +25955,6 @@ Möchten Sie fortfahren?</translation>
     <message>
         <source>PAL (Europe, Australia):</source>
         <translation>PAL (Europa, Australien):</translation>
-    </message>
-    <message>
-        <source>Open in Explorer...</source>
-        <translation>Im Explorer öffnen...</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DuckStation requires a PS1 or PS2 BIOS in order to run.&lt;/p&gt;&lt;p&gt;For legal reasons, you must obtain a BIOS &lt;span style=&quot; font-weight:700;&quot;&gt;from an actual PS1/PS2 unit that you own&lt;/span&gt; (borrowing doesn&apos;t count). You should use Caetla or another utility to create an image from your console&apos;s BIOS ROM on your PC.&lt;/p&gt;&lt;p&gt;Once you have dumped the BIOS from your console, you can click the &amp;quot;Install BIOS&amp;quot; button below to add this image to DuckStation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -25271,6 +25999,10 @@ Möchten Sie fortfahren?</translation>
     <message>
         <source>BIOS Directory:</source>
         <translation>BIOS-Verzeichnis:</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Weitere Optionen</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DuckStation will automatically scan and identify games from the selected directories below, and populate the game list. These games should be dumped from discs you own. Utilities such as ImgBurn can be used to create images of game discs in .bin/.cue format.&lt;/p&gt;&lt;p&gt;Supported formats for dumps include: %1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -25562,6 +26294,10 @@ Alle Änderungen wurden gespeichert, und der Assistent wird beim nächsten Start
         </translation>
     </message>
     <message>
+        <source>No search directories. Add a folder, or drag one here, to choose where your games are stored.</source>
+        <translation>Keine Suchverzeichnisse. Fügen Sie einen Ordner hinzu oder ziehen Sie ihn hierher, um den Speicherort Ihrer Spiele auszuwählen.</translation>
+    </message>
+    <message>
         <source>Open Directory...</source>
         <translation>Verzeichnis öffnen...</translation>
     </message>
@@ -25665,6 +26401,11 @@ Token erstellt %2</translation>
         <comment>Taint</comment>
         <translation>Speicherkartenabweichung</translation>
     </message>
+    <message>
+        <source>Expanded VRAM</source>
+        <comment>Taint</comment>
+        <translation>Erweiterter VRAM</translation>
+    </message>
     <message numerus="yes">
         <source>You cannot pause until another %n second(s) have passed.</source>
         <translation>
@@ -25711,6 +26452,10 @@ Configuration: {1}%</source>
         <translation>Der Speicherstand stimmt nicht mit der aktuellen Konfiguration überein.
 Speicherstand: {0}%
 Konfiguration: {1}%</translation>
+    </message>
+    <message>
+        <source>Unknown BIOS</source>
+        <translation>Unbekanntes BIOS</translation>
     </message>
     <message>
         <source>System is not in correct state.</source>
@@ -25807,8 +26552,20 @@ Das aktuelle CD-Image wird verwendet; dies kann zu Instabilität führen.</trans
         <translation>Karte geändert zu {}.</translation>
     </message>
     <message>
+        <source>Physical Disc</source>
+        <translation>Physische Disc</translation>
+    </message>
+    <message>
         <source>No valid game is running.</source>
         <translation>Es läuft kein gültiges Spiel.</translation>
+    </message>
+    <message>
+        <source>RAM size is set to {}, this may be incompatible with some games.</source>
+        <translation>Die RAM-Größe ist auf {} eingestellt; dies kann mit einigen Spielen inkompatibel sein.</translation>
+    </message>
+    <message>
+        <source>VRAM size is set to {}, this may be incompatible with some games.</source>
+        <translation>Die VRAM-Größe ist auf {} eingestellt; dies kann mit einigen Spielen inkompatibel sein.</translation>
     </message>
     <message>
         <source>Switched to sub-image {} ({}) in &apos;{}&apos;.</source>
@@ -25859,6 +26616,10 @@ Sie müssen auf eine Speicherkarte speichern und das Spiel zurücksetzen, um etw
     <message>
         <source>Overclock disabled.</source>
         <translation>Übertaktung deaktiviert.</translation>
+    </message>
+    <message>
+        <source>2MB VRAM disabled.</source>
+        <translation>2 MB VRAM deaktiviert.</translation>
     </message>
     <message>
         <source>Resolution scale set to 1x.</source>
@@ -25975,10 +26736,6 @@ Sie müssen auf eine Speicherkarte speichern und das Spiel zurücksetzen, um etw
     <message>
         <source>Frame rate is not set to automatic. Games may run at incorrect speeds.</source>
         <translation>Bildrate ist nicht auf automatisch gesetzt. Spiele können mit falscher Geschwindigkeit laufen.</translation>
-    </message>
-    <message>
-        <source>Expanded RAM is enabled, this may be incompatible with some games.</source>
-        <translation>Zusätzlicher RAM ist aktiviert. Dies ist möglicherweise mit einigen Spielen nicht kompatibel.</translation>
     </message>
     <message>
         <source>Cached interpreter is being used, this may be incompatible with some games.</source>

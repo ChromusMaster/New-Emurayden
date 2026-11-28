@@ -146,6 +146,10 @@ Do you want to enable hardcore mode?</source>
         <translation>Увімкнути досягнення</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <translation>Відстежувати неофіційні досягнення</translation>
+    </message>
+    <message>
         <source>Enable Sound Effects</source>
         <translation>Увімкнути звукові ефекти</translation>
     </message>
@@ -160,10 +164,6 @@ Do you want to enable hardcore mode?</source>
     <message>
         <source>Enable Spectator Mode</source>
         <translation>Увімкнути режим спостерігача</translation>
-    </message>
-    <message>
-        <source>Test Unofficial Achievements</source>
-        <translation>Тестувати неофіційні досягнення</translation>
     </message>
     <message>
         <source>Prefetch Badges</source>
@@ -226,10 +226,6 @@ Do you want to enable hardcore mode?</source>
         <translation>Увімкнути режим «Encore»</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <translation>Відстежувати неофіційні досягнення</translation>
-    </message>
-    <message>
         <source>Notifications</source>
         <translation>Сповіщення</translation>
     </message>
@@ -256,6 +252,14 @@ Do you want to enable hardcore mode?</source>
     <message>
         <source>When enabled and logged in, DuckStation will scan for achievements on startup.</source>
         <translation>Якщо увімкнено та виконано вхід, DuckStation шукатиме досягнення під час запуску.</translation>
+    </message>
+    <message>
+        <source>Test Unpromoted Achievements</source>
+        <translation>Перевірити неофіційні досягнення</translation>
+    </message>
+    <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <translation>Якщо ввімкнено, DuckStation відстежуватиме неофіційні досягнення. Розблокування зберігатимуться локально й не надсилатимуться до RetroAchievements.</translation>
     </message>
     <message>
         <source>Displays popup messages on events such as achievement unlocks and game completion.</source>
@@ -288,10 +292,6 @@ Do you want to enable hardcore mode?</source>
     <message>
         <source> seconds</source>
         <translation> сек.</translation>
-    </message>
-    <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <translation>Якщо ввімкнено, DuckStation відстежуватиме неофіційні досягнення. Розблокування зберігатимуться локально й не надсилатимуться до RetroAchievements.</translation>
     </message>
     <message>
         <source>Checked</source>
@@ -608,6 +608,10 @@ We will keep trying to submit this request.</source>
         <translation>Обмеження більше не діють.</translation>
     </message>
     <message>
+        <source>Unpromoted</source>
+        <translation>Неофіційне</translation>
+    </message>
+    <message>
         <source>Confirm Hardcore Mode Disable</source>
         <translation>Підтвердження вимкнення режиму «Хардкор»</translation>
     </message>
@@ -734,10 +738,6 @@ This session will start in offline mode.</source>
         <source>This subset has no achievements.</source>
         <translation>У цьому піднаборі немає досягнень.</translation>
     </message>
-    <message>
-        <source>You have unlocked {0} of {1} unofficial achievements, earning {2} of {3} possible points.</source>
-        <translation>Ви розблокували {0} із {1} неофіційних досягнень і заробили {2} із {3} можливих балів.</translation>
-    </message>
     <message numerus="yes">
         <source>%n achievements are not supported by DuckStation and cannot be unlocked.</source>
         <comment>Unsupported achievement count</comment>
@@ -797,6 +797,10 @@ This session will start in offline mode.</source>
         <translation>Змінити вибір</translation>
     </message>
     <message>
+        <source>Reset Unpromoted Unlocks</source>
+        <translation>Скинути розблокування неофіційних досягнень</translation>
+    </message>
+    <message>
         <source>View Details</source>
         <translation>Переглянути деталі</translation>
     </message>
@@ -819,10 +823,6 @@ This session will start in offline mode.</source>
     <message>
         <source>Unsupported</source>
         <translation>Не підтримується</translation>
-    </message>
-    <message>
-        <source>Unofficial</source>
-        <translation>Неофіційний</translation>
     </message>
     <message>
         <source>Recently Unlocked</source>
@@ -959,6 +959,10 @@ This session will start in offline mode.</source>
         <translation>Ви розблокували {0} із {1} досягнень і заробили {2} із {3} можливих балів.</translation>
     </message>
     <message>
+        <source>You have unlocked {0} of {1} unpromoted achievements, earning {2} of {3} possible points.</source>
+        <translation>Ви розблокували {0} із {1} неофіційних досягнень і набрали {2} із {3} можливих балів.</translation>
+    </message>
+    <message>
         <source>Game was beaten {0}, and completed {1}.</source>
         <translation>Гру було пройдено {0} і повністю завершено {1}.</translation>
     </message>
@@ -981,10 +985,6 @@ This session will start in offline mode.</source>
     <message>
         <source>Subset was completed {0}.</source>
         <translation>Піднабір було повністю завершено {0}.</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Unlocks</source>
-        <translation>Скинути неофіційні розблокування</translation>
     </message>
     <message>
         <source>Unlocked {}</source>
@@ -1070,32 +1070,32 @@ This session will start in offline mode.</source>
         <translation>Увімкнути RAIntegration</translation>
     </message>
     <message>
-        <source>Cache Directory</source>
-        <translation>Каталог кешу</translation>
+        <source>CD-ROM Emulation</source>
+        <translation>Емуляція CD-ROM</translation>
     </message>
     <message>
-        <source>Used for storing compiled shaders and game list data.</source>
-        <translation>Використовується для зберігання скомпілованих шейдерів та даних списку ігор.</translation>
+        <source>Readahead Sectors:</source>
+        <translation>Сектори попереднього читання:</translation>
     </message>
     <message>
-        <source>Browse...</source>
-        <translation>Оглянути...</translation>
+        <source> sectors</source>
+        <translation> секторів</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Відкрити...</translation>
+        <source>Physical Disc Drive Speed:</source>
+        <translation>Швидкість фізичного дисковода:</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>Скидання</translation>
+        <source>Don&apos;t Change</source>
+        <translation>Не змінювати</translation>
     </message>
     <message>
-        <source>Covers Directory</source>
-        <translation>Каталог обкладинок</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Used for storing covers in the game grid/Big Picture UIs.</source>
-        <translation>Використовується для зберігання обкладинок у сітці ігор/інтерфейсі Big Picture.</translation>
+        <source>Ignore Physical Disc Drive Subcode</source>
+        <translation>Ігнорувати підканал фізичного дисковода</translation>
     </message>
     <message>
         <source>Web Cache</source>
@@ -1132,14 +1132,6 @@ This session will start in offline mode.</source>
     <message>
         <source>Log Level</source>
         <translation>Рівень журналування</translation>
-    </message>
-    <message>
-        <source>Select Cache Directory</source>
-        <translation>Вибрати каталог кешу</translation>
-    </message>
-    <message>
-        <source>Select Covers Directory</source>
-        <translation>Вибрати каталог обкладинок</translation>
     </message>
     <message>
         <source>Information</source>
@@ -1194,16 +1186,36 @@ This session will start in offline mode.</source>
         <translation>Відображає номер поточного кадру у верхньому правому кутку екрана.</translation>
     </message>
     <message>
-        <source>Default</source>
-        <translation>За замовчуванням</translation>
+        <source>Readahead Sectors</source>
+        <translation>Сектори попереднього читання</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n sectors</source>
+        <translation>
+            <numerusform>%n сектор</numerusform>
+            <numerusform>%n сектори</numerusform>
+            <numerusform>%n секторів</numerusform>
+        </translation>
     </message>
     <message>
-        <source>Specifies the directory where compiled shaders and game list data will be stored.</source>
-        <translation>Вказує каталог, в якому зберігатимуться скомпіловані шейдери та дані списку ігор.</translation>
+        <source>Reduces hitches in emulation by reading/decompressing CD data asynchronously on a worker thread.</source>
+        <translation>Зменшує затримки емуляції, асинхронно читаючи й розпаковуючи дані CD у робочому потоці.</translation>
     </message>
     <message>
-        <source>Specifies the directory where game cover images that are used in the game grid and Big Picture UI will be stored.</source>
-        <translation>Вказує каталог, в якому зберігатимуться зображення обкладинок ігор, що використовуються в ігровій сітці та інтерфейсі Big Picture.</translation>
+        <source>Physical Disc Drive Speed</source>
+        <translation>Швидкість фізичного дисковода</translation>
+    </message>
+    <message>
+        <source>8x</source>
+        <translation>8x</translation>
+    </message>
+    <message>
+        <source>Sets the speed of the host drive when using physical discs. Higher speeds can reduce stutter, but make the drive louder. Set to &quot;Don&apos;t Change&quot; to leave the drive at its own speed. Not all drives support this.</source>
+        <translation>Задає швидкість дисковода комп&apos;ютера під час використання фізичних дисків. Вища швидкість може зменшити підгальмовування, але збільшує шум дисковода. Виберіть «Не змінювати», щоб дисковод працював на власній швидкості. Не всі дисководи це підтримують.</translation>
+    </message>
+    <message>
+        <source>Ignores the subchannel provided by the drive when using physical discs, instead always generating subchannel data. Won&apos;t work with libcrypt games, but can improve read reliability on some drives.</source>
+        <translation>Під час використання фізичних дисків ігнорує підканал, наданий дисководом, і завжди створює дані підканалу. Не працює з іграми LibCrypt, але може підвищити надійність читання на деяких дисководах.</translation>
     </message>
     <message>
         <source>Forces all server calls to fail, useful for testing offline mode.</source>
@@ -2218,6 +2230,16 @@ Current Binding: %s</source>
         <translation>Перевірка безпеки не пройдена</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <comment>settings_track_unpromoted_achievements</comment>
+        <translation>Відстежувати неофіційні досягнення</translation>
+    </message>
+    <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <comment>settings_summary_track_unpromoted_achievements</comment>
+        <translation>Якщо ввімкнено, DuckStation відстежуватиме неофіційні досягнення. Розблокування зберігатимуться локально й не надсилатимуться до RetroAchievements.</translation>
+    </message>
+    <message>
         <source>Not Logged In.</source>
         <comment>settings_achievements_not_logged_in</comment>
         <translation>Не авторизовано.</translation>
@@ -2332,16 +2354,6 @@ Current Binding: %s</source>
             <numerusform>Ви розблокували всі досягнення в цьому наборі й отримали %1$d балів!</numerusform>
         </translation>
     </message>
-    <message numerus="yes">
-        <source>You have unlocked %1$d of %2$d unofficial achievements, earning %3$d of %4$d possible points.</source>
-        <comment>achievement_unofficial_summary_format_string</comment>
-        <extracomment>Android plural quantities: one=&quot;You have unlocked %1$d of %2$d unofficial achievement, earning %3$d of %4$d possible points.&quot;; other=&quot;You have unlocked %1$d of %2$d unofficial achievements, earning %3$d of %4$d possible points.&quot;</extracomment>
-        <translation>
-            <numerusform>Ви розблокували %1$d із %2$d неофіційних досягнень, отримавши %3$d із %4$d можливих балів.</numerusform>
-            <numerusform>Ви розблокували %1$d із %2$d неофіційних досягнень, отримавши %3$d із %4$d можливих балів.</numerusform>
-            <numerusform>Ви розблокували %1$d із %2$d неофіційних досягнень, отримавши %3$d із %4$d можливих балів.</numerusform>
-        </translation>
-    </message>
     <message>
         <source>Game was beaten on %1$s, and completed on %2$s.</source>
         <comment>achievement_game_beaten_completed_format_string</comment>
@@ -2403,11 +2415,6 @@ Current Binding: %s</source>
         <translation>Умова перемоги</translation>
     </message>
     <message>
-        <source>Unofficial</source>
-        <comment>achievement_unofficial</comment>
-        <translation>Неофіційний</translation>
-    </message>
-    <message>
         <source>Open on RetroAchievements</source>
         <comment>achievement_open_on_retroachievements</comment>
         <translation>Відкрити на RetroAchievements</translation>
@@ -2426,21 +2433,6 @@ Current Binding: %s</source>
         <source>Reset Unlock</source>
         <comment>achievement_reset_unlock</comment>
         <translation>Скинути розблокування</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement</source>
-        <comment>achievement_reset_unofficial_title</comment>
-        <translation>Скинути неофіційне досягнення</translation>
-    </message>
-    <message>
-        <source>The unlock state for &apos;%1$s&apos; will be removed. This cannot be undone.</source>
-        <comment>achievement_reset_unofficial_message</comment>
-        <translation>Стан розблокування «%1$s» буде видалено. Цю дію неможливо скасувати.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlock reset.</source>
-        <comment>achievement_unofficial_unlock_reset</comment>
-        <translation>Розблокування неофіційного досягнення скинуто.</translation>
     </message>
     <message>
         <source>Pinned to OSD</source>
@@ -2833,59 +2825,9 @@ Current Binding: %s</source>
         <translation>Тригер не задано</translation>
     </message>
     <message>
-        <source>No buttons set</source>
-        <comment>edit_macro_buttons_no_bindings</comment>
-        <translation>Кнопки не задано</translation>
-    </message>
-    <message>
-        <source>Macro will not repeat.</source>
-        <comment>edit_macro_button_no_repeat</comment>
-        <translation>Макрос не повторюватиметься.</translation>
-    </message>
-    <message numerus="yes">
-        <source>Macro will toggle every %d frames.</source>
-        <comment>edit_macro_button_repeat</comment>
-        <extracomment>Android plural quantities: one=&quot;Macro will toggle every %d frame.&quot;; other=&quot;Macro will toggle every %d frames.&quot;</extracomment>
-        <translation>
-            <numerusform>Макрос перемикатиметься кожен %d кадр.</numerusform>
-            <numerusform>Макрос перемикатиметься кожні %d кадри.</numerusform>
-            <numerusform>Макрос перемикатиметься кожні %d кадрів.</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>Choose Bindings</source>
-        <comment>edit_macro_button_choose_bindings</comment>
-        <translation>Вибрати прив&apos;язки</translation>
-    </message>
-    <message>
-        <source>%1$s triggers %2$s</source>
-        <comment>edit_macro_button_summary_no_repeat</comment>
-        <translation>%1$s активує %2$s</translation>
-    </message>
-    <message numerus="yes">
-        <source>%1$s triggers %2$s every %3$d frames.</source>
-        <comment>edit_macro_button_summary_repeat</comment>
-        <extracomment>Android plural quantities: one=&quot;%1$s triggers %2$s every %3$d frame.&quot;; other=&quot;%1$s triggers %2$s every %3$d frames.&quot;</extracomment>
-        <translation>
-            <numerusform>%1$s активує %2$s кожен %3$d кадр.</numerusform>
-            <numerusform>%1$s активує %2$s кожні %3$d кадри.</numerusform>
-            <numerusform>%1$s активує %2$s кожні %3$d кадрів.</numerusform>
-        </translation>
-    </message>
-    <message>
         <source>Trigger</source>
         <comment>edit_macro_button_trigger</comment>
         <translation>Тригер</translation>
-    </message>
-    <message>
-        <source>Buttons</source>
-        <comment>edit_macro_button_buttons</comment>
-        <translation>Кнопки</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <comment>edit_macro_button_frequency</comment>
-        <translation>Частота</translation>
     </message>
     <message>
         <source>Macro %d</source>
@@ -3352,6 +3294,11 @@ Current Binding: %s</source>
         <translation>Вимкнути всі</translation>
     </message>
     <message>
+        <source>Unavailable while RetroAchievements hardcore mode is active.</source>
+        <comment>patch_codes_hardcore_restricted</comment>
+        <translation>Недоступно, коли активний хардкорний режим RetroAchievements.</translation>
+    </message>
+    <message>
         <source>Add</source>
         <comment>cheat_codes_add</comment>
         <translation>Додати</translation>
@@ -3430,6 +3377,51 @@ Current Binding: %s</source>
         <source>Global Setting</source>
         <comment>preference_reset_global_value</comment>
         <translation>Глобальне налаштування</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM.</source>
+        <comment>settings_summary_ram_size</comment>
+        <translation>Змінює обсяг RAM, встановленої в емульованій консолі. Комерційні ігри не використовують додаткову RAM.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <comment>settings_vram_size</comment>
+        <translation>Встановлена VRAM</translation>
+    </message>
+    <message>
+        <source>Changes the amount of VRAM installed in the emulated console. Retail games do not use extra VRAM.</source>
+        <comment>settings_summary_vram_size</comment>
+        <translation>Змінює обсяг VRAM, встановленої в емульованій консолі. Комерційні ігри не використовують додаткову VRAM.</translation>
+    </message>
+    <message>
+        <source>Fast Forward While Loading</source>
+        <comment>settings_fast_forward_loading</comment>
+        <translation>Прискорення під час завантаження</translation>
+    </message>
+    <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <comment>settings_summary_fast_forward_loading</comment>
+        <translation>Прискорює гру, коли вона припиняє оновлювати екран під час читання з диска. Не діє на анімовані екрани завантаження.</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <comment>settings_idle_timeout_scale</comment>
+        <translation>Масштабувати тайм-аут бездіяльності</translation>
+    </message>
+    <message>
+        <source>Stops games from timing out while waiting for vertical blank when overclocking.</source>
+        <comment>settings_summary_idle_timeout_scale</comment>
+        <translation>Запобігає тайм-ауту ігор під час очікування вертикального гасіння при розгоні.</translation>
+    </message>
+    <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <comment>settings_idle_fast_forward</comment>
+        <translation>Увімкнути прискорення циклу бездіяльності рекомпілятора</translation>
+    </message>
+    <message>
+        <source>Skips over the busy loop that games use to wait for vertical blank.</source>
+        <comment>settings_summary_idle_fast_forward</comment>
+        <translation>Пропускає цикл активного очікування, який ігри використовують для очікування вертикального гасіння.</translation>
     </message>
     <message>
         <source>Uses PGXP for all instructions, not just memory operations. Automatic uses the game database setting.</source>
@@ -3540,6 +3532,11 @@ Current Binding: %s</source>
         <source>Pinky Pals</source>
         <comment>settings_theme_entries[10]</comment>
         <translation>Пінк Палс</translation>
+    </message>
+    <message>
+        <source>Midnight Amber</source>
+        <comment>settings_theme_entries[11]</comment>
+        <translation>Midnight Amber</translation>
     </message>
     <message>
         <source>None (Double Speed)</source>
@@ -4467,16 +4464,6 @@ Current Binding: %s</source>
         <translation>Завантажує всі значки заблокованих досягнень під час запуску гри, зменшуючи затримку відображення зображень розблокованих досягнень.</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <comment>settings_unofficial_test_mode</comment>
-        <translation>Відстежувати неофіційні досягнення</translation>
-    </message>
-    <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <comment>settings_summary_unofficial_test_mode</comment>
-        <translation>Якщо ввімкнено, DuckStation відстежуватиме неофіційні досягнення. Розблокування зберігатимуться локально й не надсилатимуться до RetroAchievements.</translation>
-    </message>
-    <message>
         <source>Test RetroAchievements Offline Mode</source>
         <comment>settings_test_offline_mode</comment>
         <translation>Перевірити автономний режим RetroAchievements</translation>
@@ -4502,6 +4489,16 @@ Current Binding: %s</source>
         <translation>Вхід виконано: %s</translation>
     </message>
     <message numerus="yes">
+        <source>You have unlocked %1$d of %2$d unpromoted achievements, earning %3$d of %4$d possible points.</source>
+        <comment>achievement_unpromoted_summary_format_string</comment>
+        <extracomment>Android plural quantities: one=&quot;You have unlocked %1$d of %2$d unpromoted achievement, earning %3$d of %4$d possible points.&quot;; other=&quot;You have unlocked %1$d of %2$d unpromoted achievements, earning %3$d of %4$d possible points.&quot;</extracomment>
+        <translation>
+            <numerusform>Ви розблокували %1$d із %2$d неофіційних досягнень і здобули %3$d із %4$d можливих балів.</numerusform>
+            <numerusform>Ви розблокували %1$d із %2$d неофіційних досягнень і здобули %3$d із %4$d можливих балів.</numerusform>
+            <numerusform>Ви розблокували %1$d із %2$d неофіційних досягнень і здобули %3$d із %4$d можливих балів.</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
         <source>%1$d achievements are not supported by DuckStation and cannot be unlocked.</source>
         <comment>achievement_unsupported_count_format_string</comment>
         <extracomment>Android plural quantities: one=&quot;%1$d achievement is not supported by DuckStation and cannot be unlocked.&quot;; other=&quot;%1$d achievements are not supported by DuckStation and cannot be unlocked.&quot;</extracomment>
@@ -4510,6 +4507,26 @@ Current Binding: %s</source>
             <numerusform>%1$d досягнення не підтримуються DuckStation і не можуть бути розблоковані.</numerusform>
             <numerusform>%1$d досягнень не підтримуються DuckStation і не можуть бути розблоковані.</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Unpromoted</source>
+        <comment>achievement_unpromoted</comment>
+        <translation>Неофіційне</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement</source>
+        <comment>achievement_reset_unpromoted_title</comment>
+        <translation>Скинути розблокування неофіційного досягнення</translation>
+    </message>
+    <message>
+        <source>The unlock state for &apos;%1$s&apos; will be removed. This cannot be undone.</source>
+        <comment>achievement_reset_unpromoted_message</comment>
+        <translation>Стан розблокування «%1$s» буде видалено. Цю дію не можна скасувати.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlock reset.</source>
+        <comment>achievement_unpromoted_unlock_reset</comment>
+        <translation>Розблокування неофіційного досягнення скинуто.</translation>
     </message>
     <message>
         <source>DuckStation uses RetroAchievements (retroachievements.org) as an achievement database and for tracking progress. A RetroAchievements account is not required to use DuckStation.</source>
@@ -4760,6 +4777,186 @@ Current Binding: %s</source>
         <source>%1$s×</source>
         <comment>settings_value_scale</comment>
         <translation>%1$s×</translation>
+    </message>
+    <message>
+        <source>%1$s triggers %2$s</source>
+        <comment>edit_macro_button_summary</comment>
+        <translation>%1$s запускає %2$s</translation>
+    </message>
+    <message>
+        <source>%1$s triggers %2$s, looping</source>
+        <comment>edit_macro_button_summary_loop</comment>
+        <translation>%1$s запускає %2$s циклічно</translation>
+    </message>
+    <message>
+        <source>Loop While Active</source>
+        <comment>edit_macro_loop</comment>
+        <translation>Повторювати, поки макрос активний</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once per press.</source>
+        <comment>edit_macro_loop_summary</comment>
+        <translation>Повторює послідовність, поки макрос активний, замість одноразового відтворення за кожного натискання.</translation>
+    </message>
+    <message>
+        <source>Press To Toggle</source>
+        <comment>edit_macro_toggle</comment>
+        <translation>Натисніть, щоб увімкнути або вимкнути</translation>
+    </message>
+    <message>
+        <source>The trigger turns the looping sequence on and off, instead of having to be held.</source>
+        <comment>edit_macro_toggle_summary</comment>
+        <translation>Тригер вмикає та вимикає повторення послідовності без потреби його утримувати.</translation>
+    </message>
+    <message>
+        <source>Trigger Deadzone</source>
+        <comment>edit_macro_deadzone</comment>
+        <translation>Мертва зона тригера</translation>
+    </message>
+    <message>
+        <source>How far an analog trigger must be pressed before the macro activates.</source>
+        <comment>edit_macro_deadzone_summary</comment>
+        <translation>Визначає, наскільки потрібно натиснути аналоговий курок, щоб активувати макрос.</translation>
+    </message>
+    <message>
+        <source>Sequence</source>
+        <comment>edit_macro_sequence</comment>
+        <translation>Послідовність</translation>
+    </message>
+    <message>
+        <source>The sequence is empty. Add inputs and waits, use Quick Setup, or record it from a controller.</source>
+        <comment>edit_macro_sequence_empty</comment>
+        <translation>Послідовність порожня. Додайте введення й паузи, скористайтеся швидким налаштуванням або запишіть послідовність із контролера.</translation>
+    </message>
+    <message>
+        <source>Add Input</source>
+        <comment>edit_macro_add_input</comment>
+        <translation>Додати введення</translation>
+    </message>
+    <message>
+        <source>Adds a button or axis press to the end of the sequence.</source>
+        <comment>edit_macro_add_input_summary</comment>
+        <translation>Додає натискання кнопки або рух осі в кінець послідовності.</translation>
+    </message>
+    <message>
+        <source>Add Wait</source>
+        <comment>edit_macro_add_wait</comment>
+        <translation>Додати паузу</translation>
+    </message>
+    <message>
+        <source>Adds a delay to the end of the sequence.</source>
+        <comment>edit_macro_add_wait_summary</comment>
+        <translation>Додає затримку в кінець послідовності.</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <comment>edit_macro_quick_setup</comment>
+        <translation>Швидке налаштування</translation>
+    </message>
+    <message>
+        <source>Replaces the sequence with one input that is held, or toggled on and off as a turbo button.</source>
+        <comment>edit_macro_quick_setup_summary</comment>
+        <translation>Замінює послідовність одним введенням, яке утримується або поперемінно вмикається й вимикається як турбокнопка.</translation>
+    </message>
+    <message>
+        <source>Turbo Interval for %1$s</source>
+        <comment>edit_macro_quick_setup_interval_title</comment>
+        <translation>Інтервал турбо для %1$s</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <comment>edit_macro_hold</comment>
+        <translation>Утримувати</translation>
+    </message>
+    <message numerus="yes">
+        <source>Toggle every %d frames</source>
+        <comment>edit_macro_toggle_every_frames</comment>
+        <extracomment>Android plural quantities: one=&quot;Toggle every %d frame&quot;; other=&quot;Toggle every %d frames&quot;</extracomment>
+        <translation>
+            <numerusform>Перемикати з інтервалом в %d кадр</numerusform>
+            <numerusform>Перемикати кожні %d кадри</numerusform>
+            <numerusform>Перемикати кожні %d кадрів</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Clear Sequence</source>
+        <comment>edit_macro_clear_sequence</comment>
+        <translation>Очистити послідовність</translation>
+    </message>
+    <message>
+        <source>Removes every action from the sequence.</source>
+        <comment>edit_macro_clear_sequence_summary</comment>
+        <translation>Вилучає всі дії з послідовності.</translation>
+    </message>
+    <message>
+        <source>Remove every action from this macro&apos;s sequence?</source>
+        <comment>edit_macro_clear_sequence_confirm</comment>
+        <translation>Вилучити всі дії з послідовності цього макросу?</translation>
+    </message>
+    <message>
+        <source>Select Input</source>
+        <comment>edit_macro_select_input</comment>
+        <translation>Вибрати введення</translation>
+    </message>
+    <message>
+        <source>Wait</source>
+        <comment>edit_macro_wait</comment>
+        <translation>Чекати</translation>
+    </message>
+    <message numerus="yes">
+        <source>%d frames</source>
+        <comment>edit_macro_wait_frames</comment>
+        <extracomment>Android plural quantities: one=&quot;%d frame&quot;; other=&quot;%d frames&quot;</extracomment>
+        <translation>
+            <numerusform>%d кадр</numerusform>
+            <numerusform>%d кадри</numerusform>
+            <numerusform>%d кадрів</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Wait Duration</source>
+        <comment>edit_macro_wait_title</comment>
+        <translation>Тривалість паузи</translation>
+    </message>
+    <message>
+        <source>%1$s Value</source>
+        <comment>edit_macro_value_title</comment>
+        <translation>Значення для %1$s</translation>
+    </message>
+    <message>
+        <source>Action options</source>
+        <comment>edit_macro_action_options</comment>
+        <translation>Параметри дії</translation>
+    </message>
+    <message>
+        <source>Change Input</source>
+        <comment>edit_macro_change_input</comment>
+        <translation>Змінити введення</translation>
+    </message>
+    <message>
+        <source>Insert Input After</source>
+        <comment>edit_macro_insert_input_after</comment>
+        <translation>Вставити введення після поточної дії</translation>
+    </message>
+    <message>
+        <source>Insert Wait After</source>
+        <comment>edit_macro_insert_wait_after</comment>
+        <translation>Вставити паузу після поточної дії</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <comment>edit_macro_record</comment>
+        <translation>Записати</translation>
+    </message>
+    <message>
+        <source>Stop Recording</source>
+        <comment>edit_macro_stop_recording</comment>
+        <translation>Зупинити запис</translation>
+    </message>
+    <message>
+        <source>Recording. Press the inputs of the sequence on a controller or keyboard, then tap Stop. Touchscreen input is not recorded.</source>
+        <comment>edit_macro_recording_message</comment>
+        <translation>Триває запис. Введіть послідовність із контролера або клавіатури й торкніться «Зупинити запис». Введення із сенсорного екрана не записується.</translation>
     </message>
     <message>
         <source>Enable Game Vibration</source>
@@ -5206,6 +5403,16 @@ You can change this later with the &quot;Start in Big Picture Mode&quot; option 
         <translation>Увімкнути налагодження, якщо воно підтримується API-інтерфейсом рендерера хоста. Лише для використання розробниками.</translation>
     </message>
     <message>
+        <source>Use GPU-Based Validation</source>
+        <comment>settings_use_gpu_based_validation</comment>
+        <translation>Використовувати перевірку на GPU</translation>
+    </message>
+    <message>
+        <source>Enable GPU-based validation when supported by the host&apos;s renderer API. Only for developer use.</source>
+        <comment>settings_summary_use_gpu_based_validation</comment>
+        <translation>Вмикає перевірку на GPU, якщо її підтримує API засобу візуалізації комп&apos;ютера. Лише для розробників.</translation>
+    </message>
+    <message>
         <source>Prefer OpenGL ES Context</source>
         <comment>settings_prefer_gles_context</comment>
         <translation>Віддавати перевагу контексту OpenGL ES</translation>
@@ -5422,7 +5629,7 @@ You can change this later with the &quot;Start in Big Picture Mode&quot; option 
     </message>
     <message>
         <source>Move Up</source>
-        <comment>postfx_setting_move_up</comment>
+        <comment>list_item_move_up</comment>
         <translation>Перемістити вгору</translation>
     </message>
     <message>
@@ -5442,12 +5649,12 @@ You can change this later with the &quot;Start in Big Picture Mode&quot; option 
     </message>
     <message>
         <source>Remove</source>
-        <comment>postfx_setting_remove_shader</comment>
-        <translation>Видалити</translation>
+        <comment>list_item_remove</comment>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <comment>postfx_setting_move_down</comment>
+        <comment>list_item_move_down</comment>
         <translation>Перемістити вниз</translation>
     </message>
     <message>
@@ -5630,11 +5837,6 @@ Are you sure you want to continue?</source>
         <source>Author: %1$s</source>
         <comment>patch_codes_author</comment>
         <translation>Автор: %1$s</translation>
-    </message>
-    <message>
-        <source>Unavailable while RetroAchievements hardcode mode is active.</source>
-        <comment>patch_codes_hardcore_restricted</comment>
-        <translation>Недоступно, поки активний режим «Хардкор» RetroAchievements.</translation>
     </message>
     <message>
         <source>Search codes</source>
@@ -6015,6 +6217,26 @@ Are you sure you want to continue?</source>
         <source>Steering</source>
         <comment>touchscreen_controller_steering</comment>
         <translation>Кермування</translation>
+    </message>
+    <message>
+        <source>Macro 5</source>
+        <comment>touchscreen_controller_macro_5</comment>
+        <translation>Макрос 5</translation>
+    </message>
+    <message>
+        <source>Macro 6</source>
+        <comment>touchscreen_controller_macro_6</comment>
+        <translation>Макрос 6</translation>
+    </message>
+    <message>
+        <source>Macro 7</source>
+        <comment>touchscreen_controller_macro_7</comment>
+        <translation>Макрос 7</translation>
+    </message>
+    <message>
+        <source>Macro 8</source>
+        <comment>touchscreen_controller_macro_8</comment>
+        <translation>Макрос 8</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -6630,34 +6852,9 @@ ${serial}: Серійний номер гри.</translation>
         <translation>Визначає відсоток від штатної тактової частоти, на якій працюватиме емульоване обладнання.</translation>
     </message>
     <message>
-        <source>Enable 8MB RAM</source>
-        <comment>settings_enable_8mb_ram</comment>
-        <translation>Увімкнути 8 МБ ОЗП</translation>
-    </message>
-    <message>
-        <source>Enables an additional 6MB of RAM to obtain a total of 2+6 = 8MB, usually present on dev consoles.</source>
-        <comment>settings_summary_enable_8mb_ram</comment>
-        <translation>Вмикає додаткові 6 МБ ОЗП, щоб отримати загалом 2+6 = 8 МБ, як зазвичай на консолях для розробників.</translation>
-    </message>
-    <message>
         <source>Installed RAM</source>
         <comment>settings_ram_size</comment>
         <translation>Установлена ОЗП</translation>
-    </message>
-    <message>
-        <source>Expanded RAM may break games, so use it only with compatible mods.</source>
-        <comment>settings_summary_ram_size</comment>
-        <translation>Розширена ОЗП може порушити роботу ігор, тому використовуйте її лише із сумісними модифікаціями.</translation>
-    </message>
-    <message>
-        <source>Force Full RAM Mapping</source>
-        <comment>settings_force_full_ram_mapping</comment>
-        <translation>Примусово відображати всю ОЗП</translation>
-    </message>
-    <message>
-        <source>Maps all installed RAM regardless of the BIOS or game configuration.</source>
-        <comment>settings_summary_force_full_ram_mapping</comment>
-        <translation>Відображає всю встановлену ОЗП незалежно від конфігурації BIOS або гри.</translation>
     </message>
     <message>
         <source>Preload Images to RAM</source>
@@ -8649,16 +8846,12 @@ DuckStation можна оновити вручну, повторно заван�
         <translation>Оновити список</translation>
     </message>
     <message>
+        <source>More Options</source>
+        <translation>Інші параметри</translation>
+    </message>
+    <message>
         <source>Browse...</source>
         <translation>Оглянути...</translation>
-    </message>
-    <message>
-        <source>Open...</source>
-        <translation>Відкрити...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Скинути</translation>
     </message>
     <message>
         <source>Parallel Port</source>
@@ -8936,12 +9129,8 @@ Your dump may be corrupted, or the physical disc is scratched.</source>
         <translation>Оглянути...</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Відкрити...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Скинути</translation>
+        <source>More Options</source>
+        <translation>Інші параметри</translation>
     </message>
     <message>
         <source>Media Capture</source>
@@ -9319,12 +9508,24 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
         <translation>Регіон:</translation>
     </message>
     <message>
+        <source>Installed VRAM:</source>
+        <translation>Встановлена VRAM:</translation>
+    </message>
+    <message>
+        <source>Fast Forward While Loading</source>
+        <translation>Прискорення під час завантаження</translation>
+    </message>
+    <message>
         <source>Enable Clock Speed Control (Overclocking/Underclocking)</source>
         <translation>Увімкнути керування тактовою частотою (розгін/зниження частоти)</translation>
     </message>
     <message>
         <source>Enable Recompiler ICache</source>
         <translation>Увімкнути ICache перекомпілятора</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <translation>Масштабувати тайм-аут бездіяльності</translation>
     </message>
     <message>
         <source>CD-ROM Emulation</source>
@@ -9355,22 +9556,6 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
         <translation>6x (12-кратна швидкість)</translation>
     </message>
     <message>
-        <source>Physical Drive Speed:</source>
-        <translation>Швидкість фізичного приводу:</translation>
-    </message>
-    <message>
-        <source>Don&apos;t Change</source>
-        <translation>Не змінювати</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source>Ignore Physical Drive Subcode</source>
-        <translation>Ігнорувати субкод фізичного приводу</translation>
-    </message>
-    <message>
         <source>Apply Image Patches</source>
         <translation>Застосувати патчі до образів</translation>
     </message>
@@ -9385,10 +9570,6 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
     <message>
         <source>Installed RAM:</source>
         <translation>Встановлена ОЗП:</translation>
-    </message>
-    <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Примусове відображення всієї ОЗП</translation>
     </message>
     <message>
         <source>100% (33.87MHz)</source>
@@ -9487,16 +9668,12 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
         <translation>Прискорює доступ до картки пам’яті як під час завантаження, так і під час збереження. Це може скоротити час очікування в іграх, які часто звертаються до карт пам’яті.</translation>
     </message>
     <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <translation>Прискорює гру, коли вона припиняє оновлювати екран під час читання з диска. Не діє на анімовані екрани завантаження.</translation>
+    </message>
+    <message>
         <source>Installed RAM</source>
         <translation>Встановлена ОЗП</translation>
-    </message>
-    <message>
-        <source>Changes the amount of RAM installed in the emulated console. Games have to use a larger heap size for expanded RAM to be usable. Titles which rely on memory mirrors may break, so it should only be used with compatible mods.</source>
-        <translation>Змінює обсяг ОЗП, встановленої в емульованій консолі. Щоб використовувати розширену ОЗП, ігри мають використовувати більший розмір купи. Ігри, які покладаються на дзеркальні області пам’яті, можуть працювати неправильно, тому цю можливість слід використовувати лише із сумісними модифікаціями.</translation>
-    </message>
-    <message>
-        <source>Maps all installed RAM, regardless of the size configured by the BIOS or game. Retail BIOSes only map 8MB, so this is needed for 16MB to be usable without a patched BIOS. Only has an effect when expanded RAM is installed.</source>
-        <translation>Відображає всю встановлену ОЗП в адресний простір незалежно від обсягу, налаштованого BIOS або грою. BIOS серійних консолей відображають лише 8 МБ, тому ця опція потрібна для використання 16 МБ без модифікованого BIOS. Діє лише за наявності розширеної ОЗП.</translation>
     </message>
     <message>
         <source>Execution Mode</source>
@@ -9527,6 +9704,14 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
         <translation>Імітує затримки (stalls) у перекомпіляторах, які виникають, коли емульований процесор має завантажувати інструкції у свій кеш. Дозволяє запускати ігри з частотою кадрів, наближеною до оригінальної консольної, ціною невеликого зниження продуктивності. Режим інтерпретатора завжди імітує кеш інструкцій.</translation>
     </message>
     <message>
+        <source>Checked</source>
+        <translation>Позначено</translation>
+    </message>
+    <message>
+        <source>Games give up waiting for vertical blank after a fixed number of loop iterations, which pass faster when overclocking. Scales this timeout to keep games synchronized to vertical blank.</source>
+        <translation>Ігри припиняють чекати на вертикальне гасіння після фіксованої кількості ітерацій циклу, які під час розгону минають швидше. Масштабує цей тайм-аут, щоб синхронізувати ігри з вертикальним гасінням.</translation>
+    </message>
+    <message>
         <source>CD-ROM Read Speedup</source>
         <translation>Прискорення читання CD-ROM</translation>
     </message>
@@ -9549,22 +9734,6 @@ Trying to use this cheat will not work as expected. Do you want to continue?</so
     <message>
         <source>Automatically switches to the next disc in the game when the game stops the CD-ROM motor. No switch will occur if the last disc in the game is already selected. &lt;strong&gt;Does not work for all games.&lt;/strong&gt;</source>
         <translation>Автоматично перемикає на наступний диск, коли гра зупиняє двигун приводу CD-ROM. Перемикання не відбудеться, якщо вже вибрано останній диск гри. &lt;strong&gt;Працює не з усіма іграми.&lt;/strong&gt;</translation>
-    </message>
-    <message>
-        <source>Physical Drive Speed</source>
-        <translation>Швидкість фізичного приводу</translation>
-    </message>
-    <message>
-        <source>8x</source>
-        <translation>8x</translation>
-    </message>
-    <message>
-        <source>Sets the speed of the host drive when using physical discs. Higher speeds can reduce stutter, but make the drive louder. Set to &quot;Don&apos;t Change&quot; to leave the drive at its own speed. Not all drives support this.</source>
-        <translation>Установлює швидкість приводу комп’ютера під час використання фізичних дисків. Вища швидкість може зменшити пригальмовування, але збільшує шум приводу. Виберіть «Не змінювати», щоб залишити швидкість приводу без змін. Не всі приводи підтримують цю функцію.</translation>
-    </message>
-    <message>
-        <source>Ignores the subchannel provided by the drive when using physical discs, instead always generating subchannel data. Won&apos;t work with libcrypt games, but can improve read reliability on some drives.</source>
-        <translation>Ігнорує субкод, що надається приводом під час використання фізичних дисків, натомість завжди генеруючи дані субкоду. Опція не працюватиме з іграми із захистом LibCrypt, але може підвищити надійність читання на деяких приводах.</translation>
     </message>
     <message>
         <source>Enabling CPU overclocking will break games, cause bugs, reduce performance and can significantly increase system requirements.
@@ -9593,6 +9762,18 @@ This warning will only be shown once.</source>
     <message>
         <source>Frame Rate</source>
         <translation>Частота кадрів</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM. Forced maps all installed RAM regardless of game configuration, needed for 16MB with retail BIOSes.</source>
+        <translation>Змінює обсяг RAM, встановленої в емульованій консолі. Комерційні ігри не використовують додаткову RAM. Примусовий режим надає грі доступ до всієї встановленої RAM незалежно від її конфігурації; він потрібен для 16 МБ зі стандартним BIOS консолей.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <translation>Встановлена VRAM</translation>
+    </message>
+    <message>
+        <source>Changes the amount of VRAM installed in the emulated console. Retail games do not use extra VRAM. Forced makes the second VRAM bank accessible regardless of the game enabling it or not.</source>
+        <translation>Змінює обсяг VRAM, встановленої в емульованій консолі. Комерційні ігри не використовують додаткову VRAM. Примусовий режим відкриває доступ до другого банку VRAM незалежно від того, чи ввімкнула його гра.</translation>
     </message>
     <message>
         <source>%1% (%2MHz)</source>
@@ -9884,6 +10065,89 @@ This warning will only be shown once.</source>
     </message>
 </context>
 <context>
+    <name>ControllerBindingWidget_DDGo</name>
+    <message>
+        <source>Power Lever</source>
+        <translation>Руків’я тяги</translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation>Тяга</translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation>Вимкнено</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation>4</translation>
+    </message>
+    <message>
+        <source>5</source>
+        <translation>5</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Вибір</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Старт</translation>
+    </message>
+    <message>
+        <source>Brake Lever</source>
+        <translation>Руків’я гальма</translation>
+    </message>
+    <message>
+        <source>Brake</source>
+        <translation>Гальмо</translation>
+    </message>
+    <message>
+        <source>Released</source>
+        <translation>Відпущено</translation>
+    </message>
+    <message>
+        <source>6</source>
+        <translation>6</translation>
+    </message>
+    <message>
+        <source>7</source>
+        <translation>7</translation>
+    </message>
+    <message>
+        <source>8</source>
+        <translation>8</translation>
+    </message>
+    <message>
+        <source>Emergency</source>
+        <translation>Екстрене гальмування</translation>
+    </message>
+    <message>
+        <source>A</source>
+        <translation>A</translation>
+    </message>
+    <message>
+        <source>B</source>
+        <translation>B</translation>
+    </message>
+    <message>
+        <source>C</source>
+        <translation>C</translation>
+    </message>
+</context>
+<context>
     <name>ControllerBindingWidget_DigitalController</name>
     <message>
         <source>L1</source>
@@ -10008,6 +10272,93 @@ This warning will only be shown once.</source>
     <message>
         <source>Fire</source>
         <translation>Вогонь</translation>
+    </message>
+</context>
+<context>
+    <name>ControllerBindingWidget_JogCon</name>
+    <message>
+        <source>D-Pad</source>
+        <translation>Хрестовина</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation>Вниз</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation>Ліворуч</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation>Вгору</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation>Праворуч</translation>
+    </message>
+    <message>
+        <source>Vibration Motor</source>
+        <translation>Вібромотор</translation>
+    </message>
+    <message>
+        <source>L2</source>
+        <translation>L2</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Вибір</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Старт</translation>
+    </message>
+    <message>
+        <source>R2</source>
+        <translation>R2</translation>
+    </message>
+    <message>
+        <source>L1</source>
+        <translation>L1</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>Режим</translation>
+    </message>
+    <message>
+        <source>Mode LED</source>
+        <translation>Індикатор режиму</translation>
+    </message>
+    <message>
+        <source>R1</source>
+        <translation>R1</translation>
+    </message>
+    <message>
+        <source>Face Buttons</source>
+        <translation>Кнопки дій</translation>
+    </message>
+    <message>
+        <source>Cross</source>
+        <translation>Хрестик</translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation>Квадрат</translation>
+    </message>
+    <message>
+        <source>Triangle</source>
+        <translation>Трикутник</translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation>Коло</translation>
+    </message>
+    <message>
+        <source>Force Feedback Device</source>
+        <translation>Пристрій із силовим зворотним зв’язком</translation>
+    </message>
+    <message>
+        <source>Steering</source>
+        <translation>Кермування</translation>
     </message>
 </context>
 <context>
@@ -10221,6 +10572,45 @@ This warning will only be shown once.</source>
     <message>
         <source>Small Motor</source>
         <translation>Малий вібромотор</translation>
+    </message>
+</context>
+<context>
+    <name>ControllerBindingWidget_Popn</name>
+    <message>
+        <source>Left Buttons</source>
+        <translation>Ліві кнопки</translation>
+    </message>
+    <message>
+        <source>Yellow</source>
+        <translation>Жовта</translation>
+    </message>
+    <message>
+        <source>Blue/Sel</source>
+        <translation>Синя/Вибір</translation>
+    </message>
+    <message>
+        <source>White</source>
+        <translation>Біла</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Зелена</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Вибір</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Старт</translation>
+    </message>
+    <message>
+        <source>Right Buttons</source>
+        <translation>Праві кнопки</translation>
+    </message>
+    <message>
+        <source>Middle Red/Okay</source>
+        <translation>Червона посередині/ОК</translation>
     </message>
 </context>
 <context>
@@ -10438,48 +10828,84 @@ The &quot;alternate&quot; color is used when analog mode is active.</source>
 <context>
     <name>ControllerMacroEditWidget</name>
     <message>
-        <source>Binds/Buttons</source>
-        <translation>Прив’язки/кнопки</translation>
+        <source>The trigger activates the macro, and can be a single button or combination of buttons. Shift-click for multiple triggers.</source>
+        <translation>Тригер активує макрос. Це може бути одна кнопка або комбінація кнопок. Щоб призначити кілька тригерів, клацніть, утримуючи Shift.</translation>
     </message>
     <message>
-        <source>Select the buttons which you want to trigger with this macro. All buttons are activated concurrently.</source>
-        <translation>Виберіть кнопки, які потрібно викликати за допомогою цього макросу. Усі кнопки активуються одночасно.</translation>
-    </message>
-    <message>
-        <source>Pressure</source>
-        <translation>Сила натискання</translation>
-    </message>
-    <message>
-        <source>For buttons which are pressure sensitive, this slider controls how much force will be simulated when the macro is active.</source>
-        <translation>Для кнопок, чутливих до сили натискання, цей повзунок регулює, який ступінь зусилля буде імітуватися, коли макрос активний.</translation>
+        <source>Activation Deadzone:</source>
+        <translation>Мертва зона активації:</translation>
     </message>
     <message>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
+        <source>Sequence</source>
+        <translation>Послідовність</translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation>Дія</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>Значення</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>Записати</translation>
+    </message>
+    <message>
+        <source>Replaces the sequence with one which holds a button, or toggles it on and off every N frames (turbo).</source>
+        <translation>Замінює послідовність на таку, яка утримує кнопку або поперемінно натискає й відпускає її кожні N кадрів (турбо).</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <translation>Швидке налаштування</translation>
+    </message>
+    <message>
+        <source>Add Input</source>
+        <translation>Додати введення</translation>
+    </message>
+    <message>
+        <source>Add Wait</source>
+        <translation>Додати паузу</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Вилучити</translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <translation>Перемістити вгору</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation>Перемістити вниз</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Очистити</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once for each press. The current repeat is always finished.</source>
+        <translation>Повторює послідовність, поки макрос активний, замість одноразового відтворення за кожного натискання. Поточне повторення завжди відтворюється до кінця.</translation>
+    </message>
+    <message>
+        <source>Loop While Active</source>
+        <translation>Повторювати, поки макрос активний</translation>
+    </message>
+    <message>
+        <source>Activates and deactivates the macro when the button is tapped instead of held.</source>
+        <translation>Вмикає та вимикає макрос коротким натисканням кнопки без потреби її утримувати.</translation>
+    </message>
+    <message>
         <source>Trigger</source>
         <translation>Тригер</translation>
     </message>
     <message>
-        <source>Select the trigger to activate this macro. This can be a single button, or combination of buttons (chord). Shift-click for multiple triggers.</source>
-        <translation>Виберіть тригер для активації цього макросу. Це може бути одна кнопка або комбінація кнопок (акорд). Використовуйте Shift+клацання для вибору кількох тригерів.</translation>
-    </message>
-    <message>
         <source>Press To Toggle</source>
         <translation>Натисніть для перемикання</translation>
-    </message>
-    <message>
-        <source>Deadzone:</source>
-        <translation>Мертва зона:</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <translation>Частота</translation>
-    </message>
-    <message>
-        <source>Macro will toggle every N frames.</source>
-        <translation>Макрос перемикатиметься кожні N кадрів.</translation>
     </message>
     <message>
         <source>Controller %1 Macro %2</source>
@@ -10489,28 +10915,56 @@ The &quot;alternate&quot; color is used when analog mode is active.</source>
         <source>Not Configured</source>
         <translation>Не налаштовано</translation>
     </message>
+    <message numerus="yes">
+        <source>%n button(s)</source>
+        <translation>
+            <numerusform>%n кнопка</numerusform>
+            <numerusform>%n кнопки</numerusform>
+            <numerusform>%n кнопок</numerusform>
+        </translation>
+    </message>
     <message>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
     <message>
-        <source>Set Frequency</source>
-        <translation>Встановити частоту</translation>
+        <source>Frames to toggle %1 on and off for, or 0 to hold it:</source>
+        <translation>Кількість кадрів між перемиканнями %1 (0 — утримувати):</translation>
     </message>
     <message>
-        <source>Frequency: </source>
-        <translation>Частота: </translation>
+        <source>Stop</source>
+        <translation>Зупинити</translation>
     </message>
     <message>
-        <source>Macro will not repeat.</source>
-        <translation>Макрос не повторюватиметься.</translation>
+        <source>Wait</source>
+        <translation>Чекати</translation>
     </message>
     <message numerus="yes">
-        <source>Macro will toggle buttons every %n frame(s).</source>
+        <source>%n frame(s)</source>
         <translation>
-            <numerusform>Макрос перемикатиме кнопки кожен %n кадр.</numerusform>
-            <numerusform>Макрос перемикатиме кнопки кожні %n кадри.</numerusform>
-            <numerusform>Макрос перемикатиме кнопки кожні %n кадрів.</numerusform>
+            <numerusform>%n кадр</numerusform>
+            <numerusform>%n кадри</numerusform>
+            <numerusform>%n кадрів</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source> frames</source>
+        <translation> кадр.</translation>
+    </message>
+    <message>
+        <source>%</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <source>Sequence (%1, %2)</source>
+        <translation>Послідовність (%1, %2)</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n action(s)</source>
+        <translation>
+            <numerusform>%n дія</numerusform>
+            <numerusform>%n дії</numerusform>
+            <numerusform>%n дій</numerusform>
         </translation>
     </message>
 </context>
@@ -11572,16 +12026,12 @@ This file can be several gigabytes, so be aware of SSD wear.</source>
         <translation>Увімкнути швидкий доступ до пам&apos;яті перекомпілятора</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <translation>Увімкнути прискорення циклу бездіяльності рекомпілятора</translation>
+    </message>
+    <message>
         <source>CD-ROM Mechacon Version</source>
         <translation>Версія Мехакона дисководу</translation>
-    </message>
-    <message>
-        <source>CD-ROM Readahead Sectors</source>
-        <translation>Випереджальне читання секторів дисководу</translation>
-    </message>
-    <message>
-        <source> sectors</source>
-        <translation> секторів</translation>
     </message>
     <message>
         <source>CD-ROM Max Read Speedup Cycles</source>
@@ -12053,6 +12503,105 @@ Clicking Reset will restore the serial back to the value scanned from in the dis
     </message>
 </context>
 <context>
+    <name>FoldersSettingsWidget</name>
+    <message>
+        <source>Cache Directory</source>
+        <translation>Каталог кешу</translation>
+    </message>
+    <message>
+        <source>Used for storing compiled shaders, game list data, and downloaded achievement images.</source>
+        <translation>Використовується для зберігання скомпільованих шейдерів, даних списку ігор і завантажених зображень досягнень.</translation>
+    </message>
+    <message>
+        <source>Cheats Directory</source>
+        <translation>Каталог читів</translation>
+    </message>
+    <message>
+        <source>Stores cheat files (.cht) that you have created or imported. These are used in addition to the built-in cheat database.</source>
+        <translation>Зберігає створені або імпортовані файли читів (.cht). Вони використовуються разом із вбудованою базою читів.</translation>
+    </message>
+    <message>
+        <source>Covers Directory</source>
+        <translation>Каталог обкладинок</translation>
+    </message>
+    <message>
+        <source>Used for storing covers in the game grid/Big Picture UIs.</source>
+        <translation>Використовується для зберігання обкладинок у сітці ігор та інтерфейсах Big Picture.</translation>
+    </message>
+    <message>
+        <source>Game Icons Directory</source>
+        <translation>Каталог піктограм ігор</translation>
+    </message>
+    <message>
+        <source>Stores game list icons extracted from memory card saves. A PNG named after a game&apos;s serial can be placed here to use a custom icon.</source>
+        <translation>Зберігає піктограми списку ігор, отримані зі збережень на картках пам&apos;яті. Щоб використати власну піктограму, розмістіть тут PNG із назвою, що відповідає серійному номеру гри.</translation>
+    </message>
+    <message>
+        <source>Game Settings Directory</source>
+        <translation>Каталог параметрів ігор</translation>
+    </message>
+    <message>
+        <source>Stores per-game settings files, named by game serial.</source>
+        <translation>Зберігає файли параметрів для окремих ігор, названі за серійним номером гри.</translation>
+    </message>
+    <message>
+        <source>Input Profiles Directory</source>
+        <translation>Каталог профілів введення</translation>
+    </message>
+    <message>
+        <source>Stores controller input profiles.</source>
+        <translation>Зберігає профілі введення контролерів.</translation>
+    </message>
+    <message>
+        <source>Patches Directory</source>
+        <translation>Каталог патчів</translation>
+    </message>
+    <message>
+        <source>Stores patch files (.cht) that you have created or imported. These are used in addition to the built-in patch database.</source>
+        <translation>Зберігає створені або імпортовані файли патчів (.cht). Вони використовуються разом із вбудованою базою патчів.</translation>
+    </message>
+    <message>
+        <source>Shaders Directory</source>
+        <translation>Каталог шейдерів</translation>
+    </message>
+    <message>
+        <source>Searched for post-processing shaders: GLSL shaders in this directory, ReShade shaders in reshade/Shaders, and slang presets in slang.</source>
+        <translation>Шукає шейдери постобробки: шейдери GLSL у цьому каталозі, шейдери ReShade у reshade/Shaders і пресети slang у slang.</translation>
+    </message>
+    <message>
+        <source>Subchannels Directory</source>
+        <translation>Каталог підканалів</translation>
+    </message>
+    <message>
+        <source>Searched for SBI/LSD subchannel files, which are required by LibCrypt-protected games, when they are not found next to the disc image.</source>
+        <translation>Шукає файли підканалів SBI/LSD, потрібні іграм із захистом LibCrypt, якщо їх немає поруч з образом диска.</translation>
+    </message>
+    <message>
+        <source>User Resources Directory</source>
+        <translation>Каталог ресурсів користувача</translation>
+    </message>
+    <message>
+        <source>Files placed here override the bundled resources. Also used for custom themes and Big Picture backgrounds.</source>
+        <translation>Файли, розміщені тут, замінюють вбудовані ресурси. Каталог також використовується для власних тем і тла Big Picture.</translation>
+    </message>
+    <message>
+        <source>Browse...</source>
+        <translation>Огляд...</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Інші параметри</translation>
+    </message>
+    <message>
+        <source>Select %1</source>
+        <translation>Вибрати %1</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>За замовчуванням</translation>
+    </message>
+</context>
+<context>
     <name>FullscreenUI</name>
     <message>
         <source>1 Frame</source>
@@ -12207,6 +12756,18 @@ Clicking Reset will restore the serial back to the value scanned from in the dis
         <translation>Зовнішній вигляд</translation>
     </message>
     <message>
+        <source>Apply</source>
+        <translation>Застосувати</translation>
+    </message>
+    <message>
+        <source>Button</source>
+        <translation>Кнопка</translation>
+    </message>
+    <message>
+        <source>Carousel</source>
+        <translation>Карусель</translation>
+    </message>
+    <message>
         <source>Determines whether a prompt will be displayed to confirm closing the game.</source>
         <translation>Визначити, чи буде виводитись підказка для підтвердження закриття гри.</translation>
     </message>
@@ -12341,10 +12902,6 @@ Clicking Reset will restore the serial back to the value scanned from in the dis
     <message>
         <source>All Time: {}</source>
         <translation>Весь час: {}</translation>
-    </message>
-    <message>
-        <source>All unofficial achievement progress for the current game will be removed. This cannot be undone.</source>
-        <translation>Увесь прогрес неофіційних досягнень для поточної гри буде видалено. Це неможливо скасувати.</translation>
     </message>
     <message>
         <source>Allow Booting Without SBI File</source>
@@ -12527,10 +13084,6 @@ You cannot undo this action.</source>
         <translation>Розмір буфера</translation>
     </message>
     <message>
-        <source>Buttons</source>
-        <translation>Кнопки</translation>
-    </message>
-    <message>
         <source>CD-ROM Emulation</source>
         <translation>Емуляція CD-ROM</translation>
     </message>
@@ -12581,10 +13134,6 @@ You cannot undo this action.</source>
     <message>
         <source>Change Title</source>
         <translation>Змінити назву</translation>
-    </message>
-    <message>
-        <source>Changes the amount of RAM installed in the emulated console.</source>
-        <translation>Змінює обсяг ОЗП, встановленої в емульованій консолі.</translation>
     </message>
     <message>
         <source>Changes the aspect ratio used to display the console&apos;s output to the screen.</source>
@@ -12889,6 +13438,10 @@ You cannot undo this action.</source>
     <message>
         <source>Determines how the emulated console&apos;s output is upscaled or downscaled to your monitor&apos;s resolution.</source>
         <translation>Визначає, як вивід емульованої консолі буде масштабуватися відповідно до роздільної здатності вашого монітора.</translation>
+    </message>
+    <message>
+        <source>Determines how the game list is displayed.</source>
+        <translation>Визначає спосіб відображення списку ігор.</translation>
     </message>
     <message>
         <source>Determines quality of audio when not running at 100% speed.</source>
@@ -13265,10 +13818,6 @@ Error was:</source>
         <translation>Примусово вмикає відстеження завантаження текстур незалежно від того, чи це потрібно.</translation>
     </message>
     <message>
-        <source>Frequency</source>
-        <translation>Частота</translation>
-    </message>
-    <message>
         <source>Game Display</source>
         <translation>Відображення гри</translation>
     </message>
@@ -13295,10 +13844,6 @@ Error was:</source>
     <message>
         <source>Grey Matter</source>
         <translation>Сіра матерія</translation>
-    </message>
-    <message>
-        <source>Grid View</source>
-        <translation>Вигляд сіткою</translation>
     </message>
     <message>
         <source>How much memory will be reserved for rewind states. Determines how far back you can rewind.</source>
@@ -13533,16 +14078,20 @@ Please check your username and password, and try again.</source>
         <translation>Натисніть для перемикання</translation>
     </message>
     <message>
-        <source>Pressure</source>
-        <translation>Тиск</translation>
-    </message>
-    <message>
         <source>Progress Indicators</source>
         <translation>Індикатори прогресу</translation>
     </message>
     <message>
         <source>Purple Rain</source>
         <translation>Фіолетовий дощ</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <translation>Швидке налаштування</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>Записати</translation>
     </message>
     <message>
         <source>Release Date: </source>
@@ -13555,6 +14104,10 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Removes the scale of each object&apos;s transform from depth values. Fixes missing geometry in some games, but breaks others. Automatic uses the game database setting.</source>
         <translation>Усуває вплив масштабу перетворення кожного об’єкта на значення глибини. Виправляє зникнення геометрії в деяких іграх, але порушує роботу інших. Варіант «Автоматично» використовує налаштування з бази даних ігор.</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once for each press. The current repeat is always finished.</source>
+        <translation>Повторює послідовність, поки макрос активний, замість одноразового відтворення за кожного натискання. Поточне повторення завжди відтворюється до кінця.</translation>
     </message>
     <message>
         <source>Replaces these settings with a previously saved controller preset.</source>
@@ -13571,14 +14124,6 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Reset Unlock</source>
         <translation>Скинути розблокування</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement</source>
-        <translation>Скинути неофіційне досягнення</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement Unlocks</source>
-        <translation>Скинути розблокування неофіційних досягнень</translation>
     </message>
     <message>
         <source>Resets all settings to the defaults.</source>
@@ -13699,6 +14244,10 @@ Please check your username and password, and try again.</source>
     <message>
         <source>Select</source>
         <translation>Вибір</translation>
+    </message>
+    <message>
+        <source>Select Button</source>
+        <translation>Вибрати кнопку</translation>
     </message>
     <message>
         <source>Select Disc Drive</source>
@@ -13885,20 +14434,8 @@ Please check your username and password, and try again.</source>
         <translation>Вгорі:</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <translation>Відстежувати неофіційні досягнення</translation>
-    </message>
-    <message>
         <source>Tries to detect FMVs and disable read speedup during games that don&apos;t use XA streaming audio.</source>
         <translation>Намагається виявити FMV та вимкнути прискорення читання під час ігор, які не використовують потокове аудіо XA.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlock reset.</source>
-        <translation>Розблокування неофіційного досягнення скинуто.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlocks reset.</source>
-        <translation>Розблокування неофіційних досягнень скинуто.</translation>
     </message>
     <message>
         <source>Update Progress</source>
@@ -13933,10 +14470,6 @@ Please check your username and password, and try again.</source>
         <translation>Розмір вебкешу: {0} ({1} у {2} об’єктах)</translation>
     </message>
     <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <translation>Якщо ввімкнено, DuckStation відстежуватиме неофіційні досягнення. Розблокування зберігатимуться локально й не надсилатимуться до RetroAchievements.</translation>
-    </message>
-    <message>
         <source>Window Animations</source>
         <translation>Анімація вікон</translation>
     </message>
@@ -13955,6 +14488,14 @@ Do you want to {1} anyway?</source>
         <translation>Сервер ще не підтвердив розблокування досягнень ({0}). Виконання дії «{1}» призведе до втрати цих розблокувань. Після відновлення підключення до мережі їх буде підтверджено автоматично.
 
 Виконати дію «{1}» попри це?</translation>
+    </message>
+    <message>
+        <source>{0} inputs, {1} frames</source>
+        <translation>Введень: {0}, кадрів: {1}</translation>
+    </message>
+    <message>
+        <source>{} frames</source>
+        <translation>Кадри: {}</translation>
     </message>
     <message>
         <source>{} of {}</source>
@@ -14153,10 +14694,6 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Змінити вибір</translation>
     </message>
     <message>
-        <source>Change View</source>
-        <translation>Змінити вигляд</translation>
-    </message>
-    <message>
         <source>Changes settings for the application.</source>
         <translation>Змінити установки програми.</translation>
     </message>
@@ -14225,16 +14762,8 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Визначити, наскільки сильне натискання кнопки ігнорується перед активацією макросу.</translation>
     </message>
     <message>
-        <source>Determines how much pressure is simulated when macro is active.</source>
-        <translation>Визначити, яка сила натискання моделюється, коли макрос активний.</translation>
-    </message>
-    <message>
         <source>Determines the area of the overlay image that the display will be drawn within.</source>
         <translation>Визначає область зображення накладки, у межах якої відображатиметься екран гри.</translation>
-    </message>
-    <message>
-        <source>Determines the frequency at which the macro will toggle the buttons on and off (aka auto fire).</source>
-        <translation>Визначити частоту, з якою макрос включатиме і вимикатиме кнопки (так званий автоматичний вогонь).</translation>
     </message>
     <message>
         <source>Determines the image shown next to each game in the list view.</source>
@@ -14365,10 +14894,6 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Шрифт</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Примусове відображення всієї ОЗП</translation>
-    </message>
-    <message>
         <source>Forces a full rescan of all games previously identified.</source>
         <translation>Примусово виконує повне повторне сканування всіх ідентифікованих ігор.</translation>
     </message>
@@ -14403,14 +14928,6 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>GPU Renderer</source>
         <translation>Рендерер ГП</translation>
-    </message>
-    <message>
-        <source>Game Grid</source>
-        <translation>Сітка ігор</translation>
-    </message>
-    <message>
-        <source>Game List</source>
-        <translation>Список ігор</translation>
     </message>
     <message>
         <source>Game List Settings</source>
@@ -14485,6 +15002,10 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Глобальний слот {0}##global_slot_{0}</translation>
     </message>
     <message>
+        <source>Grid</source>
+        <translation>Сітка</translation>
+    </message>
+    <message>
         <source>Hardcore Mode</source>
         <translation>Режим &quot;Хардкору&quot;</translation>
     </message>
@@ -14499,6 +15020,10 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>Hides the mouse pointer/cursor when the emulator is in fullscreen mode.</source>
         <translation>Приховує вказівник/курсор миші, коли емулятор перебуває у повноекранному режимі.</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation>Утримувати</translation>
     </message>
     <message>
         <source>How often a rewind state will be created. Higher frequencies have greater system requirements.</source>
@@ -14577,6 +15102,14 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Таблиці лідерів</translation>
     </message>
     <message>
+        <source>Library</source>
+        <translation>Бібліотека</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <translation>Список</translation>
+    </message>
+    <message>
         <source>List Icons</source>
         <translation>Піктограми списку</translation>
     </message>
@@ -14649,20 +15182,28 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Записує повідомлення в консоль налагодження, де це підтримується.</translation>
     </message>
     <message>
+        <source>Loop While Active</source>
+        <translation>Повторювати, поки макрос активний</translation>
+    </message>
+    <message>
         <source>Macro {}</source>
         <translation>Макрос {}</translation>
+    </message>
+    <message>
+        <source>Macro {} Sequence</source>
+        <translation>Послідовність макросу {}</translation>
     </message>
     <message>
         <source>Makes games run closer to their console framerate, at a small cost to performance.</source>
         <translation>Дозволяє іграм працювати з частотою кадрів, близькою до консольної, з невеликою шкодою для продуктивності.</translation>
     </message>
     <message>
-        <source>Maps all installed RAM, regardless of the size configured by the BIOS or game. Needed for 16MB with retail BIOSes.</source>
-        <translation>Відображає всю встановлену ОЗП в адресний простір незалежно від обсягу, налаштованого BIOS або грою. Потрібно для використання 16 МБ із BIOS серійних консолей.</translation>
-    </message>
-    <message>
         <source>Maximum (Safer)</source>
         <translation>Максимальний (безпечніше)</translation>
+    </message>
+    <message>
+        <source>Maximum amount of video memory used to cache cover art and other images in the Big Picture UI.</source>
+        <translation>Максимальний обсяг відеопам’яті для кешування обкладинок та інших зображень в інтерфейсі Big Picture.</translation>
     </message>
     <message>
         <source>Memory Card Busy</source>
@@ -14745,6 +15286,14 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Гра не обрана</translation>
     </message>
     <message>
+        <source>No games found.</source>
+        <translation>Ігор не знайдено.</translation>
+    </message>
+    <message>
+        <source>No inputs.</source>
+        <translation>Немає введення.</translation>
+    </message>
+    <message>
         <source>No resume save state found.</source>
         <translation>Не знайдено збереженого стану для відновлення.</translation>
     </message>
@@ -14771,6 +15320,10 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>None (Normal Speed)</source>
         <translation>Ні (нормальна швидкість)</translation>
+    </message>
+    <message>
+        <source>Not Configured</source>
+        <translation>Не налаштовано</translation>
     </message>
     <message>
         <source>Not Logged In</source>
@@ -15169,10 +15722,6 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Серійний номер:</translation>
     </message>
     <message>
-        <source>Shows the game list as a grid instead of a vertical list.</source>
-        <translation>Відображає ігри у вигляді сітки замість вертикального списку.</translation>
-    </message>
-    <message>
         <source>Start In Big Picture Mode</source>
         <translation>Запускати в режимі Big Picture</translation>
     </message>
@@ -15253,8 +15802,20 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Скинути час гри</translation>
     </message>
     <message>
+        <source>All unpromoted achievement progress for the current game will be removed. This cannot be undone.</source>
+        <translation>Увесь прогрес неофіційних досягнень для поточної гри буде видалено. Цю дію неможливо скасувати.</translation>
+    </message>
+    <message>
         <source>Brings later polygons closer to the camera, in millionths of depth. Reduces flickering of decals.</source>
         <translation>Наближає пізніше намальовані полігони до камери, у мільйонних частках глибини. Зменшує мерехтіння декалей.</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM.</source>
+        <translation>Змінює обсяг RAM, встановленої в емульованій консолі. Комерційні ігри не використовують додаткову RAM.</translation>
+    </message>
+    <message>
+        <source>Changes the amount of video RAM installed in the emulated console. Retail games do not use extra VRAM.</source>
+        <translation>Змінює обсяг відеопам&apos;яті, встановленої в емульованій консолі. Комерційні ігри не використовують додаткову VRAM.</translation>
     </message>
     <message>
         <source>Clear Binding</source>
@@ -15269,8 +15830,28 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Зсув глибини</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <translation>Увімкнути прискорення циклу бездіяльності рекомпілятора</translation>
+    </message>
+    <message>
+        <source>Fast Forward While Loading</source>
+        <translation>Прискорення під час завантаження</translation>
+    </message>
+    <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <translation>Прискорює гру, коли вона припиняє оновлювати екран під час читання з диска. Не діє на анімовані екрани завантаження.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <translation>Встановлена VRAM</translation>
+    </message>
+    <message>
         <source>Menu Volume</source>
         <translation>Гучність меню</translation>
+    </message>
+    <message>
+        <source>Midnight Amber</source>
+        <translation>Midnight Amber</translation>
     </message>
     <message>
         <source>Mute Game Audio</source>
@@ -15287,6 +15868,14 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>Reset Settings</source>
         <translation>Скинути налаштування</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement</source>
+        <translation>Скинути розблокування неофіційного досягнення</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement Unlocks</source>
+        <translation>Скинути розблокування неофіційних досягнень</translation>
     </message>
     <message>
         <source>Resets all configuration to defaults (including bindings).</source>
@@ -15357,6 +15946,10 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Періодично зберігає стан, щоб ви могли перемотати гру назад і виправити помилки під час гри.</translation>
     </message>
     <message>
+        <source>Scale Idle Timeout</source>
+        <translation>Масштабувати тайм-аут бездіяльності</translation>
+    </message>
+    <message>
         <source>Scaling</source>
         <translation>Масштабування</translation>
     </message>
@@ -15401,10 +15994,6 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Вибрати образ диска</translation>
     </message>
     <message>
-        <source>Select Macro {} Binds</source>
-        <translation>Вибрати прив&apos;язки макросу {}</translation>
-    </message>
-    <message>
         <source>Selects between Xbox/PlayStation button icons in the footer and input binding.</source>
         <translation>Вибір піктограм кнопок Xbox або PlayStation у нижній панелі та прив&apos;язках введення.</translation>
     </message>
@@ -15443,6 +16032,10 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>Selects which location on the screen messages are displayed.</source>
         <translation>Вибір місця на екрані, де відображатимуться повідомлення.</translation>
+    </message>
+    <message>
+        <source>Sequence</source>
+        <translation>Послідовність</translation>
     </message>
     <message>
         <source>Serial</source>
@@ -15621,6 +16214,10 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Пропустити відображення дублікатів кадрів</translation>
     </message>
     <message>
+        <source>Skips over the busy loop that games use to wait for vertical blank.</source>
+        <translation>Пропускає цикл активного очікування, який ігри використовують для очікування вертикального гасіння.</translation>
+    </message>
+    <message>
         <source>Skips the presentation/display of frames that are not unique. Can result in worse frame pacing.</source>
         <translation>Пропускає виведення кадрів, які не є унікальними. Може погіршити рівномірність відображення кадрів.</translation>
     </message>
@@ -15689,6 +16286,14 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Крок {} з {}</translation>
     </message>
     <message>
+        <source>Stop</source>
+        <translation>Зупинити</translation>
+    </message>
+    <message>
+        <source>Stops games from timing out while waiting for vertical blank when overclocking.</source>
+        <translation>Запобігає тайм-ауту ігор під час очікування вертикального гасіння при розгоні.</translation>
+    </message>
+    <message>
         <source>Stretch Mode</source>
         <translation>Режим розтягування</translation>
     </message>
@@ -15721,6 +16326,10 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Тимчасово відключає всі покращення, що корисно під час тестування.</translation>
     </message>
     <message>
+        <source>Texture Cache Size</source>
+        <translation>Розмір кешу текстур</translation>
+    </message>
+    <message>
         <source>Texture Filtering</source>
         <translation>Фільтрування текстур</translation>
     </message>
@@ -15739,6 +16348,14 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>The audio backend determines how frames produced by the emulator are submitted to the host.</source>
         <translation>Двигун звуку визначає, як кадри, створені емулятором, передаються на хост.</translation>
+    </message>
+    <message>
+        <source>The button to hold or toggle.</source>
+        <translation>Кнопка, яку слід утримувати або поперемінно натискати й відпускати.</translation>
+    </message>
+    <message>
+        <source>The inputs this macro plays, recorded or set up from a single button.</source>
+        <translation>Введення, яке відтворює макрос. Його можна записати або налаштувати за допомогою однієї кнопки.</translation>
     </message>
     <message>
         <source>The selected memory card image will be used in shared mode for this slot.</source>
@@ -15773,6 +16390,10 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Перемикає макрос при натисканні кнопки, а не під час її утримування.</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <translation>Відстежувати неофіційні досягнення</translation>
+    </message>
+    <message>
         <source>Trigger</source>
         <translation>Тригер</translation>
     </message>
@@ -15803,6 +16424,14 @@ Do you want to delete the save state and boot the game anyway?</source>
     <message>
         <source>Unpin from OSD</source>
         <translation>Відкріпити від екранної індикації</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlock reset.</source>
+        <translation>Розблокування неофіційного досягнення скинуто.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlocks reset.</source>
+        <translation>Розблокування неофіційних досягнень скинуто.</translation>
     </message>
     <message>
         <source>Upscales the game&apos;s rendering by the specified multiplier.</source>
@@ -15889,6 +16518,10 @@ Do you want to delete the save state and boot the game anyway?</source>
         <translation>Вертикальна синхронізація (VSync)</translation>
     </message>
     <message>
+        <source>View</source>
+        <translation>Вигляд</translation>
+    </message>
+    <message>
         <source>WARNING: Activating cheats can cause unpredictable behavior, crashing, soft-locks, or broken saved games.</source>
         <translation>УВАГА: Увімкнення читів може спричинити непередбачувану поведінку, аварійне завершення, блокування подальшого проходження або пошкодження збережень.</translation>
     </message>
@@ -15927,6 +16560,10 @@ Do you want to {0} anyway?</source>
     <message>
         <source>When enabled, DuckStation will assume all achievements are locked and not send any unlock notifications to the server.</source>
         <translation>Якщо цей параметр увімкнено, DuckStation вважатиме, що всі досягнення заблоковані, і не надсилатиме повідомлення про розблокування на сервер.</translation>
+    </message>
+    <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <translation>Якщо ввімкнено, DuckStation відстежуватиме неофіційні досягнення. Розблокування зберігатимуться локально й не надсилатимуться до RetroAchievements.</translation>
     </message>
     <message>
         <source>When enabled, each session will behave as if no achievements have been unlocked.</source>
@@ -15981,10 +16618,6 @@ Do you want to {0} anyway?</source>
         <translation>вимкнення</translation>
     </message>
     <message>
-        <source>{} Frames</source>
-        <translation>{} кадрів</translation>
-    </message>
-    <message>
         <source>{} deleted.</source>
         <translation>{} видалено.</translation>
     </message>
@@ -16012,6 +16645,14 @@ Do you want to {0} anyway?</source>
             <numerusform>Залишилася %n хвилина</numerusform>
             <numerusform>Залишилося %n хвилини</numerusform>
             <numerusform>Залишилося %n хвилин</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n button(s)</source>
+        <translation>
+            <numerusform>%n кнопка</numerusform>
+            <numerusform>%n кнопки</numerusform>
+            <numerusform>%n кнопок</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -16277,12 +16918,12 @@ Do you want to {0} anyway?</source>
         <translation>Обсяг ОЗП:</translation>
     </message>
     <message>
-        <source>Disable Widescreen Rendering</source>
-        <translation>Вимкнути широкоекранну візуалізацію</translation>
+        <source>VRAM Size:</source>
+        <translation>Розмір VRAM:</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Примусове відображення всієї ОЗП</translation>
+        <source>Disable Widescreen Rendering</source>
+        <translation>Вимкнути широкоекранну візуалізацію</translation>
     </message>
     <message>
         <source>Disallow in Hardcore Mode</source>
@@ -16610,6 +17251,11 @@ Are you sure you want to continue?</source>
         <translation>Вимкнути: Прискорення доступу до картки пам&apos;яті</translation>
     </message>
     <message>
+        <source>Disable Fast Forward While Loading</source>
+        <comment>GameDatabase::Trait</comment>
+        <translation>Вимкнути прискорення під час завантаження</translation>
+    </message>
+    <message>
         <source>Disable CD-ROM Read Speedup</source>
         <comment>GameDatabase::Trait</comment>
         <translation>Вимкнути: Прискорення читання дисководу</translation>
@@ -16747,6 +17393,10 @@ Are you sure you want to continue?</source>
     <message>
         <source>Fast forward memory card access disabled.</source>
         <translation>Прискорений доступ до картки пам&apos;яті вимкнено.</translation>
+    </message>
+    <message>
+        <source>Fast forward while loading disabled.</source>
+        <translation>Прискорення під час завантаження вимкнено.</translation>
     </message>
     <message>
         <source>CD-ROM read speedup disabled.</source>
@@ -17172,14 +17822,6 @@ Are you sure you want to continue?</source>
         <translation>Виключені шляхи (не скануватимуться)</translation>
     </message>
     <message>
-        <source>File...</source>
-        <translation>Файл...</translation>
-    </message>
-    <message>
-        <source>Folder...</source>
-        <translation>Папка...</translation>
-    </message>
-    <message>
         <source>Scan For New Games</source>
         <translation>Пошук нових ігор</translation>
     </message>
@@ -17188,8 +17830,40 @@ Are you sure you want to continue?</source>
         <translation>Повторне сканування всіх ігор</translation>
     </message>
     <message>
+        <source>Search Directories</source>
+        <translation>Каталоги пошуку</translation>
+    </message>
+    <message>
+        <source>Directories which will be scanned for games. Enable Scan Recursively to also search subdirectories, which takes longer but finds games stored in nested folders. Folders can also be dragged here from your file manager.</source>
+        <translation>Каталоги, у яких шукатимуться ігри. Увімкніть рекурсивне сканування, щоб шукати також у підкаталогах; це повільніше, але дає змогу знаходити ігри у вкладених папках. Можна також перетягнути сюди папки з файлового менеджера.</translation>
+    </message>
+    <message>
+        <source>Excluded Paths</source>
+        <translation>Виключені шляхи</translation>
+    </message>
+    <message>
+        <source>Files and directories which will be skipped when scanning for games, for example images you do not want to appear in the game list. Files and folders can also be dragged here from your file manager.</source>
+        <translation>Файли й каталоги, які пропускатимуться під час пошуку ігор, наприклад зображення, які не потрібно показувати у списку ігор. Можна також перетягнути сюди файли й папки з файлового менеджера.</translation>
+    </message>
+    <message>
+        <source>Scans the search directories for files which are not already in the game list. Previously-scanned games are loaded from the cache, so this is usually quick.</source>
+        <translation>Сканує каталоги пошуку на наявність файлів, яких ще немає у списку ігор. Раніше проскановані ігри завантажуються з кешу, тому зазвичай це швидко.</translation>
+    </message>
+    <message>
+        <source>Discards the game list cache and scans every file in the search directories again. Use this if game details such as titles or serials are incorrect. May take a while for large collections.</source>
+        <translation>Очищає кеш списку ігор і повторно сканує всі файли в каталогах пошуку. Використовуйте, якщо відомості про гру, як-от назва чи серійний номер, неправильні. Для великих колекцій це може тривати довго.</translation>
+    </message>
+    <message>
         <source>Open Directory...</source>
         <translation>Відкрити каталог...</translation>
+    </message>
+    <message>
+        <source>No search directories. Add a folder, or drag one here, to choose where your games are stored.</source>
+        <translation>Немає каталогів пошуку. Додайте папку або перетягніть її сюди, щоб вибрати місце зберігання ігор.</translation>
+    </message>
+    <message>
+        <source>No excluded paths. Files or folders added here will be skipped when scanning.</source>
+        <translation>Немає виключених шляхів. Додані сюди файли й папки пропускатимуться під час сканування.</translation>
     </message>
     <message>
         <source>Select Search Directory</source>
@@ -17735,20 +18409,12 @@ Scanning recursively takes more time, but will identify files in subdirectories.
         <translation>Каталог текстур</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Відкрити...</translation>
-    </message>
-    <message>
         <source>Directory to load replacement textures from, and save dumps to.</source>
         <translation>Каталог для завантаження текстур, що замінюють, і збереження дампів.</translation>
     </message>
     <message>
         <source>Browse...</source>
         <translation>Оглянути...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Скидання</translation>
     </message>
     <message>
         <source>Threaded Rendering</source>
@@ -17841,6 +18507,10 @@ Scanning recursively takes more time, but will identify files in subdirectories.
     <message>
         <source>FMV Scaling:</source>
         <translation>Масштабування FMV:</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Інші параметри</translation>
     </message>
     <message>
         <source>Prefer OpenGL ES Context</source>
@@ -18341,10 +19011,6 @@ Scanning recursively takes more time, but will identify files in subdirectories.
     <message>
         <source>Geometry Tolerance</source>
         <translation>Допуск геометрії</translation>
-    </message>
-    <message>
-        <source>-1.00px (Disabled)</source>
-        <translation>-1.00 пікс (Вимкнено)</translation>
     </message>
     <message>
         <source>Discards precise geometry when it is found to be offset past the specified threshold. This can help with games that have vertices significantly moved by PGXP, but is still a hack/workaround.</source>
@@ -20345,6 +21011,10 @@ Shift-click to set multiple bindings.</source>
         <translation>Налаштовує зовнішній вигляд та поведінку програми.</translation>
     </message>
     <message>
+        <source>&amp;Folders</source>
+        <translation>&amp;Папки</translation>
+    </message>
+    <message>
         <source>Ad&amp;vanced</source>
         <translation>Додат&amp;ково</translation>
     </message>
@@ -21401,6 +22071,10 @@ This action cannot be undone.</source>
         <translation>Фіолетовий дощ</translation>
     </message>
     <message>
+        <source>Midnight Amber</source>
+        <translation>Midnight Amber</translation>
+    </message>
+    <message>
         <source>QDarkStyle</source>
         <translation>QDarkStyle</translation>
     </message>
@@ -21927,10 +22601,6 @@ Error: {1}</source>
         <translation>Картки пам&apos;яті:</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Відкрити...</translation>
-    </message>
-    <message>
         <source>Memory Cards Location</source>
         <translation>Розташування карток пам&apos;яті</translation>
     </message>
@@ -22022,6 +22692,10 @@ Error: {1}</source>
     <message>
         <source>Browse...</source>
         <translation>Оглянути...</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Інші параметри</translation>
     </message>
     <message>
         <source>The memory card editor enables you to move saves between cards, as well as import cards of other formats.</source>
@@ -23316,10 +23990,6 @@ Error: {1}</source>
         <translation>Оновити список накладок</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Additional preset borders can be added to the &lt;span style=&quot; font-weight:700;&quot;&gt;resources\overlays&lt;/span&gt; folder within the data directory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Додаткові готові рамки можна додати до папки &lt;span style=&quot; font-weight:700;&quot;&gt;resources\overlays&lt;/span&gt; у каталозі даних.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>Custom Configuration</source>
         <translation>Конфігурація користувача</translation>
     </message>
@@ -23330,6 +24000,14 @@ Error: {1}</source>
     <message>
         <source>Browse...</source>
         <translation>Оглянути...</translation>
+    </message>
+    <message>
+        <source>Overlays Directory:</source>
+        <translation>Каталог накладок:</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Інші параметри</translation>
     </message>
     <message>
         <source>Display Start:</source>
@@ -23374,6 +24052,22 @@ Error: {1}</source>
     <message>
         <source>Image Path</source>
         <translation>Шлях зображення</translation>
+    </message>
+    <message>
+        <source>Select Overlays Directory</source>
+        <translation>Вибрати каталог накладок</translation>
+    </message>
+    <message>
+        <source>Overlays Directory</source>
+        <translation>Каталог накладок</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>За замовчуванням</translation>
+    </message>
+    <message>
+        <source>Stores additional border overlay presets. Use Refresh Overlay List to find presets after changing this directory.</source>
+        <translation>Зберігає додаткові пресети накладок із рамками. Після зміни каталогу скористайтеся пунктом «Оновити список накладок», щоб знайти пресети.</translation>
     </message>
     <message>
         <source>Unspecified</source>
@@ -24013,12 +24707,20 @@ Would you like to update the shortcut to point to the current location?</source>
         <translation>{} ({})</translation>
     </message>
     <message>
-        <source>Saved {}</source>
-        <translation>Збережено {}</translation>
+        <source>Empty</source>
+        <translation>Порожньо</translation>
     </message>
     <message>
-        <source>No save present in this slot.</source>
-        <translation>У цьому слоті немає збережень.</translation>
+        <source>Save States</source>
+        <translation>Збереження станів</translation>
+    </message>
+    <message>
+        <source>{} of {} slots in use</source>
+        <translation>Використано {} з {} слотів</translation>
+    </message>
+    <message>
+        <source>Saved {}</source>
+        <translation>Збережено {}</translation>
     </message>
     <message>
         <source>Unknown error.</source>
@@ -24086,16 +24788,16 @@ Would you like to update the shortcut to point to the current location?</source>
 <context>
     <name>SettingWidgetBinder</name>
     <message>
-        <source>Use Global Setting [Enabled]</source>
-        <translation>Використовувати глобальне налаштування [Увімкнено]</translation>
-    </message>
-    <message>
-        <source>Use Global Setting [Disabled]</source>
-        <translation>Використовувати глобальне налаштування [Вимкнено]</translation>
-    </message>
-    <message>
         <source>Global: </source>
         <translation>Глобальне: </translation>
+    </message>
+    <message>
+        <source>Open Folder</source>
+        <translation>Відкрити папку</translation>
+    </message>
+    <message>
+        <source>Reset to Default</source>
+        <translation>Відновити типове значення</translation>
     </message>
     <message>
         <source>Confirm Folder</source>
@@ -24226,24 +24928,54 @@ Do you want to create this directory?</source>
         <translation>Не-PS1</translation>
     </message>
     <message>
-        <source>2 MB (Retail Console)</source>
+        <source>2MB (Standard)</source>
         <comment>CPURAMSize</comment>
-        <translation>2 МБ (серійна консоль)</translation>
+        <translation>2 МБ (стандарт)</translation>
     </message>
     <message>
-        <source>4 MB (Arcade Boards)</source>
+        <source>4MB</source>
         <comment>CPURAMSize</comment>
-        <translation>4 МБ (плати аркадних автоматів)</translation>
+        <translation>4 МБ</translation>
     </message>
     <message>
-        <source>8 MB (Dev Console)</source>
+        <source>4MB (Forced)</source>
         <comment>CPURAMSize</comment>
-        <translation>8 МБ (консоль для розробників)</translation>
+        <translation>4 МБ (примусово)</translation>
     </message>
     <message>
-        <source>16 MB (Mods/Arcade Boards)</source>
+        <source>8MB</source>
         <comment>CPURAMSize</comment>
-        <translation>16 МБ (модифікації/плати аркадних автоматів)</translation>
+        <translation>8 МБ</translation>
+    </message>
+    <message>
+        <source>8MB (Forced)</source>
+        <comment>CPURAMSize</comment>
+        <translation>8 МБ (примусово)</translation>
+    </message>
+    <message>
+        <source>16MB</source>
+        <comment>CPURAMSize</comment>
+        <translation>16 МБ</translation>
+    </message>
+    <message>
+        <source>16MB (Forced)</source>
+        <comment>CPURAMSize</comment>
+        <translation>16 МБ (примусово)</translation>
+    </message>
+    <message>
+        <source>1MB (Standard)</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>1 МБ (стандарт)</translation>
+    </message>
+    <message>
+        <source>2MB</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>2 МБ</translation>
+    </message>
+    <message>
+        <source>2MB (Forced)</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>2 МБ (примусово)</translation>
     </message>
     <message>
         <source>Interpreter (Slowest)</source>
@@ -25055,10 +25787,6 @@ Do you want to create this directory?</source>
         <translation>Список ігор</translation>
     </message>
     <message>
-        <source>&lt;strong&gt;Game List Settings&lt;/strong&gt;&lt;hr&gt;The list above shows the directories which will be searched by DuckStation to populate the game list. Search directories can be added, removed, and switched to recursive/non-recursive.</source>
-        <translation>&lt;strong&gt;Налаштування списку ігор&lt;/strong&gt;&lt;hr&gt;У наведеному вище списку показано каталоги, в яких DuckStation виконуватиме пошук для заповнення списку ігор. Каталоги пошуку можна додавати, видаляти та перемикати на рекурсивні/нерекурсивні.</translation>
-    </message>
-    <message>
         <source>BIOS</source>
         <translation>BIOS</translation>
     </message>
@@ -25077,6 +25805,10 @@ Do you want to create this directory?</source>
     <message>
         <source>&lt;strong&gt;Console Settings&lt;/strong&gt;&lt;hr&gt;These options determine the configuration of the simulated console.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
         <translation>&lt;strong&gt;Налаштування консолі&lt;/strong&gt;&lt;hr&gt;Ці параметри визначають конфігурацію консолі, що моделюється.&lt;br&gt;&lt;br&gt;Наведіть вказівник миші на параметр, щоб отримати додаткову інформацію, а для прокручування цієї панелі прокручуйте коліщатко миші, утримуючи Shift.</translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Game List Settings&lt;/strong&gt;&lt;hr&gt;These options control which directories are scanned to populate the game list.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information.</source>
+        <translation>&lt;strong&gt;Параметри списку ігор&lt;/strong&gt;&lt;hr&gt;Ці параметри визначають, які каталоги скануються для заповнення списку ігор.&lt;br&gt;&lt;br&gt;Наведіть вказівник на параметр, щоб побачити додаткові відомості.</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Emulation Settings&lt;/strong&gt;&lt;hr&gt;These options determine the speed and runahead behavior of the system.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
@@ -25130,6 +25862,14 @@ Do you want to create this directory?</source>
     <message>
         <source>&lt;strong&gt;Capture Settings&lt;/strong&gt;&lt;hr&gt;These options determine how screenshots and videos are captured by the application.</source>
         <translation>&lt;strong&gt;Налаштування захоплення&lt;/strong&gt;&lt;hr&gt;Ці параметри визначають, як програма здійснює захоплення знімків екрана та відео.</translation>
+    </message>
+    <message>
+        <source>Folders</source>
+        <translation>Папки</translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Folder Settings&lt;/strong&gt;&lt;hr&gt;These options control where DuckStation reads and stores its files.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
+        <translation>&lt;strong&gt;Параметри папок&lt;/strong&gt;&lt;hr&gt;Ці параметри визначають, звідки DuckStation читає файли та де їх зберігає.&lt;br&gt;&lt;br&gt;Наведіть вказівник на параметр, щоб побачити додаткові відомості. Утримуйте Shift і прокручуйте коліщатко миші, щоб прокрутити цю панель.</translation>
     </message>
     <message>
         <source>&lt;strong&gt;Advanced Settings&lt;/strong&gt;&lt;hr&gt;These options control logging and internal behavior of the emulator. Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
@@ -25271,10 +26011,6 @@ Do you want to continue?</source>
         <translation>Оглянути...</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>Скидання</translation>
-    </message>
-    <message>
         <source>NTSC-J (Japan):</source>
         <translation>NTSC-J (Японія):</translation>
     </message>
@@ -25285,10 +26021,6 @@ Do you want to continue?</source>
     <message>
         <source>PAL (Europe, Australia):</source>
         <translation>PAL (Європа, Австралія):</translation>
-    </message>
-    <message>
-        <source>Open in Explorer...</source>
-        <translation>Відкрити у Провіднику...</translation>
     </message>
     <message>
         <source>Refresh List</source>
@@ -25329,6 +26061,10 @@ Do you want to continue?</source>
     <message>
         <source>Advanced Settings</source>
         <translation>Додаткові налаштування</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Інші параметри</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DuckStation will automatically scan and identify games from the selected directories below, and populate the game list. These games should be dumped from discs you own. Utilities such as ImgBurn can be used to create images of game discs in .bin/.cue format.&lt;/p&gt;&lt;p&gt;Supported formats for dumps include: %1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -25615,6 +26351,10 @@ Any changes have been saved, and the wizard will run again next time you start D
             <numerusform>Знайдено %n образи BIOS. За бажанням можна встановити додаткові образи BIOS.</numerusform>
             <numerusform>Знайдено %n образів BIOS. За бажанням можна встановити додаткові образи BIOS.</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>No search directories. Add a folder, or drag one here, to choose where your games are stored.</source>
+        <translation>Немає каталогів пошуку. Додайте папку або перетягніть її сюди, щоб вибрати місце зберігання ігор.</translation>
     </message>
     <message>
         <source>Open Directory...</source>
@@ -26001,8 +26741,16 @@ Using current CD image, this may result in instability.</source>
         <translation>Картку змінено на {}.</translation>
     </message>
     <message>
+        <source>Physical Disc</source>
+        <translation>Фізичний диск</translation>
+    </message>
+    <message>
         <source>RAM size set to default.</source>
         <translation>Встановлено типовий обсяг ОЗП.</translation>
+    </message>
+    <message>
+        <source>2MB VRAM disabled.</source>
+        <translation>VRAM 2 МБ вимкнено.</translation>
     </message>
     <message>
         <source>Texture filtering disabled.</source>
@@ -26093,10 +26841,6 @@ Using current CD image, this may result in instability.</source>
         <translation>Скидання SPU під час запуску гри вимкнено.</translation>
     </message>
     <message>
-        <source>Expanded RAM is enabled, this may be incompatible with some games.</source>
-        <translation>Розширену ОЗП увімкнено; це може бути несумісним із деякими іграми.</translation>
-    </message>
-    <message>
         <source>CD-ROM SubQ Skew is enabled. This will break games.</source>
         <translation>CD-ROM SubQ Skew увімкнено. Це призведе до збоїв в іграх.</translation>
     </message>
@@ -26146,6 +26890,23 @@ Using current CD image, this may result in instability.</source>
         <source>Expanded RAM</source>
         <comment>Taint</comment>
         <translation>Розширена ОЗП</translation>
+    </message>
+    <message>
+        <source>Expanded VRAM</source>
+        <comment>Taint</comment>
+        <translation>Розширена VRAM</translation>
+    </message>
+    <message>
+        <source>Unknown BIOS</source>
+        <translation>Невідомий BIOS</translation>
+    </message>
+    <message>
+        <source>RAM size is set to {}, this may be incompatible with some games.</source>
+        <translation>Розмір RAM задано як {}, це може бути несумісним із деякими іграми.</translation>
+    </message>
+    <message>
+        <source>VRAM size is set to {}, this may be incompatible with some games.</source>
+        <translation>Розмір VRAM задано як {}, це може бути несумісним із деякими іграми.</translation>
     </message>
     <message>
         <source>capturing video</source>

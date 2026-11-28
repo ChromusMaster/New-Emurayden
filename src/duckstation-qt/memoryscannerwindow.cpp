@@ -22,9 +22,14 @@
 
 #include "fmt/format.h"
 
+#include <QtCore/QEvent>
+#include <QtCore/QLocale>
+#include <QtGui/QClipboard>
 #include <QtGui/QColor>
+#include <QtGui/QGuiApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QInputDialog>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <array>
 #include <utility>
@@ -66,19 +71,29 @@ static QString formatHexAndDecValue(u32 value, MemoryAccessSize size, bool is_si
   }
 }
 
-static std::string formatCheatCode(u32 address, u32 value, MemoryAccessSize size)
+static QString formatCheatCode(u32 address, u32 value, MemoryAccessSize size)
 {
-  std::string ret;
-  if (size == MemoryAccessSize::Byte && address <= 0x00200000)
-    ret = fmt::format("CHEAT CODE: {:08X} {:02X}", address + 0x30000000u, static_cast<u8>(value));
-  else if (size == MemoryAccessSize::HalfWord && address <= 0x001FFFFE)
-    ret = fmt::format("CHEAT CODE: {:08X} {:04X}", address + 0x80000000u, static_cast<u16>(value));
-  else if (size == MemoryAccessSize::Word && address <= 0x001FFFFC)
-    ret = fmt::format("CHEAT CODE: {:08X} {:08X}", address + 0x90000000u, value);
-  else
-    ret = fmt::format("OUTSIDE RAM RANGE. POKE {:08X} with {:08X}", address, value);
+  // codes use physical addresses
+  address &= 0x1FFFFFFFu;
 
-  return ret;
+  if (address >= g_bus.ram_mapped_size)
+    return {};
+
+  address &= g_bus.ram_mask;
+  if (size == MemoryAccessSize::Byte)
+    return QString::fromStdString(fmt::format("{:08X} {:02X}", address + 0x30000000u, static_cast<u8>(value)));
+  else if (size == MemoryAccessSize::HalfWord)
+    return QString::fromStdString(fmt::format("{:08X} {:04X}", address + 0x80000000u, static_cast<u16>(value)));
+  else
+    return QString::fromStdString(fmt::format("{:08X} {:08X}", address + 0x90000000u, value));
+}
+
+static std::string formatWatchDescription(u32 address, u32 value, MemoryAccessSize size)
+{
+  return MemoryScannerWindow::tr("%1 (initial value %2)")
+    .arg(formatHexValue(address, MemoryAccessSize::Word))
+    .arg(formatHexValue(value, size))
+    .toStdString();
 }
 
 static QString formatValue(u32 value, bool is_signed)
@@ -95,7 +110,7 @@ MemoryScannerWindow::MemoryScannerWindow() : QWidget()
   setupAdditionalUi();
   connectUi();
 
-  m_ui.cheatEngineAddress->setText(tr("Address of RAM for HxD Usage: 0x%1")
+  m_ui.cheatEngineAddress->setText(tr("Host RAM Address: 0x%1")
                                      .arg(reinterpret_cast<qulonglong>(g_bus.unprotected_ram), 16, 16, QChar('0')));
 }
 
@@ -104,31 +119,151 @@ MemoryScannerWindow::~MemoryScannerWindow() = default;
 void MemoryScannerWindow::setupAdditionalUi()
 {
   QtUtils::SetColumnWidthsForTableView(m_ui.scanTable, {-1, 100, 100, 100});
-  QtUtils::SetColumnWidthsForTableView(m_ui.watchTable, {-1, 100, 100, 150, 40});
+  QtUtils::SetColumnWidthsForTableView(m_ui.watchTable, {-1, 100, 100, 150, 0});
+
+  const QFont& fixed_font = QtHost::GetFixedFont();
+  m_ui.scanTable->setFont(fixed_font);
+
+  const int row_height = std::max(fontMetrics().height(), QFontMetrics(fixed_font).height()) + 8;
+  for (QTableWidget* table : {m_ui.scanTable, m_ui.watchTable})
+  {
+    table->verticalHeader()->setMinimumSectionSize(row_height);
+    table->verticalHeader()->setDefaultSectionSize(row_height);
+    table->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(table, &QTableWidget::customContextMenuRequested, this, [this, table](const QPoint& pos) {
+      QMenu* const menu = QtUtils::NewPopupMenu(this);
+      menu->addActions(table->actions());
+      menu->popup(table->viewport()->mapToGlobal(pos));
+    });
+  }
+
+  // give extra height to the watch list, not the search parameters
+  m_ui.splitter->setStretchFactor(0, 0);
+  m_ui.splitter->setStretchFactor(1, 1);
+
+  // used to draw placeholder text when the lists are empty
+  m_ui.scanTable->viewport()->installEventFilter(this);
+  m_ui.watchTable->viewport()->installEventFilter(this);
+
+  const auto add_action = [this](QTableWidget* table, const QString& icon, const QString& text,
+                                 QKeySequence::StandardKey shortcut, auto&& func) {
+    QAction* const action = new QAction(QIcon(icon), text, table);
+    if (shortcut != QKeySequence::UnknownKey)
+    {
+      action->setShortcut(shortcut);
+      action->setShortcutContext(Qt::WidgetShortcut);
+      action->setShortcutVisibleInContextMenu(true);
+    }
+    connect(action, &QAction::triggered, this, std::forward<decltype(func)>(func));
+    table->addAction(action);
+  };
+  const auto add_separator = [](QTableWidget* table) {
+    QAction* const action = new QAction(table);
+    action->setSeparator(true);
+    table->addAction(action);
+  };
+  const auto copy_selected = [](QTableWidget* table, const auto& get_text) {
+    QStringList lines;
+    for (const QTableWidgetSelectionRange& range : table->selectedRanges())
+    {
+      for (int row = range.topRow(); row <= range.bottomRow(); row++)
+      {
+        if (QString text = get_text(row); !text.isEmpty())
+          lines.append(std::move(text));
+      }
+    }
+    if (!lines.isEmpty())
+      QGuiApplication::clipboard()->setText(lines.join(u'\n'));
+  };
+
+  add_action(m_ui.scanTable, u":/icons/monochrome/svg/eye-line.svg"_s, tr("Watch Selected"), QKeySequence::UnknownKey,
+             &MemoryScannerWindow::addToWatchClicked);
+  add_action(m_ui.scanTable, u":/icons/monochrome/svg/chip-line.svg"_s, tr("Open in Memory Editor"),
+             QKeySequence::UnknownKey, [this]() {
+               if (const QTableWidgetItem* item = m_ui.scanTable->item(m_ui.scanTable->currentRow(), 0))
+                 tryOpenAddressInMemoryEditor(item->data(Qt::UserRole).toUInt());
+             });
+  add_action(m_ui.scanTable, u":/icons/monochrome/svg/file-copy-line.svg"_s, tr("Copy Address"), QKeySequence::Copy,
+             [this, copy_selected]() {
+               copy_selected(m_ui.scanTable, [this](int row) { return m_ui.scanTable->item(row, 0)->text(); });
+             });
+
+  add_action(m_ui.watchTable, u":/icons/monochrome/svg/snowflake-line.svg"_s, tr("Toggle Freeze"),
+             QKeySequence::UnknownKey, &MemoryScannerWindow::toggleWatchFreezeClicked);
+  add_action(m_ui.watchTable, u":/icons/monochrome/svg/chip-line.svg"_s, tr("Open in Memory Editor"),
+             QKeySequence::UnknownKey, [this]() {
+               if (const QTableWidgetItem* item = m_ui.watchTable->item(m_ui.watchTable->currentRow(), 1))
+                 tryOpenAddressInMemoryEditor(item->data(Qt::UserRole).toUInt());
+             });
+  add_action(m_ui.watchTable, u":/icons/monochrome/svg/file-copy-line.svg"_s, tr("Copy Code"), QKeySequence::Copy,
+             [this, copy_selected]() {
+               copy_selected(m_ui.watchTable, [this](int row) {
+                 const MemoryWatchList::Entry& entry = m_watch.GetEntry(static_cast<u32>(row));
+                 return formatCheatCode(entry.address, entry.value, entry.size);
+               });
+             });
+  add_separator(m_ui.watchTable);
+  add_action(m_ui.watchTable, u":/icons/monochrome/svg/trash-fill.svg"_s, tr("Remove"), QKeySequence::Delete,
+             &MemoryScannerWindow::removeWatchClicked);
+}
+
+bool MemoryScannerWindow::eventFilter(QObject* object, QEvent* event)
+{
+  if (event->type() == QEvent::Paint)
+  {
+    if (object == m_ui.scanTable->viewport())
+    {
+      if (QtUtils::DrawItemViewPlaceholderText(
+            m_ui.scanTable, m_has_searched ?
+                              tr("No matches found. Adjust the search parameters and click New Search.") :
+                              tr("No results. Choose search parameters and click New Search.")))
+      {
+        return true;
+      }
+    }
+    else if (object == m_ui.watchTable->viewport())
+    {
+      if (QtUtils::DrawItemViewPlaceholderText(
+            m_ui.watchTable, tr("Select results above and click Watch Selected, or add an address manually.")))
+      {
+        return true;
+      }
+    }
+  }
+
+  return QWidget::eventFilter(object, event);
 }
 
 void MemoryScannerWindow::connectUi()
 {
-  m_ui.scanStartAddress->setText(formatHexValue(m_scanner.GetStartAddress(), MemoryAccessSize::Word));
-  m_ui.scanEndAddress->setText(formatHexValue(m_scanner.GetEndAddress(), MemoryAccessSize::Word));
+  m_ui.startAddress->setText(formatHexValue(m_scanner.GetStartAddress(), MemoryAccessSize::Word));
+  m_ui.endAddress->setText(formatHexValue(m_scanner.GetEndAddress(), MemoryAccessSize::Word));
   m_ui.scanOperator->setCurrentIndex(static_cast<int>(m_scanner.GetOperator()));
   m_ui.scanSize->setCurrentIndex(static_cast<int>(m_scanner.GetSize()));
 
   connect(m_ui.scanValue, &QLineEdit::textChanged, this, &MemoryScannerWindow::updateScanValue);
-  connect(m_ui.scanValueBase, &QComboBox::currentIndexChanged, [this](int index) { updateScanValue(); });
+  connect(m_ui.valueBase, &QComboBox::currentIndexChanged, [this](int index) {
+    m_ui.scanValue->setPlaceholderText((index > 0) ? u"1A2B"_s : u"1234"_s);
+    updateScanValue();
+  });
+  m_ui.scanValue->setPlaceholderText((m_ui.valueBase->currentIndex() > 0) ? u"1A2B"_s : u"1234"_s);
+  connect(m_ui.scanValue, &QLineEdit::returnPressed,
+          [this]() { (m_ui.searchAgain->isEnabled() ? m_ui.searchAgain : m_ui.newSearch)->click(); });
   connect(m_ui.scanSize, &QComboBox::currentIndexChanged, [this](int index) {
     m_scanner.SetSize(static_cast<MemoryAccessSize>(index));
     m_scanner.ResetSearch();
+    m_has_searched = false;
     updateResults();
   });
-  connect(m_ui.scanValueSigned, &QComboBox::currentIndexChanged, [this](int index) {
+  connect(m_ui.valueSigned, &QComboBox::currentIndexChanged, [this](int index) {
     m_scanner.SetValueSigned(index == 0);
     m_scanner.ResetSearch();
+    m_has_searched = false;
     updateResults();
   });
   connect(m_ui.scanOperator, &QComboBox::currentIndexChanged,
           [this](int index) { m_scanner.SetOperator(static_cast<MemoryScan::Operator>(index)); });
-  connect(m_ui.scanStartAddress, &QLineEdit::textChanged, [this](const QString& value) {
+  connect(m_ui.startAddress, &QLineEdit::textChanged, [this](const QString& value) {
     uint address;
     if (value.startsWith("0x"_L1) && value.length() > 2)
       address = value.mid(2).toUInt(nullptr, 16);
@@ -136,7 +271,7 @@ void MemoryScannerWindow::connectUi()
       address = value.toUInt(nullptr, 16);
     m_scanner.SetStartAddress(static_cast<PhysicalMemoryAddress>(address));
   });
-  connect(m_ui.scanEndAddress, &QLineEdit::textChanged, [this](const QString& value) {
+  connect(m_ui.endAddress, &QLineEdit::textChanged, [this](const QString& value) {
     uint address;
     if (value.startsWith("0x"_L1) && value.length() > 2)
       address = value.mid(2).toUInt(nullptr, 16);
@@ -144,30 +279,32 @@ void MemoryScannerWindow::connectUi()
       address = value.toUInt(nullptr, 16);
     m_scanner.SetEndAddress(static_cast<PhysicalMemoryAddress>(address));
   });
-  connect(m_ui.scanPresetRange, &QComboBox::currentIndexChanged, [this](int index) {
+  connect(m_ui.presetRange, &QComboBox::currentIndexChanged, [this](int index) {
     if (index == 0)
     {
-      m_ui.scanStartAddress->setText(formatHexValue(0, MemoryAccessSize::Word));
-      m_ui.scanEndAddress->setText(formatHexValue(g_bus.ram_size, MemoryAccessSize::Word));
+      m_ui.startAddress->setText(formatHexValue(0x80000000u, MemoryAccessSize::Word));
+      m_ui.endAddress->setText(formatHexValue(0x80000000u + g_bus.ram_size, MemoryAccessSize::Word));
     }
     else if (index == 1)
     {
-      m_ui.scanStartAddress->setText(formatHexValue(CPU::SCRATCHPAD_ADDR, MemoryAccessSize::Word));
-      m_ui.scanEndAddress->setText(formatHexValue(CPU::SCRATCHPAD_ADDR + CPU::SCRATCHPAD_SIZE, MemoryAccessSize::Word));
+      m_ui.startAddress->setText(formatHexValue(CPU::SCRATCHPAD_ADDR, MemoryAccessSize::Word));
+      m_ui.endAddress->setText(formatHexValue(CPU::SCRATCHPAD_ADDR + CPU::SCRATCHPAD_SIZE, MemoryAccessSize::Word));
     }
-    else
+    else if (index == 2)
     {
-      m_ui.scanStartAddress->setText(formatHexValue(Bus::BIOS_BASE, MemoryAccessSize::Word));
-      m_ui.scanEndAddress->setText(formatHexValue(Bus::BIOS_BASE + Bus::BIOS_SIZE, MemoryAccessSize::Word));
+      m_ui.startAddress->setText(formatHexValue(0xA0000000u | Bus::BIOS_BASE, MemoryAccessSize::Word));
+      m_ui.endAddress->setText(formatHexValue((0xA0000000u | Bus::BIOS_BASE) + Bus::BIOS_SIZE, MemoryAccessSize::Word));
     }
   });
-  connect(m_ui.scanNewSearch, &QPushButton::clicked, this, &MemoryScannerWindow::newSearchClicked);
-  connect(m_ui.scanSearchAgain, &QPushButton::clicked, this, &MemoryScannerWindow::searchAgainClicked);
-  connect(m_ui.scanResetSearch, &QPushButton::clicked, this, &MemoryScannerWindow::resetSearchClicked);
-  connect(m_ui.scanAddWatch, &QPushButton::clicked, this, &MemoryScannerWindow::addToWatchClicked);
+  connect(m_ui.startAddress, &QLineEdit::textEdited, [this]() { m_ui.presetRange->setCurrentIndex(3); });
+  connect(m_ui.endAddress, &QLineEdit::textEdited, [this]() { m_ui.presetRange->setCurrentIndex(3); });
+  connect(m_ui.newSearch, &QPushButton::clicked, this, &MemoryScannerWindow::newSearchClicked);
+  connect(m_ui.searchAgain, &QPushButton::clicked, this, &MemoryScannerWindow::searchAgainClicked);
+  connect(m_ui.resetSearch, &QPushButton::clicked, this, &MemoryScannerWindow::resetSearchClicked);
+  connect(m_ui.addWatch, &QPushButton::clicked, this, &MemoryScannerWindow::addToWatchClicked);
   connect(m_ui.scanAddManualAddress, &QPushButton::clicked, this, &MemoryScannerWindow::addManualWatchAddressClicked);
-  connect(m_ui.scanFreezeWatch, &QPushButton::clicked, this, &MemoryScannerWindow::freezeWatchClicked);
-  connect(m_ui.scanRemoveWatch, &QPushButton::clicked, this, &MemoryScannerWindow::removeWatchClicked);
+  connect(m_ui.toggleWatchFreeze, &QPushButton::clicked, this, &MemoryScannerWindow::toggleWatchFreezeClicked);
+  connect(m_ui.removeWatch, &QPushButton::clicked, this, &MemoryScannerWindow::removeWatchClicked);
   connect(m_ui.scanTable, &QTableWidget::currentItemChanged, this, &MemoryScannerWindow::scanCurrentItemChanged);
   connect(m_ui.scanTable, &QTableWidget::itemChanged, this, &MemoryScannerWindow::scanItemChanged);
   connect(m_ui.scanTable, &QTableWidget::itemDoubleClicked, this, &MemoryScannerWindow::scanItemDoubleClicked);
@@ -191,23 +328,15 @@ void MemoryScannerWindow::enableUi(bool enabled)
 {
   const bool has_results = (m_scanner.GetResultCount() > 0);
 
-  m_ui.scanValue->setEnabled(enabled);
-  m_ui.scanValueBase->setEnabled(enabled);
-  m_ui.scanValueSigned->setEnabled(enabled);
-  m_ui.scanSize->setEnabled(enabled);
-  m_ui.scanOperator->setEnabled(enabled);
-  m_ui.scanStartAddress->setEnabled(enabled);
-  m_ui.scanEndAddress->setEnabled(enabled);
-  m_ui.scanPresetRange->setEnabled(enabled);
-  m_ui.scanResultCount->setEnabled(enabled);
-  m_ui.scanNewSearch->setEnabled(enabled);
-  m_ui.scanSearchAgain->setEnabled(enabled && has_results);
-  m_ui.scanResetSearch->setEnabled(enabled && has_results);
-  m_ui.scanAddWatch->setEnabled(enabled && !m_ui.scanTable->selectedItems().empty());
+  m_ui.scanGroup->setEnabled(enabled);
+  m_ui.searchAgain->setEnabled(enabled && has_results);
+  m_ui.resetSearch->setEnabled(enabled && has_results);
+  m_ui.addWatch->setEnabled(enabled && !m_ui.scanTable->selectedItems().empty());
+  m_ui.scanTable->setEnabled(enabled);
   m_ui.watchTable->setEnabled(enabled);
   m_ui.scanAddManualAddress->setEnabled(enabled);
-  m_ui.scanFreezeWatch->setEnabled(enabled && !m_ui.watchTable->selectedItems().empty());
-  m_ui.scanRemoveWatch->setEnabled(enabled && !m_ui.watchTable->selectedItems().empty());
+  m_ui.toggleWatchFreeze->setEnabled(enabled && !m_ui.watchTable->selectedItems().empty());
+  m_ui.removeWatch->setEnabled(enabled && !m_ui.watchTable->selectedItems().empty());
 }
 
 void MemoryScannerWindow::closeEvent(QCloseEvent* event)
@@ -286,6 +415,7 @@ void MemoryScannerWindow::newSearchClicked()
     m_ui.scanOperator->setCurrentIndex(static_cast<int>(MemoryScan::Operator::Any));
 
   m_scanner.Search();
+  m_has_searched = true;
   updateResults();
 
   // swap to changed value if we're set to any value
@@ -296,12 +426,14 @@ void MemoryScannerWindow::newSearchClicked()
 void MemoryScannerWindow::searchAgainClicked()
 {
   m_scanner.SearchAgain();
+  m_has_searched = true;
   updateResults();
 }
 
 void MemoryScannerWindow::resetSearchClicked()
 {
   m_scanner.ResetSearch();
+  m_has_searched = false;
   updateResults();
 
   // swap back to any value if we're set to changed value
@@ -311,6 +443,9 @@ void MemoryScannerWindow::resetSearchClicked()
 
 void MemoryScannerWindow::addToWatchClicked()
 {
+  if (!QtHost::IsSystemValid())
+    return;
+
   const int indexFirst = getSelectedResultIndexFirst();
   const int indexLast = getSelectedResultIndexLast();
   if (indexFirst < 0)
@@ -319,8 +454,8 @@ void MemoryScannerWindow::addToWatchClicked()
   for (int index = indexFirst; index <= indexLast; index++)
   {
     const MemoryScan::Result& res = m_scanner.GetResults()[static_cast<u32>(index)];
-    m_watch.AddEntry(formatCheatCode(res.address, res.value, m_scanner.GetSize()), res.address, m_scanner.GetSize(),
-                     m_scanner.GetValueSigned(), false);
+    m_watch.AddEntry(formatWatchDescription(res.address, res.value, m_scanner.GetSize()), res.address,
+                     m_scanner.GetSize(), m_scanner.GetValueSigned(), false);
     updateWatch();
   }
 }
@@ -348,34 +483,37 @@ void MemoryScannerWindow::addManualWatchAddressClicked()
     address.value() &= 0xFFFFFFFC;
 
   const MemoryAccessSize size = static_cast<MemoryAccessSize>(index % 3);
-  m_watch.AddEntry(formatCheatCode(address.value(), 0, size), address.value(), size, (index > 3), false);
+  if (m_watch.AddEntry({}, address.value(), size, (index > 3), false))
+  {
+    const u32 entry_index = m_watch.GetEntryCount() - 1;
+    m_watch.SetEntryDescription(entry_index,
+                                formatWatchDescription(address.value(), m_watch.GetEntry(entry_index).value, size));
+  }
   updateWatch();
 }
 
-void MemoryScannerWindow::freezeWatchClicked()
+void MemoryScannerWindow::toggleWatchFreezeClicked()
 {
-  const int indexFirst = getSelectedWatchIndexFirst();
-  const int indexLast = getSelectedWatchIndexLast();
-  if (indexFirst < 0)
+  const int start = getSelectedWatchIndexFirst();
+  if (start < 0)
     return;
 
-  const bool freeze = m_watch.GetEntryFreeze(indexFirst);
-
-  for (int index = indexLast; index >= indexFirst; index--)
+  const int end = getSelectedWatchIndexLast();
+  for (int index = start; index <= end; index++)
   {
-    m_watch.SetEntryFreeze(static_cast<u32>(index), !freeze);
+    m_watch.ToggleEntryFrozen(static_cast<u32>(index));
     updateWatch();
   }
 }
 
 void MemoryScannerWindow::removeWatchClicked()
 {
-  const int indexFirst = getSelectedWatchIndexFirst();
-  const int indexLast = getSelectedWatchIndexLast();
-  if (indexFirst < 0)
+  const int start = getSelectedWatchIndexFirst();
+  if (start < 0)
     return;
 
-  for (int index = indexLast; index >= indexFirst; index--)
+  const int end = getSelectedWatchIndexLast();
+  for (int index = end; index >= start; index--)
   {
     m_watch.RemoveEntry(static_cast<u32>(index));
     updateWatch();
@@ -384,7 +522,7 @@ void MemoryScannerWindow::removeWatchClicked()
 
 void MemoryScannerWindow::scanCurrentItemChanged(QTableWidgetItem* current, QTableWidgetItem* previous)
 {
-  m_ui.scanAddWatch->setEnabled((current != nullptr));
+  m_ui.addWatch->setEnabled((current != nullptr));
 }
 
 void MemoryScannerWindow::scanItemDoubleClicked(QTableWidgetItem* item)
@@ -447,7 +585,11 @@ void MemoryScannerWindow::watchItemChanged(QTableWidgetItem* item)
   {
     case 4:
     {
-      m_watch.SetEntryFreeze(index, (item->checkState() == Qt::Checked));
+      const bool frozen = (item->checkState() == Qt::Checked);
+      m_watch.SetEntryFrozen(index, frozen);
+
+      const QSignalBlocker sb(m_ui.watchTable);
+      item->setIcon(frozen ? QIcon(u":/icons/monochrome/svg/snowflake-line.svg"_s) : QIcon());
     }
     break;
 
@@ -485,8 +627,8 @@ void MemoryScannerWindow::watchItemChanged(QTableWidgetItem* item)
 
 void MemoryScannerWindow::watchCurrentItemChanged(QTableWidgetItem* current, QTableWidgetItem* previous)
 {
-  m_ui.scanFreezeWatch->setEnabled((current != nullptr));
-  m_ui.scanRemoveWatch->setEnabled((current != nullptr));
+  m_ui.toggleWatchFreeze->setEnabled((current != nullptr));
+  m_ui.removeWatch->setEnabled((current != nullptr));
 }
 
 void MemoryScannerWindow::watchItemDoubleClicked(QTableWidgetItem* item)
@@ -505,7 +647,7 @@ void MemoryScannerWindow::updateScanValue()
     value.remove(0, 2);
 
   bool ok = false;
-  uint uint_value = value.toUInt(&ok, (m_ui.scanValueBase->currentIndex() > 0) ? 16 : 10);
+  uint uint_value = value.toUInt(&ok, (m_ui.valueBase->currentIndex() > 0) ? 16 : 10);
   if (ok)
     m_scanner.SetValue(uint_value);
 }
@@ -514,12 +656,14 @@ QTableWidgetItem* MemoryScannerWindow::createValueItem(MemoryAccessSize size, u3
                                                        bool editable) const
 {
   QTableWidgetItem* item;
-  if (m_ui.scanValueBase->currentIndex() == 0)
+  if (m_ui.valueBase->currentIndex() == 0)
     item = new QTableWidgetItem(formatValue(value, is_signed));
   else
     item = new QTableWidgetItem(formatHexValue(value, m_scanner.GetSize()));
 
-  if (!editable)
+  if (editable)
+    item->setToolTip(tr("Double-click to change the value."));
+  else
     item->setFlags(item->flags() & ~(Qt::ItemIsEditable));
 
   item->setTextAlignment(Qt::AlignCenter | Qt::AlignHCenter);
@@ -555,13 +699,16 @@ void MemoryScannerWindow::updateResults()
     row++;
   }
 
-  m_ui.scanResultCount->setText((row < static_cast<int>(results.size())) ?
-                                  tr("%1 (only showing first %2)").arg(results.size()).arg(row) :
-                                  QString::number(m_scanner.GetResultCount()));
+  const QLocale locale;
+  m_ui.resultCount->setText((row < static_cast<int>(results.size())) ?
+                              tr("%1 (showing first %2)")
+                                .arg(locale.toString(static_cast<qlonglong>(results.size())))
+                                .arg(locale.toString(row)) :
+                              locale.toString(static_cast<qlonglong>(results.size())));
 
-  m_ui.scanResetSearch->setEnabled(!results.empty());
-  m_ui.scanSearchAgain->setEnabled(!results.empty());
-  m_ui.scanAddWatch->setEnabled(false);
+  m_ui.resetSearch->setEnabled(!results.empty());
+  m_ui.searchAgain->setEnabled(!results.empty());
+  m_ui.addWatch->setEnabled(false);
 }
 
 void MemoryScannerWindow::updateResultsValues()
@@ -576,7 +723,7 @@ void MemoryScannerWindow::updateResultsValues()
     if (res.value_changed)
     {
       QTableWidgetItem* item = m_ui.scanTable->item(row, 1);
-      if (m_ui.scanValueBase->currentIndex() == 0)
+      if (m_ui.valueBase->currentIndex() == 0)
         item->setText(formatValue(res.value, m_scanner.GetValueSigned()));
       else
         item->setText(formatHexValue(res.value, m_scanner.GetSize()));
@@ -605,34 +752,43 @@ void MemoryScannerWindow::updateWatch()
       m_ui.watchTable->insertRow(row);
 
       QTableWidgetItem* description_item = new QTableWidgetItem(QString::fromStdString(res.description));
+      description_item->setToolTip(tr("Double-click to edit the description."));
       m_ui.watchTable->setItem(row, 0, description_item);
 
       QTableWidgetItem* address_item = new QTableWidgetItem(formatHexValue(res.address, MemoryAccessSize::Word));
       address_item->setFlags(address_item->flags() & ~(Qt::ItemIsEditable));
       address_item->setData(Qt::UserRole, static_cast<uint>(res.address));
+      address_item->setTextAlignment(Qt::AlignCenter);
+      address_item->setFont(QtHost::GetFixedFont());
       m_ui.watchTable->setItem(row, 1, address_item);
 
       QTableWidgetItem* size_item =
         new QTableWidgetItem(tr(s_size_strings[static_cast<u32>(res.size) + (res.is_signed ? 3 : 0)]));
       size_item->setFlags(address_item->flags() & ~(Qt::ItemIsEditable));
+      size_item->setTextAlignment(Qt::AlignCenter);
       m_ui.watchTable->setItem(row, 2, size_item);
 
       QTableWidgetItem* value_item = new QTableWidgetItem(formatHexAndDecValue(res.value, res.size, res.is_signed));
+      value_item->setToolTip(tr("Double-click to change the value."));
+      value_item->setTextAlignment(Qt::AlignCenter);
+      value_item->setFont(QtHost::GetFixedFont());
 
       m_ui.watchTable->setItem(row, 3, value_item);
 
       QTableWidgetItem* freeze_item = new QTableWidgetItem();
       freeze_item->setFlags(freeze_item->flags() | (Qt::ItemIsEditable | Qt::ItemIsUserCheckable));
       freeze_item->setCheckState(res.freeze ? Qt::Checked : Qt::Unchecked);
+      if (res.freeze)
+        freeze_item->setIcon(QIcon(u":/icons/monochrome/svg/snowflake-line.svg"_s));
       m_ui.watchTable->setItem(row, 4, freeze_item);
 
       row++;
     }
   }
 
-  m_ui.scanSaveWatch->setEnabled(!entries.empty());
-  m_ui.scanFreezeWatch->setEnabled(false);
-  m_ui.scanRemoveWatch->setEnabled(false);
+  m_ui.saveWatch->setEnabled(!entries.empty());
+  m_ui.toggleWatchFreeze->setEnabled(false);
+  m_ui.removeWatch->setEnabled(false);
 }
 
 void MemoryScannerWindow::updateWatchValues()
@@ -643,7 +799,7 @@ void MemoryScannerWindow::updateWatchValues()
   {
     if (res.changed)
     {
-      if (m_ui.scanValueBase->currentIndex() == 0)
+      if (m_ui.valueBase->currentIndex() == 0)
         m_ui.watchTable->item(row, 3)->setText(formatValue(res.value, res.is_signed));
       else
         m_ui.watchTable->item(row, 3)->setText(formatHexAndDecValue(res.value, res.size, res.is_signed));

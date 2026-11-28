@@ -26,6 +26,7 @@ Q_SIGNALS:
 
 protected:
   void closeEvent(QCloseEvent* event) override;
+  bool eventFilter(QObject* object, QEvent* event) override;
 
 private:
   enum : int
@@ -43,7 +44,7 @@ private:
 
   void addToWatchClicked();
   void addManualWatchAddressClicked();
-  void freezeWatchClicked();
+  void toggleWatchFreezeClicked();
   void removeWatchClicked();
   void scanCurrentItemChanged(QTableWidgetItem* current, QTableWidgetItem* previous);
   void scanItemChanged(QTableWidgetItem* item);
@@ -83,4 +84,5 @@ private:
 
   QTimer* m_update_timer = nullptr;
   std::string m_watch_save_filename;
+  bool m_has_searched = false;
 };

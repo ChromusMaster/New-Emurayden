@@ -38,6 +38,9 @@
 #include "common/timer.h"
 
 #include "scmversion/scmversion.h"
+#if __has_include("scmversion/tag.h")
+#include "scmversion/tag.h"
+#endif
 
 #include "cpuinfo.h"
 #include "fmt/format.h"
@@ -51,6 +54,8 @@
 #include <ShlObj.h>
 #elifdef __APPLE__
 #include "common/cocoa_tools.h"
+#elifdef __linux__
+#include <sys/vfs.h>
 #endif
 
 LOG_CHANNEL(Core);
@@ -72,6 +77,8 @@ struct CoreLocals
   INISettingsInterface base_settings_interface;
 
   Timer::Value process_start_time = 0;
+
+  bool was_paused_by_focus_loss = false;
 };
 } // namespace
 
@@ -696,6 +703,22 @@ bool Core::ProcessStartup(Error* error)
   // Running DuckStation out of /usr is not supported and makes no sense.
   if (std::memcmp(EmuFolders::AppRoot.data(), "/usr/", 5) == 0)
     return false;
+
+#if __has_include("scmversion/tag.h") && UPDATER_RELEASE_IS_OFFICIAL
+  // Official Linux builds are only distributed as AppImages. Repackaging them is not permitted.
+  if (EmuFolders::AppRoot.starts_with("/app/") || EmuFolders::AppRoot.starts_with("/snap/") ||
+      FileSystem::FileExists("/.flatpak-info") || std::getenv("FLATPAK_ID") || std::getenv("SNAP"))
+  {
+    return false;
+  }
+
+  if (const char* appimage_path = std::getenv("APPIMAGE"); !appimage_path || !FileSystem::FileExists(appimage_path))
+    return false;
+
+  // AppRoot should be on the runtime's FUSE mount.
+  if (struct statfs sfs; statfs(EmuFolders::AppRoot.c_str(), &sfs) != 0 || sfs.f_type != 0x65735546)
+    return false;
+#endif
 #endif
 
   return true;
@@ -779,4 +802,38 @@ void Core::IdleUpdate()
   HTTPDownloader::PollRequests();
 
   Achievements::IdleUpdate();
+}
+
+void Core::OnApplicationBackgroundStateChanged(bool in_background)
+{
+  DebugAssert(Host::IsOnCoreThread());
+
+  InputManager::OnApplicationBackgroundStateChanged(in_background);
+  VideoThread::UpdateThrottleIdle();
+
+  if (!System::IsValid())
+    return;
+
+  if (in_background)
+  {
+    if (g_settings.pause_on_focus_loss && !s_locals.was_paused_by_focus_loss && !System::IsPaused())
+    {
+      System::PauseSystem(true);
+      s_locals.was_paused_by_focus_loss = true;
+    }
+
+    // Clear the state of all keyboard binds.
+    // That way, if we had a key held down, and lost focus, the bind won't be stuck enabled because we never
+    // got the key release message, because it happened in another window which "stole" the event.
+    InputManager::ClearBindStateFromSource(InputManager::MakeHostKeyboardKey(0));
+  }
+  else
+  {
+    if (s_locals.was_paused_by_focus_loss)
+    {
+      if (System::IsPaused())
+        System::PauseSystem(false);
+      s_locals.was_paused_by_focus_loss = false;
+    }
+  }
 }

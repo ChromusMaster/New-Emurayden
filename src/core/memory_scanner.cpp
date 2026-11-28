@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019-2025 Connor McLaughlin <stenzek@gmail.com> and contributors.
+// SPDX-FileCopyrightText: 2019-2026 Connor McLaughlin <stenzek@gmail.com>
 // SPDX-License-Identifier: CC-BY-NC-ND-4.0
 
 #include "memory_scanner.h"
@@ -319,7 +319,7 @@ const MemoryWatchList::Entry* MemoryWatchList::GetEntryByAddress(u32 address) co
 {
   for (const Entry& entry : m_entries)
   {
-    if (entry.address == address)
+    if (CPU::VirtualAddressToPhysical(entry.address) == CPU::VirtualAddressToPhysical(address))
       return &entry;
   }
 
@@ -346,14 +346,6 @@ bool MemoryWatchList::AddEntry(std::string description, u32 address, MemoryAcces
   m_entries.push_back(std::move(entry));
   m_entries_changed = true;
   return true;
-}
-
-bool MemoryWatchList::GetEntryFreeze(u32 index) const
-{
-  if (index >= m_entries.size())
-    return false;
-
-  return m_entries[index].freeze;
 }
 
 void MemoryWatchList::RemoveEntry(u32 index)
@@ -389,13 +381,23 @@ void MemoryWatchList::SetEntryDescription(u32 index, std::string description)
   entry.description = std::move(description);
 }
 
-void MemoryWatchList::SetEntryFreeze(u32 index, bool freeze)
+void MemoryWatchList::SetEntryFrozen(u32 index, bool freeze)
 {
   if (index >= m_entries.size())
     return;
 
   Entry& entry = m_entries[index];
   entry.freeze = freeze;
+  m_entries_changed = true;
+}
+
+void MemoryWatchList::ToggleEntryFrozen(u32 index)
+{
+  if (index >= m_entries.size())
+    return;
+
+  Entry& entry = m_entries[index];
+  entry.freeze = !entry.freeze;
   m_entries_changed = true;
 }
 

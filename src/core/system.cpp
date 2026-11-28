@@ -29,7 +29,6 @@
 #include "interrupt_controller.h"
 #include "mdec.h"
 #include "memory_card.h"
-#include "multitap.h"
 #include "pad.h"
 #include "pcdrv.h"
 #include "performance_counters.h"
@@ -4393,6 +4392,9 @@ void System::SwapMemoryCards()
   if (!IsValid())
     return;
 
+  // need to invalidate runahead states, because it stores memory card data
+  ClearMemorySaveStates(false, false);
+
   std::unique_ptr<MemoryCard> first = Pad::RemoveMemoryCard(0);
   std::unique_ptr<MemoryCard> second = Pad::RemoveMemoryCard(1);
   Pad::SetMemoryCard(0, std::move(second));
@@ -4424,40 +4426,9 @@ void System::SwapMemoryCards()
 
 void System::UpdateMultitaps()
 {
-  switch (g_settings.multitap_mode)
-  {
-    case MultitapMode::Disabled:
-    {
-      Pad::GetMultitap(0)->SetEnable(false, 0);
-      Pad::GetMultitap(1)->SetEnable(false, 1);
-    }
-    break;
-
-    case MultitapMode::Port1Only:
-    {
-      Pad::GetMultitap(0)->SetEnable(true, 0);
-      Pad::GetMultitap(1)->SetEnable(false, 1);
-    }
-    break;
-
-    case MultitapMode::Port2Only:
-    {
-      Pad::GetMultitap(0)->SetEnable(false, 0);
-      Pad::GetMultitap(1)->SetEnable(true, 1);
-    }
-    break;
-
-    case MultitapMode::BothPorts:
-    {
-      Pad::GetMultitap(0)->SetEnable(true, 0);
-      Pad::GetMultitap(1)->SetEnable(true, 1);
-    }
-    break;
-
-    default:
-      UnreachableCode();
-      break;
-  }
+  const std::array<bool, 2> enabled = Controller::GetMultitapEnabledPorts(g_settings.multitap_mode);
+  for (u32 i = 0; i < NUM_MULTITAPS; i++)
+    Pad::SetMultitapEnabled(i, enabled[i]);
 }
 
 bool System::DumpRAM(std::string path, Error* error)
@@ -5038,6 +5009,7 @@ void System::CheckForSettingsChanges(const Settings& old_settings)
         (g_settings.cpu_recompiler_memory_exceptions != old_settings.cpu_recompiler_memory_exceptions ||
          g_settings.cpu_recompiler_block_linking != old_settings.cpu_recompiler_block_linking ||
          g_settings.cpu_recompiler_icache != old_settings.cpu_recompiler_icache ||
+         g_settings.cpu_idle_fast_forward != old_settings.cpu_idle_fast_forward ||
          g_settings.bios_tty_logging != old_settings.bios_tty_logging))
     {
       Host::AddIconOSDMessage(OSDMessageType::Info, "CPUFlushAllBlocks", ICON_FA_MICROCHIP,
@@ -5376,6 +5348,9 @@ void System::CheckForSettingsChanges(const Settings& old_settings)
 
   if (g_settings.disable_background_input != old_settings.disable_background_input)
     InputManager::UpdateInputIgnoreState();
+
+  if (g_settings.reduce_idle_frame_rate != old_settings.reduce_idle_frame_rate)
+    VideoThread::UpdateThrottleIdle();
 
   if (g_settings.audio_sound_effect_volume != old_settings.audio_sound_effect_volume)
     SoundEffectManager::SetVolume(g_settings.audio_sound_effect_volume);

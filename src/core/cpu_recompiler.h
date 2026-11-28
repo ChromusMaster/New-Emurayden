@@ -80,19 +80,6 @@ public:
   // Align functions to 16 bytes.
   static constexpr u32 FUNCTION_ALIGNMENT = 16;
 
-#elif defined(CPU_ARCH_LOONGARCH64)
-
-  // Number of host registers.
-  static constexpr u32 NUM_HOST_REGS = 32;
-  static constexpr bool HAS_MEMORY_OPERANDS = false;
-
-  // A reasonable "maximum" number of bytes per instruction.
-  static constexpr u32 MAX_NEAR_HOST_BYTES_PER_INSTRUCTION = 64;
-  static constexpr u32 MIN_CODE_RESERVE_FOR_BLOCK = 512;
-
-  // Align functions to 16 bytes.
-  static constexpr u32 FUNCTION_ALIGNMENT = 16;
-
 #endif
 
 public:
@@ -280,6 +267,7 @@ protected:
   virtual void GenerateBlockProtectCheck(const u8* ram_ptr, const u8* shadow_ptr, u32 size) = 0;
   virtual void GenerateICacheCheckAndUpdate() = 0;
   virtual void GenerateCall(const void* func, s32 arg1reg = -1, s32 arg2reg = -1, s32 arg3reg = -1) = 0;
+  virtual void LoadArgRegWithConstant(u32 arg, const void* ptr) = 0; // arg is 1-3, as in GenerateCall().
   virtual void EndBlock(const std::optional<u32>& newpc, bool do_event_test) = 0;
   virtual void EndBlockWithException(Exception excode) = 0;
   void EndBlockWithBranchTargetException();

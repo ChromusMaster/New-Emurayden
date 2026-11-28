@@ -35,6 +35,7 @@
 #include <algorithm>
 #include <array>
 #include <atomic>
+#include <cmath>
 #include <memory>
 #include <sstream>
 #include <tuple>
@@ -111,7 +112,8 @@ static void ClearBindState(Predicate&& matches);
 
 static void LoadMacroButtonConfig(const SettingsInterface& si, const std::string& section, u32 pad,
                                   const Controller::ControllerInfo& cinfo);
-static void ApplyMacroButton(const MacroButton& mb);
+static void AdvanceMacroButton(MacroButton& mb);
+static void ReleaseMacroButton(MacroButton& mb, size_t num_actions = std::numeric_limits<size_t>::max());
 static void UpdateMacroButtons();
 
 static Threading::SharedLockGuard GetSourcesReadLock();
@@ -161,6 +163,15 @@ struct BindingCaptureInput
   bool armed;
 };
 
+/// An input which is mapped to a pad bind while recording a macro.
+struct MacroRecordingKey
+{
+  InputBindingKey key;
+  u32 bind_index;
+  float scale;
+  float deadzone;
+};
+
 struct State
 {
   BindingMap binding_map;
@@ -202,6 +213,11 @@ struct State
   std::vector<BindingCaptureInput> binding_capture_inputs;
   std::vector<InputBindingKey> binding_capture_keys;
   InputManager::BindingCaptureCallback binding_capture_callback;
+  std::vector<MacroRecordingKey> macro_recording_keys;
+  std::vector<std::pair<u32, float>> macro_recording_last_values;
+  InputManager::MacroRecordingCallback macro_recording_callback;
+  Timer::Value macro_recording_start_time = 0;
+  double macro_recording_frame_rate = 0.0;
 
 #ifdef _WIN32
   // Only written on the core thread, but read from any thread. It only bounds loops over fixed-size arrays and doesn't
@@ -1009,10 +1025,18 @@ void InputManager::AddPadBindings(const SettingsInterface& si, const std::string
             vib_binding.last_update_time = 0;
 
             // If we're reloading bindings due to e.g. device connection, sync the vibration state.
-            if (Controller* controller = System::GetController(pad_index))
+            // When the controller type changes, the bindings are reloaded before the old controller is replaced, so
+            // the bind index would read an unrelated input of the old type and could start vibrating. The new
+            // controller's motors start off, so leave it at zero.
+            if (Controller* controller = System::GetController(pad_index);
+                controller && controller->GetType() == cinfo.type)
+            {
               vib_binding.last_intensity = controller->GetBindState(bi.bind_index);
+            }
             else
+            {
               vib_binding.last_intensity = 0.0f;
+            }
 
             s_state.pad_vibration_array.push_back(vib_binding);
           }
@@ -1033,10 +1057,18 @@ void InputManager::AddPadBindings(const SettingsInterface& si, const std::string
             led_binding.pad_index = pad_index;
 
             // If we're reloading bindings due to e.g. device connection, sync the LED state.
-            if (Controller* controller = System::GetController(pad_index))
+            // When the controller type changes, the bindings are reloaded before the old controller is replaced, so
+            // the bind index would read an unrelated input of the old type. The new controller starts in digital mode,
+            // and sets the LED if it switches to analog mode on reset.
+            if (Controller* controller = System::GetController(pad_index);
+                controller && controller->GetType() == cinfo.type)
+            {
               led_binding.last_intensity = controller->GetBindState(bi.bind_index);
+            }
             else
+            {
               led_binding.last_intensity = 0.0f;
+            }
 
             // Need to pass it through unconditionally, otherwise if the LED was on it'll stay on.
             led_binding.source->UpdateLEDState(led_binding.binding, led_binding.last_intensity);
@@ -1143,6 +1175,13 @@ void InputManager::InvokeEvents(InputBindingKey key, float value, GenericInputBi
   DebugAssert(Host::IsOnCoreThread());
   if (DoBindingCaptureEvent(key, value, generic_key))
     return;
+
+  // Pointer events pass through, so the UI can still be clicked.
+  if (s_state.macro_recording_callback && key.source_type != InputSourceType::Pointer)
+  {
+    AddMacroRecordingEvent(key, value, Timer::GetCurrentValue());
+    return;
+  }
 
   // Background input test
   if (ShouldMaskBackgroundInput(key))
@@ -1648,6 +1687,11 @@ void InputManager::OnApplicationBackgroundStateChanged(bool in_background)
   UpdateInputIgnoreState();
 }
 
+bool InputManager::IsApplicationInBackground()
+{
+  return s_state.application_in_background;
+}
+
 void InputManager::UpdateInputIgnoreState()
 {
   // Threading: Called on core thread.
@@ -1759,6 +1803,8 @@ void InputManager::CopyConfiguration(SettingsInterface* dest_si, const SettingsI
         dest_si->CopyFloatValue(src_si, section.c_str(), TinyString::from_format("Macro{}Pressure", i + 1));
         dest_si->CopyUIntValue(src_si, section.c_str(), TinyString::from_format("Macro{}Frequency", i + 1));
         dest_si->CopyBoolValue(src_si, section.c_str(), TinyString::from_format("Macro{}Toggle", i + 1));
+        dest_si->CopyStringValue(src_si, section.c_str(), TinyString::from_format("Macro{}Sequence", i + 1));
+        dest_si->CopyBoolValue(src_si, section.c_str(), TinyString::from_format("Macro{}Loop", i + 1));
       }
     }
 
@@ -2139,53 +2185,39 @@ void InputManager::LoadMacroButtonConfig(const SettingsInterface& si, const std:
 
   for (u32 i = 0; i < NUM_MACRO_BUTTONS_PER_CONTROLLER; i++)
   {
-    std::string_view binds_string;
-    if (!si.FindStringValue(section.c_str(), TinyString::from_format("Macro{}Binds", i + 1u), &binds_string))
-      continue;
-
-    const u32 frequency =
-      std::min<u32>(si.GetUIntValue(section.c_str(), TinyString::from_format("Macro{}Frequency", i + 1u), 0u),
-                    std::numeric_limits<u16>::max());
-    const u8 pressure = static_cast<u8>(
-      std::clamp(si.GetFloatValue(section.c_str(), TinyString::from_format("Macro{}Pressure", i + 1u), 1.0f), 0.0f,
-                 1.0f) *
-      255.0f);
-    const bool toggle = si.GetBoolValue(section.c_str(), TinyString::from_format("Macro{}Toggle", i + 1u), false);
-
-    // convert binds
-    decltype(MacroButton::buttons) bind_indices;
-    std::vector<std::string_view> buttons_split(StringUtil::SplitString(binds_string, '&', true));
-    if (buttons_split.empty())
-      continue;
-    for (const std::string_view& button : buttons_split)
+    // Macros from before sequences were added are converted, they repeat the binds/toggle while active.
+    std::vector<MacroSequenceAction> actions;
+    bool loop;
+    std::string_view value;
+    if (si.FindStringValue(section.c_str(), TinyString::from_format("Macro{}Sequence", i + 1u), &value))
     {
-      const Controller::ControllerBindingInfo* binding = nullptr;
-      for (const Controller::ControllerBindingInfo& bi : cinfo.bindings)
-      {
-        if (button == bi.name)
-        {
-          binding = &bi;
-          break;
-        }
-      }
-      if (!binding)
-      {
-        DEV_LOG("Invalid bind '{}' in macro button {} for pad {}", button, pad, i);
-        continue;
-      }
-
-      bind_indices.push_back(binding->bind_index);
+      actions = ParseMacroSequence(value, cinfo);
+      loop = si.GetBoolValue(section.c_str(), TinyString::from_format("Macro{}Loop", i + 1u), false);
     }
-    if (bind_indices.empty())
+    else if (si.FindStringValue(section.c_str(), TinyString::from_format("Macro{}Binds", i + 1u), &value))
+    {
+      actions = ConvertLegacyMacroToSequence(
+        value, si.GetFloatValue(section.c_str(), TinyString::from_format("Macro{}Pressure", i + 1u), 1.0f),
+        si.GetUIntValue(section.c_str(), TinyString::from_format("Macro{}Frequency", i + 1u), 0u), cinfo);
+      loop = true;
+    }
+    else
+    {
+      continue;
+    }
+
+    if (actions.empty())
       continue;
 
     MacroButton& macro = s_state.macro_buttons.emplace_back();
     macro.pad_index = static_cast<u16>(pad);
     macro.macro_index = static_cast<u16>(i);
-    macro.buttons = std::move(bind_indices);
-    macro.toggle_frequency = static_cast<u16>(frequency);
-    macro.trigger_toggle = toggle;
-    macro.trigger_pressure = pressure;
+    macro.actions = std::move(actions);
+    macro.action_index = 0;
+    macro.wait_counter = 0;
+    macro.trigger_state = false;
+    macro.trigger_toggle = si.GetBoolValue(section.c_str(), TinyString::from_format("Macro{}Toggle", i + 1u), false);
+    macro.loop = loop;
 
     const std::vector<std::string> trigger_bindings =
       si.GetStringList(section.c_str(), TinyString::from_format("Macro{}", i + 1u).c_str());
@@ -2234,31 +2266,103 @@ void InputManager::SetMacroButtonState(u32 pad, u32 index, bool state)
   if (mb == s_state.macro_buttons.end())
     return;
 
-  DebugAssert(!mb->buttons.empty());
+  DebugAssert(!mb->actions.empty());
 
-  const bool trigger_state = (mb->trigger_toggle ? (state ? !mb->trigger_state : mb->trigger_state) : state);
+  // Toggling only makes sense for looping macros, the others play to the end on each press.
+  const bool trigger_state =
+    ((mb->trigger_toggle && mb->loop) ? (state ? !mb->trigger_state : mb->trigger_state) : state);
   if (mb->trigger_state == trigger_state)
     return;
 
-  mb->toggle_counter = mb->toggle_frequency;
   mb->trigger_state = trigger_state;
-  if (mb->toggle_state != trigger_state)
+  if (trigger_state)
   {
-    mb->toggle_state = trigger_state;
-    ApplyMacroButton(*mb);
+    // Pressing again while playing restarts the sequence. Macros are updated once more before the next frame runs,
+    // which shouldn't count towards the first wait.
+    // Anything the previous run left held is released first, but not binds it hasn't reached yet. Repeats may have run
+    // all of them.
+    if (mb->wait_counter > 0)
+      ReleaseMacroButton(*mb, mb->loop ? mb->actions.size() : mb->action_index);
+
+    mb->action_index = 0;
+    AdvanceMacroButton(*mb);
+    if (mb->wait_counter > 0)
+      mb->wait_counter++;
+  }
+  else if (mb->loop && mb->wait_counter == 0)
+  {
+    // Looping sequences finish the current repeat when released, unless they're just holding binds.
+    ReleaseMacroButton(*mb);
   }
 }
 
-void InputManager::ApplyMacroButton(const MacroButton& mb)
+void InputManager::AdvanceMacroButton(MacroButton& mb)
 {
-  // Threading: Internal function only called by UpdateMacroButtons() on core thread.
+  // Threading: Internal function only called on core thread.
   Controller* const controller = System::GetController(mb.pad_index);
   if (!controller)
     return;
 
-  const float value = static_cast<float>(mb.toggle_state ? mb.trigger_pressure : 0) * (1.0f / 255.0f);
-  for (const u32 btn : mb.buttons)
-    controller->SetBindState(btn, value);
+  // Run actions up to the next wait, which leaves the sequence playing.
+  bool pressed = false;
+  for (;;)
+  {
+    if (mb.action_index == mb.actions.size())
+    {
+      // Sequences repeat while active, and looping sequences without a wait just hold their binds until released.
+      if (!mb.loop || !mb.trigger_state)
+      {
+        // Inputs pressed at the end of the sequence are held for a frame, so that the game sees them.
+        if (pressed && !mb.finishing)
+        {
+          mb.finishing = true;
+          mb.wait_counter = 1;
+        }
+        else
+        {
+          ReleaseMacroButton(mb);
+        }
+
+        return;
+      }
+      else if (std::ranges::none_of(mb.actions, [](const MacroSequenceAction& action) {
+                 return (action.bind_index == MacroSequenceAction::WAIT_BIND_INDEX);
+               }))
+      {
+        mb.wait_counter = 0;
+        return;
+      }
+
+      mb.action_index = 0;
+    }
+
+    const MacroSequenceAction& action = mb.actions[mb.action_index++];
+    if (action.bind_index == MacroSequenceAction::WAIT_BIND_INDEX)
+    {
+      mb.wait_counter = action.frames;
+      return;
+    }
+
+    controller->SetBindState(action.bind_index, action.value);
+    pressed |= (action.value != 0.0f);
+  }
+}
+
+void InputManager::ReleaseMacroButton(MacroButton& mb, size_t num_actions)
+{
+  // Threading: Internal function only called on core thread.
+  mb.wait_counter = 0;
+  mb.finishing = false;
+
+  Controller* const controller = System::GetController(mb.pad_index);
+  if (!controller)
+    return;
+
+  for (const MacroSequenceAction& action : std::span(mb.actions).first(std::min(num_actions, mb.actions.size())))
+  {
+    if (action.bind_index != MacroSequenceAction::WAIT_BIND_INDEX)
+      controller->SetBindState(action.bind_index, 0.0f);
+  }
 }
 
 void InputManager::UpdateMacroButtons()
@@ -2266,17 +2370,177 @@ void InputManager::UpdateMacroButtons()
   // Threading: Internal function only called by PollSources() on core thread.
   for (MacroButton& mb : s_state.macro_buttons)
   {
-    if (!mb.trigger_state || mb.toggle_frequency == 0)
+    if (mb.wait_counter == 0 || --mb.wait_counter > 0)
       continue;
 
-    mb.toggle_counter--;
-    if (mb.toggle_counter > 0)
-      continue;
-
-    mb.toggle_counter = mb.toggle_frequency;
-    mb.toggle_state = !mb.toggle_state;
-    ApplyMacroButton(mb);
+    AdvanceMacroButton(mb);
   }
+}
+
+static const Controller::ControllerBindingInfo* FindMacroBind(const Controller::ControllerInfo& cinfo,
+                                                              std::string_view name)
+{
+  const auto it = std::ranges::find_if(
+    cinfo.bindings, [&name](const Controller::ControllerBindingInfo& bi) { return (name == bi.name); });
+  if (it == cinfo.bindings.end())
+  {
+    DEV_LOG("Invalid bind '{}' in macro for {}", name, cinfo.name);
+    return nullptr;
+  }
+
+  return &(*it);
+}
+
+std::vector<InputManager::MacroSequenceAction> InputManager::ParseMacroSequence(std::string_view str,
+                                                                                const Controller::ControllerInfo& cinfo)
+{
+  std::vector<MacroSequenceAction> ret;
+  for (const std::string_view token : StringUtil::SplitString(str, ' ', true))
+  {
+    std::string_view endptr;
+    if (const std::optional<u32> frames = StringUtil::FromChars<u32>(token, 10, &endptr); frames && endptr.empty())
+    {
+      if (frames.value() > 0)
+        ret.emplace_back(MacroSequenceAction::WAIT_BIND_INDEX, frames.value(), 0.0f);
+      continue;
+    }
+
+    std::string_view name = token;
+    float value = 1.0f;
+    if (const std::string_view::size_type pos = token.find(':'); pos != std::string_view::npos)
+    {
+      name = token.substr(0, pos);
+      const std::optional<float> parsed_value = StringUtil::FromChars<float>(token.substr(pos + 1), &endptr);
+      if (!parsed_value.has_value() || !endptr.empty())
+      {
+        DEV_LOG("Invalid value in macro token '{}'", token);
+        continue;
+      }
+
+      value = std::clamp(parsed_value.value(), 0.0f, 1.0f);
+    }
+
+    if (const Controller::ControllerBindingInfo* bi = FindMacroBind(cinfo, name))
+      ret.emplace_back(bi->bind_index, 0, value);
+  }
+
+  return ret;
+}
+
+std::string InputManager::FormatMacroSequence(std::span<const MacroSequenceAction> actions,
+                                              const Controller::ControllerInfo& cinfo)
+{
+  std::string ret;
+  for (const MacroSequenceAction& action : actions)
+  {
+    if (action.bind_index == MacroSequenceAction::WAIT_BIND_INDEX)
+    {
+      fmt::format_to(std::back_inserter(ret), "{}{}", ret.empty() ? "" : " ", action.frames);
+      continue;
+    }
+
+    const auto it = std::ranges::find_if(cinfo.bindings, [&action](const Controller::ControllerBindingInfo& bi) {
+      return (bi.bind_index == action.bind_index);
+    });
+    if (it == cinfo.bindings.end())
+      continue;
+
+    fmt::format_to(std::back_inserter(ret), "{}{}", ret.empty() ? "" : " ", it->name);
+    if (action.value != 1.0f)
+      fmt::format_to(std::back_inserter(ret), ":{}", std::round(action.value * 1000.0f) / 1000.0f);
+  }
+
+  return ret;
+}
+
+std::vector<InputManager::MacroSequenceAction>
+InputManager::ConvertLegacyMacroToSequence(std::string_view binds, float pressure, u32 frequency,
+                                           const Controller::ControllerInfo& cinfo)
+{
+  // Press all binds, then if there's a toggle frequency, wait and release them for the same number of frames.
+  std::vector<MacroSequenceAction> ret;
+  const float value = std::clamp(pressure, 0.0f, 1.0f);
+  for (const std::string_view name : StringUtil::SplitString(binds, '&', true))
+  {
+    if (const Controller::ControllerBindingInfo* bi = FindMacroBind(cinfo, name))
+      ret.emplace_back(bi->bind_index, 0, value);
+  }
+
+  const size_t num_binds = ret.size();
+  if (frequency == 0 || num_binds == 0)
+    return ret;
+
+  ret.reserve(num_binds * 2 + 2);
+  ret.emplace_back(MacroSequenceAction::WAIT_BIND_INDEX, frequency, 0.0f);
+  for (size_t i = 0; i < num_binds; i++)
+    ret.emplace_back(ret[i].bind_index, 0, 0.0f);
+  ret.emplace_back(MacroSequenceAction::WAIT_BIND_INDEX, frequency, 0.0f);
+  return ret;
+}
+
+std::vector<InputManager::MacroSequenceAction>
+InputManager::ConvertRecordedMacroActions(std::span<const MacroSequenceAction> recorded, bool release_held)
+{
+  // The frame counts are from the start of the recording, convert them to waits starting at the first input.
+  std::vector<MacroSequenceAction> ret;
+  if (recorded.empty())
+    return ret;
+
+  u32 current_frame = recorded.front().frames;
+  size_t frame_start = 0;
+  for (const MacroSequenceAction& action : recorded)
+  {
+    if (action.frames > current_frame)
+    {
+      ret.emplace_back(MacroSequenceAction::WAIT_BIND_INDEX, action.frames - current_frame, 0.0f);
+      current_frame = action.frames;
+      frame_start = ret.size();
+    }
+
+    // Changes to the same bind in a frame are merged, but a release still lets the game see the press.
+    const auto it = std::find_if(ret.begin() + frame_start, ret.end(),
+                                 [&action](const auto& other) { return (other.bind_index == action.bind_index); });
+    if (it == ret.end())
+    {
+      ret.emplace_back(action.bind_index, 0, action.value);
+    }
+    else if (action.value == 0.0f && it->value != 0.0f)
+    {
+      ret.emplace_back(MacroSequenceAction::WAIT_BIND_INDEX, 1, 0.0f);
+      ret.emplace_back(action.bind_index, 0, 0.0f);
+      current_frame++;
+      frame_start = ret.size() - 1;
+    }
+    else
+    {
+      it->value = action.value;
+    }
+  }
+
+  // Release anything still held at the end.
+  if (!release_held)
+    return ret;
+
+  llvm::SmallVector<u32, 16> held_binds;
+  for (const MacroSequenceAction& action : ret)
+  {
+    if (action.bind_index == MacroSequenceAction::WAIT_BIND_INDEX)
+      continue;
+
+    const auto it = std::ranges::find(held_binds, action.bind_index);
+    if (action.value != 0.0f && it == held_binds.end())
+      held_binds.push_back(action.bind_index);
+    else if (action.value == 0.0f && it != held_binds.end())
+      held_binds.erase(it);
+  }
+  if (!held_binds.empty())
+  {
+    ret.emplace_back(MacroSequenceAction::WAIT_BIND_INDEX, 1, 0.0f);
+    for (const u32 bind_index : held_binds)
+      ret.emplace_back(bind_index, 0, 0.0f);
+  }
+
+  return ret;
 }
 
 // ------------------------------------------------------------------------
@@ -2350,6 +2614,114 @@ void InputManager::StopBindingCapture()
   s_state.binding_capture_running = false;
   s_state.binding_capture_callback = {};
   UpdateSensorPolling();
+}
+
+void InputManager::StartMacroRecording(const SettingsInterface& si, std::string_view section,
+                                       const Controller::ControllerInfo& cinfo, MacroRecordingCallback callback)
+{
+  // The inputs are looked up here, on the caller's thread, so that the core thread doesn't touch the caller's settings.
+  // Same settings as the pad bindings use.
+  std::vector<MacroRecordingKey> keys;
+  const TinyString section_str(section);
+  for (const Controller::ControllerBindingInfo& bi : cinfo.bindings)
+  {
+    if (bi.type != InputBindingInfo::Type::Button && bi.type != InputBindingInfo::Type::Axis &&
+        bi.type != InputBindingInfo::Type::HalfAxis)
+    {
+      continue;
+    }
+
+    const float scale = si.GetFloatValue(section_str, TinyString::from_format("{}Scale", bi.name), 1.0f);
+    const float deadzone = si.GetFloatValue(section_str, TinyString::from_format("{}Deadzone", bi.name), 0.0f);
+    for (const std::string& binding : si.GetStringList(section_str, bi.name))
+    {
+      // Chords can't be recorded.
+      if (binding.find('&') != std::string::npos)
+        continue;
+
+      if (const std::optional<InputBindingKey> key = ParseInputBindingKey(binding))
+        keys.emplace_back(key.value(), bi.bind_index, scale, deadzone);
+    }
+  }
+
+  // This is most likely happening off the core thread (UI or video threads), so just queue it.
+  Host::RunOnCoreThread([keys = std::move(keys), callback = std::move(callback)]() mutable {
+    s_state.macro_recording_keys = std::move(keys);
+
+    // Waits are in frames of the running game, otherwise assume 60hz.
+    s_state.macro_recording_last_values.clear();
+    s_state.macro_recording_callback = std::move(callback);
+    s_state.macro_recording_start_time = Timer::GetCurrentValue();
+    s_state.macro_recording_frame_rate = System::IsValid() ? System::GetVideoFrameRate() : 60.0;
+  });
+}
+
+void InputManager::AddMacroRecordingEvent(InputBindingKey key, float value, u64 timestamp)
+{
+  // Threading: Only called on core thread.
+  DebugAssert(Host::IsOnCoreThread());
+  if (!s_state.macro_recording_callback)
+    return;
+
+  // Same mapping as ProcessEvent().
+  const InputBindingKey masked_key = key.MaskDirection();
+  for (const MacroRecordingKey& rkey : s_state.macro_recording_keys)
+  {
+    if (rkey.key.MaskDirection() != masked_key)
+      continue;
+
+    float bind_value = 0.0f;
+    switch (rkey.key.modifier)
+    {
+      case InputModifier::None:
+        bind_value = std::max(value, 0.0f);
+        break;
+      case InputModifier::Negate:
+        bind_value = std::max(-value, 0.0f);
+        break;
+      case InputModifier::FullAxis:
+        bind_value = value * 0.5f + 0.5f;
+        break;
+    }
+
+    bind_value = rkey.key.invert ? (1.0f - bind_value) : bind_value;
+    bind_value = ApplySingleBindingScale(rkey.scale, rkey.deadzone, bind_value);
+
+    // Only pass on changes, ignoring tiny analog movements.
+    auto it = std::ranges::find_if(s_state.macro_recording_last_values,
+                                   [&rkey](const auto& lv) { return (lv.first == rkey.bind_index); });
+    const float last_value = (it != s_state.macro_recording_last_values.end()) ? it->second : 0.0f;
+    if (bind_value == last_value ||
+        (bind_value != 0.0f && bind_value != 1.0f && std::abs(bind_value - last_value) < (1.0f / 64.0f)))
+    {
+      continue;
+    }
+
+    if (it != s_state.macro_recording_last_values.end())
+      it->second = bind_value;
+    else
+      s_state.macro_recording_last_values.emplace_back(rkey.bind_index, bind_value);
+
+    const u32 frame =
+      (timestamp > s_state.macro_recording_start_time) ?
+        static_cast<u32>(std::round(Timer::ConvertValueToSeconds(timestamp - s_state.macro_recording_start_time) *
+                                    s_state.macro_recording_frame_rate)) :
+        0;
+    s_state.macro_recording_callback(MacroSequenceAction{rkey.bind_index, frame, bind_value});
+  }
+}
+
+void InputManager::StopMacroRecording()
+{
+  if (!Host::IsOnCoreThread())
+  {
+    Host::RunOnCoreThread(&InputManager::StopMacroRecording);
+    return;
+  }
+
+  s_state.macro_recording_keys.clear();
+  s_state.macro_recording_last_values.clear();
+  s_state.macro_recording_callback = {};
 }
 
 void InputManager::UpdateSensorPolling()

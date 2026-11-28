@@ -292,6 +292,7 @@ void Settings::Load(const SettingsInterface& si, const SettingsInterface& contro
   sync_to_host_refresh_rate = si.GetBoolValue(INTERFACE_SECTION_NAME, "SyncToHostRefreshRate", false);
   inhibit_screensaver = si.GetBoolValue(INTERFACE_SECTION_NAME, "InhibitScreensaver", true);
   pause_on_focus_loss = si.GetBoolValue(INTERFACE_SECTION_NAME, "PauseOnFocusLoss", false);
+  reduce_idle_frame_rate = si.GetBoolValue(INTERFACE_SECTION_NAME, "ReduceIdleFrameRate", true);
   pause_on_controller_disconnection = si.GetBoolValue(INTERFACE_SECTION_NAME, "PauseOnControllerDisconnection", false);
   disable_background_input = si.GetBoolValue(INTERFACE_SECTION_NAME, "DisableBackgroundInput", false);
   save_state_on_exit = si.GetBoolValue(INTERFACE_SECTION_NAME, "SaveStateOnExit", true);
@@ -321,6 +322,8 @@ void Settings::Load(const SettingsInterface& si, const SettingsInterface& contro
   cpu_recompiler_icache = si.GetBoolValue(CPU_SECTION_NAME, "RecompilerICache", false);
   cpu_fastmem_mode =
     ParseCPUFastmemMode(si.GetStringViewValue(CPU_SECTION_NAME, "FastmemMode")).value_or(DEFAULT_CPU_FASTMEM_MODE);
+  cpu_idle_fast_forward = si.GetBoolValue(CPU_SECTION_NAME, "IdleFastForward", true);
+  cpu_idle_timeout_scale = si.GetBoolValue(CPU_SECTION_NAME, "IdleTimeoutScale", true);
   cpu_ram_size = ParseCPURAMSize(si.GetStringViewValue(CPU_SECTION_NAME, "RAMSize")).value_or(DEFAULT_CPU_RAM_SIZE);
 
   gpu_renderer = ParseRendererName(si.GetStringViewValue(GPU_SECTION_NAME, "Renderer")).value_or(DEFAULT_GPU_RENDERER);
@@ -536,7 +539,7 @@ void Settings::Load(const SettingsInterface& si, const SettingsInterface& contro
   achievements_hardcore_mode = si.GetBoolValue(ACHIEVEMENTS_SECTION_NAME, "ChallengeMode", false);
   achievements_encore_mode = si.GetBoolValue(ACHIEVEMENTS_SECTION_NAME, "EncoreMode", false);
   achievements_spectator_mode = si.GetBoolValue(ACHIEVEMENTS_SECTION_NAME, "SpectatorMode", false);
-  achievements_track_unofficial = si.GetBoolValue(ACHIEVEMENTS_SECTION_NAME, "UnofficialTestMode", false);
+  achievements_track_unpromoted = si.GetBoolValue(ACHIEVEMENTS_SECTION_NAME, "UnofficialTestMode", false);
   achievements_use_raintegration = si.GetBoolValue(ACHIEVEMENTS_SECTION_NAME, "UseRAIntegration", false);
   achievements_notifications = si.GetBoolValue(ACHIEVEMENTS_SECTION_NAME, "Notifications", true);
   achievements_leaderboard_notifications = si.GetBoolValue(ACHIEVEMENTS_SECTION_NAME, "LeaderboardNotifications", true);
@@ -696,6 +699,7 @@ void Settings::Save(SettingsInterface& si, bool for_copy) const
     si.SetBoolValue(INTERFACE_SECTION_NAME, "SyncToHostRefreshRate", sync_to_host_refresh_rate);
     si.SetBoolValue(INTERFACE_SECTION_NAME, "InhibitScreensaver", inhibit_screensaver);
     si.SetBoolValue(INTERFACE_SECTION_NAME, "PauseOnFocusLoss", pause_on_focus_loss);
+    si.SetBoolValue(INTERFACE_SECTION_NAME, "ReduceIdleFrameRate", reduce_idle_frame_rate);
     si.SetBoolValue(INTERFACE_SECTION_NAME, "PauseOnControllerDisconnection", pause_on_controller_disconnection);
     si.SetBoolValue(INTERFACE_SECTION_NAME, "SaveStateOnExit", save_state_on_exit);
     si.SetBoolValue(INTERFACE_SECTION_NAME, "CreateSaveStateBackups", create_save_state_backups);
@@ -728,6 +732,8 @@ void Settings::Save(SettingsInterface& si, bool for_copy) const
     si.SetBoolValue(CPU_SECTION_NAME, "RecompilerBlockLinking", cpu_recompiler_block_linking);
     si.SetBoolValue(CPU_SECTION_NAME, "RecompilerICache", cpu_recompiler_icache);
     si.SetStringValue(CPU_SECTION_NAME, "FastmemMode", GetCPUFastmemModeName(cpu_fastmem_mode));
+    si.SetBoolValue(CPU_SECTION_NAME, "IdleFastForward", cpu_idle_fast_forward);
+    si.SetBoolValue(CPU_SECTION_NAME, "IdleTimeoutScale", cpu_idle_timeout_scale);
   }
 
   si.SetStringValue(GPU_SECTION_NAME, "Renderer", GetRendererName(gpu_renderer));
@@ -922,7 +928,7 @@ void Settings::Save(SettingsInterface& si, bool for_copy) const
   si.SetBoolValue(ACHIEVEMENTS_SECTION_NAME, "ChallengeMode", achievements_hardcore_mode);
   si.SetBoolValue(ACHIEVEMENTS_SECTION_NAME, "EncoreMode", achievements_encore_mode);
   si.SetBoolValue(ACHIEVEMENTS_SECTION_NAME, "SpectatorMode", achievements_spectator_mode);
-  si.SetBoolValue(ACHIEVEMENTS_SECTION_NAME, "UnofficialTestMode", achievements_track_unofficial);
+  si.SetBoolValue(ACHIEVEMENTS_SECTION_NAME, "UnofficialTestMode", achievements_track_unpromoted);
   si.SetBoolValue(ACHIEVEMENTS_SECTION_NAME, "UseRAIntegration", achievements_use_raintegration);
   si.SetBoolValue(ACHIEVEMENTS_SECTION_NAME, "Notifications", achievements_notifications);
   si.SetBoolValue(ACHIEVEMENTS_SECTION_NAME, "LeaderboardNotifications", achievements_leaderboard_notifications);
@@ -1191,6 +1197,7 @@ void Settings::ApplySettingRestrictions()
     cpu_overclock_enable = false;
     cpu_overclock_active = false;
     cpu_ram_size = DEFAULT_CPU_RAM_SIZE;
+    cpu_idle_fast_forward = false;
     gpu_vram_size = DEFAULT_GPU_VRAM_SIZE;
     gpu_resolution_scale = 1;
     gpu_multisamples = 1;

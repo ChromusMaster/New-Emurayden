@@ -56,6 +56,10 @@
 #include "util/postprocessing.h"
 #include "util/translation.h"
 
+#ifdef __linux__
+#include "util/x11_tools.h"
+#endif
+
 #include "scmversion/scmversion.h"
 
 #include "fmt/format.h"
@@ -1955,34 +1959,7 @@ void CoreThread::saveScreenshot()
 
 void CoreThread::applicationStateChanged(Qt::ApplicationState state)
 {
-  const bool background = (state != Qt::ApplicationActive);
-  InputManager::OnApplicationBackgroundStateChanged(background);
-
-  if (!System::IsValid())
-    return;
-
-  if (background)
-  {
-    if (g_settings.pause_on_focus_loss && !m_was_paused_by_focus_loss && !System::IsPaused())
-    {
-      setSystemPaused(true);
-      m_was_paused_by_focus_loss = true;
-    }
-
-    // Clear the state of all keyboard binds.
-    // That way, if we had a key held down, and lost focus, the bind won't be stuck enabled because we never
-    // got the key release message, because it happened in another window which "stole" the event.
-    InputManager::ClearBindStateFromSource(InputManager::MakeHostKeyboardKey(0));
-  }
-  else
-  {
-    if (m_was_paused_by_focus_loss)
-    {
-      if (System::IsPaused())
-        setSystemPaused(false);
-      m_was_paused_by_focus_loss = false;
-    }
-  }
+  Core::OnApplicationBackgroundStateChanged(state != Qt::ApplicationActive);
 }
 
 void Host::OnAchievementsLoginRequested(Achievements::LoginRequestReason reason)
@@ -3054,7 +3031,7 @@ const QFont& QtHost::GetFixedFont()
     }
 
     s_state.fixed_font.setFamilies(families);
-    s_state.fixed_font.setWeight(QFont::Medium);
+    s_state.fixed_font.setWeight(QFont::Normal);
     s_state.fixed_font.setPixelSize(12);
     s_state.fixed_font.setHintingPreference(QFont::PreferNoHinting);
   });
@@ -3612,6 +3589,16 @@ int main(int argc, char* argv[])
   // created before the platform plugin is loaded. This is only here because GNOME plus Wankland
   // and their implementation of it is fucking terrible.
   ApplyWaylandWorkarounds();
+#endif
+
+#ifdef __linux__
+  // Qt detects auto-repeat by looking for the press after a release in its event queue, which isn't reliable, as the
+  // press may not have been read yet. Missed detections send spurious release/press pairs while a key is held.
+  if (const auto* x11_app = qGuiApp->nativeInterface<QNativeInterface::QX11Application>())
+  {
+    if (Error error; !X11Tools::EnableDetectableAutoRepeat(x11_app->connection(), &error))
+      std::fprintf(stderr, "Failed to enable detectable auto repeat: %s\n", error.GetDescription().c_str());
+  }
 #endif
 
   // Type registration has to happen after hardware checks, clang emits ptest instructions otherwise.

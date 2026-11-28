@@ -117,14 +117,12 @@ static void ClearSaveStateEntryList();
 static u32 PopulateSaveStateListEntries(const std::string& serial, std::optional<ExtendedSaveStateInfo> undo_save_state,
                                         bool is_loading);
 static void DrawSaveStateSelector();
+static void OpenResumeStateSelector();
 static void DrawResumeStateSelector();
 
 //////////////////////////////////////////////////////////////////////////
 // Constants
 //////////////////////////////////////////////////////////////////////////
-
-static constexpr std::string_view RESUME_STATE_SELECTOR_DIALOG_NAME = "##resume_state_selector";
-static constexpr std::string_view ABOUT_DIALOG_NAME = "##about_duckstation";
 
 const char* SFX_NAV_ACTIVATE = "sounds/nav_activate.wav";
 const char* SFX_NAV_BACK = "sounds/nav_back.wav";
@@ -217,12 +215,12 @@ bool FullscreenUI::HasActiveOrPendingWindow()
 
 bool FullscreenUI::AreAnyDialogsOpen()
 {
-  return (IsInputBindingDialogOpen() || AreAnyWidgetsDialogOpen());
+  return AreAnyWidgetsDialogOpen();
 }
 
 bool FullscreenUI::AreAnyDialogsInteractable()
 {
-  return (IsInputBindingDialogInteractable() || AreAnyWidgetsDialogInteractable());
+  return AreAnyWidgetsDialogInteractable();
 }
 
 void FullscreenUI::CheckForConfigChanges(const GPUSettings& old_settings)
@@ -716,11 +714,6 @@ void FullscreenUI::Render()
       break;
   }
 
-  if (IsFixedPopupDialogOpen(ABOUT_DIALOG_NAME))
-    DrawAboutWindow();
-  else if (IsFixedPopupDialogOpen(RESUME_STATE_SELECTOR_DIALOG_NAME))
-    DrawResumeStateSelector();
-
   EndLayout();
 
   ResetCloseMenuIfNeeded();
@@ -865,7 +858,7 @@ void FullscreenUI::DoResume()
 
   ClearSaveStateEntryList();
   s_locals.save_state_selector_slots.push_back(std::move(slentry));
-  OpenFixedPopupDialog(RESUME_STATE_SELECTOR_DIALOG_NAME);
+  OpenResumeStateSelector();
 }
 
 void FullscreenUI::DoStartFile()
@@ -1399,6 +1392,14 @@ ImVec4 FullscreenUI::GetTransparentBackgroundColor(const ImVec4& no_background_c
     return ImVec4{};
 }
 
+ImVec4 FullscreenUI::GetPageBackgroundColor()
+{
+  // light themes draw directly over the menu background, rather than washing it out
+  return (UIStyle.IsDarkTheme || VideoThread::HasGPUBackend()) ?
+           ModAlpha(UIStyle.BackgroundColor, GetBackgroundAlpha()) :
+           GetTransparentBackgroundColor();
+}
+
 bool FullscreenUI::ShouldOpenToGameList()
 {
   return Core::GetBaseBoolSettingValue(Settings::INTERFACE_SECTION_NAME, "FullscreenUIOpenToGameList", false);
@@ -1515,8 +1516,7 @@ void FullscreenUI::DrawLandingWindow()
   {
     ResetFocusHere();
 
-    if (UserThemeableHorizontalButton("fullscreenui/game-list.png", "fullscreenui/game-list.svg",
-                                      FSUI_VSTR("Game List"),
+    if (UserThemeableHorizontalButton("fullscreenui/game-list.png", "fullscreenui/game-list.svg", FSUI_VSTR("Library"),
                                       FSUI_VSTR("Launch a game from images scanned from your game directories.")))
     {
       BeginTransition(TransitionEffect::ZoomIn, DEFAULT_TRANSITION_TIME, &SwitchToGameList);
@@ -1553,7 +1553,8 @@ void FullscreenUI::DrawLandingWindow()
     if (ImGui::IsKeyPressed(ImGuiKey_GamepadBack, false) || ImGui::IsKeyPressed(ImGuiKey_F1, false))
     {
       EnqueueSoundEffect(SFX_NAV_ACTIVATE);
-      OpenFixedPopupDialog(ABOUT_DIALOG_NAME);
+      OpenCustomDialog("##about_duckstation", LAYOUT_LARGE_POPUP_PADDING, LAYOUT_LARGE_POPUP_ROUNDING,
+                       ImVec2(1100.0f, 0.0f), ImVec2(0.0f, 400.0f), &DrawAboutWindow);
     }
     else if (ImGui::IsKeyPressed(ImGuiKey_GamepadStart, false) || ImGui::IsKeyPressed(ImGuiKey_F3, false))
     {
@@ -1753,10 +1754,16 @@ void FullscreenUI::DrawPauseMenu()
     const std::string& game_path = VideoThread::GetGamePath();
     const float image_padding = LayoutScale(5.0f); // compensate for font baseline
     const float image_size = scaled_top_bar_height - scaled_top_bar_padding - scaled_top_bar_padding - image_padding;
-    DrawCoverForCurrentGame(dl,
-                            ImRect(scaled_top_bar_padding + image_padding, scaled_top_bar_padding + image_padding,
-                                   scaled_top_bar_padding + image_size, scaled_top_bar_padding + image_size),
-                            game_path, game_title);
+    {
+      // Use the running game's title, so the monogram matches the title shown next to it.
+      const ImRect image_rect(scaled_top_bar_padding + image_padding, scaled_top_bar_padding + image_padding,
+                              scaled_top_bar_padding + image_size, scaled_top_bar_padding + image_size);
+      const auto lock = GameList::GetLock();
+      if (const GameList::Entry* entry = GameList::GetEntryForPath(game_path))
+        DrawGameListIcon(entry, game_title, dl, image_rect, IM_COL32(255, 255, 255, 255), GameList::IconSource::Cover);
+      else
+        DrawGeneratedArtwork(dl, image_rect, game_title, GameList::EntryType::Disc, true, IM_COL32(255, 255, 255, 255));
+    }
 
     if (!game_serial.empty())
       buffer.format("{} - {}", game_serial, Path::GetFileName(game_path));
@@ -2438,19 +2445,18 @@ bool FullscreenUI::OpenLoadStateSelectorForGameResume(const GameList::Entry* ent
 
   slentry.game_path = entry->path;
   s_locals.save_state_selector_slots.push_back(std::move(slentry));
-  OpenFixedPopupDialog(RESUME_STATE_SELECTOR_DIALOG_NAME);
+  OpenResumeStateSelector();
   return true;
+}
+
+void FullscreenUI::OpenResumeStateSelector()
+{
+  OpenCustomDialog("##resume_state_selector", 30.0f, 40.0f, ImVec2(850.0f, 0.0f), ImVec2(0.0f, 300.0f),
+                   &DrawResumeStateSelector, &ClearSaveStateEntryList);
 }
 
 void FullscreenUI::DrawResumeStateSelector()
 {
-  if (!BeginFixedPopupDialog(LayoutScale(30.0f), LayoutScale(40.0f), ImVec2(LayoutScale(850.0f), 0.0f),
-                             LayoutScale(0.0, 300.0f)))
-  {
-    ClearSaveStateEntryList();
-    return;
-  }
-
   SaveStateListEntry& entry = s_locals.save_state_selector_slots.front();
 
   SmallString sick;
@@ -2482,7 +2488,7 @@ void FullscreenUI::DrawResumeStateSelector()
     std::string game_path = std::move(entry.game_path);
     std::string state_path = std::move(entry.state_path);
     ClearSaveStateEntryList();
-    CloseFixedPopupDialogImmediately();
+    CloseCurrentDialogImmediately();
     DoStartPath(std::move(game_path), std::move(state_path));
   }
 
@@ -2490,7 +2496,7 @@ void FullscreenUI::DrawResumeStateSelector()
   {
     std::string game_path = std::move(entry.game_path);
     ClearSaveStateEntryList();
-    CloseFixedPopupDialogImmediately();
+    CloseCurrentDialogImmediately();
     DoStartPath(std::move(game_path));
   }
 
@@ -2503,7 +2509,7 @@ void FullscreenUI::DrawResumeStateSelector()
 
       std::string game_path = std::move(entry.game_path);
       ClearSaveStateEntryList();
-      CloseFixedPopupDialogImmediately();
+      CloseCurrentDialogImmediately();
       DoStartPath(std::move(game_path));
     }
     else
@@ -2513,13 +2519,11 @@ void FullscreenUI::DrawResumeStateSelector()
   }
 
   if (HorizontalMenuButton(FSUI_ICONVSTR(ICON_FA_SQUARE_XMARK, "Cancel"), true, LAYOUT_CENTER_ALIGN_TEXT))
-    CloseFixedPopupDialog();
+    CloseCurrentDialog();
 
   EndHorizontalMenuButtons();
 
   SetStandardSelectionFooterText(false);
-
-  EndFixedPopupDialog();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -2544,12 +2548,6 @@ void FullscreenUI::CopyTextToClipboard(std::string title, std::string_view text)
 
 void FullscreenUI::DrawAboutWindow()
 {
-  if (!BeginFixedPopupDialog(LayoutScale(LAYOUT_LARGE_POPUP_PADDING), LayoutScale(LAYOUT_LARGE_POPUP_ROUNDING),
-                             LayoutScale(1100.0f, 0.0f), LayoutScale(0.0, 400.0f)))
-  {
-    return;
-  }
-
   const ImVec2 image_size = LayoutScale(64.0f, 64.0f);
   const float indent = image_size.x + LayoutScale(8.0f);
   GPUTexture* const logo_texture = GetUserThemeableTexture("images/duck.png", "images/duck.svg", nullptr, image_size);
@@ -2586,11 +2584,9 @@ void FullscreenUI::DrawAboutWindow()
     ExitFullscreenAndOpenURL("https://github.com/stenzek/duckstation/blob/master/CONTRIBUTORS.md");
 
   if (HorizontalMenuButton(FSUI_ICONVSTR(ICON_FA_SQUARE_XMARK, "Close")) || WantsToCloseMenu())
-    CloseFixedPopupDialog();
+    CloseCurrentDialog();
   else
     SetStandardSelectionFooterText(true);
 
   EndHorizontalMenuButtons();
-
-  EndFixedPopupDialog();
 }

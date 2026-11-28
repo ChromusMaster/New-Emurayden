@@ -50,12 +50,15 @@ set(SRCS
   consolesettingswidget.ui
   controllerbindingwidget_analog_controller.ui
   controllerbindingwidget_analog_joystick.ui
+  controllerbindingwidget_ddgo.ui
   controllerbindingwidget_digital_controller.ui
   controllerbindingwidget_guncon.ui
+  controllerbindingwidget_jogcon.ui
   controllerbindingwidget_justifier.ui
   controllerbindingwidget_mouse.ui
   controllerbindingwidget_negcon.ui
   controllerbindingwidget_negconrumble.ui
+  controllerbindingwidget_popn.ui
   controllerbindingwidgets.cpp
   controllerbindingwidgets.h
   controllerbindingwidget.ui
@@ -216,10 +219,6 @@ target_link_libraries(duckstation-qt PRIVATE core common imgui minizip scmversio
 
 if(LINUX)
   target_link_libraries(duckstation-qt PRIVATE Qt6::DBus)
-endif()
-
-if(ENABLE_X11)
-  target_compile_definitions(duckstation-qt PRIVATE "-DENABLE_X11=1")
   target_include_directories(duckstation-qt PRIVATE "${X11_xcb_INCLUDE_PATH}")
 endif()
 

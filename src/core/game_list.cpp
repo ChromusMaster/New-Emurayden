@@ -177,7 +177,7 @@ constexpr const char* const GameList::SETTING_KEY_SORT_REVERSED = "GameListSortR
 constexpr const char* const GameList::SETTING_KEY_ICON_SOURCE = "GameListIconSource";
 constexpr const char* const GameList::SETTING_KEY_MERGE_DISC_SETS = "GameListMergeDiscSets";
 constexpr const char* const GameList::SETTING_KEY_GRID_VIEW = "GameListGridView";
-constexpr const char* const GameList::SETTING_KEY_FULLSCREENUI_GRID_VIEW = "GameListFullscreenUIGridView";
+constexpr const char* const GameList::SETTING_KEY_FULLSCREENUI_VIEW = "GameListFullscreenUIView";
 constexpr const char* const GameList::SETTING_KEY_COVER_TITLES = "GameListCoverTitles";
 
 GameList::Entry::Entry() = default;
@@ -1949,7 +1949,7 @@ void GameList::ClearPlayedTimeForEntry(const GameList::Entry* entry)
     {
       if (!member->serial.empty())
       {
-        if (std::find(serials.begin(), serials.end(), member->serial) == serials.end())
+        if (std::ranges::find(serials, member->serial) == serials.end())
           serials.emplace_back(member->serial);
       }
     }
@@ -1967,7 +1967,7 @@ void GameList::ClearPlayedTimeForEntry(const GameList::Entry* entry)
 
   for (GameList::Entry& list_entry : s_state.entries)
   {
-    if (std::find(serials.begin(), serials.end(), list_entry.serial) == serials.end())
+    if (std::ranges::find(serials, list_entry.serial) == serials.end())
       continue;
 
     list_entry.last_played_time = 0;
@@ -2103,6 +2103,10 @@ bool GameList::DownloadCovers(const std::vector<std::string>& url_templates, boo
   progress->SetCancellable(true);
   progress->SetState(0, static_cast<u32>(download_urls.size()));
 
+  // Request callbacks can still be running on another thread after we return, so they can't reference our locals.
+  const auto shared_save_callback =
+    std::make_shared<MoveOnlyFunction<void(const Entry*, std::string)>>(std::move(save_callback));
+
   for (auto& [entry_path, url] : download_urls)
   {
     if (progress->IsCancelled())
@@ -2126,7 +2130,7 @@ bool GameList::DownloadCovers(const std::vector<std::string>& url_templates, boo
     std::string filename = Path::URLDecode(url);
     HTTPDownloader::CreateRequest(
       std::move(url), &s_state,
-      [use_serial, &save_callback, entry_path = std::move(entry_path),
+      [use_serial, shared_save_callback, entry_path = std::move(entry_path),
        filename = std::move(filename)](s32 status_code, std::string_view error_message, std::string_view content_type,
                                        HTTPDownloader::RequestData data) {
         if (status_code != HTTPDownloader::HTTP_STATUS_OK || data.empty())
@@ -2159,8 +2163,8 @@ bool GameList::DownloadCovers(const std::vector<std::string>& url_templates, boo
         if (write_path.empty())
           return;
 
-        if (FileSystem::WriteBinaryFile(write_path.c_str(), data.data(), data.size()) && save_callback)
-          save_callback(entry, std::move(write_path));
+        if (FileSystem::WriteBinaryFile(write_path.c_str(), data.data(), data.size()) && *shared_save_callback)
+          (*shared_save_callback)(entry, std::move(write_path));
       });
     HTTPDownloader::WaitForAllRequestsFromOwner(&s_state);
     progress->IncrementProgressValue();

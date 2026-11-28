@@ -178,8 +178,8 @@ Vil du aktivere hardcore-tilstand?</translation>
         <translation>Aktivér encore-tilstand</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <translation>Registrér uofficielle præstationer</translation>
+        <source>Track Unpromoted Achievements</source>
+        <translation>Følg ikke-promoverede præstationer</translation>
     </message>
     <message>
         <source>Prefetch Badges</source>
@@ -278,12 +278,12 @@ Vil du aktivere hardcore-tilstand?</translation>
         <translation>Når dette er aktiveret, antager DuckStation, at alle præstationer er låst, og sender ingen meddelelser om oplåsning til serveren.</translation>
     </message>
     <message>
-        <source>Test Unofficial Achievements</source>
-        <translation>Test uofficielle præstationer</translation>
+        <source>Test Unpromoted Achievements</source>
+        <translation>Test ikke-promoverede præstationer</translation>
     </message>
     <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <translation>Når dette er aktiveret, registrerer DuckStation uofficielle præstationer. Oplåsninger gemmes lokalt og sendes ikke til RetroAchievements.</translation>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <translation>Når dette er aktiveret, følger DuckStation ikke-promoverede præstationer. Oplåsninger gemmes lokalt og sendes ikke til RetroAchievements.</translation>
     </message>
     <message>
         <source>Checked</source>
@@ -637,8 +637,8 @@ Vi fortsætter med at forsøge at indsende denne anmodning.</translation>
         <translation>Ikke understøttet</translation>
     </message>
     <message>
-        <source>Unofficial</source>
-        <translation>Uofficiel</translation>
+        <source>Unpromoted</source>
+        <translation>Ikke-promoveret</translation>
     </message>
     <message>
         <source>Recently Unlocked</source>
@@ -849,10 +849,6 @@ Denne session starter i offlinetilstand.</translation>
         <source>This subset has no achievements.</source>
         <translation>Dette delsæt har ingen præstationer.</translation>
     </message>
-    <message>
-        <source>You have unlocked {0} of {1} unofficial achievements, earning {2} of {3} possible points.</source>
-        <translation>Du har låst {0} af {1} uofficielle præstationer op og optjent {2} af {3} mulige point.</translation>
-    </message>
     <message numerus="yes">
         <source>%n achievements are not supported by DuckStation and cannot be unlocked.</source>
         <comment>Unsupported achievement count</comment>
@@ -898,8 +894,12 @@ Denne session starter i offlinetilstand.</translation>
         <translation>Fastgør præstation</translation>
     </message>
     <message>
-        <source>Reset Unofficial Unlocks</source>
-        <translation>Nulstil uofficielle oplåsninger</translation>
+        <source>You have unlocked {0} of {1} unpromoted achievements, earning {2} of {3} possible points.</source>
+        <translation>Du har låst {0} af {1} ikke-promoverede præstationer op og optjent {2} af {3} mulige point.</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Unlocks</source>
+        <translation>Nulstil oplåsninger af ikke-promoverede præstationer</translation>
     </message>
     <message>
         <source>View Details</source>
@@ -1073,32 +1073,32 @@ Denne session starter i offlinetilstand.</translation>
         <translation>Aktivér RAIntegration</translation>
     </message>
     <message>
-        <source>Cache Directory</source>
-        <translation>Cachemappe</translation>
+        <source>CD-ROM Emulation</source>
+        <translation>CD-ROM-emulering</translation>
     </message>
     <message>
-        <source>Used for storing compiled shaders and game list data.</source>
-        <translation>Bruges til at gemme kompilerede shadere og spillistedata.</translation>
+        <source>Readahead Sectors:</source>
+        <translation>Forudlæste sektorer:</translation>
     </message>
     <message>
-        <source>Browse...</source>
-        <translation>Gennemse...</translation>
+        <source> sectors</source>
+        <translation> sektorer</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Åbn...</translation>
+        <source>Physical Disc Drive Speed:</source>
+        <translation>Hastighed for fysisk diskdrev:</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>Nulstil</translation>
+        <source>Don&apos;t Change</source>
+        <translation>Uændret</translation>
     </message>
     <message>
-        <source>Covers Directory</source>
-        <translation>Omslagsmappe</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Used for storing covers in the game grid/Big Picture UIs.</source>
-        <translation>Bruges til at gemme omslag til spilgitteret og Big Picture-grænsefladen.</translation>
+        <source>Ignore Physical Disc Drive Subcode</source>
+        <translation>Ignorer fysisk diskdrevs subkanal</translation>
     </message>
     <message>
         <source>Web Cache</source>
@@ -1111,14 +1111,6 @@ Denne session starter i offlinetilstand.</translation>
     <message>
         <source>Clear</source>
         <translation>Ryd</translation>
-    </message>
-    <message>
-        <source>Select Cache Directory</source>
-        <translation>Vælg cachemappe</translation>
-    </message>
-    <message>
-        <source>Select Covers Directory</source>
-        <translation>Vælg omslagsmappe</translation>
     </message>
     <message>
         <source>Log Level</source>
@@ -1177,16 +1169,35 @@ Denne session starter i offlinetilstand.</translation>
         <translation>Viser nummeret på det aktuelle billede i skærmens øverste højre hjørne.</translation>
     </message>
     <message>
-        <source>Default</source>
-        <translation>Standard</translation>
+        <source>Readahead Sectors</source>
+        <translation>Forudlæste sektorer</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n sectors</source>
+        <translation>
+            <numerusform>%n sektor</numerusform>
+            <numerusform>%n sektorer</numerusform>
+        </translation>
     </message>
     <message>
-        <source>Specifies the directory where compiled shaders and game list data will be stored.</source>
-        <translation>Angiver mappen, hvor kompilerede shadere og spillistedata gemmes.</translation>
+        <source>Reduces hitches in emulation by reading/decompressing CD data asynchronously on a worker thread.</source>
+        <translation>Reducerer hakken i emuleringen ved at læse/dekomprimere CD-data asynkront på en arbejdertråd.</translation>
     </message>
     <message>
-        <source>Specifies the directory where game cover images that are used in the game grid and Big Picture UI will be stored.</source>
-        <translation>Angiver mappen, hvor spilomslag til spilgitteret og Big Picture-grænsefladen gemmes.</translation>
+        <source>Physical Disc Drive Speed</source>
+        <translation>Hastighed for fysisk diskdrev</translation>
+    </message>
+    <message>
+        <source>8x</source>
+        <translation>8x</translation>
+    </message>
+    <message>
+        <source>Sets the speed of the host drive when using physical discs. Higher speeds can reduce stutter, but make the drive louder. Set to &quot;Don&apos;t Change&quot; to leave the drive at its own speed. Not all drives support this.</source>
+        <translation>Angiver værtsdrevets hastighed ved brug af fysiske diske. Højere hastigheder kan mindske hakken, men gør drevet mere støjende. Vælg &quot;Uændret&quot; for at beholde drevets egen hastighed. Ikke alle drev understøtter dette.</translation>
+    </message>
+    <message>
+        <source>Ignores the subchannel provided by the drive when using physical discs, instead always generating subchannel data. Won&apos;t work with libcrypt games, but can improve read reliability on some drives.</source>
+        <translation>Ignorerer drevets subkanal ved brug af fysiske diske og genererer i stedet altid subkanaldata. Fungerer ikke med libcrypt-spil, men kan forbedre læsepålideligheden på nogle drev.</translation>
     </message>
     <message>
         <source>Enable RAIntegration (Development Only)</source>
@@ -2890,16 +2901,6 @@ Aktuel tildeling: %s</translation>
         <translation>Henter alle emblemer for låste præstationer, når spillet starter, så forsinkelsen ved visning af oplåsningsbilleder reduceres.</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <comment>settings_unofficial_test_mode</comment>
-        <translation>Registrér uofficielle præstationer</translation>
-    </message>
-    <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <comment>settings_summary_unofficial_test_mode</comment>
-        <translation>Når dette er aktiveret, registrerer DuckStation uofficielle præstationer. Oplåsninger gemmes lokalt og sendes ikke til RetroAchievements.</translation>
-    </message>
-    <message>
         <source>Test RetroAchievements Offline Mode</source>
         <comment>settings_test_offline_mode</comment>
         <translation>Test RetroAchievements-offlinetilstand</translation>
@@ -3030,15 +3031,6 @@ Aktuel tildeling: %s</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <source>You have unlocked %1$d of %2$d unofficial achievements, earning %3$d of %4$d possible points.</source>
-        <comment>achievement_unofficial_summary_format_string</comment>
-        <extracomment>Android plural quantities: one=&quot;You have unlocked %1$d of %2$d unofficial achievement, earning %3$d of %4$d possible points.&quot;; other=&quot;You have unlocked %1$d of %2$d unofficial achievements, earning %3$d of %4$d possible points.&quot;</extracomment>
-        <translation>
-            <numerusform>Du har låst %1$d af %2$d uofficielle præstationer op og optjent %3$d af %4$d mulige point.</numerusform>
-            <numerusform>Du har låst %1$d af %2$d uofficielle præstationer op og optjent %3$d af %4$d mulige point.</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%1$d achievements are not supported by DuckStation and cannot be unlocked.</source>
         <comment>achievement_unsupported_count_format_string</comment>
         <extracomment>Android plural quantities: one=&quot;%1$d achievement is not supported by DuckStation and cannot be unlocked.&quot;; other=&quot;%1$d achievements are not supported by DuckStation and cannot be unlocked.&quot;</extracomment>
@@ -3108,11 +3100,6 @@ Aktuel tildeling: %s</translation>
         <translation>Sejrsbetingelse</translation>
     </message>
     <message>
-        <source>Unofficial</source>
-        <comment>achievement_unofficial</comment>
-        <translation>Uofficiel</translation>
-    </message>
-    <message>
         <source>Open on RetroAchievements</source>
         <comment>achievement_open_on_retroachievements</comment>
         <translation>Åbn på RetroAchievements</translation>
@@ -3131,21 +3118,6 @@ Aktuel tildeling: %s</translation>
         <source>Reset Unlock</source>
         <comment>achievement_reset_unlock</comment>
         <translation>Nulstil oplåsning</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement</source>
-        <comment>achievement_reset_unofficial_title</comment>
-        <translation>Nulstil uofficiel præstation</translation>
-    </message>
-    <message>
-        <source>The unlock state for &apos;%1$s&apos; will be removed. This cannot be undone.</source>
-        <comment>achievement_reset_unofficial_message</comment>
-        <translation>Oplåsningsstatussen for &apos;%1$s&apos; fjernes. Dette kan ikke fortrydes.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlock reset.</source>
-        <comment>achievement_unofficial_unlock_reset</comment>
-        <translation>Oplåsning af uofficiel præstation nulstillet.</translation>
     </message>
     <message>
         <source>Pinned to OSD</source>
@@ -3601,9 +3573,48 @@ Aktuel tildeling: %s</translation>
         <translation>Vil du skifte disk alligevel?</translation>
     </message>
     <message>
+        <source>Track Unpromoted Achievements</source>
+        <comment>settings_track_unpromoted_achievements</comment>
+        <translation>Følg ikke-promoverede præstationer</translation>
+    </message>
+    <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <comment>settings_summary_track_unpromoted_achievements</comment>
+        <translation>Når dette er aktiveret, følger DuckStation ikke-promoverede præstationer. Oplåsninger gemmes lokalt og sendes ikke til RetroAchievements.</translation>
+    </message>
+    <message>
         <source>Logged in since %s</source>
         <comment>settings_achievements_logged_in_since</comment>
         <translation>Logget ind siden %s</translation>
+    </message>
+    <message numerus="yes">
+        <source>You have unlocked %1$d of %2$d unpromoted achievements, earning %3$d of %4$d possible points.</source>
+        <comment>achievement_unpromoted_summary_format_string</comment>
+        <extracomment>Android plural quantities: one=&quot;You have unlocked %1$d of %2$d unpromoted achievement, earning %3$d of %4$d possible points.&quot;; other=&quot;You have unlocked %1$d of %2$d unpromoted achievements, earning %3$d of %4$d possible points.&quot;</extracomment>
+        <translation>
+            <numerusform>Du har låst %1$d af %2$d ikke-promoverede præstationer op og optjent %3$d af %4$d mulige point.</numerusform>
+            <numerusform>Du har låst %1$d af %2$d ikke-promoverede præstationer op og optjent %3$d af %4$d mulige point.</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Unpromoted</source>
+        <comment>achievement_unpromoted</comment>
+        <translation>Ikke-promoveret</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement</source>
+        <comment>achievement_reset_unpromoted_title</comment>
+        <translation>Nulstil oplåsning af ikke-promoveret præstation</translation>
+    </message>
+    <message>
+        <source>The unlock state for &apos;%1$s&apos; will be removed. This cannot be undone.</source>
+        <comment>achievement_reset_unpromoted_message</comment>
+        <translation>Oplåsningstilstanden for &apos;%1$s&apos; fjernes. Dette kan ikke fortrydes.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlock reset.</source>
+        <comment>achievement_unpromoted_unlock_reset</comment>
+        <translation>Oplåsning af ikke-promoveret præstation nulstillet.</translation>
     </message>
     <message>
         <source>Skip</source>
@@ -3876,57 +3887,9 @@ Aktuel tildeling: %s</translation>
         <translation>Ingen udløser angivet</translation>
     </message>
     <message>
-        <source>No buttons set</source>
-        <comment>edit_macro_buttons_no_bindings</comment>
-        <translation>Ingen knapper angivet</translation>
-    </message>
-    <message>
-        <source>Macro will not repeat.</source>
-        <comment>edit_macro_button_no_repeat</comment>
-        <translation>Makroen gentages ikke.</translation>
-    </message>
-    <message numerus="yes">
-        <source>Macro will toggle every %d frames.</source>
-        <comment>edit_macro_button_repeat</comment>
-        <extracomment>Android plural quantities: one=&quot;Macro will toggle every %d frame.&quot;; other=&quot;Macro will toggle every %d frames.&quot;</extracomment>
-        <translation>
-            <numerusform>Makroen skifter tilstand for hvert %d billede.</numerusform>
-            <numerusform>Makroen skifter tilstand for hver %d billeder.</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>Choose Bindings</source>
-        <comment>edit_macro_button_choose_bindings</comment>
-        <translation>Vælg tildelinger</translation>
-    </message>
-    <message>
-        <source>%1$s triggers %2$s</source>
-        <comment>edit_macro_button_summary_no_repeat</comment>
-        <translation>%1$s udløser %2$s</translation>
-    </message>
-    <message numerus="yes">
-        <source>%1$s triggers %2$s every %3$d frames.</source>
-        <comment>edit_macro_button_summary_repeat</comment>
-        <extracomment>Android plural quantities: one=&quot;%1$s triggers %2$s every %3$d frame.&quot;; other=&quot;%1$s triggers %2$s every %3$d frames.&quot;</extracomment>
-        <translation>
-            <numerusform>%1$s udløser %2$s for hvert %3$d billede.</numerusform>
-            <numerusform>%1$s udløser %2$s for hver %3$d billeder.</numerusform>
-        </translation>
-    </message>
-    <message>
         <source>Trigger</source>
         <comment>edit_macro_button_trigger</comment>
         <translation>Udløser</translation>
-    </message>
-    <message>
-        <source>Buttons</source>
-        <comment>edit_macro_button_buttons</comment>
-        <translation>Knapper</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <comment>edit_macro_button_frequency</comment>
-        <translation>Frekvens</translation>
     </message>
     <message>
         <source>Macro %d</source>
@@ -4835,6 +4798,16 @@ Du kan ændre dette senere med indstillingen &quot;Start i Big Picture-tilstand&
         <translation>Aktiverer fejlfinding, når værtens renderings-API understøtter det. Kun til udviklerbrug.</translation>
     </message>
     <message>
+        <source>Use GPU-Based Validation</source>
+        <comment>settings_use_gpu_based_validation</comment>
+        <translation>Brug GPU-baseret validering</translation>
+    </message>
+    <message>
+        <source>Enable GPU-based validation when supported by the host&apos;s renderer API. Only for developer use.</source>
+        <comment>settings_summary_use_gpu_based_validation</comment>
+        <translation>Aktiverer GPU-baseret validering, hvis værtens renderer-API understøtter det. Kun til udviklerbrug.</translation>
+    </message>
+    <message>
         <source>Prefer OpenGL ES Context</source>
         <comment>settings_prefer_gles_context</comment>
         <translation>Foretræk OpenGL ES-kontekst</translation>
@@ -5049,11 +5022,6 @@ Du kan ændre dette senere med indstillingen &quot;Start i Big Picture-tilstand&
         <translation>Redigerer indstillingerne for denne shader.</translation>
     </message>
     <message>
-        <source>Move Up</source>
-        <comment>postfx_setting_move_up</comment>
-        <translation>Flyt op</translation>
-    </message>
-    <message>
         <source>Moves this shader up in the application order.</source>
         <comment>postfx_setting_summary_move_up</comment>
         <translation>Flytter denne shader op i anvendelsesrækkefølgen.</translation>
@@ -5067,16 +5035,6 @@ Du kan ændre dette senere med indstillingen &quot;Start i Big Picture-tilstand&
         <source>Removes this shader from the post-processing pipeline.</source>
         <comment>postfx_setting_summary_remove_shader</comment>
         <translation>Fjerner denne shader fra efterbehandlingspipelinen.</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <comment>postfx_setting_remove_shader</comment>
-        <translation>Fjern</translation>
-    </message>
-    <message>
-        <source>Move Down</source>
-        <comment>postfx_setting_move_down</comment>
-        <translation>Flyt ned</translation>
     </message>
     <message>
         <source>Moves this shader down in the application order.</source>
@@ -5264,9 +5222,39 @@ Er du sikker på, at du vil fortsætte?</translation>
         <translation>Forfatter: %1$s</translation>
     </message>
     <message>
-        <source>Unavailable while RetroAchievements hardcode mode is active.</source>
-        <comment>patch_codes_hardcore_restricted</comment>
-        <translation>Ikke tilgængelig, mens RetroAchievements-hardcore-tilstand er aktiv.</translation>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM.</source>
+        <comment>settings_summary_ram_size</comment>
+        <translation>Ændrer mængden af RAM installeret i den emulerede konsol. Kommercielle spil bruger ikke ekstra RAM.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <comment>settings_vram_size</comment>
+        <translation>Installeret VRAM</translation>
+    </message>
+    <message>
+        <source>Changes the amount of VRAM installed in the emulated console. Retail games do not use extra VRAM.</source>
+        <comment>settings_summary_vram_size</comment>
+        <translation>Ændrer mængden af VRAM installeret i den emulerede konsol. Kommercielle spil bruger ikke ekstra VRAM.</translation>
+    </message>
+    <message>
+        <source>Fast Forward While Loading</source>
+        <comment>settings_fast_forward_loading</comment>
+        <translation>Hurtig fremspoling under indlæsning</translation>
+    </message>
+    <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <comment>settings_summary_fast_forward_loading</comment>
+        <translation>Spoler frem, når spillet holder op med at opdatere skærmen under læsning fra disken. Gælder ikke animerede indlæsningsskærme.</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <comment>settings_idle_timeout_scale</comment>
+        <translation>Skalér inaktivitetstimeout</translation>
+    </message>
+    <message>
+        <source>Stops games from timing out while waiting for vertical blank when overclocking.</source>
+        <comment>settings_summary_idle_timeout_scale</comment>
+        <translation>Forhindrer spil i at få timeout, mens de venter på vertikal blanking under overclocking.</translation>
     </message>
     <message>
         <source>Add</source>
@@ -6206,6 +6194,184 @@ Spil med flere spor i bin-format kræver en cuesheet-fil (.cue) for at kunne sta
         <translation>Stryg for at styre højre pind</translation>
     </message>
     <message>
+        <source>%1$s triggers %2$s</source>
+        <comment>edit_macro_button_summary</comment>
+        <translation>%1$s udløser %2$s</translation>
+    </message>
+    <message>
+        <source>%1$s triggers %2$s, looping</source>
+        <comment>edit_macro_button_summary_loop</comment>
+        <translation>%1$s udløser %2$s med gentagelse</translation>
+    </message>
+    <message>
+        <source>Loop While Active</source>
+        <comment>edit_macro_loop</comment>
+        <translation>Gentag, mens makroen er aktiv</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once per press.</source>
+        <comment>edit_macro_loop_summary</comment>
+        <translation>Gentager sekvensen, mens makroen er aktiv, i stedet for at afspille den én gang pr. tryk.</translation>
+    </message>
+    <message>
+        <source>Press To Toggle</source>
+        <comment>edit_macro_toggle</comment>
+        <translation>Tryk for at slå til eller fra</translation>
+    </message>
+    <message>
+        <source>The trigger turns the looping sequence on and off, instead of having to be held.</source>
+        <comment>edit_macro_toggle_summary</comment>
+        <translation>Udløseren slår gentagelse af sekvensen til og fra uden at skulle holdes nede.</translation>
+    </message>
+    <message>
+        <source>Trigger Deadzone</source>
+        <comment>edit_macro_deadzone</comment>
+        <translation>Udløserens dødzone</translation>
+    </message>
+    <message>
+        <source>How far an analog trigger must be pressed before the macro activates.</source>
+        <comment>edit_macro_deadzone_summary</comment>
+        <translation>Angiver, hvor langt en analog aftrækker skal trykkes ned, før makroen aktiveres.</translation>
+    </message>
+    <message>
+        <source>Sequence</source>
+        <comment>edit_macro_sequence</comment>
+        <translation>Sekvens</translation>
+    </message>
+    <message>
+        <source>The sequence is empty. Add inputs and waits, use Quick Setup, or record it from a controller.</source>
+        <comment>edit_macro_sequence_empty</comment>
+        <translation>Sekvensen er tom. Tilføj input og pauser, brug Hurtig opsætning, eller optag sekvensen med en controller.</translation>
+    </message>
+    <message>
+        <source>Add Input</source>
+        <comment>edit_macro_add_input</comment>
+        <translation>Tilføj input</translation>
+    </message>
+    <message>
+        <source>Adds a button or axis press to the end of the sequence.</source>
+        <comment>edit_macro_add_input_summary</comment>
+        <translation>Tilføjer et knaptryk eller akseinput sidst i sekvensen.</translation>
+    </message>
+    <message>
+        <source>Add Wait</source>
+        <comment>edit_macro_add_wait</comment>
+        <translation>Tilføj pause</translation>
+    </message>
+    <message>
+        <source>Adds a delay to the end of the sequence.</source>
+        <comment>edit_macro_add_wait_summary</comment>
+        <translation>Tilføjer en forsinkelse sidst i sekvensen.</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <comment>edit_macro_quick_setup</comment>
+        <translation>Hurtig opsætning</translation>
+    </message>
+    <message>
+        <source>Replaces the sequence with one input that is held, or toggled on and off as a turbo button.</source>
+        <comment>edit_macro_quick_setup_summary</comment>
+        <translation>Erstatter sekvensen med ét input, der holdes nede eller skiftevis aktiveres og slippes som en turboknap.</translation>
+    </message>
+    <message>
+        <source>Turbo Interval for %1$s</source>
+        <comment>edit_macro_quick_setup_interval_title</comment>
+        <translation>Turbointerval for %1$s</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <comment>edit_macro_hold</comment>
+        <translation>Hold nede</translation>
+    </message>
+    <message numerus="yes">
+        <source>Toggle every %d frames</source>
+        <comment>edit_macro_toggle_every_frames</comment>
+        <extracomment>Android plural quantities: one=&quot;Toggle every %d frame&quot;; other=&quot;Toggle every %d frames&quot;</extracomment>
+        <translation>
+            <numerusform>Skift tilstand for hvert %d. billede</numerusform>
+            <numerusform>Skift tilstand for hver %d billeder</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Clear Sequence</source>
+        <comment>edit_macro_clear_sequence</comment>
+        <translation>Ryd sekvens</translation>
+    </message>
+    <message>
+        <source>Removes every action from the sequence.</source>
+        <comment>edit_macro_clear_sequence_summary</comment>
+        <translation>Fjerner alle handlinger fra sekvensen.</translation>
+    </message>
+    <message>
+        <source>Remove every action from this macro&apos;s sequence?</source>
+        <comment>edit_macro_clear_sequence_confirm</comment>
+        <translation>Vil du fjerne alle handlinger fra denne makros sekvens?</translation>
+    </message>
+    <message>
+        <source>Select Input</source>
+        <comment>edit_macro_select_input</comment>
+        <translation>Vælg input</translation>
+    </message>
+    <message>
+        <source>Wait</source>
+        <comment>edit_macro_wait</comment>
+        <translation>Vent</translation>
+    </message>
+    <message numerus="yes">
+        <source>%d frames</source>
+        <comment>edit_macro_wait_frames</comment>
+        <extracomment>Android plural quantities: one=&quot;%d frame&quot;; other=&quot;%d frames&quot;</extracomment>
+        <translation>
+            <numerusform>%d billede</numerusform>
+            <numerusform>%d billeder</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Wait Duration</source>
+        <comment>edit_macro_wait_title</comment>
+        <translation>Ventetid</translation>
+    </message>
+    <message>
+        <source>%1$s Value</source>
+        <comment>edit_macro_value_title</comment>
+        <translation>Værdi for %1$s</translation>
+    </message>
+    <message>
+        <source>Action options</source>
+        <comment>edit_macro_action_options</comment>
+        <translation>Handlingsindstillinger</translation>
+    </message>
+    <message>
+        <source>Change Input</source>
+        <comment>edit_macro_change_input</comment>
+        <translation>Skift input</translation>
+    </message>
+    <message>
+        <source>Insert Input After</source>
+        <comment>edit_macro_insert_input_after</comment>
+        <translation>Indsæt input efter</translation>
+    </message>
+    <message>
+        <source>Insert Wait After</source>
+        <comment>edit_macro_insert_wait_after</comment>
+        <translation>Indsæt pause efter</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <comment>edit_macro_record</comment>
+        <translation>Optag</translation>
+    </message>
+    <message>
+        <source>Stop Recording</source>
+        <comment>edit_macro_stop_recording</comment>
+        <translation>Stop optagelse</translation>
+    </message>
+    <message>
+        <source>Recording. Press the inputs of the sequence on a controller or keyboard, then tap Stop. Touchscreen input is not recorded.</source>
+        <comment>edit_macro_recording_message</comment>
+        <translation>Optager. Indtast sekvensen med en controller eller et tastatur, og tryk derefter på »Stop optagelse«. Input fra berøringsskærmen optages ikke.</translation>
+    </message>
+    <message>
         <source>Swiping outside the controls moves the right stick. With Floating Left Stick on, only the right half of the screen does.</source>
         <comment>settings_summary_bind_to_right_stick</comment>
         <translation>Strygning uden for kontrollerne bevæger højre pind. Når Flydende venstre pind er slået til, virker dette kun på skærmens højre halvdel.</translation>
@@ -6219,6 +6385,46 @@ Spil med flere spor i bin-format kræver en cuesheet-fil (.cue) for at kunne sta
         <source>Touching the left half of the screen places the left stick under your finger, instead of at a fixed position.</source>
         <comment>settings_summary_floating_left_stick</comment>
         <translation>Berøring af skærmens venstre halvdel placerer venstre pind under din finger i stedet for på en fast position.</translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <comment>list_item_move_up</comment>
+        <translation>Flyt op</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <comment>list_item_remove</comment>
+        <translation>Fjern</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <comment>list_item_move_down</comment>
+        <translation>Flyt ned</translation>
+    </message>
+    <message>
+        <source>Unavailable while RetroAchievements hardcore mode is active.</source>
+        <comment>patch_codes_hardcore_restricted</comment>
+        <translation>Utilgængelig, mens RetroAchievements hardcore-tilstand er aktiv.</translation>
+    </message>
+    <message>
+        <source>Macro 5</source>
+        <comment>touchscreen_controller_macro_5</comment>
+        <translation>Makro 5</translation>
+    </message>
+    <message>
+        <source>Macro 6</source>
+        <comment>touchscreen_controller_macro_6</comment>
+        <translation>Makro 6</translation>
+    </message>
+    <message>
+        <source>Macro 7</source>
+        <comment>touchscreen_controller_macro_7</comment>
+        <translation>Makro 7</translation>
+    </message>
+    <message>
+        <source>Macro 8</source>
+        <comment>touchscreen_controller_macro_8</comment>
+        <translation>Makro 8</translation>
     </message>
     <message>
         <source>DuckStation can automatically download covers for games which do not currently have a cover set. Depending on your jurisdiction, game covers may be copyrighted. You are only authorized to use this tool with your own servers and images, we do not provide any.</source>
@@ -6784,34 +6990,9 @@ ${serial}: Spillets serienummer.</translation>
         <translation>Vælger, hvor stor en procentdel af den normale clockhastighed den emulerede hardware skal køre med.</translation>
     </message>
     <message>
-        <source>Enable 8MB RAM</source>
-        <comment>settings_enable_8mb_ram</comment>
-        <translation>Aktivér 8 MB RAM</translation>
-    </message>
-    <message>
-        <source>Enables an additional 6MB of RAM to obtain a total of 2+6 = 8MB, usually present on dev consoles.</source>
-        <comment>settings_summary_enable_8mb_ram</comment>
-        <translation>Aktiverer yderligere 6 MB RAM, så der i alt er 2+6 = 8 MB, hvilket normalt findes på udviklingskonsoller.</translation>
-    </message>
-    <message>
         <source>Installed RAM</source>
         <comment>settings_ram_size</comment>
         <translation>Installeret RAM</translation>
-    </message>
-    <message>
-        <source>Expanded RAM may break games, so use it only with compatible mods.</source>
-        <comment>settings_summary_ram_size</comment>
-        <translation>Udvidet RAM kan få spil til at holde op med at virke, så brug det kun med kompatible modifikationer.</translation>
-    </message>
-    <message>
-        <source>Force Full RAM Mapping</source>
-        <comment>settings_force_full_ram_mapping</comment>
-        <translation>Gennemtving fuld RAM-tilknytning</translation>
-    </message>
-    <message>
-        <source>Maps all installed RAM regardless of the BIOS or game configuration.</source>
-        <comment>settings_summary_force_full_ram_mapping</comment>
-        <translation>Tilknytter al installeret RAM uanset BIOS- eller spilkonfigurationen.</translation>
     </message>
     <message>
         <source>Preload Images to RAM</source>
@@ -7390,6 +7571,16 @@ Vil du importere et nu?</translation>
         <translation>Hurtig hukommelsesadgang i rekompileren</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <comment>settings_idle_fast_forward</comment>
+        <translation>Aktivér hurtig fremspoling af recompilerens inaktive løkke</translation>
+    </message>
+    <message>
+        <source>Skips over the busy loop that games use to wait for vertical blank.</source>
+        <comment>settings_summary_idle_fast_forward</comment>
+        <translation>Springer busy-wait-løkken over, som spil bruger til at vente på vertikal blanking.</translation>
+    </message>
+    <message>
         <source>Enable Recompiler ICache</source>
         <comment>settings_recompiler_icache</comment>
         <translation>Aktivér ICache i rekompileren</translation>
@@ -7918,6 +8109,11 @@ Vil du importere et nu?</translation>
         <source>Pinky Pals</source>
         <comment>settings_theme_entries[10]</comment>
         <translation>Lyserøde venner</translation>
+    </message>
+    <message>
+        <source>Midnight Amber</source>
+        <comment>settings_theme_entries[11]</comment>
+        <translation>Midnight Amber</translation>
     </message>
     <message>
         <source>Touchscreen Press</source>
@@ -8618,16 +8814,12 @@ Du kan opdatere DuckStation manuelt ved at hente den nyeste udgave igen. Vil du 
         <translation>Opdatér liste</translation>
     </message>
     <message>
+        <source>More Options</source>
+        <translation>Flere indstillinger</translation>
+    </message>
+    <message>
         <source>Browse...</source>
         <translation>Gennemse...</translation>
-    </message>
-    <message>
-        <source>Open...</source>
-        <translation>Åbn...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Nulstil</translation>
     </message>
     <message>
         <source>Parallel Port</source>
@@ -8904,12 +9096,8 @@ Dit diskbillede kan være beskadiget, eller den fysiske disk er ridset.</transla
         <translation>Gennemse...</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Åbn...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Nulstil</translation>
+        <source>More Options</source>
+        <translation>Flere indstillinger</translation>
     </message>
     <message>
         <source>Media Capture</source>
@@ -9291,6 +9479,10 @@ Forsøg på at bruge denne snydekode vil ikke virke som forventet. Vil du forts�
         <translation>Installeret RAM:</translation>
     </message>
     <message>
+        <source>Installed VRAM:</source>
+        <translation>Installeret VRAM:</translation>
+    </message>
+    <message>
         <source>Fast Boot</source>
         <translation>Hurtig opstart</translation>
     </message>
@@ -9303,8 +9495,8 @@ Forsøg på at bruge denne snydekode vil ikke virke som forventet. Vil du forts�
         <translation>Hurtig fremspoling ved opstart</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Gennemtving fuld RAM-adressekortlægning</translation>
+        <source>Fast Forward While Loading</source>
+        <translation>Hurtig fremspoling under indlæsning</translation>
     </message>
     <message>
         <source>CPU Emulation</source>
@@ -9325,6 +9517,10 @@ Forsøg på at bruge denne snydekode vil ikke virke som forventet. Vil du forts�
     <message>
         <source>Enable Recompiler ICache</source>
         <translation>Aktivér ICache i rekompileren</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <translation>Skalér inaktivitetstimeout</translation>
     </message>
     <message>
         <source>CD-ROM Emulation</source>
@@ -9391,24 +9587,8 @@ Forsøg på at bruge denne snydekode vil ikke virke som forventet. Vil du forts�
         <translation>6x</translation>
     </message>
     <message>
-        <source>Physical Drive Speed:</source>
-        <translation>Det fysiske drevs hastighed:</translation>
-    </message>
-    <message>
-        <source>Don&apos;t Change</source>
-        <translation>Skift ikke</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
         <source>Preload Image to RAM</source>
         <translation>Forudindlæs diskafbildning i RAM</translation>
-    </message>
-    <message>
-        <source>Ignore Physical Drive Subcode</source>
-        <translation>Ignorér det fysiske drevs underkode</translation>
     </message>
     <message>
         <source>Apply Image Patches</source>
@@ -9451,20 +9631,28 @@ Forsøg på at bruge denne snydekode vil ikke virke som forventet. Vil du forts�
         <translation>Spoler hurtigt gennem adgang til hukommelseskort, både ved indlæsning og lagring. Kan reducere ventetiden i spil, der ofte tilgår hukommelseskort.</translation>
     </message>
     <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <translation>Spoler frem, når spillet holder op med at opdatere skærmen under læsning fra disken. Gælder ikke animerede indlæsningsskærme.</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM. Forced maps all installed RAM regardless of game configuration, needed for 16MB with retail BIOSes.</source>
+        <translation>Ændrer mængden af RAM installeret i den emulerede konsol. Kommercielle spil bruger ikke ekstra RAM. Tvungen tilstand kortlægger al installeret RAM uanset spillets konfiguration; den er nødvendig for 16 MB med BIOS fra konsoller solgt i butikkerne.</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <translation>Installeret VRAM</translation>
+    </message>
+    <message>
+        <source>Changes the amount of VRAM installed in the emulated console. Retail games do not use extra VRAM. Forced makes the second VRAM bank accessible regardless of the game enabling it or not.</source>
+        <translation>Ændrer mængden af VRAM installeret i den emulerede konsol. Kommercielle spil bruger ikke ekstra VRAM. Tvungen tilstand gør den anden VRAM-bank tilgængelig, uanset om spillet aktiverer den.</translation>
+    </message>
+    <message>
         <source>Execution Mode</source>
         <translation>Udførelsestilstand</translation>
     </message>
     <message>
         <source>Installed RAM</source>
         <translation>Installeret RAM</translation>
-    </message>
-    <message>
-        <source>Changes the amount of RAM installed in the emulated console. Games have to use a larger heap size for expanded RAM to be usable. Titles which rely on memory mirrors may break, so it should only be used with compatible mods.</source>
-        <translation>Ændrer mængden af RAM installeret i den emulerede konsol. Spil skal bruge en større heap, for at den udvidede RAM kan udnyttes. Spil, der er afhængige af hukommelsesspejling, kan holde op med at fungere, så indstillingen bør kun bruges med kompatible modifikationer.</translation>
-    </message>
-    <message>
-        <source>Maps all installed RAM, regardless of the size configured by the BIOS or game. Retail BIOSes only map 8MB, so this is needed for 16MB to be usable without a patched BIOS. Only has an effect when expanded RAM is installed.</source>
-        <translation>Kortlægger al installeret RAM i adresseområdet, uanset den størrelse, som BIOS eller spillet har konfigureret. BIOS-versioner til almindelige konsoller kortlægger kun 8 MB, så dette er nødvendigt for at kunne bruge 16 MB uden en modificeret BIOS. Har kun effekt, når udvidet RAM er installeret.</translation>
     </message>
     <message>
         <source>Determines how the emulated CPU executes instructions.</source>
@@ -9489,6 +9677,14 @@ Forsøg på at bruge denne snydekode vil ikke virke som forventet. Vil du forts�
     <message>
         <source>Simulates stalls in the recompilers when the emulated CPU would have to fetch instructions into its cache. Makes games run closer to their console framerate, at a small cost to performance. Interpreter mode always simulates the instruction cache.</source>
         <translation>Simulerer ventetid i rekompilerne, når den emulerede CPU skal hente instruktioner ind i sin cache. Får spil til at køre tættere på konsollens billedhastighed med et lille ydelsestab. Fortolkertilstand simulerer altid instruktionscachen.</translation>
+    </message>
+    <message>
+        <source>Checked</source>
+        <translation>Markeret</translation>
+    </message>
+    <message>
+        <source>Games give up waiting for vertical blank after a fixed number of loop iterations, which pass faster when overclocking. Scales this timeout to keep games synchronized to vertical blank.</source>
+        <translation>Spil holder op med at vente på vertikal blanking efter et fast antal løkkeiterationer, som går hurtigere under overclocking. Skalerer denne timeout for at holde spil synkroniseret med vertikal blanking.</translation>
     </message>
     <message>
         <source>CD-ROM Read Speedup</source>
@@ -9517,22 +9713,6 @@ Forsøg på at bruge denne snydekode vil ikke virke som forventet. Vil du forts�
     <message>
         <source>Automatically switches to the next disc in the game when the game stops the CD-ROM motor. No switch will occur if the last disc in the game is already selected. &lt;strong&gt;Does not work for all games.&lt;/strong&gt;</source>
         <translation>Skifter automatisk til næste disk i spillet, når spillet stopper CD-ROM-motoren. Der skiftes ikke, hvis spillets sidste disk allerede er valgt. &lt;strong&gt;Virker ikke med alle spil.&lt;/strong&gt;</translation>
-    </message>
-    <message>
-        <source>Physical Drive Speed</source>
-        <translation>Det fysiske drevs hastighed</translation>
-    </message>
-    <message>
-        <source>8x</source>
-        <translation>8x</translation>
-    </message>
-    <message>
-        <source>Sets the speed of the host drive when using physical discs. Higher speeds can reduce stutter, but make the drive louder. Set to &quot;Don&apos;t Change&quot; to leave the drive at its own speed. Not all drives support this.</source>
-        <translation>Indstiller værtsdrevets hastighed ved brug af fysiske diske. Højere hastigheder kan reducere hakken, men gør drevet mere støjende. Vælg »Skift ikke« for at bevare drevets egen hastighed. Ikke alle drev understøtter dette.</translation>
-    </message>
-    <message>
-        <source>Ignores the subchannel provided by the drive when using physical discs, instead always generating subchannel data. Won&apos;t work with libcrypt games, but can improve read reliability on some drives.</source>
-        <translation>Ignorerer den subkanal, drevet leverer ved brug af fysiske diske, og genererer i stedet altid subkanaldata. Virker ikke med libcrypt-spil, men kan forbedre læsepålideligheden på nogle drev.</translation>
     </message>
     <message>
         <source>Enabling CPU overclocking will break games, cause bugs, reduce performance and can significantly increase system requirements.
@@ -9848,6 +10028,89 @@ Denne advarsel vises kun én gang.</translation>
     </message>
 </context>
 <context>
+    <name>ControllerBindingWidget_DDGo</name>
+    <message>
+        <source>Power Lever</source>
+        <translation>Kørehåndtag</translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation>Trækkraft</translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation>Fra</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation>4</translation>
+    </message>
+    <message>
+        <source>5</source>
+        <translation>5</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Select</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <source>Brake Lever</source>
+        <translation>Bremsehåndtag</translation>
+    </message>
+    <message>
+        <source>Brake</source>
+        <translation>Bremse</translation>
+    </message>
+    <message>
+        <source>Released</source>
+        <translation>Løsnet</translation>
+    </message>
+    <message>
+        <source>6</source>
+        <translation>6</translation>
+    </message>
+    <message>
+        <source>7</source>
+        <translation>7</translation>
+    </message>
+    <message>
+        <source>8</source>
+        <translation>8</translation>
+    </message>
+    <message>
+        <source>Emergency</source>
+        <translation>Nødbremse</translation>
+    </message>
+    <message>
+        <source>A</source>
+        <translation>A</translation>
+    </message>
+    <message>
+        <source>B</source>
+        <translation>B</translation>
+    </message>
+    <message>
+        <source>C</source>
+        <translation>C</translation>
+    </message>
+</context>
+<context>
     <name>ControllerBindingWidget_DigitalController</name>
     <message>
         <source>L1</source>
@@ -9972,6 +10235,93 @@ Denne advarsel vises kun én gang.</translation>
     <message>
         <source>A</source>
         <translation>A</translation>
+    </message>
+</context>
+<context>
+    <name>ControllerBindingWidget_JogCon</name>
+    <message>
+        <source>D-Pad</source>
+        <translation>Retningsknapper</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation>Ned</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation>Venstre</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation>Op</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation>Højre</translation>
+    </message>
+    <message>
+        <source>Vibration Motor</source>
+        <translation>Vibrationsmotor</translation>
+    </message>
+    <message>
+        <source>L2</source>
+        <translation>L2</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Select</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <source>R2</source>
+        <translation>R2</translation>
+    </message>
+    <message>
+        <source>L1</source>
+        <translation>L1</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>Tilstand</translation>
+    </message>
+    <message>
+        <source>Mode LED</source>
+        <translation>Tilstandslampe</translation>
+    </message>
+    <message>
+        <source>R1</source>
+        <translation>R1</translation>
+    </message>
+    <message>
+        <source>Face Buttons</source>
+        <translation>Frontknapper</translation>
+    </message>
+    <message>
+        <source>Cross</source>
+        <translation>Kryds</translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation>Firkant</translation>
+    </message>
+    <message>
+        <source>Triangle</source>
+        <translation>Trekant</translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation>Cirkel</translation>
+    </message>
+    <message>
+        <source>Force Feedback Device</source>
+        <translation>Force feedback-enhed</translation>
+    </message>
+    <message>
+        <source>Steering</source>
+        <translation>Styring</translation>
     </message>
 </context>
 <context>
@@ -10185,6 +10535,45 @@ Denne advarsel vises kun én gang.</translation>
     <message>
         <source>Small Motor</source>
         <translation>Lille motor</translation>
+    </message>
+</context>
+<context>
+    <name>ControllerBindingWidget_Popn</name>
+    <message>
+        <source>Left Buttons</source>
+        <translation>Venstre knapper</translation>
+    </message>
+    <message>
+        <source>Yellow</source>
+        <translation>Gul</translation>
+    </message>
+    <message>
+        <source>Blue/Sel</source>
+        <translation>Blå/Select</translation>
+    </message>
+    <message>
+        <source>White</source>
+        <translation>Hvid</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Grøn</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Select</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <source>Right Buttons</source>
+        <translation>Højre knapper</translation>
+    </message>
+    <message>
+        <source>Middle Red/Okay</source>
+        <translation>Rød i midten/OK</translation>
     </message>
 </context>
 <context>
@@ -10402,48 +10791,84 @@ Den &quot;alternative&quot; farve bruges, når analog tilstand er aktiv.</transl
 <context>
     <name>ControllerMacroEditWidget</name>
     <message>
-        <source>Binds/Buttons</source>
-        <translation>Tilknytninger/knapper</translation>
+        <source>The trigger activates the macro, and can be a single button or combination of buttons. Shift-click for multiple triggers.</source>
+        <translation>Udløseren aktiverer makroen og kan være en enkelt knap eller en kombination af knapper. Hold Skift nede, mens du klikker, for at angive flere udløsere.</translation>
     </message>
     <message>
-        <source>Select the buttons which you want to trigger with this macro. All buttons are activated concurrently.</source>
-        <translation>Vælg de knapper, som du vil udløse med denne makro. Alle knapper aktiveres samtidigt.</translation>
-    </message>
-    <message>
-        <source>Pressure</source>
-        <translation>Tryk</translation>
-    </message>
-    <message>
-        <source>For buttons which are pressure sensitive, this slider controls how much force will be simulated when the macro is active.</source>
-        <translation>For trykfølsomme knapper styrer denne skyder, hvor stor kraft der simuleres, når makroen er aktiv.</translation>
+        <source>Activation Deadzone:</source>
+        <translation>Dødzone for aktivering:</translation>
     </message>
     <message>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
+        <source>Sequence</source>
+        <translation>Sekvens</translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation>Handling</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>Værdi</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>Optag</translation>
+    </message>
+    <message>
+        <source>Replaces the sequence with one which holds a button, or toggles it on and off every N frames (turbo).</source>
+        <translation>Erstatter sekvensen med en sekvens, der holder en knap nede eller skifter dens tilstand for hver N billeder (turbo).</translation>
+    </message>
+    <message>
+        <source>Quick Setup</source>
+        <translation>Hurtig opsætning</translation>
+    </message>
+    <message>
+        <source>Add Input</source>
+        <translation>Tilføj input</translation>
+    </message>
+    <message>
+        <source>Add Wait</source>
+        <translation>Tilføj pause</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Fjern</translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <translation>Flyt op</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation>Flyt ned</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Ryd</translation>
+    </message>
+    <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once for each press. The current repeat is always finished.</source>
+        <translation>Gentager sekvensen, mens makroen er aktiv, i stedet for at afspille den én gang pr. tryk. Den igangværende gentagelse afspilles altid færdig.</translation>
+    </message>
+    <message>
+        <source>Loop While Active</source>
+        <translation>Gentag, mens makroen er aktiv</translation>
+    </message>
+    <message>
+        <source>Activates and deactivates the macro when the button is tapped instead of held.</source>
+        <translation>Slår makroen til og fra med et kort tryk på knappen, uden at den skal holdes nede.</translation>
+    </message>
+    <message>
         <source>Trigger</source>
         <translation>Udløser</translation>
     </message>
     <message>
-        <source>Select the trigger to activate this macro. This can be a single button, or combination of buttons (chord). Shift-click for multiple triggers.</source>
-        <translation>Vælg udløseren, der aktiverer denne makro. Det kan være en enkelt knap eller en kombination af knapper. Hold Skift nede, og klik for at vælge flere udløsere.</translation>
-    </message>
-    <message>
         <source>Press To Toggle</source>
         <translation>Tryk for at slå til/fra</translation>
-    </message>
-    <message>
-        <source>Deadzone:</source>
-        <translation>Dødzone:</translation>
-    </message>
-    <message>
-        <source>Frequency</source>
-        <translation>Frekvens</translation>
-    </message>
-    <message>
-        <source>Macro will toggle every N frames.</source>
-        <translation>Makroen skifter tilstand for hver N billeder.</translation>
     </message>
     <message>
         <source>Controller %1 Macro %2</source>
@@ -10453,27 +10878,53 @@ Den &quot;alternative&quot; farve bruges, når analog tilstand er aktiv.</transl
         <source>Not Configured</source>
         <translation>Ikke konfigureret</translation>
     </message>
+    <message numerus="yes">
+        <source>%n button(s)</source>
+        <translation>
+            <numerusform>%n knap</numerusform>
+            <numerusform>%n knapper</numerusform>
+        </translation>
+    </message>
     <message>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
     <message>
-        <source>Set Frequency</source>
-        <translation>Angiv frekvens</translation>
+        <source>Frames to toggle %1 on and off for, or 0 to hold it:</source>
+        <translation>Billeder mellem tilstandsskift for %1 (0 for at holde nede):</translation>
     </message>
     <message>
-        <source>Frequency: </source>
-        <translation>Frekvens: </translation>
+        <source>Stop</source>
+        <translation>Stop</translation>
     </message>
     <message>
-        <source>Macro will not repeat.</source>
-        <translation>Makroen gentages ikke.</translation>
+        <source>Wait</source>
+        <translation>Vent</translation>
     </message>
     <message numerus="yes">
-        <source>Macro will toggle buttons every %n frame(s).</source>
+        <source>%n frame(s)</source>
         <translation>
-            <numerusform>Makroen skifter knappernes tilstand for hvert %n billede.</numerusform>
-            <numerusform>Makroen skifter knappernes tilstand for hver %n billeder.</numerusform>
+            <numerusform>%n billede</numerusform>
+            <numerusform>%n billeder</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source> frames</source>
+        <translation> billeder</translation>
+    </message>
+    <message>
+        <source>%</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <source>Sequence (%1, %2)</source>
+        <translation>Sekvens (%1, %2)</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n action(s)</source>
+        <translation>
+            <numerusform>%n handling</numerusform>
+            <numerusform>%n handlinger</numerusform>
         </translation>
     </message>
 </context>
@@ -11546,16 +11997,12 @@ Denne fil kan fylde flere gigabyte, så vær opmærksom på slid på SSD&apos;en
         <translation>Aktivér hurtig hukommelsesadgang i rekompileren</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <translation>Aktivér hurtig fremspoling af recompilerens inaktive løkke</translation>
+    </message>
+    <message>
         <source>CD-ROM Mechacon Version</source>
         <translation>CD-ROM-Mechacon-version</translation>
-    </message>
-    <message>
-        <source>CD-ROM Readahead Sectors</source>
-        <translation>CD-ROM-sektorer til forudlæsning</translation>
-    </message>
-    <message>
-        <source> sectors</source>
-        <translation> sektorer</translation>
     </message>
     <message>
         <source>CD-ROM Max Read Speedup Cycles</source>
@@ -12010,6 +12457,105 @@ Klik på Nulstil for at gendanne serienummeret til værdien, der blev aflæst fr
     </message>
 </context>
 <context>
+    <name>FoldersSettingsWidget</name>
+    <message>
+        <source>Cache Directory</source>
+        <translation>Cachemappe</translation>
+    </message>
+    <message>
+        <source>Used for storing compiled shaders, game list data, and downloaded achievement images.</source>
+        <translation>Bruges til at gemme kompilerede shaders, spildata og downloadede præstationsbilleder.</translation>
+    </message>
+    <message>
+        <source>Cheats Directory</source>
+        <translation>Snydemappe</translation>
+    </message>
+    <message>
+        <source>Stores cheat files (.cht) that you have created or imported. These are used in addition to the built-in cheat database.</source>
+        <translation>Gemmer snydefiler (.cht), som du har oprettet eller importeret. De bruges sammen med den indbyggede snydedatabase.</translation>
+    </message>
+    <message>
+        <source>Covers Directory</source>
+        <translation>Covermappe</translation>
+    </message>
+    <message>
+        <source>Used for storing covers in the game grid/Big Picture UIs.</source>
+        <translation>Bruges til at gemme covers i spilgitteret og Big Picture-grænseflader.</translation>
+    </message>
+    <message>
+        <source>Game Icons Directory</source>
+        <translation>Mappe til spilikoner</translation>
+    </message>
+    <message>
+        <source>Stores game list icons extracted from memory card saves. A PNG named after a game&apos;s serial can be placed here to use a custom icon.</source>
+        <translation>Gemmer ikoner til spillisten, som er udtrukket fra gemte spildata på hukommelseskort. En PNG-fil navngivet efter spillets serienummer kan placeres her som brugerdefineret ikon.</translation>
+    </message>
+    <message>
+        <source>Game Settings Directory</source>
+        <translation>Mappe til spilindstillinger</translation>
+    </message>
+    <message>
+        <source>Stores per-game settings files, named by game serial.</source>
+        <translation>Gemmer indstillingsfiler for hvert spil, navngivet efter spillets serienummer.</translation>
+    </message>
+    <message>
+        <source>Input Profiles Directory</source>
+        <translation>Mappe til inputprofiler</translation>
+    </message>
+    <message>
+        <source>Stores controller input profiles.</source>
+        <translation>Gemmer controller-inputprofiler.</translation>
+    </message>
+    <message>
+        <source>Patches Directory</source>
+        <translation>Patchmappe</translation>
+    </message>
+    <message>
+        <source>Stores patch files (.cht) that you have created or imported. These are used in addition to the built-in patch database.</source>
+        <translation>Gemmer patchfiler (.cht), som du har oprettet eller importeret. De bruges sammen med den indbyggede patchdatabase.</translation>
+    </message>
+    <message>
+        <source>Shaders Directory</source>
+        <translation>Shadermappe</translation>
+    </message>
+    <message>
+        <source>Searched for post-processing shaders: GLSL shaders in this directory, ReShade shaders in reshade/Shaders, and slang presets in slang.</source>
+        <translation>Søger efter shaders til efterbehandling: GLSL-shaders i denne mappe, ReShade-shaders i reshade/Shaders og Slang-forudindstillinger i mappen slang.</translation>
+    </message>
+    <message>
+        <source>Subchannels Directory</source>
+        <translation>Subkanalmappe</translation>
+    </message>
+    <message>
+        <source>Searched for SBI/LSD subchannel files, which are required by LibCrypt-protected games, when they are not found next to the disc image.</source>
+        <translation>Søger efter SBI/LSD-subkanalfiler, som kræves af LibCrypt-beskyttede spil, hvis de ikke findes ved siden af diskbilledet.</translation>
+    </message>
+    <message>
+        <source>User Resources Directory</source>
+        <translation>Mappe til brugerressourcer</translation>
+    </message>
+    <message>
+        <source>Files placed here override the bundled resources. Also used for custom themes and Big Picture backgrounds.</source>
+        <translation>Filer placeret her tilsidesætter de medfølgende ressourcer. Mappen bruges også til brugerdefinerede temaer og Big Picture-baggrunde.</translation>
+    </message>
+    <message>
+        <source>Browse...</source>
+        <translation>Gennemse...</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Flere indstillinger</translation>
+    </message>
+    <message>
+        <source>Select %1</source>
+        <translation>Vælg %1</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standard</translation>
+    </message>
+</context>
+<context>
     <name>FullscreenUI</name>
     <message>
         <source>Change State</source>
@@ -12332,10 +12878,6 @@ Vil du slette den gemte tilstand og starte spillet alligevel?</translation>
         <translation>Samlet: {}</translation>
     </message>
     <message>
-        <source>All unofficial achievement progress for the current game will be removed. This cannot be undone.</source>
-        <translation>Alle fremskridt for uofficielle præstationer i det aktuelle spil fjernes. Dette kan ikke fortrydes.</translation>
-    </message>
-    <message>
         <source>Allow Booting Without SBI File</source>
         <translation>Tillad opstart uden SBI-fil</translation>
     </message>
@@ -12390,6 +12932,10 @@ Vil du slette den gemte tilstand og starte spillet alligevel?</translation>
     <message>
         <source>Applies the selected sprite texture filter to framebuffer uploads. This can smooth backgrounds in some games while preserving texture data and 24-bit video.</source>
         <translation>Anvender det valgte sprite-teksturfilter på uploads til billedbufferen. Dette kan udjævne baggrunde i nogle spil og samtidig bevare teksturdata og 24-bit-video.</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>Anvend</translation>
     </message>
     <message>
         <source>Apply Image Patches</source>
@@ -12592,10 +13138,6 @@ Denne handling kan ikke fortrydes.</translation>
         <translation>Bufferstørrelse</translation>
     </message>
     <message>
-        <source>Buttons</source>
-        <translation>Knapper</translation>
-    </message>
-    <message>
         <source>CD-ROM Emulation</source>
         <translation>CD-ROM-emulering</translation>
     </message>
@@ -12652,12 +13194,16 @@ Denne handling kan ikke fortrydes.</translation>
         <translation>Skift titel</translation>
     </message>
     <message>
-        <source>Change View</source>
-        <translation>Skift visning</translation>
-    </message>
-    <message>
         <source>Changes settings for the application.</source>
         <translation>Ændrer programmets indstillinger.</translation>
+    </message>
+    <message>
+        <source>Changes the amount of RAM installed in the emulated console. Retail games do not use extra RAM.</source>
+        <translation>Ændrer mængden af RAM installeret i den emulerede konsol. Kommercielle spil bruger ikke ekstra RAM.</translation>
+    </message>
+    <message>
+        <source>Changes the amount of video RAM installed in the emulated console. Retail games do not use extra VRAM.</source>
+        <translation>Ændrer mængden af videohukommelse installeret i den emulerede konsol. Kommercielle spil bruger ikke ekstra VRAM.</translation>
     </message>
     <message>
         <source>Changes the aspect ratio used to display the console&apos;s output to the screen.</source>
@@ -13024,10 +13570,6 @@ Denne handling kan ikke fortrydes.</translation>
         <translation>Bestemmer, hvor meget af det område, der normalt ikke er synligt på et almindeligt tv, der beskæres/skjules.</translation>
     </message>
     <message>
-        <source>Determines how much pressure is simulated when macro is active.</source>
-        <translation>Bestemmer, hvor stort et tryk der simuleres, når makroen er aktiv.</translation>
-    </message>
-    <message>
         <source>Determines how much to crop the display area.</source>
         <translation>Bestemmer, hvor meget visningsområdet beskæres.</translation>
     </message>
@@ -13066,10 +13608,6 @@ Denne handling kan ikke fortrydes.</translation>
     <message>
         <source>Determines the format that screenshots will be saved/compressed with.</source>
         <translation>Bestemmer det format, som skærmbilleder gemmes/komprimeres med.</translation>
-    </message>
-    <message>
-        <source>Determines the frequency at which the macro will toggle the buttons on and off (aka auto fire).</source>
-        <translation>Bestemmer den frekvens, hvormed makroen slår knapperne til og fra (også kaldet automatisk affyring).</translation>
     </message>
     <message>
         <source>Determines the image shown next to each game in the list view.</source>
@@ -13316,6 +13854,10 @@ Denne handling kan ikke fortrydes.</translation>
         <translation>Aktivér instruktionscache i rekompileren</translation>
     </message>
     <message>
+        <source>Enable Recompiler Idle Loop Fast Forward</source>
+        <translation>Aktivér hurtig fremspoling af recompilerens inaktive løkke</translation>
+    </message>
+    <message>
         <source>Enable Recompiler Memory Exceptions</source>
         <translation>Aktivér hukommelsesundtagelser i rekompileren</translation>
     </message>
@@ -13380,12 +13922,76 @@ Denne handling kan ikke fortrydes.</translation>
         <translation>Aktiverer adressejusterings- og busundtagelser. Ikke nødvendigt for nogen kendte spil.</translation>
     </message>
     <message>
+        <source>Fast Forward While Loading</source>
+        <translation>Hurtig fremspoling under indlæsning</translation>
+    </message>
+    <message>
+        <source>Fast forwards when the game stops updating the screen while reading from the disc. Does not apply to animated loading screens.</source>
+        <translation>Spoler frem, når spillet holder op med at opdatere skærmen under læsning fra disken. Gælder ikke animerede indlæsningsskærme.</translation>
+    </message>
+    <message>
+        <source>Grid</source>
+        <translation>Gitter</translation>
+    </message>
+    <message>
+        <source>Installed VRAM</source>
+        <translation>Installeret VRAM</translation>
+    </message>
+    <message>
+        <source>Midnight Amber</source>
+        <translation>Midnight Amber</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement</source>
+        <translation>Nulstil oplåsning af ikke-promoveret præstation</translation>
+    </message>
+    <message>
+        <source>Reset Unpromoted Achievement Unlocks</source>
+        <translation>Nulstil oplåsninger af ikke-promoverede præstationer</translation>
+    </message>
+    <message>
+        <source>Scale Idle Timeout</source>
+        <translation>Skalér inaktivitetstimeout</translation>
+    </message>
+    <message>
+        <source>Sequence</source>
+        <translation>Sekvens</translation>
+    </message>
+    <message>
+        <source>Skips over the busy loop that games use to wait for vertical blank.</source>
+        <translation>Springer busy-wait-løkken over, som spil bruger til at vente på vertikal blanking.</translation>
+    </message>
+    <message>
+        <source>Stops games from timing out while waiting for vertical blank when overclocking.</source>
+        <translation>Forhindrer spil i at få timeout, mens de venter på vertikal blanking under overclocking.</translation>
+    </message>
+    <message>
+        <source>Track Unpromoted Achievements</source>
+        <translation>Følg ikke-promoverede præstationer</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlock reset.</source>
+        <translation>Oplåsning af ikke-promoveret præstation nulstillet.</translation>
+    </message>
+    <message>
+        <source>Unpromoted achievement unlocks reset.</source>
+        <translation>Oplåsninger af ikke-promoverede præstationer nulstillet.</translation>
+    </message>
+    <message>
         <source>Web Cache Size: {0} ({1} in {2} objects)</source>
         <translation>Webcachens størrelse: {0} ({1} i {2} objekter)</translation>
     </message>
     <message>
+        <source>When enabled, DuckStation will track unpromoted achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
+        <translation>Når dette er aktiveret, følger DuckStation ikke-promoverede præstationer. Oplåsninger gemmes lokalt og sendes ikke til RetroAchievements.</translation>
+    </message>
+    <message>
         <source>Adds additional precision to PGXP data post-projection. May improve visuals in some games. Automatic uses the game database setting.</source>
         <translation>Giver PGXP-data større præcision efter projektion. Kan forbedre grafikken i nogle spil. Automatisk bruger indstillingen fra spildatabasen.</translation>
+    </message>
+    <message>
+        <source>All unpromoted achievement progress for the current game will be removed. This cannot be undone.</source>
+        <translation>Al fremgang for ikke-promoverede præstationer i det aktuelle spil fjernes. Dette kan ikke fortrydes.</translation>
     </message>
     <message>
         <source>Asks for each button and axis of this controller in turn.</source>
@@ -13396,12 +14002,20 @@ Denne handling kan ikke fortrydes.</translation>
         <translation>Tilknyt alle knapper</translation>
     </message>
     <message>
-        <source>Changes the amount of RAM installed in the emulated console.</source>
-        <translation>Ændrer mængden af RAM installeret i den emulerede konsol.</translation>
+        <source>Button</source>
+        <translation>Knap</translation>
+    </message>
+    <message>
+        <source>Carousel</source>
+        <translation>Karrusel</translation>
     </message>
     <message>
         <source>Clear</source>
         <translation>Ryd</translation>
+    </message>
+    <message>
+        <source>Determines how the game list is displayed.</source>
+        <translation>Bestemmer, hvordan spillisten vises.</translation>
     </message>
     <message>
         <source>Enables an additional three controller slots on each port. Not supported in all games.</source>
@@ -13606,10 +14220,6 @@ Fejlen var:</translation>
         <translation>Gennemtving 4:3 for FMV-videoer</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Gennemtving fuld RAM-adressekortlægning</translation>
-    </message>
-    <message>
         <source>Forces a full rescan of all games previously identified.</source>
         <translation>Gennemtvinger en ny fuld scanning af alle tidligere identificerede spil.</translation>
     </message>
@@ -13634,10 +14244,6 @@ Fejlen var:</translation>
         <translation>Buffer for billedtid</translation>
     </message>
     <message>
-        <source>Frequency</source>
-        <translation>Frekvens</translation>
-    </message>
-    <message>
         <source>From File...</source>
         <translation>Fra fil...</translation>
     </message>
@@ -13656,14 +14262,6 @@ Fejlen var:</translation>
     <message>
         <source>Game Display</source>
         <translation>Spilvisning</translation>
-    </message>
-    <message>
-        <source>Game Grid</source>
-        <translation>Spilgitter</translation>
-    </message>
-    <message>
-        <source>Game List</source>
-        <translation>Spilliste</translation>
     </message>
     <message>
         <source>Game List Settings</source>
@@ -13778,10 +14376,6 @@ Fejlen var:</translation>
         <translation>Grey Matter</translation>
     </message>
     <message>
-        <source>Grid View</source>
-        <translation>Gittervisning</translation>
-    </message>
-    <message>
         <source>Hardcore Mode</source>
         <translation>Hardcore-tilstand</translation>
     </message>
@@ -13800,6 +14394,10 @@ Fejlen var:</translation>
     <message>
         <source>Hides the mouse pointer/cursor when the emulator is in fullscreen mode.</source>
         <translation>Skjuler musemarkøren, når emulatoren er i fuldskærmstilstand.</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation>Hold nede</translation>
     </message>
     <message>
         <source>Hotkeys</source>
@@ -13950,12 +14548,20 @@ Fejlen var:</translation>
         <translation>Længde: {}</translation>
     </message>
     <message>
+        <source>Library</source>
+        <translation>Bibliotek</translation>
+    </message>
+    <message>
         <source>Light</source>
         <translation>Lys</translation>
     </message>
     <message>
         <source>Line Detection</source>
         <translation>Linjeregistrering</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <translation>Liste</translation>
     </message>
     <message>
         <source>List Compact Mode</source>
@@ -14078,16 +14684,20 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Logger meddelelser til fejlfinderkonsollen, hvor det understøttes.</translation>
     </message>
     <message>
+        <source>Loop While Active</source>
+        <translation>Gentag, mens makroen er aktiv</translation>
+    </message>
+    <message>
         <source>Macro {}</source>
         <translation>Makro {}</translation>
     </message>
     <message>
-        <source>Makes games run closer to their console framerate, at a small cost to performance.</source>
-        <translation>Får spil til at køre tættere på konsollens billedfrekvens med en mindre omkostning i ydelse.</translation>
+        <source>Macro {} Sequence</source>
+        <translation>Sekvens for makro {}</translation>
     </message>
     <message>
-        <source>Maps all installed RAM, regardless of the size configured by the BIOS or game. Needed for 16MB with retail BIOSes.</source>
-        <translation>Kortlægger al installeret RAM i adresseområdet, uanset den størrelse, som BIOS eller spillet har konfigureret. Nødvendigt for at bruge 16 MB med BIOS-versioner til almindelige konsoller.</translation>
+        <source>Makes games run closer to their console framerate, at a small cost to performance.</source>
+        <translation>Får spil til at køre tættere på konsollens billedfrekvens med en mindre omkostning i ydelse.</translation>
     </message>
     <message>
         <source>Maximum (Safer)</source>
@@ -14100,6 +14710,10 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
     <message>
         <source>Maximum Seek Speedup Cycles</source>
         <translation>Maksimalt antal cyklusser med hurtigere søgning</translation>
+    </message>
+    <message>
+        <source>Maximum amount of video memory used to cache cover art and other images in the Big Picture UI.</source>
+        <translation>Den maksimale mængde videohukommelse, der bruges til at cache omslag og andre billeder i Big Picture-grænsefladen.</translation>
     </message>
     <message>
         <source>Maximum: {}</source>
@@ -14246,6 +14860,14 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Ingen enheder med vibrationsmotorer blev registreret.</translation>
     </message>
     <message>
+        <source>No games found.</source>
+        <translation>Ingen spil fundet.</translation>
+    </message>
+    <message>
+        <source>No inputs.</source>
+        <translation>Ingen input.</translation>
+    </message>
+    <message>
         <source>No patches are available for this game.</source>
         <translation>Der er ingen rettelser til dette spil.</translation>
     </message>
@@ -14280,6 +14902,10 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
     <message>
         <source>Normalize Depth Scale</source>
         <translation>Normaliser dybdeskala</translation>
+    </message>
+    <message>
+        <source>Not Configured</source>
+        <translation>Ikke konfigureret</translation>
     </message>
     <message>
         <source>Not Logged In</source>
@@ -14514,8 +15140,20 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Viser ekstra billeder til effekter såsom indsættelse af sorte billeder.</translation>
     </message>
     <message>
+        <source>Quick Setup</source>
+        <translation>Hurtig opsætning</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>Optag</translation>
+    </message>
+    <message>
         <source>Removes the scale of each object&apos;s transform from depth values. Fixes missing geometry in some games, but breaks others. Automatic uses the game database setting.</source>
         <translation>Fjerner skaleringen i hvert objekts transformation fra dybdeværdierne. Retter manglende geometri i nogle spil, men får andre til at fungere forkert. Automatisk bruger indstillingen fra spildatabasen.</translation>
+    </message>
+    <message>
+        <source>{0} inputs, {1} frames</source>
+        <translation>{0} input, {1} billeder</translation>
     </message>
     <message>
         <source>Preserve Projection Precision</source>
@@ -14524,10 +15162,6 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
     <message>
         <source>Press To Toggle</source>
         <translation>Tryk for at slå til/fra</translation>
-    </message>
-    <message>
-        <source>Pressure</source>
-        <translation>Tryk</translation>
     </message>
     <message>
         <source>Prevents inputs from being processed when another application is active.</source>
@@ -14674,6 +15308,10 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Rendering</translation>
     </message>
     <message>
+        <source>Repeats the sequence while the macro is active, instead of playing it once for each press. The current repeat is always finished.</source>
+        <translation>Gentager sekvensen, mens makroen er aktiv, i stedet for at afspille den én gang pr. tryk. Den igangværende gentagelse afspilles altid færdig.</translation>
+    </message>
+    <message>
         <source>Replaces these settings with a previously saved controller preset.</source>
         <translation>Erstatter disse indstillinger med en tidligere gemt controllerforudindstilling.</translation>
     </message>
@@ -14716,14 +15354,6 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
     <message>
         <source>Reset Unlock</source>
         <translation>Nulstil oplåsning</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement</source>
-        <translation>Nulstil uofficiel præstation</translation>
-    </message>
-    <message>
-        <source>Reset Unofficial Achievement Unlocks</source>
-        <translation>Nulstil oplåsning af uofficielle præstationer</translation>
     </message>
     <message>
         <source>Resets all configuration to defaults (including bindings).</source>
@@ -14966,6 +15596,10 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Vælg BIOS-afbildning</translation>
     </message>
     <message>
+        <source>Select Button</source>
+        <translation>Vælg knap</translation>
+    </message>
+    <message>
         <source>Select Device</source>
         <translation>Vælg enhed</translation>
     </message>
@@ -14992,10 +15626,6 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
     <message>
         <source>Select Key</source>
         <translation>Vælg tast</translation>
-    </message>
-    <message>
-        <source>Select Macro {} Binds</source>
-        <translation>Vælg tilknytninger for makro {}</translation>
     </message>
     <message>
         <source>Select State</source>
@@ -15278,10 +15908,6 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Viser systemets aktuelle renderingsopløsning i skærmens øverste højre hjørne.</translation>
     </message>
     <message>
-        <source>Shows the game list as a grid instead of a vertical list.</source>
-        <translation>Viser spillisten som et gitter i stedet for en lodret liste.</translation>
-    </message>
-    <message>
         <source>Shows the game you are currently playing as part of your profile in Discord.</source>
         <translation>Viser det spil, du spiller, som en del af din profil på Discord.</translation>
     </message>
@@ -15450,6 +16076,10 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Trin {} af {}</translation>
     </message>
     <message>
+        <source>Stop</source>
+        <translation>Stop</translation>
+    </message>
+    <message>
         <source>Stores the current settings to a controller preset.</source>
         <translation>Gemmer de aktuelle indstillinger som en controllerforudindstilling.</translation>
     </message>
@@ -15498,6 +16128,10 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Deaktiverer midlertidigt alle forbedringer. Nyttigt ved test.</translation>
     </message>
     <message>
+        <source>Texture Cache Size</source>
+        <translation>Størrelse på teksturcache</translation>
+    </message>
+    <message>
         <source>Texture Filtering</source>
         <translation>Teksturfiltrering</translation>
     </message>
@@ -15524,6 +16158,14 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
     <message>
         <source>The audio backend determines how frames produced by the emulator are submitted to the host.</source>
         <translation>Lydsystemet bestemmer, hvordan lydblokke fra emulatoren sendes til værtscomputeren.</translation>
+    </message>
+    <message>
+        <source>The button to hold or toggle.</source>
+        <translation>Knappen, der holdes nede eller skiftevis aktiveres og slippes.</translation>
+    </message>
+    <message>
+        <source>The inputs this macro plays, recorded or set up from a single button.</source>
+        <translation>De input, som makroen afspiller. De optages eller sættes op med en enkelt knap.</translation>
     </message>
     <message>
         <source>The selected memory card image will be used in shared mode for this slot.</source>
@@ -15598,10 +16240,6 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Spor</translation>
     </message>
     <message>
-        <source>Track Unofficial Achievements</source>
-        <translation>Spor uofficielle præstationer</translation>
-    </message>
-    <message>
         <source>Track hash copied to clipboard.</source>
         <translation>Sporets hash kopieret til udklipsholderen.</translation>
     </message>
@@ -15640,14 +16278,6 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
     <message>
         <source>Unlimited</source>
         <translation>Ubegrænset</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlock reset.</source>
-        <translation>Oplåsning af uofficiel præstation nulstillet.</translation>
-    </message>
-    <message>
-        <source>Unofficial achievement unlocks reset.</source>
-        <translation>Oplåsning af uofficielle præstationer nulstillet.</translation>
     </message>
     <message>
         <source>Unpin from OSD</source>
@@ -15798,6 +16428,10 @@ Kontrollér dit brugernavn og din adgangskode, og prøv igen.</translation>
         <translation>Lodret synkronisering (VSync)</translation>
     </message>
     <message>
+        <source>View</source>
+        <translation>Visning</translation>
+    </message>
+    <message>
         <source>WARNING: Activating cheats can cause unpredictable behavior, crashing, soft-locks, or broken saved games.</source>
         <translation>ADVARSEL: Aktivering af snydekoder kan medføre uforudsigelig adfærd, nedbrud, fastlåsning af spillet eller ødelagte gemte spil.</translation>
     </message>
@@ -15836,10 +16470,6 @@ Vil du {0} alligevel?</translation>
     <message>
         <source>When enabled, DuckStation will assume all achievements are locked and not send any unlock notifications to the server.</source>
         <translation>Når aktiveret, antager DuckStation, at alle præstationer er låst, og sender ingen oplåsningsmeddelelser til serveren.</translation>
-    </message>
-    <message>
-        <source>When enabled, DuckStation will track unofficial achievements. Unlocks will be saved locally and not sent to RetroAchievements.</source>
-        <translation>Når aktiveret, sporer DuckStation uofficielle præstationer. Oplåsninger gemmes lokalt og sendes ikke til RetroAchievements.</translation>
     </message>
     <message>
         <source>When enabled, each session will behave as if no achievements have been unlocked.</source>
@@ -15926,16 +16556,16 @@ Do you want to {1} anyway?</source>
 Vil du {1} alligevel?</translation>
     </message>
     <message>
-        <source>{} Frames</source>
-        <translation>{} billeder</translation>
-    </message>
-    <message>
         <source>{} deleted.</source>
         <translation>{} slettet.</translation>
     </message>
     <message>
         <source>{} does not exist.</source>
         <translation>{} findes ikke.</translation>
+    </message>
+    <message>
+        <source>{} frames</source>
+        <translation>{} billeder</translation>
     </message>
     <message>
         <source>{} is not a valid disc image.</source>
@@ -15967,6 +16597,13 @@ Vil du {1} alligevel?</translation>
         <translation>
             <numerusform>%n minut tilbage</numerusform>
             <numerusform>%n minutter tilbage</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n button(s)</source>
+        <translation>
+            <numerusform>%n knap</numerusform>
+            <numerusform>%n knapper</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -16230,12 +16867,12 @@ Vil du {1} alligevel?</translation>
         <translation>RAM-størrelse:</translation>
     </message>
     <message>
-        <source>Disable Widescreen Rendering</source>
-        <translation>Deaktivér bredskærmsrendering</translation>
+        <source>VRAM Size:</source>
+        <translation>VRAM-størrelse:</translation>
     </message>
     <message>
-        <source>Force Full RAM Mapping</source>
-        <translation>Gennemtving fuld RAM-adressekortlægning</translation>
+        <source>Disable Widescreen Rendering</source>
+        <translation>Deaktivér bredskærmsrendering</translation>
     </message>
     <message>
         <source>Disallow in Hardcore Mode</source>
@@ -16483,6 +17120,11 @@ Er du sikker på, at du vil fortsætte?</translation>
         <translation>Deaktivér hurtig fremspoling ved adgang til hukommelseskort</translation>
     </message>
     <message>
+        <source>Disable Fast Forward While Loading</source>
+        <comment>GameDatabase::Trait</comment>
+        <translation>Deaktivér hurtig fremspoling under indlæsning</translation>
+    </message>
+    <message>
         <source>Disable CD-ROM Read Speedup</source>
         <comment>GameDatabase::Trait</comment>
         <translation>Deaktivér CD-ROM-læsehastighedsforøgelse</translation>
@@ -16636,6 +17278,10 @@ Er du sikker på, at du vil fortsætte?</translation>
     <message>
         <source>Fast forward memory card access disabled.</source>
         <translation>Hurtig fremspoling ved adgang til hukommelseskort deaktiveret.</translation>
+    </message>
+    <message>
+        <source>Fast forward while loading disabled.</source>
+        <translation>Hurtig fremspoling under indlæsning deaktiveret.</translation>
     </message>
     <message>
         <source>CD-ROM read speedup disabled.</source>
@@ -17125,14 +17771,6 @@ Er du sikker på, at du vil fortsætte?</translation>
         <translation>Udelukkede stier (scannes ikke)</translation>
     </message>
     <message>
-        <source>File...</source>
-        <translation>Fil...</translation>
-    </message>
-    <message>
-        <source>Folder...</source>
-        <translation>Mappe...</translation>
-    </message>
-    <message>
         <source>Scan For New Games</source>
         <translation>Søg efter nye spil</translation>
     </message>
@@ -17141,8 +17779,40 @@ Er du sikker på, at du vil fortsætte?</translation>
         <translation>Scan alle spil igen</translation>
     </message>
     <message>
+        <source>Search Directories</source>
+        <translation>Søgemapper</translation>
+    </message>
+    <message>
+        <source>Directories which will be scanned for games. Enable Scan Recursively to also search subdirectories, which takes longer but finds games stored in nested folders. Folders can also be dragged here from your file manager.</source>
+        <translation>Mapper, der gennemsøges efter spil. Aktivér rekursiv scanning for også at søge i undermapper; det tager længere tid, men finder spil i indlejrede mapper. Du kan også trække mapper hertil fra filhåndteringen.</translation>
+    </message>
+    <message>
+        <source>Excluded Paths</source>
+        <translation>Udelukkede stier</translation>
+    </message>
+    <message>
+        <source>Files and directories which will be skipped when scanning for games, for example images you do not want to appear in the game list. Files and folders can also be dragged here from your file manager.</source>
+        <translation>Filer og mapper, der springes over under søgning efter spil, f.eks. billeder, du ikke vil have vist i spillisten. Du kan også trække filer og mapper hertil fra filhåndteringen.</translation>
+    </message>
+    <message>
+        <source>Scans the search directories for files which are not already in the game list. Previously-scanned games are loaded from the cache, so this is usually quick.</source>
+        <translation>Gennemsøger søgemapperne efter filer, der endnu ikke findes på spillisten. Tidligere scannede spil indlæses fra cachen, så det går normalt hurtigt.</translation>
+    </message>
+    <message>
+        <source>Discards the game list cache and scans every file in the search directories again. Use this if game details such as titles or serials are incorrect. May take a while for large collections.</source>
+        <translation>Kasserer spillistens cache og scanner alle filer i søgemapperne igen. Brug dette, hvis spildetaljer som titler eller serienumre er forkerte. Kan tage tid for store samlinger.</translation>
+    </message>
+    <message>
         <source>Open Directory...</source>
         <translation>Åbn mappe...</translation>
+    </message>
+    <message>
+        <source>No search directories. Add a folder, or drag one here, to choose where your games are stored.</source>
+        <translation>Ingen søgemapper. Tilføj en mappe, eller træk en hertil, for at vælge hvor dine spil er gemt.</translation>
+    </message>
+    <message>
+        <source>No excluded paths. Files or folders added here will be skipped when scanning.</source>
+        <translation>Ingen udelukkede stier. Filer eller mapper, der tilføjes her, springes over under scanning.</translation>
     </message>
     <message>
         <source>Select Search Directory</source>
@@ -17826,16 +18496,12 @@ Rekursiv scanning tager længere tid, men finder filer i undermapper.</translati
         <translation>Mappe, som erstatningsteksturer indlæses fra, og dumps gemmes i.</translation>
     </message>
     <message>
+        <source>More Options</source>
+        <translation>Flere indstillinger</translation>
+    </message>
+    <message>
         <source>Browse...</source>
         <translation>Gennemse...</translation>
-    </message>
-    <message>
-        <source>Open...</source>
-        <translation>Åbn...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Nulstil</translation>
     </message>
     <message>
         <source>Debugging</source>
@@ -18200,10 +18866,6 @@ Rekursiv scanning tager længere tid, men finder filer i undermapper.</translati
     <message>
         <source>Geometry Tolerance</source>
         <translation>Geometritolerance</translation>
-    </message>
-    <message>
-        <source>-1.00px (Disabled)</source>
-        <translation>-1,00 px (deaktiveret)</translation>
     </message>
     <message>
         <source>Discards precise geometry when it is found to be offset past the specified threshold. This can help with games that have vertices significantly moved by PGXP, but is still a hack/workaround.</source>
@@ -20395,6 +21057,10 @@ Skift-klik for at angive flere tilknytninger.</translation>
         <translation>Indstiller programmets udseende og adfærd.</translation>
     </message>
     <message>
+        <source>&amp;Folders</source>
+        <translation>&amp;Mapper</translation>
+    </message>
+    <message>
         <source>Ad&amp;vanced</source>
         <translation>A&amp;vanceret</translation>
     </message>
@@ -20973,6 +21639,10 @@ Skift-klik for at angive flere tilknytninger.</translation>
     <message>
         <source>Purple Rain</source>
         <translation>Purple Rain</translation>
+    </message>
+    <message>
+        <source>Midnight Amber</source>
+        <translation>Midnight Amber</translation>
     </message>
     <message>
         <source>QDarkStyle</source>
@@ -21873,8 +22543,8 @@ Fejl: {1}</translation>
         <translation>Gennemse...</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation>Åbn...</translation>
+        <source>More Options</source>
+        <translation>Flere indstillinger</translation>
     </message>
     <message>
         <source>Select Memory Card Directory</source>
@@ -23257,10 +23927,6 @@ Fejl: {1}</translation>
         <translation>Opdater overlejringsliste</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Additional preset borders can be added to the &lt;span style=&quot; font-weight:700;&quot;&gt;resources\overlays&lt;/span&gt; folder within the data directory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yderligere forudindstillede rammer kan tilføjes i mappen &lt;span style=&quot; font-weight:700;&quot;&gt;resources\overlays&lt;/span&gt; i datamappen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>Custom Configuration</source>
         <translation>Brugerdefinerede indstillinger</translation>
     </message>
@@ -23271,6 +23937,14 @@ Fejl: {1}</translation>
     <message>
         <source>Browse...</source>
         <translation>Gennemse...</translation>
+    </message>
+    <message>
+        <source>Overlays Directory:</source>
+        <translation>Overlaymappe:</translation>
+    </message>
+    <message>
+        <source>More Options</source>
+        <translation>Flere indstillinger</translation>
     </message>
     <message>
         <source>Display Start:</source>
@@ -23303,6 +23977,22 @@ Fejl: {1}</translation>
     <message>
         <source>Export...</source>
         <translation>Eksporter...</translation>
+    </message>
+    <message>
+        <source>Select Overlays Directory</source>
+        <translation>Vælg overlaymappe</translation>
+    </message>
+    <message>
+        <source>Overlays Directory</source>
+        <translation>Overlaymappe</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standard</translation>
+    </message>
+    <message>
+        <source>Stores additional border overlay presets. Use Refresh Overlay List to find presets after changing this directory.</source>
+        <translation>Gemmer ekstra forudindstillinger til kantoverlays. Brug knappen &quot;Opdater overlejringsliste&quot; til at finde forudindstillinger, når denne mappe er ændret.</translation>
     </message>
     <message>
         <source>Image Path</source>
@@ -23954,12 +24644,20 @@ Vil du opdatere genvejen, så den peger på den aktuelle placering?</translation
         <translation>{} ({})</translation>
     </message>
     <message>
-        <source>Saved {}</source>
-        <translation>Gemt {}</translation>
+        <source>Empty</source>
+        <translation>Tom</translation>
     </message>
     <message>
-        <source>No save present in this slot.</source>
-        <translation>Der er ingen gemt tilstand på denne plads.</translation>
+        <source>Save States</source>
+        <translation>Gemmetilstande</translation>
+    </message>
+    <message>
+        <source>{} of {} slots in use</source>
+        <translation>{} af {} pladser i brug</translation>
+    </message>
+    <message>
+        <source>Saved {}</source>
+        <translation>Gemt {}</translation>
     </message>
     <message>
         <source>Unknown error.</source>
@@ -24031,16 +24729,16 @@ Vil du opdatere genvejen, så den peger på den aktuelle placering?</translation
         <translation>Brug global indstilling [%1]</translation>
     </message>
     <message>
-        <source>Use Global Setting [Enabled]</source>
-        <translation>Brug global indstilling [aktiveret]</translation>
-    </message>
-    <message>
-        <source>Use Global Setting [Disabled]</source>
-        <translation>Brug global indstilling [deaktiveret]</translation>
-    </message>
-    <message>
         <source>Global: </source>
         <translation>Global: </translation>
+    </message>
+    <message>
+        <source>Open Folder</source>
+        <translation>Åbn mappe</translation>
+    </message>
+    <message>
+        <source>Reset to Default</source>
+        <translation>Nulstil til standard</translation>
     </message>
     <message>
         <source>Confirm Folder</source>
@@ -24182,24 +24880,54 @@ Vil du oprette denne mappe?</translation>
         <translation>Ikke-PS1</translation>
     </message>
     <message>
-        <source>2 MB (Retail Console)</source>
+        <source>2MB (Standard)</source>
         <comment>CPURAMSize</comment>
-        <translation>2 MB (almindelig konsol)</translation>
+        <translation>2 MB (standard)</translation>
     </message>
     <message>
-        <source>4 MB (Arcade Boards)</source>
+        <source>4MB</source>
         <comment>CPURAMSize</comment>
-        <translation>4 MB (arkadekort)</translation>
+        <translation>4 MB</translation>
     </message>
     <message>
-        <source>8 MB (Dev Console)</source>
+        <source>4MB (Forced)</source>
         <comment>CPURAMSize</comment>
-        <translation>8 MB (udviklingskonsol)</translation>
+        <translation>4 MB (tvunget)</translation>
     </message>
     <message>
-        <source>16 MB (Mods/Arcade Boards)</source>
+        <source>8MB</source>
         <comment>CPURAMSize</comment>
-        <translation>16 MB (modifikationer/arkadekort)</translation>
+        <translation>8 MB</translation>
+    </message>
+    <message>
+        <source>8MB (Forced)</source>
+        <comment>CPURAMSize</comment>
+        <translation>8 MB (tvunget)</translation>
+    </message>
+    <message>
+        <source>16MB</source>
+        <comment>CPURAMSize</comment>
+        <translation>16 MB</translation>
+    </message>
+    <message>
+        <source>16MB (Forced)</source>
+        <comment>CPURAMSize</comment>
+        <translation>16 MB (tvunget)</translation>
+    </message>
+    <message>
+        <source>1MB (Standard)</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>1 MB (standard)</translation>
+    </message>
+    <message>
+        <source>2MB</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>2 MB</translation>
+    </message>
+    <message>
+        <source>2MB (Forced)</source>
+        <comment>GPUVRAMSize</comment>
+        <translation>2 MB (tvunget)</translation>
     </message>
     <message>
         <source>Interpreter (Slowest)</source>
@@ -25004,8 +25732,8 @@ Vil du oprette denne mappe?</translation>
         <translation>Spilliste</translation>
     </message>
     <message>
-        <source>&lt;strong&gt;Game List Settings&lt;/strong&gt;&lt;hr&gt;The list above shows the directories which will be searched by DuckStation to populate the game list. Search directories can be added, removed, and switched to recursive/non-recursive.</source>
-        <translation>&lt;strong&gt;Indstillinger for spilliste&lt;/strong&gt;&lt;hr&gt;Listen ovenfor viser de mapper, som DuckStation søger i for at udfylde spillisten. Søgemapper kan tilføjes, fjernes og indstilles til rekursiv eller ikke-rekursiv søgning.</translation>
+        <source>&lt;strong&gt;Game List Settings&lt;/strong&gt;&lt;hr&gt;These options control which directories are scanned to populate the game list.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information.</source>
+        <translation>&lt;strong&gt;Spillisteindstillinger&lt;/strong&gt;&lt;hr&gt;Disse indstillinger styrer, hvilke mapper der scannes for at udfylde spillisten.&lt;br&gt;&lt;br&gt;Hold markøren over en indstilling for flere oplysninger.</translation>
     </message>
     <message>
         <source>BIOS</source>
@@ -25103,6 +25831,14 @@ Vil du oprette denne mappe?</translation>
     <message>
         <source>&lt;strong&gt;Capture Settings&lt;/strong&gt;&lt;hr&gt;These options determine how screenshots and videos are captured by the application.</source>
         <translation>&lt;strong&gt;Optagelsesindstillinger&lt;/strong&gt;&lt;hr&gt;Disse indstillinger bestemmer, hvordan programmet optager skærmbilleder og videoer.</translation>
+    </message>
+    <message>
+        <source>Folders</source>
+        <translation>Mapper</translation>
+    </message>
+    <message>
+        <source>&lt;strong&gt;Folder Settings&lt;/strong&gt;&lt;hr&gt;These options control where DuckStation reads and stores its files.&lt;br&gt;&lt;br&gt;Mouse over an option for additional information, and Shift+Wheel to scroll this panel.</source>
+        <translation>&lt;strong&gt;Mappeindstillinger&lt;/strong&gt;&lt;hr&gt;Disse indstillinger styrer, hvor DuckStation læser og gemmer sine filer.&lt;br&gt;&lt;br&gt;Hold markøren over en indstilling for flere oplysninger. Hold Shift nede, og rul med musehjulet for at rulle i dette panel.</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -25272,10 +26008,6 @@ Vil du fortsætte?</translation>
         <translation>Gennemse...</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>Nulstil</translation>
-    </message>
-    <message>
         <source>NTSC-J (Japan):</source>
         <translation>NTSC-J (Japan):</translation>
     </message>
@@ -25288,8 +26020,8 @@ Vil du fortsætte?</translation>
         <translation>PAL (Europa, Australien):</translation>
     </message>
     <message>
-        <source>Open in Explorer...</source>
-        <translation>Åbn i Stifinder...</translation>
+        <source>More Options</source>
+        <translation>Flere indstillinger</translation>
     </message>
     <message>
         <source>Refresh List</source>
@@ -25559,6 +26291,10 @@ Alle ændringer er gemt, og guiden køres igen, næste gang du starter DuckStati
             <numerusform>%n BIOS-afbildning fundet. Du kan installere yderligere BIOS-afbildninger, hvis du ønsker det.</numerusform>
             <numerusform>%n BIOS-afbildninger fundet. Du kan installere yderligere BIOS-afbildninger, hvis du ønsker det.</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>No search directories. Add a folder, or drag one here, to choose where your games are stored.</source>
+        <translation>Ingen søgemapper. Tilføj en mappe, eller træk en hertil, for at vælge hvor dine spil er gemt.</translation>
     </message>
     <message>
         <source>Open Directory...</source>
@@ -25870,10 +26606,6 @@ SBI-filens navn skal svare til diskafbildningens navn.</translation>
         <translation>RAM-størrelsen er indstillet til standardværdien.</translation>
     </message>
     <message>
-        <source>Expanded RAM is enabled, this may be incompatible with some games.</source>
-        <translation>Udvidet RAM er aktiveret. Dette kan være inkompatibelt med visse spil.</translation>
-    </message>
-    <message>
         <source>Switched to sub-image {} ({}) in &apos;{}&apos;.</source>
         <translation>Skiftede til delafbildning {} ({}) i &apos;{}&apos;.</translation>
     </message>
@@ -25895,6 +26627,19 @@ SBI-filens navn skal svare til diskafbildningens navn.</translation>
         <translation>Udvidet RAM</translation>
     </message>
     <message>
+        <source>Expanded VRAM</source>
+        <comment>Taint</comment>
+        <translation>Udvidet VRAM</translation>
+    </message>
+    <message>
+        <source>Unknown BIOS</source>
+        <translation>Ukendt BIOS</translation>
+    </message>
+    <message>
+        <source>Physical Disc</source>
+        <translation>Fysisk disk</translation>
+    </message>
+    <message>
         <source>There is no next disc to switch to.</source>
         <translation>Der er ingen næste disk at skifte til.</translation>
     </message>
@@ -25911,6 +26656,10 @@ Du skal gemme på et hukommelseskort og genstarte spillet for at fjerne eventuel
     <message>
         <source>Overclock disabled.</source>
         <translation>Overclocking deaktiveret.</translation>
+    </message>
+    <message>
+        <source>2MB VRAM disabled.</source>
+        <translation>2 MB VRAM deaktiveret.</translation>
     </message>
     <message>
         <source>Resolution scale set to 1x.</source>
@@ -26039,6 +26788,14 @@ Du skal gemme på et hukommelseskort og genstarte spillet for at fjerne eventuel
     <message>
         <source>PGXP Geometry Tolerance is not set to default. This may cause rendering errors.</source>
         <translation>PGXP-geometritolerancen er ikke sat til standard. Dette kan give renderingsfejl.</translation>
+    </message>
+    <message>
+        <source>RAM size is set to {}, this may be incompatible with some games.</source>
+        <translation>RAM-størrelsen er indstillet til {}, hvilket kan være inkompatibelt med nogle spil.</translation>
+    </message>
+    <message>
+        <source>VRAM size is set to {}, this may be incompatible with some games.</source>
+        <translation>VRAM-størrelsen er indstillet til {}, hvilket kan være inkompatibelt med nogle spil.</translation>
     </message>
     <message>
         <source>Cached interpreter is being used, this may be incompatible with some games.</source>

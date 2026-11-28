@@ -75,7 +75,7 @@ static void ResetCommandFIFO();
 static bool IsCommandFIFOEmpty();
 static void WakeThread();
 static void WakeThreadIfSleeping();
-static bool SleepThread(bool allow_sleep);
+static bool SleepThread(bool allow_sleep, u64 timeout_ns = 0);
 static void VideoThreadEntryPoint();
 
 static bool CreateDeviceOnThread(RenderAPI api, bool fullscreen, bool start_fullscreen_ui,
@@ -127,6 +127,8 @@ struct ALIGN_TO_CACHE_LINE State
   std::atomic<u32> command_fifo_read_ptr{0};
   u8 run_idle_reasons = 0;
   bool run_idle_flag = false;
+  bool throttle_idle_inactive = false;
+  Timer::Value inactive_idle_present_time = 0;
   GPUVSyncMode requested_vsync = GPUVSyncMode::Disabled;
   std::string game_title;
   std::string game_serial;
@@ -424,7 +426,7 @@ void VideoThread::SyncThread(bool spin)
   s_state.thread_is_done_semaphore.Wait();
 }
 
-bool VideoThread::SleepThread(bool allow_sleep)
+bool VideoThread::SleepThread(bool allow_sleep, u64 timeout_ns /* = 0 */)
 {
   DebugAssert(!allow_sleep || s_state.thread_wake_count.load(std::memory_order_relaxed) >= 0);
   for (;;)
@@ -448,11 +450,26 @@ bool VideoThread::SleepThread(bool allow_sleep)
     if (old_state & THREAD_WAKE_COUNT_CPU_THREAD_IS_WAITING)
       s_state.thread_is_done_semaphore.Post();
 
-    // Sleep until more work is queued.
-    if (allow_sleep)
-      s_state.thread_wake_semaphore.Wait();
-    else
+    // Sleep until more work is queued, or the timeout elapses.
+    if (!allow_sleep)
       return false;
+
+    if (timeout_ns == 0)
+    {
+      s_state.thread_wake_semaphore.Wait();
+    }
+    else if (!s_state.thread_wake_semaphore.TimedWait(timeout_ns))
+    {
+      // Timed out. If work was queued in the meantime, the semaphore was or is about to be posted, so consume it.
+      s32 expected = THREAD_WAKE_COUNT_SLEEPING;
+      if (s_state.thread_wake_count.compare_exchange_strong(expected, 0, std::memory_order_acq_rel,
+                                                            std::memory_order_relaxed))
+      {
+        return false;
+      }
+
+      s_state.thread_wake_semaphore.Wait();
+    }
   }
 }
 
@@ -596,6 +613,24 @@ void VideoThread::DoRunIdle()
     return;
   }
 
+  // When the application is inactive, there's no need to render the UI at the full refresh rate. Wait until the
+  // next present time or until work is queued. Queued work is processed by the main loop, but the present time is
+  // kept, so that a stream of commands (e.g. controller axis events) doesn't present more often.
+  static constexpr u64 INACTIVE_IDLE_PERIOD_NS = 100 * 1000 * 1000;
+  const bool inactive_wait = (s_state.throttle_idle_inactive && s_state.use_thread);
+  if (inactive_wait)
+  {
+    const Timer::Value current_time = Timer::GetCurrentValue();
+    if (current_time < s_state.inactive_idle_present_time)
+    {
+      // Zero would wait forever.
+      SleepThread(true, std::max<u64>(static_cast<u64>(Timer::ConvertValueToNanoseconds(
+                                        s_state.inactive_idle_present_time - current_time)),
+                                      1));
+      return;
+    }
+  }
+
   if (s_state.gpu_backend)
     s_state.gpu_backend->FlushRender();
 
@@ -603,7 +638,16 @@ void VideoThread::DoRunIdle()
     return;
 
   // Wait before starting the next frame instead of before presenting it, so that input is sampled as late as possible.
-  VideoPresenter::ThrottlePresentation();
+  if (inactive_wait)
+  {
+    s_state.inactive_idle_present_time =
+      Timer::GetCurrentValue() + Timer::ConvertNanosecondsToValue(static_cast<double>(INACTIVE_IDLE_PERIOD_NS));
+    SleepThread(true, INACTIVE_IDLE_PERIOD_NS);
+  }
+  else if (s_state.throttle_idle_inactive)
+    Timer::NanoSleep(INACTIVE_IDLE_PERIOD_NS);
+  else
+    VideoPresenter::ThrottlePresentation();
   ImGuiManager::NewFrame(Timer::GetCurrentValue());
 
   if (s_state.gpu_backend)
@@ -860,6 +904,7 @@ bool VideoThread::CreateDeviceOnThread(RenderAPI api, bool fullscreen, bool star
   s_state.render_window_info.surface_height = std::max<u16>(s_state.render_window_info.surface_height, 1);
   s_state.per_present_vsync = g_gpu_device->GetFeatures().per_present_vsync;
 
+  SetRunIdleReason(RunIdleReason::NoSurface, !g_gpu_device->HasMainSwapChain());
   UpdateRunIdle();
 
   // Switch to borderless if exclusive failed.
@@ -1593,6 +1638,7 @@ void VideoThread::RecreateRenderWindowOnThread(bool fullscreen, bool allow_exclu
   }
 
   g_gpu_device->DestroyMainSwapChain();
+  SetRunIdleReason(RunIdleReason::NoSurface, true);
 
   Error error;
   std::optional<WindowInfo> wi =
@@ -1613,6 +1659,8 @@ void VideoThread::RecreateRenderWindowOnThread(bool fullscreen, bool allow_exclu
       Host::ReportFatalError("Failed to change window after update", error.GetDescription());
       return;
     }
+
+    SetRunIdleReason(RunIdleReason::NoSurface, false);
   }
   else
   {
@@ -1733,7 +1781,7 @@ void VideoThread::SetRunIdleReason(RunIdleReason reason, bool enabled)
   {
     static constexpr const std::array reason_strings = {
       "NoGPUBackend",        "SystemPaused",        "OSDMessagesActive",         "FullscreenUIActive",
-      "NotificationsActive", "LoadingScreenActive", "AchievementOverlaysActive",
+      "NotificationsActive", "LoadingScreenActive", "AchievementOverlaysActive", "NoSurface",
     };
     for (u32 i = 0; i < reason_strings.size(); ++i)
     {
@@ -1754,6 +1802,13 @@ bool VideoThread::IsRunningIdle()
   return s_state.run_idle_flag;
 }
 
+void VideoThread::UpdateThrottleIdle()
+{
+  DebugAssert(Host::IsOnCoreThread());
+  const bool enabled = (InputManager::IsApplicationInBackground() && g_settings.reduce_idle_frame_rate);
+  RunOnThread([enabled]() { s_state.throttle_idle_inactive = enabled; });
+}
+
 bool VideoThread::IsSystemPaused()
 {
   return ((s_state.run_idle_reasons & static_cast<u8>(RunIdleReason::SystemPaused)) != 0);
@@ -1764,16 +1819,19 @@ void VideoThread::UpdateRunIdle()
   DebugAssert(IsOnThread());
 
   // We require either invalid-system or paused for run idle.
+  // NoSurface blocks run idle instead of activating it, there's nothing to present to.
   static constexpr u8 REQUIRE_MASK = static_cast<u8>(RunIdleReason::NoGPUBackend) |
                                      static_cast<u8>(RunIdleReason::SystemPaused) |
                                      static_cast<u8>(RunIdleReason::LoadingScreenActive);
+  static constexpr u8 DISALLOW_MASK = static_cast<u8>(RunIdleReason::NoSurface);
   static constexpr u8 ACTIVATE_MASK =
     static_cast<u8>(RunIdleReason::OSDMessagesActive) | static_cast<u8>(RunIdleReason::FullscreenUIActive) |
     static_cast<u8>(RunIdleReason::NotificationsActive) | static_cast<u8>(RunIdleReason::LoadingScreenActive) |
     static_cast<u8>(RunIdleReason::AchievementOverlaysActive);
 
-  const bool new_flag = (g_gpu_device && ((s_state.run_idle_reasons & REQUIRE_MASK) != 0) &&
-                         ((s_state.run_idle_reasons & ACTIVATE_MASK) != 0));
+  const bool new_flag =
+    (g_gpu_device && ((s_state.run_idle_reasons & REQUIRE_MASK) != 0) &&
+     ((s_state.run_idle_reasons & ACTIVATE_MASK) != 0) && ((s_state.run_idle_reasons & DISALLOW_MASK) == 0));
   if (s_state.run_idle_flag == new_flag)
     return;
 
